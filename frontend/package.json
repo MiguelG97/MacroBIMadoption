@@ -12,6 +12,7 @@
     "next": "14.2.2",
     "react": "^18",
     "react-dom": "^18",
+    "recharts": "^2.12.6",
     "xlsx": "https://cdn.sheetjs.com/xlsx-0.20.2/xlsx-0.20.2.tgz"
   },
   "devDependencies": {
