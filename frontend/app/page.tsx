@@ -1,6 +1,7 @@
 "use client";
 import PieChartComp from "@/core/shared/components/pieChart";
 import { excelUtils } from "@/core/utils/readExcelUtils";
+import Dashboard_screen from "@/modules/dashboard/presenter/screens/dashboard_screen";
 import { useEffect } from "react";
 import { utils } from "xlsx";
 
@@ -26,8 +27,9 @@ export default function Home() {
     excel();
   }, []);
   return (
-    <main className="w-screen h-screen">
-      <PieChartComp />
-    </main>
+    <Dashboard_screen />
+    // <main className="w-screen h-screen">
+    //   <PieChartComp />
+    // </main>
   );
 }

@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.primary_100 {
+  @apply text-[#a4a4a4];
+}
+.primary_200 {
+  @apply text-[#d2d2d2];
+}
+.secondary_100 {
+  @apply text-black;
+}
