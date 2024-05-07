@@ -8,8 +8,8 @@ interface countAnswer {
 }
 export class ProcessDataUtils {
   static processData(
-    sectionID: string,
-    section: ISectionItem[]
+    // sectionID: string,
+    sectionX: ISectionItem
   ): countAnswer | null {
     const questionnarieAnsw =
       store.getState().questionnarieSlice;
@@ -17,19 +17,17 @@ export class ProcessDataUtils {
     //1) filter the relevant answers related to an specific section and question
     const answers =
       questionnarieAnsw.value.filter(
-        (x) => x["Item ID"] === sectionID
+        (x) =>
+          x["Item ID"] ===
+          sectionX.question_id.toString()
       );
     //2) find the original question data to be used as reference
-    const answer1 = section.find(
-      (x) =>
-        x.question_id.toString() === sectionID
-    );
-    if (!answer1) return null;
+    //this is actually the sectionX!!
 
     //3) Prepare the count values object for each possible answer to the question
     const answerCounter: countAnswer = {};
-    for (const index in answer1.answers) {
-      const answ = answer1.answers[index];
+    for (const index in sectionX.answers) {
+      const answ = sectionX.answers[index];
       answerCounter[index] = {
         answerName: answ,
         count: 0,

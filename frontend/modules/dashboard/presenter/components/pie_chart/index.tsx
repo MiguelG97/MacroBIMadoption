@@ -25,28 +25,18 @@ interface questionnaire {
 }
 
 export default function Pie_chart_bim({
-  sectionID,
-  section,
+  sectionX,
 }: {
-  sectionID: string;
-  section: ISectionItem[];
+  sectionX: ISectionItem;
 }) {
-  // const section1ID = "1662403538119";
-
   const [questionnaire, setQuestionnarie] =
     useState<questionnaire>();
 
   useEffect(() => {
+    //bussiness logic
     const answerCounter =
-      ProcessDataUtils.processData(
-        sectionID,
-        section
-      );
-    const answer1 = section.find(
-      (x) =>
-        x.question_id.toString() === sectionID
-    );
-    if (!answerCounter || !answer1) return; //in case it's null
+      ProcessDataUtils.processData(sectionX);
+    if (!answerCounter) return; //in case it's null
 
     //5) store the accumulated data and question name in a hook state
     const finalValues = Object.values(
@@ -63,11 +53,9 @@ export default function Pie_chart_bim({
         value: x.count,
       }));
     setQuestionnarie({
-      question: answer1.default,
+      question: sectionX.default,
       chartData,
     });
-
-    // console.log("first chart: ", anwers);
   }, []);
   return (
     <div
