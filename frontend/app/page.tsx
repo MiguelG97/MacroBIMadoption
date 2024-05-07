@@ -1,9 +1,7 @@
 "use client";
-import PieChartComp from "@/core/shared/components/pieChart";
 import { setData } from "@/core/shared/redux/slices/questionnarie_slice";
 import { useAppDispatch } from "@/core/shared/redux/store";
 import { excelUtils } from "@/core/utils/readExcelUtils";
-import Dashboard_screen from "@/modules/dashboard/presenter/screens/dashboard_screen";
 import dynamic from "next/dynamic";
 import { useEffect } from "react";
 import { utils } from "xlsx";
@@ -21,6 +19,8 @@ export default function Home() {
     const excel = async () => {
       const workbook =
         await excelUtils.readExcel();
+
+      //@ts-ignore
       const { Answers, Questionnaire } =
         workbook?.Sheets;
       //Questionnaire:
@@ -33,7 +33,7 @@ export default function Home() {
       //Answers: convert it to array of json objects to get data as rows since the sheet has a valid header
       const jsonAnswers =
         utils.sheet_to_json(Answers);
-      console.log(jsonAnswers);
+      // console.log(jsonAnswers);
       dispatch(setData(jsonAnswers));
     };
     excel();
