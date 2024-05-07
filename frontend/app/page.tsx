@@ -20,19 +20,17 @@ export default function Home() {
       const workbook =
         await excelUtils.readExcel();
 
-      //@ts-ignore
-      const { Answers, Questionnaire } =
-        workbook?.Sheets;
+      // const { Answers, Questionnaire } =
+      //   workbook?.Sheets;
+      const sheets = workbook?.Sheets;
+      if (!sheets) return;
       //Questionnaire:
       //data is ordered by all items that belong to a column and then it moves on to the next one
 
-      // console.log(Questionnaire);
-      // const range = utils.decode_range("C3:D6");
-      // console.log(range);
-
       //Answers: convert it to array of json objects to get data as rows since the sheet has a valid header
-      const jsonAnswers =
-        utils.sheet_to_json(Answers);
+      const jsonAnswers = utils.sheet_to_json(
+        sheets.Answers
+      );
       // console.log(jsonAnswers);
       dispatch(setData(jsonAnswers));
     };
