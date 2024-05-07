@@ -1,13 +1,17 @@
 //we need of answers section to filter from defined answers and other comments
-export const section1 = [
+
+import { ISectionItem } from "../types/section_Questionnarie";
+
+export const section1: ISectionItem[] = [
   {
     question_id: 1662403538119,
     es: "¿Su institución ofrece contenidos educativos relacionados con BIM dentro de sus programas?",
     default:
       "Does your institution offer BIM-related educational content within its programmes?",
     answers: ["Yes", "No", "Not sure"],
+    chart: "pie",
   },
-  //problem here, since we have the both keyword instead
+  //problem here, since we have the both keyword instead [if it does not appear, set it as another]
   {
     question_id: 1665076540133,
     es: "¿Qué programa académico ofrecido por su institución incluye contenidos educativos relacionados con BIM?",
@@ -20,6 +24,7 @@ export const section1 = [
       "Civil Engineering programme",
       "Construction Management programme",
     ],
+    chart: "bar",
   },
   {
     question_id: 1662403538116,
@@ -59,7 +64,7 @@ export const section1 = [
     default:
       "How are students taught BIM-related content within this programme?",
     answers: [
-      "Students are taught how to use software tools ",
+      "Students are taught how to use software tools",
       "Students are taught in classroom-based lectures",
       "Students work on individualised projects",
       "Students work on collaborative multidisciplinary projects",
@@ -199,14 +204,14 @@ export const section1 = [
     default:
       "What types of BIM-related on-campus learning resources are available to students within this programme?",
     answers: [
-      "Computer lab and software tools ",
+      "Computer lab and software tools",
       "Immersive virtual reality tools and environment / CAVE",
       "Self-paced textual and audiovisual materials",
     ],
   },
 ];
 
-export const section2 = [
+export const section2: ISectionItem[] = [
   {
     question_id: 1662416269541,
     es: "¿El programa identificado en el apartado anterior genera investigación relacionada con BIM?",
@@ -238,7 +243,7 @@ export const section2 = [
   },
 ];
 
-export const section5 = [
+export const section5: ISectionItem[] = [
   {
     question_id: 1662406986478,
     es: "¿Existen cursos breves de [[Formación BIM]] (por ejemplo, cursos de desarrollo profesional continuo) en su región?",
@@ -291,16 +296,16 @@ export const section5 = [
   },
 ];
 
-export const section6 = [
+export const section6: ISectionItem[] = [
   {
-    question_id: "1696216528318",
+    question_id: 1696216528318,
     es: "¿Existe alguna colaboración formal entre la academia, el gobierno y/o la industria con el fin de mejorar la [[Competencia BIM]]?",
     default:
       "Is there any formal collaboration between academia, government and/or industry for the purposes of improving [[BIM Competency]]?",
     answers: ["Yes", "No", "Not sure"],
   },
   {
-    question_id: "1696216897343",
+    question_id: 1696216897343,
     es: "¿Qué cubre esta colaboración formal entre la academia, el gobierno y/o la industria con respecto a la [[Competencia BIM]]?",
     default:
       "What does this formal collaboration between academia, government and/or industry cover with respect to [[BIM competency]]?",
@@ -312,7 +317,7 @@ export const section6 = [
     ],
   },
   {
-    question_id: "1696217569183",
+    question_id: 1696217569183,
     es: "Por favor, identifique las partes incluidas en esta colaboración formal entre la academia, el gobierno y/o la industria que cubre la [[Competencia BIM]]:",
     default:
       "Please identify the parties included in this formal collaboration between academia, government and/or industry covering [[BIM competency]]:",
@@ -328,7 +333,7 @@ export const section6 = [
   },
   //this one is expected to have a variety answers
   {
-    question_id: "1696216665638",
+    question_id: 1696216665638,
     es: "Proporcione más información sobre los objetivos y resultados de la colaboración formal entre el mundo académico, el gobierno y/o la industria con el fin de mejorar la [[Competencia BIM]]:",
     default:
       "Please provide more information about the objectives and deliverables of the formal collaboration between academia, government and/or industry for the purposes of improving [[BIM competency]]:",
