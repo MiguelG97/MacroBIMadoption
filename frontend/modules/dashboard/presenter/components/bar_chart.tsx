@@ -1,5 +1,13 @@
 import { COLORS } from "@/core/shared/constants/theme";
-import React from "react";
+import {
+  ChartDataItem,
+  ISectionItem,
+  questionnaire,
+} from "@/core/shared/types/section_Questionnarie";
+import React, {
+  useEffect,
+  useState,
+} from "react";
 import {
   Bar,
   BarChart,
@@ -9,6 +17,7 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
+import { ProcessDataUtils } from "../../domain/process_data/process_data";
 
 const data = [
   { name: "Yes", value: 35 },
@@ -22,7 +31,45 @@ const data = [
   { name: "No", value: 6 },
 ];
 
-export default function Bar_chart_bim() {
+export default function Bar_chart_bim({
+  sectionX,
+}: {
+  sectionX: ISectionItem;
+}) {
+  const [questionnaire, setQuestionnarie] =
+    useState<questionnaire>();
+
+  useEffect(() => {
+    //bussiness logic
+    const answerCounter =
+      ProcessDataUtils.processData(sectionX);
+    if (!answerCounter) return; //in case it's null
+
+    //5) store the accumulated data and question name in a hook state
+    let finalValues = Object.values(
+      answerCounter
+    ) as [
+      {
+        answerName: string;
+        count: number;
+      }
+    ];
+
+    //reorder the data
+    finalValues = finalValues.sort(
+      (a, b) => b.count - a.count
+    );
+
+    const chartData: ChartDataItem[] =
+      finalValues.map((x) => ({
+        name: x.answerName,
+        value: x.count,
+      }));
+    setQuestionnarie({
+      question: sectionX.default,
+      chartData,
+    });
+  }, []);
   return (
     <div
       className="bg-[#f7f9fb] w-[632px] h-[620px]
@@ -45,7 +92,7 @@ export default function Bar_chart_bim() {
         >
           <BarChart
             layout="vertical"
-            data={data}
+            data={questionnaire?.chartData}
             margin={{
               top: 20,
               right: 10,

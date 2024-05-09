@@ -11,8 +11,11 @@ export class ProcessDataUtils {
     // sectionID: string,
     sectionX: ISectionItem
   ): countAnswer | null {
+    //variables
     const questionnarieAnsw =
       store.getState().questionnarieSlice;
+    let otherCounter = 0;
+    const otherValues: string[] = [];
 
     //1) filter the relevant answers related to an specific section and question
     const answers =
@@ -33,8 +36,6 @@ export class ProcessDataUtils {
         count: 0,
       };
     }
-    let otherCounter = 0;
-    const otherValues: string[] = [];
 
     //4) accumulate all the values been answered in the survey
 

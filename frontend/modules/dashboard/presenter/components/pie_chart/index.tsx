@@ -13,16 +13,11 @@ import {
 } from "recharts";
 import Render_legend_content from "./legend_content";
 import { ProcessDataUtils } from "@/modules/dashboard/domain/process_data/process_data";
-import { ISectionItem } from "@/core/shared/types/section_Questionnarie";
-interface ChartDataItem {
-  name: string;
-  value: number;
-}
-
-interface questionnaire {
-  question: string;
-  chartData: ChartDataItem[];
-}
+import {
+  ChartDataItem,
+  ISectionItem,
+  questionnaire,
+} from "@/core/shared/types/section_Questionnarie";
 
 export default function Pie_chart_bim({
   sectionX,
@@ -39,7 +34,7 @@ export default function Pie_chart_bim({
     if (!answerCounter) return; //in case it's null
 
     //5) store the accumulated data and question name in a hook state
-    const finalValues = Object.values(
+    let finalValues = Object.values(
       answerCounter
     ) as [
       {
@@ -47,6 +42,12 @@ export default function Pie_chart_bim({
         count: number;
       }
     ];
+
+    //reorder the data
+    finalValues = finalValues.sort(
+      (a, b) => b.count - a.count
+    );
+
     const chartData: ChartDataItem[] =
       finalValues.map((x) => ({
         name: x.answerName,
@@ -57,6 +58,7 @@ export default function Pie_chart_bim({
       chartData,
     });
   }, []);
+
   return (
     <div
       className="bg-[#f7f9fb] min-w-[432px] min-h-[280px] 

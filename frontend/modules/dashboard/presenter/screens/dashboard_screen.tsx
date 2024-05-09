@@ -29,7 +29,14 @@ export default function Dashboard_screen() {
             />
           ))} */}
 
-          <Bar_chart_bim />
+          {section1.map((x) => (
+            <Bar_chart_bim
+              key={x.question_id}
+              sectionX={x}
+            />
+          ))}
+
+          {/* <Bar_chart_bim /> */}
         </div>
       </div>
     </div>

@@ -5,3 +5,13 @@ export interface ISectionItem {
   answers: string[];
   chart?: "bar" | "pie";
 }
+
+export interface ChartDataItem {
+  name: string;
+  value: number;
+}
+
+export interface questionnaire {
+  question: string;
+  chartData: ChartDataItem[];
+}
