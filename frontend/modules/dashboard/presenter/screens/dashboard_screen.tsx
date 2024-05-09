@@ -22,19 +22,14 @@ export default function Dashboard_screen() {
           className="flex flex-col justify-center items-center
         flex-1 gap-4"
         >
-          {section1.map((x) => (
+          {/* {section1.map((x) => (
             <Pie_chart_bim
               key={x.question_id}
               sectionX={x}
             />
-          ))}
+          ))} */}
 
-          {/* <Pie_chart_bim
-            section={section1}
-            sectionID={"1665076540133"}
-          /> */}
-
-          {/* <Bar_chart_bim /> */}
+          <Bar_chart_bim />
         </div>
       </div>
     </div>
