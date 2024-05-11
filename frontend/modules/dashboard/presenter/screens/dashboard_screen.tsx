@@ -12,15 +12,18 @@ export default function Dashboard_screen() {
   // }, []);
   return (
     <div className="flex flex-row h-screen bg-[#ffffff]">
+      {/* how to make it collabsible */}
       <Left_drawer />
       <div
         className="flex flex-col justify-start items-center
-      flex-1"
+      flex-1 bg-[#f4f7fe] "
       >
         <Header />
+
+        {/* canvas */}
         <div
           className="flex flex-col justify-center items-center
-        flex-1 gap-4"
+        flex-1 gap-4 overflow-y-auto w-full"
         >
           {/* {section1.map((x) => (
             <Pie_chart_bim

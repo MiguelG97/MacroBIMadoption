@@ -4,11 +4,13 @@ import {
   useSelector,
 } from "react-redux";
 import { questionnarieSlice } from "./slices/questionnarie_slice";
+import { sectionQstSlice } from "@/modules/dashboard/presenter/controllers/section_quest_slice";
 
 export const store = configureStore({
   reducer: {
     questionnarieSlice:
       questionnarieSlice.reducer,
+    sectionQst: sectionQstSlice.reducer,
   },
 });
 

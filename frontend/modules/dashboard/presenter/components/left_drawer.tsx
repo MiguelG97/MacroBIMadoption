@@ -1,3 +1,4 @@
+import { useAppDispatch } from "@/core/shared/redux/store";
 import {
   IconAffiliate,
   IconBook,
@@ -9,6 +10,7 @@ import {
   Poppins,
 } from "next/font/google";
 import { useState } from "react";
+import { setSelectedSection } from "../controllers/section_quest_slice";
 
 const poppings = Poppins({
   weight: "700",
@@ -20,9 +22,12 @@ const dmSans = DM_Sans({
 });
 
 export default function Left_drawer() {
+  //states
+  const dispatch = useAppDispatch();
   const [selectedIndex, setSelectedIndex] =
     useState<number>(0);
 
+  //constants
   const sections = [
     {
       name: "Educational units",
@@ -75,8 +80,12 @@ export default function Left_drawer() {
   ];
 
   //handlers
-  const onSectionClick = (index: number) => {
+  const onSectionClick = (
+    index: number,
+    sectionName: string
+  ) => {
     setSelectedIndex(index);
+    dispatch(setSelectedSection(sectionName));
   };
   return (
     <div
@@ -112,7 +121,9 @@ pl-10 pr-8 py-14 flex flex-col gap-8 text-[#2B3674]`}
                 ? "border-r-[4px] border-r-[#4318FF] bg-[#f4f4f4]"
                 : ""
             }`}
-            onClick={() => onSectionClick(index)}
+            onClick={() =>
+              onSectionClick(index, x.name)
+            }
           >
             <div>{x.icon}</div>
             <p
