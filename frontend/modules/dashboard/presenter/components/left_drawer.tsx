@@ -89,7 +89,7 @@ export default function Left_drawer() {
   };
   return (
     <div
-      className={`w-[290px]  
+      className={`w-[290px] min-w-[290px]  
 pl-10 pr-8 py-14 flex flex-col gap-8 text-[#2B3674]`}
     >
       {/* 1) title */}

@@ -16,14 +16,14 @@ export default function Dashboard_screen() {
       <Left_drawer />
       <div
         className="flex flex-col justify-start items-center
-      flex-1 bg-[#f4f7fe] "
+       bg-[#f4f7fe] w-full min-w-[800px]"
       >
         <Header />
 
         {/* canvas */}
         <div
-          className="flex flex-col justify-center items-center
-        flex-1 gap-4 overflow-y-auto w-full"
+          className="flex flex-col p-6 
+        h-full gap-6 overflow-y-auto w-full"
         >
           {/* {section1.map((x) => (
             <Pie_chart_bim
@@ -32,12 +32,37 @@ export default function Dashboard_screen() {
             />
           ))} */}
 
-          {section1.map((x) => (
+          <div className="flex flex-row gap-6 w-full justify-center">
+            <Pie_chart_bim
+              sectionX={section1[0]}
+            />
+            <Pie_chart_bim
+              sectionX={section1[2]}
+            />
+          </div>
+          <div className="flex flex-row gap-6 w-full justify-center">
+            <Pie_chart_bim
+              sectionX={section1[3]}
+            />
+            <Pie_chart_bim
+              sectionX={section1[4]}
+            />
+          </div>
+          <div className="flex flex-row gap-6 w-full justify-center">
+            <Pie_chart_bim
+              sectionX={section1[10]}
+            />
+            <Pie_chart_bim
+              sectionX={section1[11]}
+            />
+          </div>
+
+          {/* {section1.map((x) => (
             <Bar_chart_bim
               key={x.question_id}
               sectionX={x}
             />
-          ))}
+          ))} */}
 
           {/* <Bar_chart_bim /> */}
         </div>

@@ -75,30 +75,31 @@ export default function Pie_chart_bim({
       question: sectionX.default,
       chartData,
     });
+    console.log(chartData);
   }, []);
 
   return (
     <div
-      className="bg-[#f7f9fb] min-w-[432px] min-h-[280px] 
-  rounded-2xl flex flex-col p-[24px] items-center w-min h-min"
+      className="bg-[#ffffff] rounded-2xl flex flex-col
+       pt-6 pl-6 pr-6 pb-2 items-center w-full h-min
+       shadow-[0_25px_50px_-22px_rgb(0,0,0,0.2)]"
     >
-      <div className="w-[432px] text-center">
+      <div className=" max-w-[432px] text-center">
         <p
           className="secondary_100 line-clamp-2 font-semibold
-    text-[14px]"
+      text-[14px]"
         >
           {questionnaire?.question}
         </p>
       </div>
 
+      {/* apparently we need to set the height here, other way the stupid chart
+      does not work on nested div elements */}
       <div
         className="flex flex-row justify-between items-center
-      h-full w-full"
+        h-[230px] w-full"
       >
-        <ResponsiveContainer
-        // width={"99%"}
-        // height={"100%"}
-        >
+        <ResponsiveContainer>
           <PieChart>
             <Pie
               data={questionnaire?.chartData}

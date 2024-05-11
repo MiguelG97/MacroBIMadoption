@@ -90,8 +90,9 @@ export default function Bar_chart_bim({
   }, []);
   return (
     <div
-      className="bg-[#f7f9fb] w-[632px] h-[620px]
-  rounded-2xl flex flex-col p-[24px]"
+      className="bg-[#ffffff] w-[632px] h-[620px]
+  rounded-[20px] flex flex-col p-[24px] 
+  shadow-[0_25px_50px_-12px_rgb(0,0,0,0.25)]"
     >
       <p
         className="secondary_100 line-clamp-2 font-semibold
