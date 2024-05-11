@@ -115,7 +115,7 @@ pl-10 pr-8 py-14 flex flex-col gap-8 text-[#2B3674]`}
           <div
             key={`sec-${index}`}
             className={`flex flex-row gap-2 items-start py-2 pl-2
-            rounded-l-xl duration-500
+            rounded-l-xl duration-500 cursor-pointer 
             ${
               selectedIndex === index
                 ? "border-r-[4px] border-r-[#4318FF] bg-[#f4f4f4]"
@@ -131,7 +131,7 @@ pl-10 pr-8 py-14 flex flex-col gap-8 text-[#2B3674]`}
                 selectedIndex === index
                   ? "text-[#2B3674] font-bold"
                   : "text-[#A3AED0]"
-              }  cursor-pointer 
+              }  
               line-clamp-2 text-[16px] leading-6 `}
             >
               {x.name}
