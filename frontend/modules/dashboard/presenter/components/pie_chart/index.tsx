@@ -1,6 +1,4 @@
-import { section1 } from "@/core/shared/constants/questions";
 import { COLORS } from "@/core/shared/theme/theme";
-import { useAppSelector } from "@/core/shared/redux/store";
 
 import { useEffect, useState } from "react";
 import {
@@ -18,14 +16,28 @@ import {
   ISectionItem,
   questionnaire,
 } from "@/core/shared/types/section_Questionnarie";
+import Render_Tooltip from "./tooltip";
+import { CategoricalChartState } from "recharts/types/chart/types";
+import {
+  useAppDispatch,
+  useAppSelector,
+} from "@/core/shared/redux/store";
+import { setActiveTooltipAccValue } from "../../controllers/section_quest_slice";
 
 export default function Pie_chart_bim({
   sectionX,
 }: {
   sectionX: ISectionItem;
 }) {
+  const { activeToolTipAccumValue } =
+    useAppSelector((state) => state.sectionQst);
+  const dispatch = useAppDispatch();
+  //states
   const [questionnaire, setQuestionnarie] =
     useState<questionnaire>();
+
+  const [accumValue, setAccumValue] =
+    useState<number>(0);
 
   useEffect(() => {
     //bussiness logic
@@ -66,17 +78,37 @@ export default function Pie_chart_bim({
       (a, b) => b.count - a.count
     );
 
+    //get accumulated value whole doing the following operation!
+    let accum = 0;
     const chartData: ChartDataItem[] =
-      finalValues.map((x) => ({
-        name: x.answerName,
-        value: x.count,
-      }));
+      finalValues.map((x) => {
+        accum += x.count;
+        return {
+          name: x.answerName,
+          value: x.count,
+        };
+      });
     setQuestionnarie({
       question: sectionX.default,
       chartData,
     });
-    console.log(chartData);
+    setAccumValue(accum);
+    console.log(chartData, accum);
   }, []);
+
+  //handlers
+  const onMouseMovePieChart = (
+    e: CategoricalChartState
+  ) => {
+    if (!e.activeLabel) return;
+
+    if (accumValue === activeToolTipAccumValue)
+      return;
+
+    dispatch(
+      setActiveTooltipAccValue(accumValue)
+    );
+  };
 
   return (
     <div
@@ -100,7 +132,9 @@ export default function Pie_chart_bim({
         h-[230px] w-full"
       >
         <ResponsiveContainer>
-          <PieChart>
+          <PieChart
+            onMouseMove={onMouseMovePieChart}
+          >
             <Pie
               data={questionnaire?.chartData}
               paddingAngle={5}
@@ -126,7 +160,9 @@ export default function Pie_chart_bim({
               align="right"
               verticalAlign="middle"
             />
-            <Tooltip />
+            <Tooltip
+              content={<Render_Tooltip />}
+            />
           </PieChart>
         </ResponsiveContainer>
       </div>

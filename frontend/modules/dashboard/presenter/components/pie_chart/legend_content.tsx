@@ -19,7 +19,7 @@ export default function Render_legend_content(
           <div
             key={`item-${index}`}
             className="flex  w-full gap-1
-          items-start justify-between "
+          items-center justify-between "
           >
             <div className=" flex  gap-2 ">
               <div
