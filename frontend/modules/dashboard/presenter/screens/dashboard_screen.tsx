@@ -11,7 +11,7 @@ export default function Dashboard_screen() {
   //   setIsClient(true);
   // }, []);
   return (
-    <div className="flex flex-row h-screen">
+    <div className="flex flex-row h-screen bg-[#ffffff]">
       <Left_drawer />
       <div
         className="flex flex-col justify-start items-center

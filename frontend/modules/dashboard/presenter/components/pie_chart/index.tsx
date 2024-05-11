@@ -1,5 +1,5 @@
 import { section1 } from "@/core/shared/constants/questions";
-import { COLORS } from "@/core/shared/constants/theme";
+import { COLORS } from "@/core/shared/theme/theme";
 import { useAppSelector } from "@/core/shared/redux/store";
 
 import { useEffect, useState } from "react";
@@ -37,6 +37,24 @@ export default function Pie_chart_bim({
     let finalValues = Object.values(
       answerCounter
     ) as [
+      {
+        answerName: string;
+        count: number;
+      }
+    ];
+
+    //delete unwanted characters
+    finalValues = finalValues.map((x) => {
+      x.answerName = x.answerName.replaceAll(
+        "[",
+        ""
+      );
+      x.answerName = x.answerName.replaceAll(
+        "]",
+        ""
+      );
+      return x;
+    }) as [
       {
         answerName: string;
         count: number;

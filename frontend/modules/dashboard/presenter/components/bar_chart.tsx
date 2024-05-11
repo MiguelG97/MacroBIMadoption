@@ -1,4 +1,4 @@
-import { COLORS } from "@/core/shared/constants/theme";
+import { COLORS } from "@/core/shared/theme/theme";
 import {
   ChartDataItem,
   ISectionItem,
@@ -49,6 +49,24 @@ export default function Bar_chart_bim({
     let finalValues = Object.values(
       answerCounter
     ) as [
+      {
+        answerName: string;
+        count: number;
+      }
+    ];
+
+    //delete unwanted characters
+    finalValues = finalValues.map((x) => {
+      x.answerName = x.answerName.replaceAll(
+        "[",
+        ""
+      );
+      x.answerName = x.answerName.replaceAll(
+        "]",
+        ""
+      );
+      return x;
+    }) as [
       {
         answerName: string;
         count: number;
