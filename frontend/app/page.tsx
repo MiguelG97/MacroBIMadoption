@@ -31,7 +31,7 @@ export default function Home() {
       const jsonAnswers = utils.sheet_to_json(
         sheets.Answers
       );
-      // console.log(jsonAnswers);
+      console.log(jsonAnswers);
       dispatch(setData(jsonAnswers));
     };
     excel();

@@ -8,7 +8,7 @@ export const excelUtils = {
     if (res.ok) {
       const file = await res.arrayBuffer();
       const workbook = read(file);
-      console.log(workbook);
+      // console.log(workbook);
       return workbook;
     }
   },
