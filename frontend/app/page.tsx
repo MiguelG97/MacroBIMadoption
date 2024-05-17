@@ -1,7 +1,14 @@
 "use client";
+import ApolloContext from "@/core/shared/apollo/context";
 import { setData } from "@/core/shared/redux/slices/questionnarie_slice";
 import { useAppDispatch } from "@/core/shared/redux/store";
 import { excelUtils } from "@/core/utils/readExcelUtils";
+import {
+  ApolloProvider,
+  gql,
+  useMutation,
+  useQuery,
+} from "@apollo/client";
 import dynamic from "next/dynamic";
 import { useEffect } from "react";
 import { utils } from "xlsx";
@@ -15,6 +22,11 @@ const DashboardScreen = dynamic(
 );
 export default function Home() {
   const dispatch = useAppDispatch();
+  // const [
+  //   mutateFunction,
+  //   { loading, error, data },
+  // ] = useMutation(gql``);
+
   useEffect(() => {
     const excel = async () => {
       const workbook =
@@ -33,6 +45,8 @@ export default function Home() {
       );
       console.log(jsonAnswers);
       dispatch(setData(jsonAnswers));
+
+      //send data!
     };
     excel();
   }, []);
