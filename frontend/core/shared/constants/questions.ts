@@ -87,87 +87,87 @@ export const section1: ISectionItem[] = [
   },
   {
     question_id: 1662404194404,
-    es: "¿Qué contenidos BIM relacionados con [[Captura y representación]] se imparten como parte de este programa?",
+    es: "¿Qué contenidos BIM relacionados con Captura y representación se imparten como parte de este programa?",
     default:
-      "What BIM content related to [[Capturing and Representing]] are taught as part of this programme?",
+      "What BIM content related to Capturing and Representing are taught as part of this programme?",
     answers: [
-      "[[2D Documentation]]",
-      "[[3D Detailing]]",
-      "[[As-constructed Representation]]",
-      "[[Generative Design]]",
-      "[[Laser Scanning]] / [[Photogrammetry]]",
-      "[[Surveying]]",
-      "[[Visual Communication]]",
+      "2D Documentation",
+      "3D Detailing",
+      "As-constructed Representation",
+      "Generative Design",
+      "Laser Scanning / Photogrammetry",
+      "Surveying",
+      "Visual Communication",
     ],
   },
   {
     question_id: 1665076969613,
-    es: "¿Qué contenidos BIM relacionados con [[Planificación y diseño]] se imparten como parte de este programa?",
+    es: "¿Qué contenidos BIM relacionados con Planificación y diseño se imparten como parte de este programa?",
     default:
-      "What BIM content related to [[Planning and Designing]] are taught as part of this programme?",
+      "What BIM content related to Planning and Designing are taught as part of this programme?",
     answers: [
-      "[[Conceptualization]]",
-      "[[Construction Planning]]",
-      "[[Design Authoring]]",
-      "[[Space Programming]]",
-      "[[Urban Planning]]",
-      "[[Value Analysis]]",
+      "Conceptualization",
+      "Construction Planning",
+      "Design Authoring",
+      "Space Programming",
+      "Urban Planning",
+      "Value Analysis",
     ],
   },
   {
     question_id: 1665076969614,
-    es: "¿Qué contenidos BIM relacionados con [[Simulación y cuantificación]] se imparten como parte de este programa?",
+    es: "¿Qué contenidos BIM relacionados con Simulación y cuantificación se imparten como parte de este programa?",
     default:
-      "What BIM content related to [[Simulating and Quantifying]] are taught as part of this programme?",
+      "What BIM content related to Simulating and Quantifying are taught as part of this programme?",
     answers: [
-      "[[Accessibility Analysis]]",
-      "[[Acoustic Analysis]]",
-      "[[Augmented Reality Simulation]]",
-      "[[Clash Detection]] (and avoidance)",
-      "[[Code Checking & Validation]]",
-      "[[Construction Operation Analysis]]",
-      "[[Cost Estimation]]",
-      "[[Energy Utilisation]]",
-      "[[Finite Element Analysis]]",
-      "[[Lighting Analysis]]",
-      "[[Quantity Take-off]]",
-      "[[Safety Analysis]]",
-      "[[Site Analysis]]",
-      "[[Solar Analysis]]",
-      "[[Spatial Analysis]]",
-      "[[Structural Analysis]]",
-      "[[Sustainability Analysis]]",
-      "[[Thermal Analysis]]",
-      "[[Virtual Reality Simulation]]",
-      "[[Life Cycle Assessment]]",
-      "[[Wind Studies]]",
+      "Accessibility Analysis",
+      "Acoustic Analysis",
+      "Augmented Reality Simulation",
+      "Clash Detection (and avoidance)",
+      "Code Checking & Validation",
+      "Construction Operation Analysis",
+      "Cost Estimation",
+      "Energy Utilisation",
+      "Finite Element Analysis",
+      "Lighting Analysis",
+      "Quantity Take-off",
+      "Safety Analysis",
+      "Site Analysis",
+      "Solar Analysis",
+      "Spatial Analysis",
+      "Structural Analysis",
+      "Sustainability Analysis",
+      "Thermal Analysis",
+      "Virtual Reality Simulation",
+      "Life Cycle Assessment",
+      "Wind Studies",
     ],
   },
   {
     question_id: 1665080678817,
-    es: "¿Qué contenidos BIM relacionados con [[Construcción y Fabricación]] se imparten como parte de este programa?",
+    es: "¿Qué contenidos BIM relacionados con Construcción y Fabricación se imparten como parte de este programa?",
     default:
-      "What BIM content related to [[Constructing and Fabricating]] are taught as part of this programme?",
+      "What BIM content related to Constructing and Fabricating are taught as part of this programme?",
     answers: [
-      "[[3D Printing]]",
-      "[[Construction Logistics]]",
+      "3D Printing",
+      "Construction Logistics",
     ],
   },
   {
     question_id: 1665080678815,
-    es: "¿Qué contenidos BIM relacionados con [[Operación y mantenimiento]] se imparten como parte de este programa?",
+    es: "¿Qué contenidos BIM relacionados con Operación y mantenimiento se imparten como parte de este programa?",
     default:
-      "What BIM content related to [[Operating and Maintaining]] are taught as part of this programme?",
+      "What BIM content related to Operating and Maintaining are taught as part of this programme?",
     answers: [
-      "[[Asset Maintenance]]",
-      "[[Space Management]]",
+      "Asset Maintenance",
+      "Space Management",
     ],
   },
   {
     question_id: 1665080678819,
-    es: "¿Qué contenidos BIM relacionados con [[Interoperabilidad]] se imparten como parte de este programa?",
+    es: "¿Qué contenidos BIM relacionados con Interoperabilidad se imparten como parte de este programa?",
     default:
-      "What BIM content related to [[Interoperability]] are taught as part of this programme?",
+      "What BIM content related to Interoperability are taught as part of this programme?",
     answers: [
       "General interoperability concepts",
       "IFC - Industry Foundation Classes",
@@ -246,16 +246,16 @@ export const section2: ISectionItem[] = [
 export const section5: ISectionItem[] = [
   {
     question_id: 1662406986478,
-    es: "¿Existen cursos breves de [[Formación BIM]] (por ejemplo, cursos de desarrollo profesional continuo) en su región?",
+    es: "¿Existen cursos breves de Formación BIM (por ejemplo, cursos de desarrollo profesional continuo) en su región?",
     default:
-      "Are there short [[BIM Training]] courses (e.g., continuous professional development courses) available in your region?",
+      "Are there short BIM Training courses (e.g., continuous professional development courses) available in your region?",
     answers: ["Yes", "No", "Not sure"],
   },
   {
     question_id: 1662416260169,
-    es: "¿Qué instituciones imparten estos cursos de [[Formación BIM]] en su región?",
+    es: "¿Qué instituciones imparten estos cursos de Formación BIM en su región?",
     default:
-      "Which institutions provide these [[BIM Training]] courses in your region?",
+      "Which institutions provide these BIM Training courses in your region?",
     answers: [
       "Higher Education Institutions",
       "Technical colleges",
@@ -268,9 +268,9 @@ export const section5: ISectionItem[] = [
   },
   {
     question_id: 1662416269575,
-    es: "¿Qué tipo de contenidos se imparten en los cursos breves de [[Formación BIM]]?",
+    es: "¿Qué tipo de contenidos se imparten en los cursos breves de Formación BIM?",
     default:
-      "What type of content is delivered in the short [[BIM Training]] courses?",
+      "What type of content is delivered in the short BIM Training courses?",
     answers: [
       "General BIM-related concepts (e.g., terminology, value and impact, interoperability, etc.)",
       "How to use BIM software tools on projects (e.g., using model authoring tools to design)",
@@ -281,17 +281,17 @@ export const section5: ISectionItem[] = [
   },
   {
     question_id: 1662416269584,
-    es: "¿Existen cursos cortos de [[Formación BIM]] acreditados/certificados por organismos de acreditación?",
+    es: "¿Existen cursos cortos de Formación BIM acreditados/certificados por organismos de acreditación?",
     default:
-      "Are there short [[BIM Training]] courses accredited/certified by accreditation bodies?",
+      "Are there short BIM Training courses accredited/certified by accreditation bodies?",
     answers: ["Yes", "No", "Not sure"],
   },
   //this one is expected to have a variety answers
   {
     question_id: 1662416269547,
-    es: "Por favor, identifique los organismos de acreditación que han certificado/acreditado esos cursos cortos de [[Formación BIM]]:",
+    es: "Por favor, identifique los organismos de acreditación que han certificado/acreditado esos cursos cortos de Formación BIM:",
     default:
-      "Please identify the accreditation bodies that have certified/accredited those short [[BIM Training]] courses:",
+      "Please identify the accreditation bodies that have certified/accredited those short BIM Training courses:",
     answers: [],
   },
 ];
@@ -299,16 +299,16 @@ export const section5: ISectionItem[] = [
 export const section6: ISectionItem[] = [
   {
     question_id: 1696216528318,
-    es: "¿Existe alguna colaboración formal entre la academia, el gobierno y/o la industria con el fin de mejorar la [[Competencia BIM]]?",
+    es: "¿Existe alguna colaboración formal entre la academia, el gobierno y/o la industria con el fin de mejorar la Competencia BIM?",
     default:
-      "Is there any formal collaboration between academia, government and/or industry for the purposes of improving [[BIM Competency]]?",
+      "Is there any formal collaboration between academia, government and/or industry for the purposes of improving BIM Competency?",
     answers: ["Yes", "No", "Not sure"],
   },
   {
     question_id: 1696216897343,
-    es: "¿Qué cubre esta colaboración formal entre la academia, el gobierno y/o la industria con respecto a la [[Competencia BIM]]?",
+    es: "¿Qué cubre esta colaboración formal entre la academia, el gobierno y/o la industria con respecto a la Competencia BIM?",
     default:
-      "What does this formal collaboration between academia, government and/or industry cover with respect to [[BIM competency]]?",
+      "What does this formal collaboration between academia, government and/or industry cover with respect to BIM competency?",
     answers: [
       "Improving the BIM competence of students with the assistance of practicing professionals",
       "Improving the BIM competence of practicing professionals with the assistance of academic institutions",
@@ -318,9 +318,9 @@ export const section6: ISectionItem[] = [
   },
   {
     question_id: 1696217569183,
-    es: "Por favor, identifique las partes incluidas en esta colaboración formal entre la academia, el gobierno y/o la industria que cubre la [[Competencia BIM]]:",
+    es: "Por favor, identifique las partes incluidas en esta colaboración formal entre la academia, el gobierno y/o la industria que cubre la Competencia BIM:",
     default:
-      "Please identify the parties included in this formal collaboration between academia, government and/or industry covering [[BIM competency]]:",
+      "Please identify the parties included in this formal collaboration between academia, government and/or industry covering BIM competency:",
     answers: [
       "Government or governmental authorities",
       "Design or construction companies",
@@ -334,9 +334,9 @@ export const section6: ISectionItem[] = [
   //this one is expected to have a variety answers
   {
     question_id: 1696216665638,
-    es: "Proporcione más información sobre los objetivos y resultados de la colaboración formal entre el mundo académico, el gobierno y/o la industria con el fin de mejorar la [[Competencia BIM]]:",
+    es: "Proporcione más información sobre los objetivos y resultados de la colaboración formal entre el mundo académico, el gobierno y/o la industria con el fin de mejorar la Competencia BIM:",
     default:
-      "Please provide more information about the objectives and deliverables of the formal collaboration between academia, government and/or industry for the purposes of improving [[BIM competency]]:",
+      "Please provide more information about the objectives and deliverables of the formal collaboration between academia, government and/or industry for the purposes of improving BIM competency:",
     answers: [],
   },
 ];

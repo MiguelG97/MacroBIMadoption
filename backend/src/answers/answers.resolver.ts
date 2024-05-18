@@ -1,8 +1,7 @@
-import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
+import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
 import { AnswersService } from './answers.service';
 import { Answer } from './entities/answer.entity';
 import { CreateAnswerInput } from './dto/create-answer.input';
-import { UpdateAnswerInput } from './dto/update-answer.input';
 
 @Resolver(() => Answer)
 export class AnswersResolver {
@@ -23,30 +22,32 @@ export class AnswersResolver {
   async createsManyAnswer(
     @Args('createAnswerInput') createAnswerInput: CreateAnswerInput,
   ) {
+    console.log(createAnswerInput.Answers.length);
     const res = await this.answersService.createManyAnswers(createAnswerInput);
     console.log(res);
     return res;
   }
 
+  //it ask us to at least provide 1 query type, wtf??
   @Query(() => [Answer], { name: 'answers' })
   findAll() {
-    return this.answersService.findAll();
+    // return this.answersService.findAll();
   }
 
-  @Query(() => Answer, { name: 'answer' })
-  findOne(@Args('id', { type: () => Int }) id: number) {
-    return this.answersService.findOne(id);
-  }
+  // @Query(() => Answer, { name: 'answer' })
+  // findOne(@Args('id', { type: () => Int }) id: number) {
+  //   return this.answersService.findOne(id);
+  // }
 
-  @Mutation(() => Answer)
-  updateAnswer(
-    @Args('updateAnswerInput') updateAnswerInput: UpdateAnswerInput,
-  ) {
-    return this.answersService.update(updateAnswerInput.id, updateAnswerInput);
-  }
+  // @Mutation(() => Answer)
+  // updateAnswer(
+  //   @Args('updateAnswerInput') updateAnswerInput: UpdateAnswerInput,
+  // ) {
+  //   return this.answersService.update(updateAnswerInput.id, updateAnswerInput);
+  // }
 
-  @Mutation(() => Answer)
-  removeAnswer(@Args('id', { type: () => Int }) id: number) {
-    return this.answersService.remove(id);
-  }
+  // @Mutation(() => Answer)
+  // removeAnswer(@Args('id', { type: () => Int }) id: number) {
+  //   return this.answersService.remove(id);
+  // }
 }

@@ -1,4 +1,5 @@
 /* eslint-disable */
+import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/core';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
@@ -18,28 +19,28 @@ export type Scalars = {
 export type Answer = {
   __typename?: 'Answer';
   Assessment?: Maybe<Scalars['String']['output']>;
-  Campaign: Scalars['String']['output'];
-  Item_ID: Scalars['String']['output'];
-  Item_Title: Scalars['String']['output'];
-  Item_Type: Scalars['String']['output'];
-  Statement_Labels: Scalars['String']['output'];
-  User_Email: Scalars['String']['output'];
-  User_ID: Scalars['String']['output'];
-  User_Name: Scalars['String']['output'];
-  Verification_Status: Scalars['String']['output'];
+  Campaign?: Maybe<Scalars['String']['output']>;
+  Item_ID?: Maybe<Scalars['String']['output']>;
+  Item_Title?: Maybe<Scalars['String']['output']>;
+  Item_Type?: Maybe<Scalars['String']['output']>;
+  Statement_Labels?: Maybe<Scalars['String']['output']>;
+  User_Email?: Maybe<Scalars['String']['output']>;
+  User_ID?: Maybe<Scalars['String']['output']>;
+  User_Name?: Maybe<Scalars['String']['output']>;
+  Verification_Status?: Maybe<Scalars['String']['output']>;
 };
 
 export type AnswerInput = {
-  Assessment: Scalars['String']['input'];
-  Campaign: Scalars['String']['input'];
-  Item_ID: Scalars['String']['input'];
-  Item_Title: Scalars['String']['input'];
-  Item_Type: Scalars['String']['input'];
-  Statement_Labels: Scalars['String']['input'];
-  User_Email: Scalars['String']['input'];
-  User_ID: Scalars['String']['input'];
-  User_Name: Scalars['String']['input'];
-  Verification_Status: Scalars['String']['input'];
+  Assessment?: InputMaybe<Scalars['String']['input']>;
+  Campaign?: InputMaybe<Scalars['String']['input']>;
+  Item_ID?: InputMaybe<Scalars['String']['input']>;
+  Item_Title?: InputMaybe<Scalars['String']['input']>;
+  Item_Type?: InputMaybe<Scalars['String']['input']>;
+  Statement_Labels?: InputMaybe<Scalars['String']['input']>;
+  User_Email?: InputMaybe<Scalars['String']['input']>;
+  User_ID?: InputMaybe<Scalars['String']['input']>;
+  User_Name?: InputMaybe<Scalars['String']['input']>;
+  Verification_Status?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type CreateAnswerInput = {
@@ -50,8 +51,6 @@ export type Mutation = {
   __typename?: 'Mutation';
   createsManyAnswer: Answer;
   createsSingleAnswer?: Maybe<Answer>;
-  removeAnswer: Answer;
-  updateAnswer: Answer;
 };
 
 
@@ -64,28 +63,17 @@ export type MutationCreatesSingleAnswerArgs = {
   createAnswerInput: CreateAnswerInput;
 };
 
-
-export type MutationRemoveAnswerArgs = {
-  id: Scalars['Int']['input'];
-};
-
-
-export type MutationUpdateAnswerArgs = {
-  updateAnswerInput: UpdateAnswerInput;
-};
-
 export type Query = {
   __typename?: 'Query';
-  answer: Answer;
   answers: Array<Answer>;
 };
 
+export type CreatesManyAnswerMutationVariables = Exact<{
+  createAnswerInput: CreateAnswerInput;
+}>;
 
-export type QueryAnswerArgs = {
-  id: Scalars['Int']['input'];
-};
 
-export type UpdateAnswerInput = {
-  Answers?: InputMaybe<Array<AnswerInput>>;
-  id: Scalars['Int']['input'];
-};
+export type CreatesManyAnswerMutation = { __typename?: 'Mutation', createsManyAnswer: { __typename?: 'Answer', Assessment?: string | null } };
+
+
+export const CreatesManyAnswerDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"CreatesManyAnswer"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"createAnswerInput"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"CreateAnswerInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"createsManyAnswer"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"createAnswerInput"},"value":{"kind":"Variable","name":{"kind":"Name","value":"createAnswerInput"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Assessment"}}]}}]}}]} as unknown as DocumentNode<CreatesManyAnswerMutation, CreatesManyAnswerMutationVariables>;

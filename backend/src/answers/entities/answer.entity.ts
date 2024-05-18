@@ -1,4 +1,4 @@
-import { ObjectType, Field, Int } from '@nestjs/graphql';
+import { ObjectType, Field } from '@nestjs/graphql';
 
 @ObjectType()
 export class Answer {
@@ -9,22 +9,22 @@ export class Answer {
   //nullable so we can use mutation to only do creation tasks and pick this field to return null/nothing
   @Field({ nullable: true })
   Assessment?: string;
-  @Field()
-  Campaign: string;
-  @Field()
-  Item_ID: string;
-  @Field()
-  Item_Title: string;
-  @Field()
-  Item_Type: string;
-  @Field()
-  Statement_Labels: string;
-  @Field()
-  User_Email: string;
-  @Field()
-  User_ID: string;
-  @Field()
-  User_Name: string;
-  @Field()
-  Verification_Status: string;
+  @Field({ nullable: true })
+  Campaign?: string;
+  @Field({ nullable: true })
+  Item_ID?: string;
+  @Field({ nullable: true })
+  Item_Title?: string;
+  @Field({ nullable: true })
+  Item_Type?: string;
+  @Field({ nullable: true })
+  Statement_Labels?: string;
+  @Field({ nullable: true })
+  User_Email?: string;
+  @Field({ nullable: true })
+  User_ID?: string;
+  @Field({ nullable: true })
+  User_Name?: string;
+  @Field({ nullable: true })
+  Verification_Status?: string;
 }
