@@ -100,17 +100,17 @@ export default function Home() {
           };
         });
       console.log(answerInputs);
-      const mutation = async () => {
-        const result = await mutateFunction({
-          variables: {
-            createAnswerInput: {
-              Answers: answerInputs,
-            },
-          },
-        });
-        console.log(result, loading, error, data);
-      };
-      mutation();
+      // const mutation = async () => {
+      //   const result = await mutateFunction({
+      //     variables: {
+      //       createAnswerInput: {
+      //         Answers: answerInputs,
+      //       },
+      //     },
+      //   });
+      //   console.log(result, loading, error, data);
+      // };
+      // mutation();
       dispatch(setData(jsonAnswers));
 
       //send data!
