@@ -29,9 +29,10 @@ export class AnswersResolver {
   }
 
   //it ask us to at least provide 1 query type, wtf??
-  @Query(() => [Answer], { name: 'answers' })
-  findAll() {
-    // return this.answersService.findAll();
+  @Query(() => [Answer])
+  async findAll() {
+    const answers = await this.answersService.findAll();
+    return answers;
   }
 
   // @Query(() => Answer, { name: 'answer' })

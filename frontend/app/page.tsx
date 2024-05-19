@@ -1,10 +1,13 @@
 "use client";
-import ApolloContext from "@/core/shared/apollo/context";
-import { createsManyAnswer } from "@/core/shared/gql/mutations/answers";
 import { setData } from "@/core/shared/redux/slices/questionnarie_slice";
 import { useAppDispatch } from "@/core/shared/redux/store";
-import { IAnswerSchema } from "@/core/shared/types/section_Questionnarie";
+import {
+  IAnswerPostgres,
+  IAnswerSchema,
+} from "@/core/shared/types/section_Questionnarie";
 import { excelUtils } from "@/core/utils/readExcelUtils";
+import { createsManyAnswer } from "@/modules/dashboard/data/gql/mutations/answers";
+import { qFindAll } from "@/modules/dashboard/data/gql/queries/answers";
 import {
   ApolloProvider,
   gql,
@@ -12,7 +15,7 @@ import {
   useQuery,
 } from "@apollo/client";
 import dynamic from "next/dynamic";
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { utils } from "xlsx";
 //to disable prerendering and avoid hydratation mismatches (different content between the server and the client)
 const DashboardScreen = dynamic(
@@ -24,11 +27,26 @@ const DashboardScreen = dynamic(
 );
 export default function Home() {
   const dispatch = useAppDispatch();
-  const [
-    mutateFunction,
-    { loading, error, data },
-  ] = useMutation(createsManyAnswer);
+  // const [
+  //   mutateFunction,
+  //   { loading, error, data },
+  // ] = useMutation(createsManyAnswer);
+  const { loading, error, data } = useQuery(
+    qFindAll,
+    {
+      onCompleted: (data) => {
+        console.log("query processed");
+        dispatch(setData(data?.findAll));
+      },
+    }
+  );
 
+  // useMemo(()=> useQuery(qFindAll),[qFindAll])
+  // if (data) {
+  //   dispatch(setData(data?.findAll));
+  // }
+
+  // console.log(data, loading, error);
   useEffect(() => {
     //Load data to postgresql
     const excel = async () => {
@@ -61,9 +79,9 @@ export default function Home() {
         }
         return x;
       });
-      console.log(jsonAnswers);
-      const answerInputs = jsonAnswers.map(
-        (x) => {
+
+      const answerInputs: IAnswerPostgres[] =
+        jsonAnswers.map((x) => {
           return {
             Assessment: x.Assessment,
             Campaign: x.Campaign,
@@ -74,24 +92,25 @@ export default function Home() {
               x["Statement Labels"],
             User_Email: x["User Email"],
             User_ID: x["User ID"],
+            User_Input: x["User Input"],
+            User_Labels: x["User Labels"],
             User_Name: x["User Name"],
             Verification_Status:
               x["Verification Status"],
           };
-        }
-      );
-
-      // const mutation = async () => {
-      //   const result = await mutateFunction({
-      //     variables: {
-      //       createAnswerInput: {
-      //         Answers: answerInputs,
-      //       },
-      //     },
-      //   });
-      //   console.log(result, loading, error, data);
-      // };
-      // mutation();
+        });
+      console.log(answerInputs);
+      const mutation = async () => {
+        const result = await mutateFunction({
+          variables: {
+            createAnswerInput: {
+              Answers: answerInputs,
+            },
+          },
+        });
+        console.log(result, loading, error, data);
+      };
+      mutation();
       dispatch(setData(jsonAnswers));
 
       //send data!

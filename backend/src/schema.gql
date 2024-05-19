@@ -11,6 +11,8 @@ type Answer {
   Statement_Labels: String
   User_Email: String
   User_ID: String
+  User_Input: String
+  User_Labels: String
   User_Name: String
   Verification_Status: String
 }
@@ -24,6 +26,8 @@ input AnswerInput {
   Statement_Labels: String
   User_Email: String
   User_ID: String
+  User_Input: String
+  User_Labels: String
   User_Name: String
   Verification_Status: String
 }
@@ -38,5 +42,5 @@ type Mutation {
 }
 
 type Query {
-  answers: [Answer!]!
+  findAll: [Answer!]!
 }

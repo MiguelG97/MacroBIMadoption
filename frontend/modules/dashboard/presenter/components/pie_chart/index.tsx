@@ -31,6 +31,10 @@ export default function Pie_chart_bim({
 }) {
   const { activeToolTipAccumValue } =
     useAppSelector((state) => state.sectionQst);
+  const { value } = useAppSelector(
+    (state) => state.questionnarieSlice
+  );
+
   const dispatch = useAppDispatch();
   //states
   const [questionnaire, setQuestionnarie] =
@@ -43,6 +47,7 @@ export default function Pie_chart_bim({
     //bussiness logic
     const answerCounter =
       ProcessDataUtils.processData(sectionX);
+
     if (!answerCounter) return; //in case it's null
 
     //5) store the accumulated data and question name in a hook state
@@ -93,8 +98,7 @@ export default function Pie_chart_bim({
       chartData,
     });
     setAccumValue(accum);
-    console.log(chartData, accum);
-  }, []);
+  }, [value]);
 
   //handlers
   const onMouseMovePieChart = (
@@ -121,7 +125,8 @@ export default function Pie_chart_bim({
           className="secondary_100 line-clamp-2 font-semibold
       text-[14px]"
         >
-          {questionnaire?.question}
+          {value.length > 0 &&
+            questionnaire?.question}
         </p>
       </div>
 
@@ -131,40 +136,42 @@ export default function Pie_chart_bim({
         className="flex flex-row justify-between items-center
         h-[230px] w-full"
       >
-        <ResponsiveContainer>
-          <PieChart
-            onMouseMove={onMouseMovePieChart}
-          >
-            <Pie
-              data={questionnaire?.chartData}
-              paddingAngle={5}
-              label
-              nameKey={"name"}
-              dataKey={"value"}
-              innerRadius={60}
-              outerRadius={80}
+        {value.length > 0 && (
+          <ResponsiveContainer>
+            <PieChart
+              onMouseMove={onMouseMovePieChart}
             >
-              {questionnaire?.chartData.map(
-                (x, index) => (
-                  <Cell
-                    stroke="0"
-                    key={`cell-${index}`}
-                    fill={`${COLORS[index]}`}
-                  />
-                )
-              )}
-            </Pie>
-            <Legend
-              content={Render_legend_content}
-              layout="vertical"
-              align="right"
-              verticalAlign="middle"
-            />
-            <Tooltip
-              content={<Render_Tooltip />}
-            />
-          </PieChart>
-        </ResponsiveContainer>
+              <Pie
+                data={questionnaire?.chartData}
+                paddingAngle={5}
+                label
+                nameKey={"name"}
+                dataKey={"value"}
+                innerRadius={60}
+                outerRadius={80}
+              >
+                {questionnaire?.chartData.map(
+                  (x, index) => (
+                    <Cell
+                      stroke="0"
+                      key={`cell-${index}`}
+                      fill={`${COLORS[index]}`}
+                    />
+                  )
+                )}
+              </Pie>
+              <Legend
+                content={Render_legend_content}
+                layout="vertical"
+                align="right"
+                verticalAlign="middle"
+              />
+              <Tooltip
+                content={<Render_Tooltip />}
+              />
+            </PieChart>
+          </ResponsiveContainer>
+        )}
       </div>
     </div>
   );

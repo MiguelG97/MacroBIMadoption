@@ -21,9 +21,10 @@ export class ProcessDataUtils {
     const answers =
       questionnarieAnsw.value.filter(
         (x) =>
-          x["Item ID"] ===
+          x.Item_ID ===
           sectionX.question_id.toString()
       );
+
     //2) find the original question data to be used as reference
     //this is actually the sectionX!!
 
@@ -43,11 +44,11 @@ export class ProcessDataUtils {
       //4.1) Filtering blank spaces
       //strange, for some of them the User Input column does not exist!!
       //=> this means that it left a blank space! so do not take it into account
-      const userInput: string =
-        answer["User Input"];
+      const userInput: string = answer.User_Input;
+      console.log(answer);
       if (!userInput || userInput === "")
         continue;
-
+      console.log(userInput);
       //4.2) check if userinput is a multi choice answer
       let choices: string[] = [];
       if (userInput.includes("|")) {
@@ -87,6 +88,7 @@ export class ProcessDataUtils {
         }
       }
     }
+
     //add the other answers to the object group if its count is greater than 0
     if (otherCounter > 0) {
       answerCounter[

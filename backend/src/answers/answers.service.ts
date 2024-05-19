@@ -19,9 +19,9 @@ export class AnswersService {
     };
   }
 
-  // findAll() {
-  //   return `This action returns all answers`;
-  // }
+  async findAll() {
+    return this.answerRepository.getAllAnswers();
+  }
 
   // findOne(id: number) {
   //   return `This action returns a #${id} answer`;

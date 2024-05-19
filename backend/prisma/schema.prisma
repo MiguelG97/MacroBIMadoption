@@ -10,7 +10,8 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  url = env("POSTGRES_PRISMA_URL")
+  directUrl = env("POSTGRES_URL_NON_POOLING")
 }
 
 model Answers {
@@ -23,6 +24,8 @@ model Answers {
   Statement_Labels String? 
   User_Email String? 
   User_ID String? 
+  User_Input String?
+  User_Labels String?
   User_Name String? 
   Verification_Status String? 
 }

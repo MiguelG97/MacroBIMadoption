@@ -14,6 +14,7 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  */
 const documents = {
     "\n  input CreateAnswerInput {\n    Answers: [AnswerInput!]!\n  }\n\n  input AnswerInput {\n    Assessment: String!\n    Campaign: String!\n    Item_ID: String!\n    Item_Title: String!\n    Item_Type: String!\n    Statement_Labels: String!\n    User_Email: String!\n    User_ID: String!\n    User_Name: String!\n    Verification_Status: String!\n  }\n\n  mutation CreatesManyAnswer(\n    $createAnswerInput: CreateAnswerInput!\n  ) {\n    createsManyAnswer(\n      createAnswerInput: $createAnswerInput\n    ) {\n      Assessment\n    }\n  }\n": types.CreatesManyAnswerDocument,
+    "\n  query FindAll {\n    findAll {\n      Assessment\n      Campaign\n      Item_ID\n      Item_Title\n      Item_Type\n      Statement_Labels\n      User_Email\n      User_ID\n      User_Input\n      User_Labels\n      User_Name\n      Verification_Status\n    }\n  }\n": types.FindAllDocument,
 };
 
 /**
@@ -34,6 +35,10 @@ export function graphql(source: string): unknown;
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(source: "\n  input CreateAnswerInput {\n    Answers: [AnswerInput!]!\n  }\n\n  input AnswerInput {\n    Assessment: String!\n    Campaign: String!\n    Item_ID: String!\n    Item_Title: String!\n    Item_Type: String!\n    Statement_Labels: String!\n    User_Email: String!\n    User_ID: String!\n    User_Name: String!\n    Verification_Status: String!\n  }\n\n  mutation CreatesManyAnswer(\n    $createAnswerInput: CreateAnswerInput!\n  ) {\n    createsManyAnswer(\n      createAnswerInput: $createAnswerInput\n    ) {\n      Assessment\n    }\n  }\n"): (typeof documents)["\n  input CreateAnswerInput {\n    Answers: [AnswerInput!]!\n  }\n\n  input AnswerInput {\n    Assessment: String!\n    Campaign: String!\n    Item_ID: String!\n    Item_Title: String!\n    Item_Type: String!\n    Statement_Labels: String!\n    User_Email: String!\n    User_ID: String!\n    User_Name: String!\n    Verification_Status: String!\n  }\n\n  mutation CreatesManyAnswer(\n    $createAnswerInput: CreateAnswerInput!\n  ) {\n    createsManyAnswer(\n      createAnswerInput: $createAnswerInput\n    ) {\n      Assessment\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n  query FindAll {\n    findAll {\n      Assessment\n      Campaign\n      Item_ID\n      Item_Title\n      Item_Type\n      Statement_Labels\n      User_Email\n      User_ID\n      User_Input\n      User_Labels\n      User_Name\n      Verification_Status\n    }\n  }\n"): (typeof documents)["\n  query FindAll {\n    findAll {\n      Assessment\n      Campaign\n      Item_ID\n      Item_Title\n      Item_Type\n      Statement_Labels\n      User_Email\n      User_ID\n      User_Input\n      User_Labels\n      User_Name\n      Verification_Status\n    }\n  }\n"];
 
 export function graphql(source: string) {
   return (documents as any)[source] ?? {};

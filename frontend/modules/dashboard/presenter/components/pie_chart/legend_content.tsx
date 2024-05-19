@@ -3,7 +3,7 @@ import { Props } from "recharts/types/component/DefaultLegendContent";
 export default function Render_legend_content(
   props: Props
 ) {
-  console.log("lenged props: ", props);
+  // console.log("lenged props: ", props);
 
   return (
     <div

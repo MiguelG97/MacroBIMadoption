@@ -1,3 +1,18 @@
+export interface IAnswerPostgres {
+  Assessment: string;
+  Campaign: string;
+  Item_ID: string;
+  Item_Title: string;
+  Item_Type: string;
+  Statement_Labels: string;
+  User_Email: string;
+  User_ID: string;
+  User_Input: string;
+  User_Labels: string;
+  User_Name: string;
+  Verification_Status: string;
+}
+
 export interface IAnswerSchema {
   Assessment: string;
   Campaign: string;

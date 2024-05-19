@@ -1,9 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
+import { IAnswerPostgres } from "../../types/section_Questionnarie";
 
 // Define a type for the slice state
 interface questionnaireState {
-  value: any[];
+  value: IAnswerPostgres[];
 }
 
 // Define the initial state using that type

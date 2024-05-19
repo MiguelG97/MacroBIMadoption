@@ -24,6 +24,10 @@ class AnswerInput {
   @Field({ nullable: true })
   User_ID?: string;
   @Field({ nullable: true })
+  User_Input?: string;
+  @Field({ nullable: true })
+  User_Labels?: string;
+  @Field({ nullable: true })
   User_Name?: string;
   @Field({ nullable: true })
   Verification_Status?: string;
