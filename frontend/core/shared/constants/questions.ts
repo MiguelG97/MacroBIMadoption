@@ -70,6 +70,42 @@ export const section1: ISectionItem[] = [
       "Students work on collaborative multidisciplinary projects",
     ],
   },
+
+  {
+    question_id: 1665080678818,
+    es: "¿Qué contenidos generales de BIM se imparten como parte de este programa?",
+    default:
+      "What general BIM contents are taught as part of this programme?",
+    answers: [
+      "General BIM-related concepts (e.g., terminology, value and impact, etc.)",
+      "How to apply national/ international information management standards on projects (EIR, CDE, etc.)",
+      "How to implement BIM in organisation/projects",
+    ],
+  },
+  {
+    question_id: 1662404194405,
+    es: "¿Cuál es el formato educativo utilizado para los contenidos relacionados con BIM dentro de su programa?",
+    default:
+      "What is the educational delivery format used for BIM-related content within your programme?",
+    answers: [
+      "Face-to-face learning",
+      "Synchronous distance learning",
+      "Asynchronous distance learning",
+      "Blended learning",
+    ],
+  },
+  {
+    question_id: 1662404194409,
+    es: "¿Qué tipos de recursos de aprendizaje en el campus relacionados con BIM están a disposición de los estudiantes en este programa?",
+    default:
+      "What types of BIM-related on-campus learning resources are available to students within this programme?",
+    answers: [
+      "Computer lab and software tools",
+      "Immersive virtual reality tools and environment / CAVE",
+      "Self-paced textual and audiovisual materials",
+    ],
+  },
+
   {
     question_id: 1662404194403,
     es: "¿Cuáles de los siguientes factores fomentaron la inclusión de contenidos relacionados con BIM en este programa?",
@@ -85,6 +121,7 @@ export const section1: ISectionItem[] = [
       "BIM is currently (or is becoming) the norm across the industry",
     ],
   },
+
   {
     question_id: 1662404194404,
     es: "¿Qué contenidos BIM relacionados con Captura y representación se imparten como parte de este programa?",
@@ -173,40 +210,6 @@ export const section1: ISectionItem[] = [
       "IFC - Industry Foundation Classes",
       "MVD - Model View Definition",
       "IDM - Information Delivery Manual",
-    ],
-  },
-  {
-    question_id: 1665080678818,
-    es: "¿Qué contenidos generales de BIM se imparten como parte de este programa?",
-    default:
-      "What general BIM contents are taught as part of this programme?",
-    answers: [
-      "General BIM-related concepts (e.g., terminology, value and impact, etc.)",
-      "How to apply national/ international information management standards on projects (EIR, CDE, etc.)",
-      "How to implement BIM in organisation/projects",
-    ],
-  },
-  {
-    question_id: 1662404194405,
-    es: "¿Cuál es el formato educativo utilizado para los contenidos relacionados con BIM dentro de su programa?",
-    default:
-      "What is the educational delivery format used for BIM-related content within your programme?",
-    answers: [
-      "Face-to-face learning",
-      "Synchronous distance learning",
-      "Asynchronous distance learning",
-      "Blended learning",
-    ],
-  },
-  {
-    question_id: 1662404194409,
-    es: "¿Qué tipos de recursos de aprendizaje en el campus relacionados con BIM están a disposición de los estudiantes en este programa?",
-    default:
-      "What types of BIM-related on-campus learning resources are available to students within this programme?",
-    answers: [
-      "Computer lab and software tools",
-      "Immersive virtual reality tools and environment / CAVE",
-      "Self-paced textual and audiovisual materials",
     ],
   },
 ];

@@ -177,11 +177,17 @@ export default function Pie_chart_bim({
       {value.length === 0 && (
         <div
           className="h-[280px] animate-pulse flex flex-col
-    gap-4"
+    gap-2"
         >
-          <div className="min-w-[260px] w-[400px] max-w-[432px] bg-slate-200 h-8 " />
-          <div className="flex flex-row gap-6 items-center justify-center">
-            <div className="h-[200px] rounded-full w-[200px] bg-slate-200" />
+          <div
+            className="min-w-[260px] w-full  bg-slate-200 h-8 
+          mt-6"
+          />
+          <div
+            className="flex flex-row gap-6 items-center justify-center
+          h-full"
+          >
+            <div className="h-[140px] rounded-full w-[140px] bg-slate-200" />
             <div className="h-[140px] w-[200px] bg-slate-200" />
           </div>
         </div>

@@ -48,14 +48,15 @@ export default function Dashboard_screen() {
               sectionX={section1[4]}
             />
           </div>
-          <div className="flex flex-row gap-6 w-full justify-center">
+
+          {/* <div className="flex flex-row gap-6 w-full justify-center">
             <Pie_chart_bim
               sectionX={section1[10]}
             />
             <Pie_chart_bim
               sectionX={section1[11]}
             />
-          </div>
+          </div> */}
 
           {/* {section1.map((x) => (
             <Bar_chart_bim
@@ -64,7 +65,54 @@ export default function Dashboard_screen() {
             />
           ))} */}
 
-          {/* <Bar_chart_bim /> */}
+          <div className="flex flex-row gap-6 w-full justify-center">
+            <Bar_chart_bim
+              sectionX={section1[1]}
+            />
+            <Bar_chart_bim
+              sectionX={section1[5]}
+            />
+          </div>
+          <div className="flex flex-row gap-6 w-full justify-center">
+            <Bar_chart_bim
+              sectionX={section1[6]}
+            />
+            <Bar_chart_bim
+              sectionX={section1[7]}
+            />
+          </div>
+          <div className="flex flex-row gap-6 w-full justify-center">
+            <Bar_chart_bim
+              sectionX={section1[8]}
+            />
+            <Bar_chart_bim
+              sectionX={section1[9]}
+            />
+          </div>
+          <div className="flex flex-row gap-6 w-full justify-center">
+            <Bar_chart_bim
+              sectionX={section1[10]}
+            />
+            <Bar_chart_bim
+              sectionX={section1[11]}
+            />
+          </div>
+          <div className="flex flex-row gap-6 w-full justify-center">
+            <Bar_chart_bim
+              sectionX={section1[12]}
+            />
+            <Bar_chart_bim
+              sectionX={section1[13]}
+            />
+          </div>
+          <div className="flex flex-row gap-6 w-full justify-center">
+            <Bar_chart_bim
+              sectionX={section1[14]}
+            />
+            <Bar_chart_bim
+              sectionX={section1[15]}
+            />
+          </div>
         </div>
       </div>
     </div>
