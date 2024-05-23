@@ -27,11 +27,13 @@ export default function Render_legend_content(
                   backgroundColor: x.color,
                 }}
                 className={`rounded-full h-2 w-2 mt-[6px]`}
-              ></div>
-              <p className="flex-1">{x.value}</p>
+              />
+              <p className="flex-1 text-[14px]">
+                {x.value}
+              </p>
             </div>
             <div>
-              <p className="flex-1">{`${
+              <p className="flex-1 text-[14px]">{`${
                 (payload?.percent * 100).toFixed(
                   1
                 ) ?? 0

@@ -7,7 +7,6 @@ import {
 
 const client = new ApolloClient({
   uri: `${process.env.NEXT_PUBLIC_GRAPHQL_SERVER}graphql`,
-  // uri: "http://localhost:3000/graphql",
   cache: new InMemoryCache(),
 });
 

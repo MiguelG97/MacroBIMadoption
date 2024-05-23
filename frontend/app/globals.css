@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+/* html {
+  font-size: 10px;
+} */
 .primary_100 {
   @apply text-[#a4a4a4];
 }

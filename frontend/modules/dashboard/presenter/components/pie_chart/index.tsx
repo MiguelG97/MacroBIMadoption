@@ -120,59 +120,72 @@ export default function Pie_chart_bim({
        pt-6 pl-6 pr-6 pb-2 items-center w-full h-min
        shadow-[0_25px_50px_-22px_rgb(0,0,0,0.2)]"
     >
-      <div className=" max-w-[432px] text-center">
-        <p
-          className="secondary_100 line-clamp-2 font-semibold
-      text-[14px]"
-        >
-          {value.length > 0 &&
-            questionnaire?.question}
-        </p>
-      </div>
-
-      {/* apparently we need to set the height here, other way the stupid chart
-      does not work on nested div elements */}
-      <div
-        className="flex flex-row justify-between items-center
-        h-[230px] w-full"
-      >
-        {value.length > 0 && (
-          <ResponsiveContainer>
-            <PieChart
-              onMouseMove={onMouseMovePieChart}
+      {value.length > 0 && (
+        <>
+          <div className=" max-w-[432px] text-center">
+            <p
+              className="secondary_100 line-clamp-2 font-semibold
+      text-[15px]"
             >
-              <Pie
-                data={questionnaire?.chartData}
-                paddingAngle={5}
-                label
-                nameKey={"name"}
-                dataKey={"value"}
-                innerRadius={60}
-                outerRadius={80}
+              {questionnaire?.question}
+            </p>
+          </div>
+
+          {/* apparently we need to set the height here, other way the stupid chart
+      does not work on nested div elements */}
+          <div
+            className="flex flex-row justify-between items-center
+        h-[230px] w-full"
+          >
+            <ResponsiveContainer>
+              <PieChart
+                onMouseMove={onMouseMovePieChart}
               >
-                {questionnaire?.chartData.map(
-                  (x, index) => (
-                    <Cell
-                      stroke="0"
-                      key={`cell-${index}`}
-                      fill={`${COLORS[index]}`}
-                    />
-                  )
-                )}
-              </Pie>
-              <Legend
-                content={Render_legend_content}
-                layout="vertical"
-                align="right"
-                verticalAlign="middle"
-              />
-              <Tooltip
-                content={<Render_Tooltip />}
-              />
-            </PieChart>
-          </ResponsiveContainer>
-        )}
-      </div>
+                <Pie
+                  data={questionnaire?.chartData}
+                  paddingAngle={5}
+                  label
+                  nameKey={"name"}
+                  dataKey={"value"}
+                  innerRadius={60}
+                  outerRadius={80}
+                >
+                  {questionnaire?.chartData.map(
+                    (x, index) => (
+                      <Cell
+                        stroke="0"
+                        key={`cell-${index}`}
+                        fill={`${COLORS[index]}`}
+                      />
+                    )
+                  )}
+                </Pie>
+                <Legend
+                  content={Render_legend_content}
+                  layout="vertical"
+                  align="right"
+                  verticalAlign="middle"
+                />
+                <Tooltip
+                  content={<Render_Tooltip />}
+                />
+              </PieChart>
+            </ResponsiveContainer>
+          </div>
+        </>
+      )}
+      {value.length === 0 && (
+        <div
+          className="h-[280px] animate-pulse flex flex-col
+    gap-4"
+        >
+          <div className="min-w-[260px] w-[400px] max-w-[432px] bg-slate-200 h-8 " />
+          <div className="flex flex-row gap-6 items-center justify-center">
+            <div className="h-[200px] rounded-full w-[200px] bg-slate-200" />
+            <div className="h-[140px] w-[200px] bg-slate-200" />
+          </div>
+        </div>
+      )}
     </div>
   );
 }
