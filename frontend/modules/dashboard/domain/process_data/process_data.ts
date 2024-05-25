@@ -1,6 +1,6 @@
 import { store } from "@/core/shared/redux/store";
 import { ISectionItem } from "@/core/shared/types/section_Questionnarie";
-interface countAnswer {
+export interface countAnswer {
   [index: number]: {
     answerName: string;
     count: number;
@@ -45,10 +45,10 @@ export class ProcessDataUtils {
       //strange, for some of them the User Input column does not exist!!
       //=> this means that it left a blank space! so do not take it into account
       const userInput: string = answer.User_Input;
-      console.log(answer);
+
       if (!userInput || userInput === "")
         continue;
-      console.log(userInput);
+
       //4.2) check if userinput is a multi choice answer
       let choices: string[] = [];
       if (userInput.includes("|")) {
@@ -79,12 +79,6 @@ export class ProcessDataUtils {
           if (!otherValues.includes(choice))
             otherValues.push(choice);
           otherCounter++;
-
-          console.log(
-            answFound,
-            userInput,
-            answer
-          );
         }
       }
     }

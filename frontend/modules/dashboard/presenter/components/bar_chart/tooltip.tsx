@@ -25,7 +25,9 @@ export default function Render_Tooltip(
       rounded-xl backdrop-blur-2xl bg-opacity-10 gap-4
       items-center"
     >
-      <p className="">{payload[0].name}</p>
+      <p className="">
+        {payload[0].payload.name}
+      </p>
 
       <p>{`${(
         ((payload[0].value as number) * 100) /

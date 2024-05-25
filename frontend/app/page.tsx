@@ -35,7 +35,6 @@ export default function Home() {
     qFindAll,
     {
       onCompleted: (data) => {
-        console.log("query processed");
         dispatch(setData(data?.findAll));
       },
     }

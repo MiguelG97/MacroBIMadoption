@@ -17,26 +17,28 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-import { ProcessDataUtils } from "../../domain/process_data/process_data";
-import { useAppSelector } from "@/core/shared/redux/store";
-
-const data = [
-  { name: "Yes", value: 35 },
-  { name: "Not sure", value: 31 },
-  { name: "No", value: 27 },
-  { name: "Yes", value: 22 },
-  { name: "Not sure", value: 21 },
-  { name: "No", value: 19 },
-  { name: "Yes", value: 15 },
-  { name: "Not sure", value: 11 },
-  { name: "No", value: 6 },
-];
+import {
+  countAnswer,
+  ProcessDataUtils,
+} from "../../../domain/process_data/process_data";
+import {
+  useAppDispatch,
+  useAppSelector,
+} from "@/core/shared/redux/store";
+import { section1 } from "@/core/shared/constants/questions";
+import Render_Tooltip from "./tooltip";
+import { CategoricalChartState } from "recharts/types/chart/types";
+import { setActiveTooltipAccValue } from "../../controllers/section_quest_slice";
 
 export default function Bar_chart_bim({
   sectionX,
 }: {
   sectionX: ISectionItem;
 }) {
+  const { activeToolTipAccumValue } =
+    useAppSelector((state) => state.sectionQst);
+  const dispatch = useAppDispatch();
+
   const { value } = useAppSelector(
     (state) => state.questionnarieSlice
   );
@@ -48,10 +50,10 @@ export default function Bar_chart_bim({
 
   useEffect(() => {
     //bussiness logic
-    const answerCounter =
+    const answerCounter: countAnswer | null =
       ProcessDataUtils.processData(sectionX);
     if (!answerCounter) return; //in case it's null
-
+    console.log(answerCounter);
     //5) store the accumulated data and question name in a hook state
     let finalValues = Object.values(
       answerCounter
@@ -62,16 +64,21 @@ export default function Bar_chart_bim({
       }
     ];
 
-    //delete unwanted characters
+    //delete unwanted characters or switch Others by None
     finalValues = finalValues.map((x) => {
-      x.answerName = x.answerName.replaceAll(
-        "[",
-        ""
+      const listNone = [13, 14, 15];
+      const indexNone = section1.findIndex(
+        (v) =>
+          v.question_id === sectionX.question_id
       );
-      x.answerName = x.answerName.replaceAll(
-        "]",
-        ""
-      );
+      if (
+        indexNone > 0 &&
+        listNone.includes(indexNone) &&
+        x.answerName.toLowerCase() === "others"
+      ) {
+        x.answerName = "None";
+      }
+
       return x;
     }) as [
       {
@@ -103,10 +110,24 @@ export default function Bar_chart_bim({
     });
     setAccumValue(accum);
   }, [value]);
+
+  //handlers
+  const onMouseMoveBarChart = (
+    e: CategoricalChartState
+  ) => {
+    if (!e.activeLabel) return;
+
+    if (accumValue === activeToolTipAccumValue)
+      return;
+
+    dispatch(
+      setActiveTooltipAccValue(accumValue)
+    );
+  };
   return (
     <div
-      className="bg-[#ffffff] w-full h-min
-  rounded-[20px] flex flex-col p-[24px]
+      className="bg-[#ffffff] w-full h-min max-w-[700px]
+  rounded-[20px] flex flex-col p-[24px] items-center
   shadow-[0_25px_50px_-12px_rgb(0,0,0,0.25)]"
     >
       {value.length > 0 && (
@@ -128,6 +149,7 @@ export default function Bar_chart_bim({
               height={"100%"}
             >
               <BarChart
+                onMouseMove={onMouseMoveBarChart}
                 layout="vertical"
                 data={questionnaire?.chartData}
                 margin={{
@@ -137,14 +159,23 @@ export default function Bar_chart_bim({
                   left: -80,
                 }}
               >
-                <Tooltip />
+                <Tooltip
+                  content={<Render_Tooltip />}
+                />
                 <CartesianGrid
                   fill="#f7f9fb"
                   horizontal={false}
                   stroke="#ebedef"
                 />
                 <XAxis
-                  // domain={[0, 30]}
+                  // domain={[0, "dataMax"]}
+                  domain={[
+                    0,
+                    (dataMax: number) => {
+                      const rest = dataMax % 5;
+                      return dataMax + 5 - rest;
+                    },
+                  ]}
                   axisLine={false}
                   tickLine={false}
                   type="number"
@@ -168,6 +199,26 @@ export default function Bar_chart_bim({
             </ResponsiveContainer>
           </div>
         </>
+      )}
+
+      {/* skeleton */}
+      {value.length == 0 && (
+        <div
+          className="h-[280px] animate-pulse flex flex-col
+    gap-2"
+        >
+          <div
+            className="min-w-[260px] w-full  bg-slate-200 h-8 
+          mt-6"
+          />
+          <div
+            className="flex flex-row gap-6 items-center justify-center
+          h-full"
+          >
+            <div className="h-[140px] rounded-full w-[140px] bg-slate-200" />
+            <div className="h-[140px] w-[200px] bg-slate-200" />
+          </div>
+        </div>
       )}
     </div>
   );
