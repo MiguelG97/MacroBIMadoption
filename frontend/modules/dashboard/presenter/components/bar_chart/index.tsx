@@ -25,7 +25,12 @@ import {
   useAppDispatch,
   useAppSelector,
 } from "@/core/shared/redux/store";
-import { section1 } from "@/core/shared/constants/questions";
+import {
+  section1,
+  section2,
+  section5,
+  section6,
+} from "@/core/shared/constants/questions";
 import Render_Tooltip from "./tooltip";
 import { CategoricalChartState } from "recharts/types/chart/types";
 import { setActiveTooltipAccValue } from "../../controllers/section_quest_slice";
@@ -66,11 +71,36 @@ export default function Bar_chart_bim({
 
     //delete unwanted characters or switch Others by None
     finalValues = finalValues.map((x) => {
-      const listNone = [13, 14, 15];
-      const indexNone = section1.findIndex(
+      const listNone = [13, 14, 15]; //those only correspond for section1, no indication received yet for other sections!
+      let indexNone = section1.findIndex(
         (v) =>
           v.question_id === sectionX.question_id
       );
+      indexNone =
+        indexNone < 0
+          ? section2.findIndex(
+              (v) =>
+                v.question_id ===
+                sectionX.question_id
+            )
+          : indexNone;
+      indexNone =
+        indexNone < 0
+          ? section5.findIndex(
+              (v) =>
+                v.question_id ===
+                sectionX.question_id
+            )
+          : indexNone;
+      indexNone =
+        indexNone < 0
+          ? section6.findIndex(
+              (v) =>
+                v.question_id ===
+                sectionX.question_id
+            )
+          : indexNone;
+
       if (
         indexNone > 0 &&
         listNone.includes(indexNone) &&
@@ -128,7 +158,7 @@ export default function Bar_chart_bim({
     <div
       className="bg-[#ffffff] w-full h-min max-w-[700px]
   rounded-[20px] flex flex-col p-[24px] items-center
-  shadow-[0_25px_50px_-12px_rgb(0,0,0,0.25)]"
+  shadow-[0_25px_50px_-12px_rgb(0,0,0,0.1)]"
     >
       {value.length > 0 && (
         <>
@@ -183,7 +213,12 @@ export default function Bar_chart_bim({
                 />
                 <YAxis
                   width={360}
-                  tick={{ fontSize: 14 }}
+                  xHeight={300}
+                  tick={{
+                    fontSize: 14,
+                    height: 40,
+                    width: 300,
+                  }}
                   axisLine={false}
                   tickLine={false}
                   dataKey="name"

@@ -117,8 +117,8 @@ export default function Pie_chart_bim({
   return (
     <div
       className="bg-[#ffffff] rounded-2xl flex flex-col
-       pt-6 pl-6 pr-6 pb-2 items-center w-full h-min
-       shadow-[0_25px_50px_-22px_rgb(0,0,0,0.2)] max-w-[700px]"
+       p-[24px] items-center w-full h-min
+       shadow-[0_25px_50px_-22px_rgb(0,0,0,0.1)] max-w-[700px]"
     >
       {value.length > 0 && (
         <>

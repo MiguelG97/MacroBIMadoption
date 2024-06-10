@@ -1,4 +1,7 @@
-import { useAppDispatch } from "@/core/shared/redux/store";
+import {
+  useAppDispatch,
+  useAppSelector,
+} from "@/core/shared/redux/store";
 import {
   IconAffiliate,
   IconBook,
@@ -10,7 +13,10 @@ import {
   Poppins,
 } from "next/font/google";
 import { useState } from "react";
-import { setSelectedSection } from "../controllers/section_quest_slice";
+import {
+  setSelectedSectIndex,
+  setSelectedSection,
+} from "../controllers/section_quest_slice";
 
 const poppings = Poppins({
   weight: "700",
@@ -23,9 +29,10 @@ const dmSans = DM_Sans({
 
 export default function Left_drawer() {
   //states
+  const { selectedSectionIndex } = useAppSelector(
+    (select) => select.sectionQst
+  );
   const dispatch = useAppDispatch();
-  const [selectedIndex, setSelectedIndex] =
-    useState<number>(0);
 
   //constants
   const sections = [
@@ -34,7 +41,7 @@ export default function Left_drawer() {
       icon: (
         <IconSchool
           color={`${
-            selectedIndex === 0
+            selectedSectionIndex === 0
               ? "#4318FF"
               : "#A3AED0"
           } `}
@@ -46,7 +53,7 @@ export default function Left_drawer() {
       icon: (
         <IconSearch
           color={`${
-            selectedIndex === 1
+            selectedSectionIndex === 1
               ? "#4318FF"
               : "#A3AED0"
           } `}
@@ -58,7 +65,7 @@ export default function Left_drawer() {
       icon: (
         <IconBook
           color={`${
-            selectedIndex === 2
+            selectedSectionIndex === 2
               ? "#4318FF"
               : "#A3AED0"
           } `}
@@ -70,7 +77,7 @@ export default function Left_drawer() {
       icon: (
         <IconAffiliate
           color={`${
-            selectedIndex === 3
+            selectedSectionIndex === 3
               ? "#4318FF"
               : "#A3AED0"
           } `}
@@ -84,7 +91,7 @@ export default function Left_drawer() {
     index: number,
     sectionName: string
   ) => {
-    setSelectedIndex(index);
+    dispatch(setSelectedSectIndex(index));
     dispatch(setSelectedSection(sectionName));
   };
   return (
@@ -117,7 +124,7 @@ pl-10 pr-8 py-14 flex flex-col gap-8 text-[#2B3674]`}
             className={`flex flex-row gap-2 items-start py-2 pl-2
             rounded-l-xl duration-500 cursor-pointer 
             ${
-              selectedIndex === index
+              selectedSectionIndex === index
                 ? "border-r-[4px] border-r-[#4318FF] bg-[#f4f4f4]"
                 : ""
             }`}
@@ -128,7 +135,7 @@ pl-10 pr-8 py-14 flex flex-col gap-8 text-[#2B3674]`}
             <div>{x.icon}</div>
             <p
               className={`${
-                selectedIndex === index
+                selectedSectionIndex === index
                   ? "text-[#2B3674] font-bold"
                   : "text-[#A3AED0]"
               }  

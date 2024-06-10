@@ -9,7 +9,8 @@ export interface countAnswer {
 export class ProcessDataUtils {
   static processData(
     // sectionID: string,
-    sectionX: ISectionItem
+    sectionX: ISectionItem,
+    unfoldOthers: boolean = false
   ): countAnswer | null {
     //variables
     const questionnarieAnsw =
@@ -30,6 +31,7 @@ export class ProcessDataUtils {
 
     //3) Prepare the count values object for each possible answer to the question
     const answerCounter: countAnswer = {};
+
     for (const index in sectionX.answers) {
       const answ = sectionX.answers[index];
       answerCounter[index] = {
@@ -66,6 +68,7 @@ export class ProcessDataUtils {
           count: number;
         }
       ];
+
       for (const choice of choices) {
         let answFound = values.find(
           (x) =>
@@ -73,7 +76,7 @@ export class ProcessDataUtils {
             x.answerName.includes(choice)
         );
         if (answFound) {
-          answFound!.count += 1;
+          answFound!.count += 1; //since we have gotten a reference, by updating this value, answerCounter Objects gets updated
         } else {
           //it's a custom (other) answer
           if (!otherValues.includes(choice))
@@ -84,13 +87,42 @@ export class ProcessDataUtils {
     }
 
     //add the other answers to the object group if its count is greater than 0
-    if (otherCounter > 0) {
+    if (otherCounter > 0 && !unfoldOthers) {
+      //assuming the others is always at the end of the list
       answerCounter[
         Object.keys(answerCounter).length
       ] = {
         answerName: "Others",
         count: otherCounter,
       };
+    } else if (otherCounter > 0 && unfoldOthers) {
+      for (
+        let index = 0;
+        index < otherValues.length;
+        index++
+      ) {
+        const other = otherValues[index];
+        const updatingAnswers: {
+          answerName: string;
+          count: number;
+        }[] = Object.values(answerCounter);
+        const otherExisting_Index =
+          updatingAnswers.findIndex(
+            (a) => a.answerName === other
+          );
+        if (otherExisting_Index > 0) {
+          answerCounter[
+            otherExisting_Index
+          ].count += 1;
+        } else {
+          answerCounter[
+            Object.keys(answerCounter).length
+          ] = {
+            answerName: other,
+            count: 1,
+          };
+        }
+      }
     }
 
     return answerCounter;

@@ -4,12 +4,14 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 // Define a type for the slice state
 interface sectionQstState {
   selectedSectionName: string;
+  selectedSectionIndex: number;
   activeToolTipAccumValue: number;
 }
 
 // Define the initial state using that type
 const initialState: sectionQstState = {
   selectedSectionName: "Educational Units",
+  selectedSectionIndex: 0,
   activeToolTipAccumValue: 0,
 };
 
@@ -24,6 +26,12 @@ export const sectionQstSlice = createSlice({
     ) => {
       state.selectedSectionName = action.payload;
     },
+    setSelectedSectIndex: (
+      state,
+      action: PayloadAction<number>
+    ) => {
+      state.selectedSectionIndex = action.payload;
+    },
     setActiveTooltipAccValue: (
       state,
       action: PayloadAction<number>
@@ -37,6 +45,7 @@ export const sectionQstSlice = createSlice({
 export const {
   setSelectedSection,
   setActiveTooltipAccValue,
+  setSelectedSectIndex,
 } = sectionQstSlice.actions;
 
 export default sectionQstSlice.reducer;
