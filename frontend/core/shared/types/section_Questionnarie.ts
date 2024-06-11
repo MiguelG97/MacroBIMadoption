@@ -39,6 +39,7 @@ export interface ISectionItem {
 export interface ChartDataItem {
   name: string;
   value: number;
+  id?: number;
 }
 
 export interface questionnaire {
