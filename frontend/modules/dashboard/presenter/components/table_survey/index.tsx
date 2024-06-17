@@ -26,8 +26,10 @@ import React, {
 
 export default function Table_survey({
   sectionX,
+  isTableAlone = true,
 }: {
   sectionX: ISectionItem;
+  isTableAlone?: boolean;
 }) {
   const dispatch = useAppDispatch();
 
@@ -65,10 +67,11 @@ export default function Table_survey({
 
     //Transform the data
     let chartData: ChartDataItem[] =
-      finalValues.map((x) => {
+      finalValues.map((x, index) => {
         return {
           name: x.answerName,
           value: x.count,
+          id: index,
         };
       });
     setQuestionnarie({
@@ -83,9 +86,10 @@ export default function Table_survey({
 
   const columns: GridColDef[] = [
     {
-      field: "name",
-      headerName: "Name",
-      width: 800,
+      field: "id",
+      headerName: "ITEM",
+      // width: 100,
+      flex: 1,
       renderHeader: (
         params: GridColumnHeaderParams
       ) => {
@@ -94,20 +98,25 @@ export default function Table_survey({
             className="text-[#A3AED0]  font-medium
           tracking-[2px]"
           >
-            NAME
+            ITEM
           </div>
         );
       },
       renderCell: (
         params: GridRenderCellParams
       ) => {
-        return <p className="">{params.value}</p>;
+        return (
+          <p className="opacity-60">
+            {params.value + 1}
+          </p>
+        );
       },
     },
     {
-      field: "value",
-      headerName: "Quantity",
-      width: 100,
+      field: "name",
+      headerName: "Name",
+      flex: 3,
+      // width: repColWidth,
       renderHeader: (
         params: GridColumnHeaderParams
       ) => {
@@ -116,7 +125,7 @@ export default function Table_survey({
             className="text-[#A3AED0]  font-medium
           tracking-[2px]"
           >
-            QUANTITY
+            REPOSITORY
           </div>
         );
       },
@@ -130,9 +139,13 @@ export default function Table_survey({
 
   return (
     <div
-      className="bg-[#ffffff] rounded-2xl flex flex-col
+      className={`bg-[#ffffff] rounded-2xl flex flex-col
   p-[24px] items-center w-full h-min
-  shadow-[0_25px_50px_-22px_rgb(0,0,0,0.1)] max-w-[1400px]"
+  shadow-[0_25px_50px_-22px_rgb(0,0,0,0.1)] ${
+    isTableAlone
+      ? "max-w-[1400px]"
+      : "max-w-[700px]"
+  } `}
     >
       {questionnaire &&
         questionnaire.chartData.length > 0 && (
@@ -147,8 +160,12 @@ export default function Table_survey({
             </div>
 
             <div
-              className="flex flex-row justify-between items-center
-        h-[300px] w-full pt-1"
+              className={`flex flex-row justify-between items-center
+              ${
+                isTableAlone
+                  ? "h-[300px]"
+                  : "h-[230px]"
+              }  w-full pt-1`}
             >
               <DataGrid
                 sx={{ border: "0px solid black" }}

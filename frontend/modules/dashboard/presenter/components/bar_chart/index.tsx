@@ -156,7 +156,7 @@ export default function Bar_chart_bim({
   };
   return (
     <div
-      className="bg-[#ffffff] w-full h-min max-w-[700px]
+      className="bg-[#ffffff] w-full  h-min max-w-[700px]
   rounded-[20px] flex flex-col p-[24px] items-center
   shadow-[0_25px_50px_-12px_rgb(0,0,0,0.1)]"
     >
@@ -213,11 +213,10 @@ export default function Bar_chart_bim({
                 />
                 <YAxis
                   width={360}
-                  xHeight={300}
                   tick={{
                     fontSize: 14,
                     height: 40,
-                    width: 300,
+                    width: 280,
                   }}
                   axisLine={false}
                   tickLine={false}
