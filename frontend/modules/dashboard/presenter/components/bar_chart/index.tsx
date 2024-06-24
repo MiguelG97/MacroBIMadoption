@@ -37,8 +37,10 @@ import { setActiveTooltipAccValue } from "../../controllers/section_quest_slice"
 
 export default function Bar_chart_bim({
   sectionX,
+  fullWidth = false,
 }: {
   sectionX: ISectionItem;
+  fullWidth?: boolean;
 }) {
   const { activeToolTipAccumValue } =
     useAppSelector((state) => state.sectionQst);
@@ -156,9 +158,13 @@ export default function Bar_chart_bim({
   };
   return (
     <div
-      className="bg-[#ffffff] w-full  h-min max-w-[700px]
+      className={`bg-[#ffffff] w-full  h-min ${
+        fullWidth
+          ? "max-w-[1400px]"
+          : "max-w-[700px]"
+      } 
   rounded-[20px] flex flex-col p-[24px] items-center
-  shadow-[0_25px_50px_-12px_rgb(0,0,0,0.1)]"
+  shadow-[0_25px_50px_-12px_rgb(0,0,0,0.1)]`}
     >
       {value.length > 0 && (
         <>
@@ -212,11 +218,11 @@ export default function Bar_chart_bim({
                   dataKey={"value"}
                 />
                 <YAxis
-                  width={360}
+                  width={fullWidth ? 520 : 360}
                   tick={{
                     fontSize: 14,
                     height: 40,
-                    width: 280,
+                    width: fullWidth ? 380 : 280,
                   }}
                   axisLine={false}
                   tickLine={false}

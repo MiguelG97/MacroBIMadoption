@@ -21,7 +21,10 @@ justify-evenly "
         className="flex flex-row gap-6 w-full
 justify-evenly "
       >
-        <Bar_chart_bim sectionX={section6[2]} />
+        <Bar_chart_bim
+          sectionX={section6[2]}
+          fullWidth
+        />
       </div>
       <div
         className="flex flex-row gap-6 w-full
