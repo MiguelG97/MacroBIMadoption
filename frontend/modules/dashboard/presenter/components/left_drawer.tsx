@@ -5,6 +5,7 @@ import {
 import {
   IconAffiliate,
   IconBook,
+  IconBuildingStore,
   IconSchool,
   IconSearch,
 } from "@tabler/icons-react";
@@ -37,7 +38,7 @@ export default function Left_drawer() {
   //constants
   const sections = [
     {
-      name: "Educational units",
+      name: "Higher education programmes",
       icon: (
         <IconSchool
           color={`${
@@ -49,7 +50,7 @@ export default function Left_drawer() {
       ),
     },
     {
-      name: "Research",
+      name: "Academic research",
       icon: (
         <IconSearch
           color={`${
@@ -61,7 +62,7 @@ export default function Left_drawer() {
       ),
     },
     {
-      name: "Short courses and BIM-related training",
+      name: "Short BIM training courses",
       icon: (
         <IconBook
           color={`${
@@ -73,11 +74,23 @@ export default function Left_drawer() {
       ),
     },
     {
-      name: "Collaboration between academia, governement, and/or industry",
+      name: "Market-scale educational framework",
+      icon: (
+        <IconBuildingStore
+          color={`${
+            selectedSectionIndex === 3
+              ? "#4318FF"
+              : "#A3AED0"
+          } `}
+        />
+      ),
+    },
+    {
+      name: "Collaboration between academia, government and industry",
       icon: (
         <IconAffiliate
           color={`${
-            selectedSectionIndex === 3
+            selectedSectionIndex === 4
               ? "#4318FF"
               : "#A3AED0"
           } `}
@@ -121,7 +134,7 @@ pl-10 pr-8 py-14 flex flex-col gap-8 text-[#2B3674]`}
         {sections.map((x, index) => (
           <div
             key={`sec-${index}`}
-            className={`flex flex-row gap-2 items-start py-2 pl-2
+            className={`flex flex-row gap-2 items-start py-3 pl-2
             rounded-l-xl duration-500 cursor-pointer 
             ${
               selectedSectionIndex === index
@@ -139,7 +152,7 @@ pl-10 pr-8 py-14 flex flex-col gap-8 text-[#2B3674]`}
                   ? "text-[#2B3674] font-bold"
                   : "text-[#A3AED0]"
               }  
-              line-clamp-2 text-[16px] leading-6 `}
+              line-clamp-2 text-[16px]`}
             >
               {x.name}
             </p>

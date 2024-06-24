@@ -114,8 +114,8 @@ export default function Table_survey({
     },
     {
       field: "name",
-      headerName: "Name",
-      flex: 3,
+      headerName: "REPOSITORY",
+      flex: 16,
       // width: repColWidth,
       renderHeader: (
         params: GridColumnHeaderParams
@@ -150,9 +150,9 @@ export default function Table_survey({
       {questionnaire &&
         questionnaire.chartData.length > 0 && (
           <>
-            <div className=" max-w-[432px] text-center">
+            <div className="min-w-[400px] max-w-[600px] text-center">
               <p
-                className="secondary_100 line-clamp-2 font-semibold
+                className="secondary_100 line-clamp-3 font-semibold
       text-[15px]"
               >
                 {questionnaire?.question}

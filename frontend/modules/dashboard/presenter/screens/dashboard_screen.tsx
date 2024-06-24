@@ -3,11 +3,12 @@ import Left_drawer from "../components/left_drawer";
 import Bar_chart_bim from "../components/bar_chart";
 import Pie_chart_bim from "../components/pie_chart";
 import { section1 } from "@/core/shared/constants/questions";
-import Educ_Unit_dashboard from "./educational_units";
-import Research_dashboard from "./research";
+import Higher_educ_tabView from "./tabViews/higher_education";
+import Academic_research_tabView from "./tabViews/academic_research";
 import { useAppSelector } from "@/core/shared/redux/store";
-import Courses_bim_dashboard from "./courses_bim_training";
-import Collaboration_dashboard from "./collaboration";
+import Bim_training_tabView from "./tabViews/bim_training_courses";
+import Collaboration_tabView from "./tabViews/collaboration";
+import Educ_framework_tabView from "./tabViews/educational_framework";
 
 export default function Dashboard_screen() {
   //workaround for handling different client and server content
@@ -21,10 +22,11 @@ export default function Dashboard_screen() {
   );
 
   const screens = [
-    <Educ_Unit_dashboard key={0} />,
-    <Research_dashboard key={1} />,
-    <Courses_bim_dashboard key={2} />,
-    <Collaboration_dashboard key={3} />,
+    <Higher_educ_tabView key={0} />,
+    <Academic_research_tabView key={1} />,
+    <Bim_training_tabView key={2} />,
+    <Educ_framework_tabView key={3} />,
+    <Collaboration_tabView key={4} />,
   ];
   return (
     <div className="flex flex-row h-screen bg-[#ffffff]">

@@ -162,9 +162,9 @@ export default function Bar_chart_bim({
     >
       {value.length > 0 && (
         <>
-          <div className=" max-w-[432px] text-center">
+          <div className="min-w-[400px] max-w-[600px] text-center">
             <p
-              className="secondary_100 line-clamp-2 font-semibold
+              className="secondary_100 line-clamp-3 font-semibold
       text-[15px]"
             >
               {questionnaire?.question}

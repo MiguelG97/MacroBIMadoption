@@ -1,10 +1,10 @@
 import { section2 } from "@/core/shared/constants/questions";
 import React from "react";
-import Bar_chart_bim from "../components/bar_chart";
-import Pie_chart_bim from "../components/pie_chart";
-import Table_survey from "../components/table_survey";
+import Bar_chart_bim from "../../components/bar_chart";
+import Pie_chart_bim from "../../components/pie_chart";
+import Table_survey from "../../components/table_survey";
 
-export default function Research_dashboard() {
+export default function Academic_research_tabView() {
   return (
     <div
       className="flex flex-col p-6 

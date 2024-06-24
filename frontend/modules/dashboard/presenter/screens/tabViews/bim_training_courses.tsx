@@ -1,10 +1,10 @@
 import { section5 } from "@/core/shared/constants/questions";
 import React from "react";
-import Pie_chart_bim from "../components/pie_chart";
-import Bar_chart_bim from "../components/bar_chart";
-import Table_survey from "../components/table_survey";
+import Pie_chart_bim from "../../components/pie_chart";
+import Bar_chart_bim from "../../components/bar_chart";
+import Table_survey from "../../components/table_survey";
 
-export default function Courses_bim_dashboard() {
+export default function Bim_training_tabView() {
   return (
     <div
       className="flex flex-col p-6 

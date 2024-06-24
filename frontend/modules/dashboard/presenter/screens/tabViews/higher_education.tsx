@@ -1,9 +1,9 @@
 import React from "react";
-import Bar_chart_bim from "../components/bar_chart";
+import Bar_chart_bim from "../../components/bar_chart";
 import { section1 } from "@/core/shared/constants/questions";
-import Pie_chart_bim from "../components/pie_chart";
+import Pie_chart_bim from "../../components/pie_chart";
 
-export default function Educ_Unit_dashboard() {
+export default function Higher_educ_tabView() {
   return (
     <div
       className="flex flex-col p-6 
