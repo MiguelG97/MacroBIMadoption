@@ -26,8 +26,12 @@ import { setActiveTooltipAccValue } from "../../controllers/section_quest_slice"
 
 export default function Pie_chart_bim({
   sectionX,
+  increaseHeight = false,
+  increaseTextHeight = false,
 }: {
   sectionX: ISectionItem;
+  increaseHeight?: boolean;
+  increaseTextHeight?: boolean;
 }) {
   const { activeToolTipAccumValue } =
     useAppSelector((state) => state.sectionQst);
@@ -124,8 +128,10 @@ export default function Pie_chart_bim({
         <>
           <div className="text-center min-w-[400px] max-w-[600px]">
             <p
-              className="secondary_100 line-clamp-3 font-semibold
-      text-[15px]"
+              className={`secondary_100 line-clamp-3 font-semibold
+      text-[15px] ${
+        increaseTextHeight && "px-3"
+      }`}
             >
               {questionnaire?.question}
             </p>
@@ -134,8 +140,12 @@ export default function Pie_chart_bim({
           {/* apparently we need to set the height here, other way the stupid chart
       does not work on nested div elements */}
           <div
-            className="flex flex-row justify-between items-center
-        h-[230px] w-full"
+            className={`flex flex-row justify-between items-center
+            ${
+              increaseHeight
+                ? "h-[270px]"
+                : "h-[230px]"
+            } w-full`}
           >
             <ResponsiveContainer>
               <PieChart

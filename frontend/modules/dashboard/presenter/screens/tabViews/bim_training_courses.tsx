@@ -21,8 +21,15 @@ justify-evenly "
         className="flex flex-row gap-6 w-full
 justify-evenly "
       >
-        <Bar_chart_bim sectionX={section5[2]} />
-        <Pie_chart_bim sectionX={section5[3]} />
+        <Bar_chart_bim
+          sectionX={section5[2]}
+          increaseHeight
+          increaseTextHeight
+        />
+        <Pie_chart_bim
+          sectionX={section5[3]}
+          increaseHeight
+        />
       </div>
       <div
         className="flex flex-row gap-6 w-full

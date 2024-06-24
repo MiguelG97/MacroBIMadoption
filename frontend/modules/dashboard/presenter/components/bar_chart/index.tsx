@@ -38,9 +38,13 @@ import { setActiveTooltipAccValue } from "../../controllers/section_quest_slice"
 export default function Bar_chart_bim({
   sectionX,
   fullWidth = false,
+  increaseHeight = false,
+  increaseTextHeight = false,
 }: {
   sectionX: ISectionItem;
   fullWidth?: boolean;
+  increaseHeight?: boolean;
+  increaseTextHeight?: boolean;
 }) {
   const { activeToolTipAccumValue } =
     useAppSelector((state) => state.sectionQst);
@@ -170,15 +174,19 @@ export default function Bar_chart_bim({
         <>
           <div className="min-w-[400px] max-w-[600px] text-center">
             <p
-              className="secondary_100 line-clamp-3 font-semibold
-      text-[15px]"
+              className={`secondary_100 line-clamp-3 font-semibold
+      text-[15px] ${
+        increaseTextHeight && "px-4"
+      }`}
             >
               {questionnaire?.question}
             </p>
           </div>
           <div
-            className="flex flex-row justify-between items-center
-      w-full h-[230px]"
+            className={`flex flex-row justify-between items-center
+      w-full ${
+        increaseHeight ? "h-[270px]" : "h-[230px]"
+      }`}
           >
             <ResponsiveContainer
               width={"100%"}

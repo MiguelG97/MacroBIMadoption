@@ -21,7 +21,10 @@ h-full gap-6 overflow-y-auto w-full"
    justify-evenly"
       >
         <Pie_chart_bim sectionX={section1[3]} />
-        <Pie_chart_bim sectionX={section1[4]} />
+        <Pie_chart_bim
+          sectionX={section1[4]}
+          increaseTextHeight
+        />
       </div>
 
       <div
@@ -35,7 +38,10 @@ h-full gap-6 overflow-y-auto w-full"
         className="flex flex-row gap-6 w-full
    justify-evenly"
       >
-        <Bar_chart_bim sectionX={section1[6]} />
+        <Bar_chart_bim
+          sectionX={section1[6]}
+          increaseTextHeight
+        />
         <Bar_chart_bim sectionX={section1[7]} />
       </div>
       <div
