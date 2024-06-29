@@ -161,13 +161,29 @@ export default function Pie_chart_bim({
                   outerRadius={80}
                 >
                   {questionnaire?.chartData.map(
-                    (x, index) => (
-                      <Cell
-                        stroke="0"
-                        key={`cell-${index}`}
-                        fill={`${COLORS[index]}`}
-                      />
-                    )
+                    (x, index) => {
+                      let color = "";
+                      if (x.name === "Yes") {
+                        color = "#f37f72";
+                      } else if (
+                        x.name === "No"
+                      ) {
+                        color = "#444444";
+                      } else if (
+                        x.name === "Not sure"
+                      ) {
+                        color = "#87a8c3";
+                      } else {
+                        color = COLORS[index];
+                      }
+                      return (
+                        <Cell
+                          stroke="0"
+                          key={`cell-${index}`}
+                          fill={`${color}`}
+                        />
+                      );
+                    }
                   )}
                 </Pie>
                 <Legend
