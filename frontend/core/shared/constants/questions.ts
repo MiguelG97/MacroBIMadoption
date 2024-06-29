@@ -246,6 +246,79 @@ export const section2: ISectionItem[] = [
   },
 ];
 
+export const section34: ISectionItem[] = [
+  {
+    question_id: 1662406986498,
+    default:
+      "Is there a published region-wide Learning Outcomes Taxonomy or similar document covering BIM learning and training topics?",
+    answers: ["Yes", "No", "Not sure"],
+    es: "¿Existe una Taxonomía de resultados de aprendizaje o documento similar publicado para toda la región que cubra los temas de aprendizaje y formación BIM?",
+  },
+  {
+    question_id: 1662406986479,
+    default:
+      "Please identify the party(ies) that led or are leading the development of the region-wide, BIM-focused Learning Outcomes Taxonomy or similar documents:",
+    answers: [
+      "Government Bodies",
+      "Academic Institutions",
+      "Industry Associations",
+      "Community Groups",
+    ],
+    es: "Por favor, identifique a la(s) parte(s) que ha(n) dirigido o está(n) dirigiendo el desarrollo de la Taxonomía de resultados de aprendizaje o documentos similares centrados en BIM para toda la región:",
+  },
+  {
+    default:
+      "Which BIM topics does the region-wide Learning Outcomes Taxonomy or similar document cover?",
+    es: "¿Qué temas BIM cubre la Taxonomía de resultados del aprendizaje o documento similar de toda la región?",
+    question_id: 1662406986481,
+    answers: [
+      "BIM fundamental concepts and terminology",
+      "Strategic context for BIM adoption within your country/region",
+      "Value and impact of BIM for organisations and projects",
+      "The concepts of interoperability and how to implement an openBIM workflows",
+      "Information management standards (e.g., information requirements, BIM Execution Plans) applicable to BIM-enabled projects",
+      "Model uses for visualisation, simulation, quantification and similar",
+      "Product information (e.g., data templates) across an asset lifecycle",
+      "Legal, contractual and commercial implications on organisations and supply chains",
+      "Procurement challenges related to the use of BIM on projects",
+      "Change management challenges for adopting BIM in organisations",
+    ],
+  },
+  {
+    default:
+      "Please provide more information about the region-wide, BIM-focused Learning Outcomes Taxonomy or similar document:",
+    es: "Por favor, proporcione más información sobre la Taxonomía de resultados de aprendizaje o documento similar centrado en BIM y de ámbito regional:",
+    question_id: 1662406986480,
+    answers: [],
+  },
+  {
+    default:
+      "Is there an Educational Framework to guide the teaching/learning of BIM topics within higher education institutions in your region?",
+    es: "¿Existe un Marco Educativo que oriente la enseñanza/aprendizaje de temas BIM en las instituciones de educación superior de su región?",
+    question_id: 1662403322493,
+    answers: ["Yes", "No", "Not sure"],
+  },
+  {
+    default:
+      "Please identify the main elements of the Educational Framework intended to guide the teaching/learning of BIM topics within higher education institutions in your region:",
+    es: "Por favor, identifique los principales elementos del Marco Educativo destinado a guiar la enseñanza/aprendizaje de temas BIM en las instituciones de educación superior de su región:",
+    question_id: 1662403538117,
+    answers: [
+      "Identifies the overall benefits and provides basic guidance on how to develop BIM-focused educational programmes",
+      "Identifies learning outcomes that generically apply across all disciplines and specialties",
+      "Identifies learning outcomes by discipline - apply specifically to architectural, engineering, or construction management students",
+      "Identifies specific learning outcomes that apply per year level  - apply to Year 1, 2 or 3",
+    ],
+  },
+  {
+    default:
+      "Please identify the entity(ies) that issued or commissioned the BIM-focused Educational Framework for higher education institutions:",
+    es: "Por favor, identifique la(s) entidad(es) que emitió(eron) o encargó(aron) el Marco Educativo centrado en BIM para instituciones de educación superior:",
+    question_id: 1662403538118,
+    answers: [],
+  },
+];
+
 export const section5: ISectionItem[] = [
   {
     question_id: 1662406986478,

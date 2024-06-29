@@ -1204,7 +1204,7 @@
               "value": "item10",
               "text": {
                 "es": "Retos de la gestión del cambio para adoptar BIM en las organizaciones ",
-                "default": "Change management challenges for adopting BIM in organisations "
+                "default": "Change management challenges for adopting BIM in organisations"
               }
             }
           ],
