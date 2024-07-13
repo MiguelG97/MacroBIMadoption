@@ -5,7 +5,9 @@ import {
   IAnswerPostgres,
   IAnswerSchema,
 } from "@/core/shared/types/section_Questionnarie";
-import { excelUtils } from "@/core/utils/readExcelUtils";
+import { IExcelRowJson } from "@/core/utils/excel/excel_types";
+import { excelUtils } from "@/core/utils/excel/excel_util_model";
+
 import { createsManyAnswer } from "@/modules/dashboard/data/gql/mutations/answers";
 import { qFindAll } from "@/modules/dashboard/data/gql/queries/answers";
 import {
@@ -27,18 +29,18 @@ const DashboardScreen = dynamic(
 );
 export default function Home() {
   const dispatch = useAppDispatch();
+
+  /**Grahpql queries */
   // const [
   //   mutateFunction,
   //   { loading, error, data },
   // ] = useMutation(createsManyAnswer);
-  const { loading, error, data } = useQuery(
-    qFindAll,
-    {
-      onCompleted: (data) => {
-        dispatch(setData(data?.findAll));
-      },
-    }
-  );
+
+  const { loading, error, data } = useQuery(qFindAll, {
+    onCompleted: (data) => {
+      dispatch(setData(data?.findAll));
+    },
+  });
 
   // useMemo(()=> useQuery(qFindAll),[qFindAll])
   // if (data) {
@@ -46,11 +48,12 @@ export default function Home() {
   // }
 
   // console.log(data, loading, error);
+
+  /**Pre process data to send it to postgresql db */
   useEffect(() => {
     //Load data to postgresql
     const excel = async () => {
-      const workbook =
-        await excelUtils.readExcel();
+      const workbook = await excelUtils.readExcel();
 
       // const { Answers, Questionnaire } =
       //   workbook?.Sheets;
@@ -87,15 +90,13 @@ export default function Home() {
             Item_ID: x["Item ID"],
             Item_Title: x["Item Title"],
             Item_Type: x["Item Type"],
-            Statement_Labels:
-              x["Statement Labels"],
+            Statement_Labels: x["Statement Labels"],
             User_Email: x["User Email"],
             User_ID: x["User ID"],
             User_Input: x["User Input"],
             User_Labels: x["User Labels"],
             User_Name: x["User Name"],
-            Verification_Status:
-              x["Verification Status"],
+            Verification_Status: x["Verification Status"],
           };
         });
       console.log(answerInputs);
@@ -110,13 +111,25 @@ export default function Home() {
       //   console.log(result, loading, error, data);
       // };
       // mutation();
-      dispatch(setData(jsonAnswers));
+      // dispatch(setData(jsonAnswers));
 
       //send data!
     };
     // excel();
 
+    const postgresqlDB = async () => {
+      const workbook = await excelUtils.readExcel();
+      const sheets = workbook?.Sheets;
+      if (!sheets) return;
+      let jsonRows: IExcelRowJson[] = utils.sheet_to_json(
+        sheets.Answers
+      );
+      console.log(jsonRows);
+    };
+
     //Read data from postgresql
+    postgresqlDB();
   }, []);
-  return <DashboardScreen />;
+  return <div>hey</div>;
+  // return <DashboardScreen />;
 }
