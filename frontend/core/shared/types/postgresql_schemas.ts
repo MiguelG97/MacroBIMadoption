@@ -27,5 +27,5 @@ export interface IPostUser {
   userName: string;
   userLabels: string;
   country: string;
-  bimAcademicLevel: string;
+  bimAcademicProgram?: string;
 }
