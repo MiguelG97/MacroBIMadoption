@@ -143,7 +143,7 @@ export default function Home() {
       const answerModels: IPostAnswer[] = [];
       answerJsonRows.forEach((x) => {
         const answer: IPostAnswer = {
-          id: Number(x["Item ID"]),
+          questionId: Number(x["Item ID"]),
           questionTitle: x["Item Title"],
           userAnswer: x["User Input"],
           userEmail: x["User Email"],
@@ -175,7 +175,7 @@ export default function Home() {
       const userModels: IPostUser[] = [];
       userJsonRows.forEach((x) => {
         const user: IPostUser = {
-          id: Number(x["User ID"]),
+          userId: Number(x["User ID"]),
           userEmail: x["User Email"],
           userName: x["User Name"],
           userLabels: x["User Labels"],
@@ -190,6 +190,6 @@ export default function Home() {
     //Read data from postgresql
     postgresqlDB();
   }, []);
-  // return <div>hey</div>;
-  return <DashboardScreen />;
+  return <div>hey</div>;
+  // return <DashboardScreen />;
 }

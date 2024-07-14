@@ -36,11 +36,31 @@ input CreateAnswerInput {
   Answers: [AnswerInput!]!
 }
 
+input CreateUserInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
 type Mutation {
+  createUser(createUserInput: CreateUserInput!): User!
   createsManyAnswer(createAnswerInput: CreateAnswerInput!): Answer!
   createsSingleAnswer(createAnswerInput: CreateAnswerInput!): Answer
+  removeUser(id: Int!): User!
+  updateUser(updateUserInput: UpdateUserInput!): User!
 }
 
 type Query {
   findAll: [Answer!]!
+  user(id: Int!): User!
+}
+
+input UpdateUserInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
+}
+
+type User {
+  """Example field (placeholder)"""
+  exampleField: Int!
 }
