@@ -3,6 +3,7 @@ import { AnswersService } from './answers.service';
 import { Answer } from './entities/answer.entity';
 import { CreateAnswerInput } from './dto/create-answer.input';
 
+/**Step2) Resolvers: It uses Graphql operations, prisma client and functions to query db data with a specific shape defined in graph schema*/
 @Resolver(() => Answer)
 export class AnswersResolver {
   constructor(private readonly answersService: AnswersService) {}
