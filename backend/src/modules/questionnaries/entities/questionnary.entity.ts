@@ -1,4 +1,4 @@
-import { ObjectType, Field, Int } from '@nestjs/graphql';
+import { ObjectType, Field, Int, registerEnumType } from '@nestjs/graphql';
 import { Chart } from '@prisma/client';
 import { Answer } from 'src/modules/answers/entities/answer.entity';
 
@@ -9,10 +9,10 @@ import { Answer } from 'src/modules/answers/entities/answer.entity';
 //   table,
 //   undefined,
 // }
-// registerEnumType(Chart, {
-//   name: 'Chart',
-//   description: 'Type of chart to use in the dashboard',
-// });
+registerEnumType(Chart, {
+  name: 'Chart',
+  description: 'Type of chart to use in the dashboard',
+});
 
 @ObjectType()
 export class Questionnary {

@@ -20,7 +20,7 @@ export class AnswersResolver {
 
   @Mutation(() => [Answer])
   async createAnswers(
-    @Args('createManyAnswersInput')
+    @Args('createManyAnswersInput', { type: () => CreateManyAnswersInput })
     createManyAnswersInput: CreateManyAnswersInput,
   ) {
     const res = await this.answersService.createMany(createManyAnswersInput);

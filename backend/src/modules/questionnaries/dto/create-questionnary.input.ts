@@ -8,7 +8,7 @@ export class CreateQuestionnaryInput {
 
   @Field()
   title: string;
-  @Field()
+  @Field(() => [String]) //we need to explicity indicate what is returned when using arrays!
   choices: string[];
 
   @Field(() => Chart)
