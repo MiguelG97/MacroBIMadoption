@@ -1,16 +1,18 @@
-import { ObjectType, Field, Int, registerEnumType } from '@nestjs/graphql';
+import { ObjectType, Field, Int } from '@nestjs/graphql';
+import { Chart } from '@prisma/client';
 import { Answer } from 'src/modules/answers/entities/answer.entity';
 
-enum ChartType {
-  bar,
-  pie,
-  table,
-  undefined,
-}
-registerEnumType(ChartType, {
-  name: 'ChartType',
-  description: 'Type of chart to use in the dashboard',
-});
+//We must use the enum from prisma client though!!
+// export enum Chart {
+//   bar,
+//   pie,
+//   table,
+//   undefined,
+// }
+// registerEnumType(Chart, {
+//   name: 'Chart',
+//   description: 'Type of chart to use in the dashboard',
+// });
 
 @ObjectType()
 export class Questionnary {
@@ -23,8 +25,8 @@ export class Questionnary {
   @Field(() => [String])
   choices: string[];
 
-  @Field(() => ChartType)
-  chartType: ChartType;
+  @Field(() => Chart)
+  chartType: Chart;
 
   @Field()
   campaign: string;

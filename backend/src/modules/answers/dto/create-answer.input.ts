@@ -1,34 +1,34 @@
-import { InputType, Field } from '@nestjs/graphql';
+import { InputType, Field, Int } from '@nestjs/graphql';
 
 @InputType()
 export class CreateAnswerInput {
-  @Field(() => [AnswerInput])
-  Answers: AnswerInput[];
+  @Field(() => Int)
+  id: number;
+
+  @Field()
+  questionTitle: string;
+  @Field()
+  userAnswer: string;
+  @Field()
+  userEmail: string;
+  @Field({ nullable: true })
+  assigAuditor?: string;
+  @Field({ nullable: true })
+  auditorNote?: string;
+  @Field({ nullable: true })
+  hashtags?: string;
+  @Field({ nullable: true })
+  stateLabels?: string;
+
+  //relations
+  @Field(() => Int)
+  questionId: number;
+  @Field(() => Int)
+  userId: number;
 }
+
 @InputType()
-class AnswerInput {
-  @Field({ nullable: true })
-  Assessment?: string;
-  @Field({ nullable: true })
-  Campaign?: string;
-  @Field({ nullable: true })
-  Item_ID?: string;
-  @Field({ nullable: true })
-  Item_Title?: string;
-  @Field({ nullable: true })
-  Item_Type?: string;
-  @Field({ nullable: true })
-  Statement_Labels?: string;
-  @Field({ nullable: true })
-  User_Email?: string;
-  @Field({ nullable: true })
-  User_ID?: string;
-  @Field({ nullable: true })
-  User_Input?: string;
-  @Field({ nullable: true })
-  User_Labels?: string;
-  @Field({ nullable: true })
-  User_Name?: string;
-  @Field({ nullable: true })
-  Verification_Status?: string;
+export class CreateManyAnswersInput {
+  @Field(() => CreateAnswerInput)
+  createAnswersInput: CreateAnswerInput[];
 }

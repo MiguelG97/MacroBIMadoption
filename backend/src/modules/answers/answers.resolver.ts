@@ -1,31 +1,29 @@
 import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
 import { AnswersService } from './answers.service';
 import { Answer } from './entities/answer.entity';
-import { CreateAnswerInput } from './dto/create-answer.input';
+import {
+  CreateAnswerInput,
+  CreateManyAnswersInput,
+} from './dto/create-answer.input';
 
-/**Step2) Resolvers: It uses Graphql operations, prisma client and functions to query db data with a specific shape defined in graph schema*/
 @Resolver(() => Answer)
 export class AnswersResolver {
   constructor(private readonly answersService: AnswersService) {}
 
-  //the mutation and query types are gonna use the same name as the method's name
-  //but we can change that by specifying a query/mut name in the decorator props
   @Mutation(() => Answer, { nullable: true })
-  async createsSingleAnswer(
+  async createAnswer(
     @Args('createAnswerInput') createAnswerInput: CreateAnswerInput,
   ) {
-    const res = await this.answersService.createOneAnswer(createAnswerInput);
-    console.log(res);
+    const res = await this.answersService.create(createAnswerInput);
     return res;
   }
 
-  @Mutation(() => Answer)
-  async createsManyAnswer(
-    @Args('createAnswerInput') createAnswerInput: CreateAnswerInput,
+  @Mutation(() => [Answer])
+  async createAnswers(
+    @Args('createManyAnswersInput')
+    createManyAnswersInput: CreateManyAnswersInput,
   ) {
-    console.log(createAnswerInput.Answers.length);
-    const res = await this.answersService.createManyAnswers(createAnswerInput);
-    console.log(res);
+    const res = await this.answersService.createMany(createManyAnswersInput);
     return res;
   }
 

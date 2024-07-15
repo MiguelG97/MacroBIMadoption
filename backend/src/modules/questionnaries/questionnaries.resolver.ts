@@ -1,7 +1,10 @@
 import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
 import { QuestionnariesService } from './questionnaries.service';
 import { Questionnary } from './entities/questionnary.entity';
-import { CreateQuestionnaryInput } from './dto/create-questionnary.input';
+import {
+  CreateManyQuestionnariesInput,
+  CreateQuestionnaryInput,
+} from './dto/create-questionnary.input';
 import { UpdateQuestionnaryInput } from './dto/update-questionnary.input';
 
 @Resolver(() => Questionnary)
@@ -9,8 +12,19 @@ export class QuestionnariesResolver {
   constructor(private readonly questionnariesService: QuestionnariesService) {}
 
   @Mutation(() => Questionnary)
-  createQuestionnary(@Args('createQuestionnaryInput') createQuestionnaryInput: CreateQuestionnaryInput) {
+  createQuestionnary(
+    @Args('createQuestionnaryInput')
+    createQuestionnaryInput: CreateQuestionnaryInput,
+  ) {
     return this.questionnariesService.create(createQuestionnaryInput);
+  }
+
+  @Mutation(() => [Questionnary])
+  createQuestionnaries(
+    @Args('createManyQuestionnariesInput')
+    createManyQuestionnariesInput: CreateManyQuestionnariesInput,
+  ) {
+    return this.questionnariesService.createMany(createManyQuestionnariesInput);
   }
 
   @Query(() => [Questionnary], { name: 'questionnaries' })
@@ -24,8 +38,14 @@ export class QuestionnariesResolver {
   }
 
   @Mutation(() => Questionnary)
-  updateQuestionnary(@Args('updateQuestionnaryInput') updateQuestionnaryInput: UpdateQuestionnaryInput) {
-    return this.questionnariesService.update(updateQuestionnaryInput.id, updateQuestionnaryInput);
+  updateQuestionnary(
+    @Args('updateQuestionnaryInput')
+    updateQuestionnaryInput: UpdateQuestionnaryInput,
+  ) {
+    return this.questionnariesService.update(
+      updateQuestionnaryInput.id,
+      updateQuestionnaryInput,
+    );
   }
 
   @Mutation(() => Questionnary)

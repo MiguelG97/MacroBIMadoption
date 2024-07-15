@@ -1,26 +1,41 @@
 import { Injectable } from '@nestjs/common';
-import { CreateAnswerInput } from './dto/create-answer.input';
-import { AnswerRepository } from './repository/answer.repository';
+import {
+  CreateAnswerInput,
+  CreateManyAnswersInput,
+} from './dto/create-answer.input';
+import { PrismaClientService } from 'src/core/utils/prisma/prisma_client.service';
 
 @Injectable()
 export class AnswersService {
-  constructor(private answerRepository: AnswerRepository) {}
-  async createOneAnswer(createAnswerInput: CreateAnswerInput) {
-    await this.answerRepository.loadOneAnswer(createAnswerInput.Answers[0]);
-    return {
-      message: 'Successfully created',
-      data: createAnswerInput.Answers[0],
-    };
+  /**PrismaClient would serve as our repository!!
+   * since it already has the create,createMany, ... commands
+   */
+  constructor(private prismaClient: PrismaClientService) {}
+  async create(createAnswerInput: CreateAnswerInput) {
+    try {
+      const newAnswer = this.prismaClient.answers.create({
+        data: createAnswerInput,
+      });
+      return newAnswer;
+    } catch (error) {
+      console.log(error);
+      throw Error(error);
+    }
   }
-  async createManyAnswers(createAnswerInput: CreateAnswerInput) {
-    await this.answerRepository.loadManyAnswer(createAnswerInput.Answers);
-    return {
-      message: 'Successfully created',
-    };
+  async createMany(createManyAnswersInput: CreateManyAnswersInput) {
+    try {
+      const newAnswers = this.prismaClient.answers.createMany({
+        data: createManyAnswersInput.createAnswersInput,
+      });
+      return newAnswers;
+    } catch (error) {
+      console.log(error);
+      throw Error(error);
+    }
   }
 
   async findAll() {
-    return this.answerRepository.getAllAnswers();
+    return '';
   }
 
   // findOne(id: number) {

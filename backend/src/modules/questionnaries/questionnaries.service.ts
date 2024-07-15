@@ -1,11 +1,40 @@
 import { Injectable } from '@nestjs/common';
-import { CreateQuestionnaryInput } from './dto/create-questionnary.input';
+import {
+  CreateManyQuestionnariesInput,
+  CreateQuestionnaryInput,
+} from './dto/create-questionnary.input';
 import { UpdateQuestionnaryInput } from './dto/update-questionnary.input';
+import { PrismaClientService } from 'src/core/utils/prisma/prisma_client.service';
 
 @Injectable()
 export class QuestionnariesService {
-  create(createQuestionnaryInput: CreateQuestionnaryInput) {
-    return 'This action adds a new questionnary';
+  constructor(private prismaClient: PrismaClientService) {}
+
+  async create(createQuestionnaryInput: CreateQuestionnaryInput) {
+    try {
+      const newQuestionnary = await this.prismaClient.questionnaries.create({
+        data: createQuestionnaryInput,
+      });
+      return newQuestionnary;
+    } catch (error) {
+      console.log(error);
+      throw Error(error);
+    }
+  }
+  async createMany(
+    createManyQuestionnariesInput: CreateManyQuestionnariesInput,
+  ) {
+    try {
+      const newQuestionnary = await this.prismaClient.questionnaries.createMany(
+        {
+          data: createManyQuestionnariesInput.questionnariesInput,
+        },
+      );
+      return newQuestionnary;
+    } catch (error) {
+      console.log(error);
+      throw Error(error);
+    }
   }
 
   findAll() {

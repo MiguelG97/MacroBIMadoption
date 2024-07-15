@@ -1,7 +1,7 @@
 import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
 import { UsersService } from './users.service';
 import { User } from './entities/user.entity';
-import { CreateUserInput } from './dto/create-user.input';
+import { CreateManyUsersInput, CreateUserInput } from './dto/create-user.input';
 import { UpdateUserInput } from './dto/update-user.input';
 
 /**Step2) Resolvers:
@@ -10,12 +10,25 @@ import { UpdateUserInput } from './dto/update-user.input';
  * defined in graph schema.
  * */
 @Resolver(() => User)
+//type function is used to suply a parent object (Graph schema object Type)
+// used in the resolver functions/methods
 export class UsersResolver {
   constructor(private readonly usersService: UsersService) {}
 
-  @Mutation(() => User)
-  createUser(@Args('createUserInput') createUserInput: CreateUserInput) {
-    return this.usersService.create(createUserInput);
+  //All graphql operation does is ask for specific fields on objects. It is compound by:
+  //a) Operation type[query, mutation,subs...]: to indicate if it's a read or write operation.
+  @Mutation(() => User) //Type function works as same as in the graphql schema objectType field!
+  //b) an Operation Name: we can also supply a variable definition [scalars] (prefixed with $) or input types [objects] to the operations
+  //or even fields(how you do this in nestjs?)
+  async createUser(@Args('createUserInput') createUserInput: CreateUserInput) {
+    return await this.usersService.create(createUserInput);
+  }
+
+  @Mutation(() => [User])
+  async createUsers(
+    @Args('createManyUsersInput') createManyUsersInput: CreateManyUsersInput,
+  ) {
+    return await this.usersService.createMany(createManyUsersInput);
   }
 
   @Query(() => [User], { name: 'users' })
