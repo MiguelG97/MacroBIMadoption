@@ -51,16 +51,16 @@ input CreateManyUsersInput {
 }
 
 input CreateQuestionnaryInput {
-  campaign: String!
+  campaign: String
   chartType: Chart!
   choices: [String!]!
   questionId: Int!
-  sectionName: String!
+  sectionName: String
   title: String!
 }
 
 input CreateUserInput {
-  bimAcademicProgram: String!
+  bimAcademicProgram: String
   country: String!
   userEmail: String!
   userId: Int!
@@ -85,7 +85,7 @@ type Query {
   findAll: [Answer!]!
   questionnaries: [Questionnary!]!
   questionnary(id: Int!): Questionnary!
-  user(id: Int!): User!
+  user(userIds: [Int!]!): [User!]!
   users: [User!]!
 }
 

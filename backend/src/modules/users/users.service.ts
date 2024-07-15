@@ -9,6 +9,7 @@ export class UsersService {
 
   async create(createUserInput: CreateUserInput) {
     try {
+      //the create command it does return the user created as compare to the createMany command
       const newUser = await this.prismaClient.users.create({
         data: createUserInput,
       });
@@ -20,7 +21,8 @@ export class UsersService {
   }
   async createMany(createManyUsersInput: CreateManyUsersInput) {
     try {
-      const newUsers = await this.prismaClient.users.createMany({
+      //use the createManyAndReturn since graphql demands for returning sth always!
+      const newUsers = await this.prismaClient.users.createManyAndReturn({
         data: createManyUsersInput.manyUsersInput,
       });
       return newUsers;
@@ -35,7 +37,11 @@ export class UsersService {
   }
 
   findOne(id: number) {
+    // this.prismaClient.users.fin
     return `This action returns a #${id} user`;
+  }
+  findMany(userIds: number[]) {
+    return `This action returns a #${userIds} user`;
   }
 
   update(id: number, updateUserInput: UpdateUserInput) {

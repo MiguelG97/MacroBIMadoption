@@ -14,9 +14,9 @@ export class CreateQuestionnaryInput {
   @Field(() => Chart)
   chartType: Chart;
 
-  @Field()
+  @Field({ nullable: true })
   campaign?: string;
-  @Field()
+  @Field({ nullable: true })
   sectionName?: string;
 
   //relations, no needed?

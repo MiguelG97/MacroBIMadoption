@@ -6,6 +6,8 @@ export class User {
   @Field(() => Int)
   userId: number;
 
+  //add validation pipeline here!! it's only applicable for the DTOs!!
+  //https://docs.nestjs.com/techniques/validation#validation
   @Field()
   userEmail: string;
 

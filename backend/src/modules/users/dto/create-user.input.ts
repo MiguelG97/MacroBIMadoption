@@ -1,11 +1,14 @@
 import { InputType, Int, Field } from '@nestjs/graphql';
-
+import { IsArray, IsEmail, IsNumber } from 'class-validator';
+/**Validators are only applicable to DTOs!! */
 @InputType()
 export class CreateUserInput {
+  @IsNumber()
   @Field(() => Int)
   userId: number;
 
   @Field()
+  @IsEmail()
   userEmail: string;
   @Field()
   userName: string;
@@ -14,7 +17,7 @@ export class CreateUserInput {
   @Field()
   country: string;
 
-  @Field()
+  @Field({ nullable: true })
   bimAcademicProgram?: string;
 
   //relations?? I do not think we need to fill this field
@@ -22,6 +25,7 @@ export class CreateUserInput {
 
 @InputType()
 export class CreateManyUsersInput {
+  @IsArray()
   @Field(() => [CreateUserInput])
   manyUsersInput: CreateUserInput[];
 }
