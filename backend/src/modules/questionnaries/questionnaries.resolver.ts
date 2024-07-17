@@ -5,7 +5,7 @@ import {
   CreateManyQuestionnariesInput,
   CreateQuestionnaryInput,
 } from './dto/create-questionnary.input';
-import { UpdateQuestionnaryInput } from './dto/update-questionnary.input';
+// import { UpdateQuestionnaryInput } from './dto/update-questionnary.input';
 
 @Resolver(() => Questionnary)
 export class QuestionnariesResolver {
@@ -43,19 +43,19 @@ export class QuestionnariesResolver {
     return await this.questionnariesService.findMany(questionIds);
   }
 
-  @Mutation(() => Questionnary)
-  updateQuestionnary(
-    @Args('updateQuestionnaryInput')
-    updateQuestionnaryInput: UpdateQuestionnaryInput,
-  ) {
-    return this.questionnariesService.update(
-      updateQuestionnaryInput.id,
-      updateQuestionnaryInput,
-    );
-  }
+  // @Mutation(() => Questionnary)
+  // updateQuestionnary(
+  //   @Args('updateQuestionnaryInput')
+  //   updateQuestionnaryInput: UpdateQuestionnaryInput,
+  // ) {
+  //   return this.questionnariesService.update(
+  //     updateQuestionnaryInput.id,
+  //     updateQuestionnaryInput,
+  //   );
+  // }
 
-  @Mutation(() => Questionnary)
-  removeQuestionnary(@Args('id', { type: () => Int }) id: number) {
-    return this.questionnariesService.remove(id);
-  }
+  // @Mutation(() => Questionnary)
+  // removeQuestionnary(@Args('id', { type: () => Int }) id: number) {
+  //   return this.questionnariesService.remove(id);
+  // }
 }

@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { CreateManyUsersInput, CreateUserInput } from './dto/create-user.input';
-import { UpdateUserInput } from './dto/update-user.input';
+// import { UpdateUserInput } from './dto/update-user.input';
 import { PrismaClientService } from 'src/core/utils/prisma/prisma_client.service';
 
 @Injectable()
@@ -59,9 +59,9 @@ export class UsersService {
     return usersFound;
   }
 
-  update(id: number, updateUserInput: UpdateUserInput) {
-    return `This action updates a #${id} user`;
-  }
+  // update(id: number, updateUserInput: UpdateUserInput) {
+  //   return `This action updates a #${id} user`;
+  // }
 
   remove(id: number) {
     return `This action removes a #${id} user`;

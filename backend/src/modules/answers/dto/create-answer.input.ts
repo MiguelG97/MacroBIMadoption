@@ -2,8 +2,9 @@ import { InputType, Field, Int } from '@nestjs/graphql';
 
 @InputType()
 export class CreateAnswerInput {
-  @Field(() => Int)
-  id: number;
+  //it's automatically created by postgresql
+  @Field(() => Int, { nullable: true })
+  id?: number;
 
   @Field()
   questionTitle: string;

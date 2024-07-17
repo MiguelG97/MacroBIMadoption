@@ -3,7 +3,7 @@ import {
   CreateManyQuestionnariesInput,
   CreateQuestionnaryInput,
 } from './dto/create-questionnary.input';
-import { UpdateQuestionnaryInput } from './dto/update-questionnary.input';
+// import { UpdateQuestionnaryInput } from './dto/update-questionnary.input';
 import { PrismaClientService } from 'src/core/utils/prisma/prisma_client.service';
 
 @Injectable()
@@ -61,11 +61,11 @@ export class QuestionnariesService {
     return questionsFound;
   }
 
-  update(id: number, updateQuestionnaryInput: UpdateQuestionnaryInput) {
-    return `This action updates a #${id} questionnary`;
-  }
+  // update(id: number, updateQuestionnaryInput: UpdateQuestionnaryInput) {
+  //   return `This action updates a #${id} questionnary`;
+  // }
 
-  remove(id: number) {
-    return `This action removes a #${id} questionnary`;
-  }
+  // remove(id: number) {
+  //   return `This action removes a #${id} questionnary`;
+  // }
 }

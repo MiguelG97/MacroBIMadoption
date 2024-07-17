@@ -8,7 +8,7 @@
 //https://www.prisma.io/docs/orm/prisma-migrate/workflows/development-and-production#reset-the-development-database
 //the server has to be disconnected!
 
-//A Prisma Schema file contains the following: Genrator, Datasource and the data model!
+//A Prisma Schema file contains the following: Generator, Datasource and the data model!
 //A) Generator: defines which client should be generated based on the data model
 //when running prisma generate command. 
 //Eg: Prisma Client is generated in node_modules/prisma/client folder
@@ -63,6 +63,9 @@ model Answers {
 
   user Users @relation(fields: [userId],references: [userId])
   userId        Int
+
+  //unique blocks | multi-field unique (column does not appear in table, but you can use this field even to query an item, cool!)
+  @@unique(fields: [questionId,userId],name: "questionId_userId")//this combination has to be unique, we can use name to later query from prismaClient where:{...}
 }
 
 model Users {
@@ -76,22 +79,6 @@ model Users {
   //relations (to another model):
   answers Answers[]
 }
-
-// model Answers {
-//   id Int @default(autoincrement()) @id
-//   Assessment String?
-//   Campaign String? 
-//   Item_ID String? 
-//   Item_Title String? 
-//   Item_Type String? 
-//   Statement_Labels String? 
-//   User_Email String? 
-//   User_ID String? 
-//   User_Input String?
-//   User_Labels String?
-//   User_Name String? 
-//   Verification_Status String? 
-// }
 
 //commands:
 //prisma format | it formats the prisma file, really cool!

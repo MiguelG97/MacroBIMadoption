@@ -35,12 +35,27 @@ export class AnswersService {
   }
 
   async findAll() {
-    return '';
+    return await this.prismaClient.answers.findMany();
   }
 
-  // findOne(id: number) {
-  //   return `This action returns a #${id} answer`;
-  // }
+  async findOne(id: number) {
+    const answerFound = await this.prismaClient.answers.findUnique({
+      where: { id },
+    });
+    return answerFound;
+  }
+
+  async findMany(ids: number[]) {
+    const answersFound = [];
+    for (const id of ids) {
+      const answerFound = await this.prismaClient.answers.findUnique({
+        where: { id },
+      });
+      //if it doesn't found anything, it returns null!
+      if (answerFound) answersFound.push(answerFound);
+    }
+    return answersFound;
+  }
 
   // update(id: number, updateAnswerInput: UpdateAnswerInput) {
   //   return `This action updates a #${id} answer`;

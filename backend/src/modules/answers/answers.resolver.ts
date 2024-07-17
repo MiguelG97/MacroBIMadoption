@@ -1,4 +1,4 @@
-import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
+import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
 import { AnswersService } from './answers.service';
 import { Answer } from './entities/answer.entity';
 import {
@@ -28,16 +28,20 @@ export class AnswersResolver {
   }
 
   //it ask us to at least provide 1 query type, wtf??
-  @Query(() => [Answer])
+  @Query(() => [Answer], { name: 'findAllAnswers' })
   async findAll() {
-    const answers = await this.answersService.findAll();
-    return answers;
+    return await this.answersService.findAll();
   }
 
-  // @Query(() => Answer, { name: 'answer' })
-  // findOne(@Args('id', { type: () => Int }) id: number) {
-  //   return this.answersService.findOne(id);
-  // }
+  @Query(() => Answer, { name: 'findOneAnswer' })
+  async findOne(@Args('id', { type: () => Int }) id: number) {
+    return await this.answersService.findOne(id);
+  }
+
+  @Query(() => [Answer], { name: 'findManyAnswers' })
+  async findMany(@Args('ids', { type: () => [Int] }) ids: number[]) {
+    return await this.answersService.findMany(ids);
+  }
 
   // @Mutation(() => Answer)
   // updateAnswer(

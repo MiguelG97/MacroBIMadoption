@@ -29,7 +29,7 @@ input CreateAnswerInput {
   assigAuditor: String
   auditorNote: String
   hashtags: String
-  id: Int!
+  id: Int
   questionId: Int!
   questionTitle: String!
   stateLabels: String
@@ -75,18 +75,16 @@ type Mutation {
   createQuestionnary(createQuestionnaryInput: CreateQuestionnaryInput!): Questionnary!
   createUser(createUserInput: CreateUserInput!): User!
   createUsers(createManyUsersInput: CreateManyUsersInput!): [User!]!
-  removeQuestionnary(id: Int!): Questionnary!
-  removeUser(id: Int!): User!
-  updateQuestionnary(updateQuestionnaryInput: UpdateQuestionnaryInput!): Questionnary!
-  updateUser(updateUserInput: UpdateUserInput!): User!
 }
 
 type Query {
-  findAll: [Answer!]!
+  findAllAnswers: [Answer!]!
   findAllQuestionnaries: [Questionnary!]!
   findAllUsers: [User!]!
+  findManyAnswers(ids: [Int!]!): [Answer!]!
   findManyQuestionnaries(questionIds: [Int!]!): [Questionnary!]!
   findManyUsers(userIds: [Int!]!): [User!]!
+  findOneAnswer(id: Int!): Answer!
   findOneQuestionnary(questionId: Int!): Questionnary!
   findOneUser(userId: Int!): User!
 }
@@ -99,26 +97,6 @@ type Questionnary {
   questionId: Int!
   sectionName: String!
   title: String!
-}
-
-input UpdateQuestionnaryInput {
-  campaign: String
-  chartType: Chart
-  choices: [String!]
-  id: Int!
-  questionId: Int
-  sectionName: String
-  title: String
-}
-
-input UpdateUserInput {
-  bimAcademicProgram: String
-  country: String
-  id: Int!
-  userEmail: String
-  userId: Int
-  userLabels: String
-  userName: String
 }
 
 type User {
