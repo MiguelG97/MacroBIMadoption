@@ -31,18 +31,18 @@ export class UsersResolver {
     return await this.usersService.createMany(createManyUsersInput);
   }
 
-  @Query(() => [User], { name: 'users' })
-  findAll() {
-    return this.usersService.findAll();
+  @Query(() => [User], { name: 'findAllUsers' })
+  async findAll() {
+    return await this.usersService.findAll();
   }
 
-  @Query(() => User, { name: 'user' })
-  findOne(@Args('userId', { type: () => Int }) userId: number) {
-    return this.usersService.findOne(userId);
+  @Query(() => User, { name: 'findOneUser' })
+  async findOne(@Args('userId', { type: () => Int }) userId: number) {
+    return await this.usersService.findOne(userId);
   }
-  @Query(() => [User], { name: 'user' })
-  findMany(@Args('userIds', { type: () => [Int] }) userIds: number[]) {
-    return this.usersService.findMany(userIds);
+  @Query(() => [User], { name: 'findManyUsers' })
+  async findMany(@Args('userIds', { type: () => [Int] }) userIds: number[]) {
+    return await this.usersService.findMany(userIds);
   }
 
   @Mutation(() => User)

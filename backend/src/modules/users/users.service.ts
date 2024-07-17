@@ -32,16 +32,31 @@ export class UsersService {
     }
   }
 
-  findAll() {
-    return `This action returns all users`;
+  async findAll() {
+    const allUsers = await this.prismaClient.users.findMany();
+    return allUsers;
   }
 
-  findOne(id: number) {
-    // this.prismaClient.users.fin
-    return `This action returns a #${id} user`;
+  async findOne(userId: number) {
+    const userFound = await this.prismaClient.users.findUnique({
+      where: {
+        userId,
+      },
+    });
+    return userFound;
   }
-  findMany(userIds: number[]) {
-    return `This action returns a #${userIds} user`;
+  async findMany(userIds: number[]) {
+    const usersFound = [];
+    for (const userId of userIds) {
+      const userFound = await this.prismaClient.users.findUnique({
+        where: {
+          userId,
+        },
+      });
+      usersFound.push(userFound);
+    }
+
+    return usersFound;
   }
 
   update(id: number, updateUserInput: UpdateUserInput) {
