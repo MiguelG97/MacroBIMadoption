@@ -83,11 +83,12 @@ type Mutation {
 
 type Query {
   findAll: [Answer!]!
+  findAllQuestionnaries: [Questionnary!]!
   findAllUsers: [User!]!
+  findManyQuestionnaries(questionIds: [Int!]!): [Questionnary!]!
   findManyUsers(userIds: [Int!]!): [User!]!
+  findOneQuestionnary(questionId: Int!): Questionnary!
   findOneUser(userId: Int!): User!
-  questionnaries: [Questionnary!]!
-  questionnary(id: Int!): Questionnary!
 }
 
 type Questionnary {

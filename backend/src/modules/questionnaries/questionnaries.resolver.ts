@@ -27,14 +27,20 @@ export class QuestionnariesResolver {
     return this.questionnariesService.createMany(createManyQuestionnariesInput);
   }
 
-  @Query(() => [Questionnary], { name: 'questionnaries' })
-  findAll() {
-    return this.questionnariesService.findAll();
+  @Query(() => [Questionnary], { name: 'findAllQuestionnaries' })
+  async findAll() {
+    return await this.questionnariesService.findAll();
   }
 
-  @Query(() => Questionnary, { name: 'questionnary' })
-  findOne(@Args('id', { type: () => Int }) id: number) {
-    return this.questionnariesService.findOne(id);
+  @Query(() => Questionnary, { name: 'findOneQuestionnary' })
+  async findOne(@Args('questionId', { type: () => Int }) questionId: number) {
+    return await this.questionnariesService.findOne(questionId);
+  }
+  @Query(() => [Questionnary], { name: 'findManyQuestionnaries' })
+  async findMany(
+    @Args('questionIds', { type: () => [Int] }) questionIds: number[],
+  ) {
+    return await this.questionnariesService.findMany(questionIds);
   }
 
   @Mutation(() => Questionnary)

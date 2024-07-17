@@ -36,12 +36,29 @@ export class QuestionnariesService {
     }
   }
 
-  findAll() {
-    return `This action returns all questionnaries`;
+  async findAll() {
+    return await this.prismaClient.questionnaries.findMany();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} questionnary`;
+  async findOne(questionId: number) {
+    const questionFound = await this.prismaClient.questionnaries.findUnique({
+      where: {
+        questionId: questionId,
+      },
+    });
+    return questionFound;
+  }
+  async findMany(questionIds: number[]) {
+    const questionsFound = [];
+    for (const questionId of questionIds) {
+      const questionFound = await this.prismaClient.questionnaries.findUnique({
+        where: {
+          questionId: questionId,
+        },
+      });
+      questionsFound.push(questionFound);
+    }
+    return questionsFound;
   }
 
   update(id: number, updateQuestionnaryInput: UpdateQuestionnaryInput) {
