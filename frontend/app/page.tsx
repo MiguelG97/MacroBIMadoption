@@ -2,16 +2,44 @@
 import { setData } from "@/core/shared/redux/slices/questionnarie_slice";
 import { useAppDispatch } from "@/core/shared/redux/store";
 import { IPostAnswer, IPostUser } from "@/core/shared/types/postgresql_schemas";
-import { IAnswerPostgres, IAnswerSchema } from "@/core/shared/types/section_Questionnarie";
+import {
+  IAnswerPostgres,
+  IAnswerSchema,
+} from "@/core/shared/types/section_Questionnarie";
 import { IExcelRowJson } from "@/core/utils/excel/excel_types";
 import { excelUtils } from "@/core/utils/excel/excel_util_model";
+import {
+  qFindAllAnswers,
+  qFindManyAnswers,
+  qFindOneAnswer,
+} from "@/core/shared/gql/queries/answers";
 
-import { createsManyAnswer } from "@/modules/dashboard/data/gql/mutations/answers";
-import { qFindAll } from "@/modules/dashboard/data/gql/queries/answers";
+// import { createsManyAnswer } from "@/modules/dashboard/infrastructure/gql/mutations/answers";
+// import { qFindAll } from "@/modules/dashboard/infrastructure/gql/queries/answers";
 import { ApolloProvider, gql, useMutation, useQuery } from "@apollo/client";
 import dynamic from "next/dynamic";
 import { useEffect, useMemo } from "react";
 import { utils } from "xlsx";
+import {
+  qFindAllQuestionnaries,
+  qFindManyQuestionnaries,
+  qFindOneQuestionnary,
+} from "@/core/shared/gql/queries/questionnaries";
+import {
+  qFindAllUsers,
+  qFindManyUsers,
+  qFindOneUser,
+} from "@/core/shared/gql/queries/users";
+import {
+  mCreateAnswer,
+  mCreateAnswers,
+} from "@/core/shared/gql/mutations/answers";
+import {
+  mCreateQuestionnaries,
+  mCreateQuestionnary,
+} from "@/core/shared/gql/mutations/questionnaries";
+import { Chart } from "@/core/utils/generator/graphql";
+import { mCreateUser, mCreateUsers } from "@/core/shared/gql/mutations/users";
 //to disable prerendering and avoid hydratation mismatches (different content between the server and the client)
 const DashboardScreen = dynamic(
   () => import("@/modules/dashboard/presenter/screens/dashboard_screen"),
@@ -21,23 +49,21 @@ export default function Home() {
   const dispatch = useAppDispatch();
 
   /**Grahpql queries */
-  // const [
-  //   mutateFunction,
-  //   { loading, error, data },
-  // ] = useMutation(createsManyAnswer);
-
-  const { loading, error, data } = useQuery(qFindAll, {
+  const [mutateFunction, { loading, error, data }] = useMutation(mCreateUsers, {
     onCompleted: (data) => {
-      dispatch(setData(data?.findAll));
+      console.log(data);
+    },
+    onError: (error) => {
+      console.log(error.message, error.graphQLErrors);
     },
   });
 
-  // useMemo(()=> useQuery(qFindAll),[qFindAll])
-  // if (data) {
-  //   dispatch(setData(data?.findAll));
-  // }
-
-  // console.log(data, loading, error);
+  // const { loading, error, data } = useQuery(qFindManyUsers, {
+  //   variables: { userIds: [173123] },
+  //   onCompleted: (data) => {
+  //     console.log(data);
+  //   },
+  // });
 
   /**Pre process data to send it to postgresql db */
   useEffect(() => {
@@ -57,9 +83,14 @@ export default function Home() {
       let counter = 0;
       jsonAnswers = jsonAnswers.map((x) => {
         // console.log(x["Item ID"]);
-        if (x["User Input"] && (x["User Input"].includes("[[") || x["User Input"].includes("]]"))) {
+        if (
+          x["User Input"] &&
+          (x["User Input"].includes("[[") || x["User Input"].includes("]]"))
+        ) {
           // console.log(x["User Input"]);
-          x["User Input"] = x["User Input"].replaceAll("[[", "").replaceAll("]]", "");
+          x["User Input"] = x["User Input"]
+            .replaceAll("[[", "")
+            .replaceAll("]]", "");
           counter++;
         }
         return x;
@@ -108,7 +139,11 @@ export default function Home() {
       /**send data to answer table*/
       //a) reorder by item title for convenience
       jsonRows.sort((a, b) =>
-        a["Item Title"] > b["Item Title"] ? 1 : b["Item Title"] > a["Item Title"] ? -1 : 0
+        a["Item Title"] > b["Item Title"]
+          ? 1
+          : b["Item Title"] > a["Item Title"]
+          ? -1
+          : 0
       );
 
       //b)filter them, make sure only to have 1 answer per user!!
@@ -126,7 +161,8 @@ export default function Home() {
 
       const answerJsonRows: IExcelRowJson[] = [];
       Object.keys(rowsGroupedByAnswerTitle).forEach((answerId) => {
-        const answerRowsGroup: IExcelRowJson[] = rowsGroupedByAnswerTitle[answerId];
+        const answerRowsGroup: IExcelRowJson[] =
+          rowsGroupedByAnswerTitle[answerId];
         const userIdsFilter: number[] = [];
 
         answerRowsGroup.forEach((x) => {
@@ -189,6 +225,22 @@ export default function Home() {
 
     //Read data from postgresql
     postgresqlDB();
+
+    mutateFunction({
+      variables: {
+        createManyUsersInput: {
+          manyUsersInput: [
+            {
+              userName: "miguelasd",
+              userLabels: "as",
+              userId: 1234332424,
+              userEmail: "someoneelse@live.com",
+              country: "peru",
+            },
+          ],
+        },
+      },
+    });
   }, []);
   return <div>hey</div>;
   // return <DashboardScreen />;

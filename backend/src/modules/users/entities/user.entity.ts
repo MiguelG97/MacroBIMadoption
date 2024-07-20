@@ -20,8 +20,8 @@ export class User {
   @Field()
   country: string;
 
-  @Field()
-  bimAcademicProgram: string;
+  @Field({ nullable: true })
+  bimAcademicProgram?: string;
 
   //relations
   @Field(() => [Answer])

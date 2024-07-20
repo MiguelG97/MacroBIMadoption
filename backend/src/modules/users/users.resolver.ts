@@ -20,6 +20,8 @@ export class UsersResolver {
   @Mutation(() => User) //Type function works as same as in the graphql schema objectType field!
   //b) an Operation Name: we can also supply a variable definition [scalars] (prefixed with $) or input types [objects] to the operations
   //or even fields(how you do this in nestjs?)
+
+  //c) resolver are fields inside the query/Mutation + operationName {  ...here}
   async createUser(@Args('createUserInput') createUserInput: CreateUserInput) {
     return await this.usersService.create(createUserInput);
   }

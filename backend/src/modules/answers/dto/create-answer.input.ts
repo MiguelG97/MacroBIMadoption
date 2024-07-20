@@ -30,6 +30,6 @@ export class CreateAnswerInput {
 
 @InputType()
 export class CreateManyAnswersInput {
-  @Field(() => CreateAnswerInput)
+  @Field(() => [CreateAnswerInput])
   createAnswersInput: CreateAnswerInput[];
 }

@@ -74,7 +74,7 @@ model Users {
   userName           String
   userLabels         String
   country            String
-  bimAcademicProgram String?
+  bimAcademicProgram String? //it returns null sometimes, make it @default("")??
 
   //relations (to another model):
   answers Answers[]

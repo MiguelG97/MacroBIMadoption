@@ -18,72 +18,288 @@ export type Scalars = {
 
 export type Answer = {
   __typename?: 'Answer';
-  Assessment?: Maybe<Scalars['String']['output']>;
-  Campaign?: Maybe<Scalars['String']['output']>;
-  Item_ID?: Maybe<Scalars['String']['output']>;
-  Item_Title?: Maybe<Scalars['String']['output']>;
-  Item_Type?: Maybe<Scalars['String']['output']>;
-  Statement_Labels?: Maybe<Scalars['String']['output']>;
-  User_Email?: Maybe<Scalars['String']['output']>;
-  User_ID?: Maybe<Scalars['String']['output']>;
-  User_Input?: Maybe<Scalars['String']['output']>;
-  User_Labels?: Maybe<Scalars['String']['output']>;
-  User_Name?: Maybe<Scalars['String']['output']>;
-  Verification_Status?: Maybe<Scalars['String']['output']>;
+  assigAuditor?: Maybe<Scalars['String']['output']>;
+  auditorNote?: Maybe<Scalars['String']['output']>;
+  hashtags?: Maybe<Scalars['String']['output']>;
+  id: Scalars['Int']['output'];
+  questionId: Scalars['Int']['output'];
+  questionTitle: Scalars['String']['output'];
+  questionnary?: Maybe<Questionnary>;
+  stateLabels?: Maybe<Scalars['String']['output']>;
+  user?: Maybe<User>;
+  userAnswer: Scalars['String']['output'];
+  userEmail: Scalars['String']['output'];
+  userId: Scalars['Int']['output'];
 };
 
-export type AnswerInput = {
-  Assessment?: InputMaybe<Scalars['String']['input']>;
-  Campaign?: InputMaybe<Scalars['String']['input']>;
-  Item_ID?: InputMaybe<Scalars['String']['input']>;
-  Item_Title?: InputMaybe<Scalars['String']['input']>;
-  Item_Type?: InputMaybe<Scalars['String']['input']>;
-  Statement_Labels?: InputMaybe<Scalars['String']['input']>;
-  User_Email?: InputMaybe<Scalars['String']['input']>;
-  User_ID?: InputMaybe<Scalars['String']['input']>;
-  User_Input?: InputMaybe<Scalars['String']['input']>;
-  User_Labels?: InputMaybe<Scalars['String']['input']>;
-  User_Name?: InputMaybe<Scalars['String']['input']>;
-  Verification_Status?: InputMaybe<Scalars['String']['input']>;
-};
+/** Type of chart to use in the dashboard */
+export enum Chart {
+  Bar = 'bar',
+  Pie = 'pie',
+  Table = 'table',
+  Undefined = 'undefined'
+}
 
 export type CreateAnswerInput = {
-  Answers: Array<AnswerInput>;
+  assigAuditor?: InputMaybe<Scalars['String']['input']>;
+  auditorNote?: InputMaybe<Scalars['String']['input']>;
+  hashtags?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['Int']['input']>;
+  questionId: Scalars['Int']['input'];
+  questionTitle: Scalars['String']['input'];
+  stateLabels?: InputMaybe<Scalars['String']['input']>;
+  userAnswer: Scalars['String']['input'];
+  userEmail: Scalars['String']['input'];
+  userId: Scalars['Int']['input'];
+};
+
+export type CreateManyAnswersInput = {
+  createAnswersInput: Array<CreateAnswerInput>;
+};
+
+export type CreateManyQuestionnariesInput = {
+  questionnariesInput: Array<CreateQuestionnaryInput>;
+};
+
+export type CreateManyUsersInput = {
+  manyUsersInput: Array<CreateUserInput>;
+};
+
+export type CreateQuestionnaryInput = {
+  campaign?: InputMaybe<Scalars['String']['input']>;
+  chartType: Chart;
+  choices: Array<Scalars['String']['input']>;
+  questionId: Scalars['Int']['input'];
+  sectionName?: InputMaybe<Scalars['String']['input']>;
+  title: Scalars['String']['input'];
+};
+
+export type CreateUserInput = {
+  bimAcademicProgram?: InputMaybe<Scalars['String']['input']>;
+  country: Scalars['String']['input'];
+  userEmail: Scalars['String']['input'];
+  userId: Scalars['Int']['input'];
+  userLabels: Scalars['String']['input'];
+  userName: Scalars['String']['input'];
 };
 
 export type Mutation = {
   __typename?: 'Mutation';
-  createsManyAnswer: Answer;
-  createsSingleAnswer?: Maybe<Answer>;
+  createAnswer?: Maybe<Answer>;
+  createAnswers: Array<Answer>;
+  createQuestionnaries: Array<Questionnary>;
+  createQuestionnary: Questionnary;
+  createUser: User;
+  createUsers: Array<User>;
 };
 
 
-export type MutationCreatesManyAnswerArgs = {
+export type MutationCreateAnswerArgs = {
   createAnswerInput: CreateAnswerInput;
 };
 
 
-export type MutationCreatesSingleAnswerArgs = {
-  createAnswerInput: CreateAnswerInput;
+export type MutationCreateAnswersArgs = {
+  createManyAnswersInput: CreateManyAnswersInput;
+};
+
+
+export type MutationCreateQuestionnariesArgs = {
+  createManyQuestionnariesInput: CreateManyQuestionnariesInput;
+};
+
+
+export type MutationCreateQuestionnaryArgs = {
+  createQuestionnaryInput: CreateQuestionnaryInput;
+};
+
+
+export type MutationCreateUserArgs = {
+  createUserInput: CreateUserInput;
+};
+
+
+export type MutationCreateUsersArgs = {
+  createManyUsersInput: CreateManyUsersInput;
 };
 
 export type Query = {
   __typename?: 'Query';
-  findAll: Array<Answer>;
+  findAllAnswers: Array<Answer>;
+  findAllQuestionnaries: Array<Questionnary>;
+  findAllUsers: Array<User>;
+  findManyAnswers: Array<Answer>;
+  findManyQuestionnaries: Array<Questionnary>;
+  findManyUsers: Array<User>;
+  findOneAnswer: Answer;
+  findOneQuestionnary: Questionnary;
+  findOneUser: User;
 };
 
-export type CreatesManyAnswerMutationVariables = Exact<{
+
+export type QueryFindManyAnswersArgs = {
+  ids: Array<Scalars['Int']['input']>;
+};
+
+
+export type QueryFindManyQuestionnariesArgs = {
+  questionIds: Array<Scalars['Int']['input']>;
+};
+
+
+export type QueryFindManyUsersArgs = {
+  userIds: Array<Scalars['Int']['input']>;
+};
+
+
+export type QueryFindOneAnswerArgs = {
+  id: Scalars['Int']['input'];
+};
+
+
+export type QueryFindOneQuestionnaryArgs = {
+  questionId: Scalars['Int']['input'];
+};
+
+
+export type QueryFindOneUserArgs = {
+  userId: Scalars['Int']['input'];
+};
+
+export type Questionnary = {
+  __typename?: 'Questionnary';
+  answers: Array<Answer>;
+  campaign: Scalars['String']['output'];
+  chartType: Chart;
+  choices: Array<Scalars['String']['output']>;
+  questionId: Scalars['Int']['output'];
+  sectionName: Scalars['String']['output'];
+  title: Scalars['String']['output'];
+};
+
+export type User = {
+  __typename?: 'User';
+  answers: Array<Answer>;
+  bimAcademicProgram?: Maybe<Scalars['String']['output']>;
+  country: Scalars['String']['output'];
+  userEmail: Scalars['String']['output'];
+  userId: Scalars['Int']['output'];
+  userLabels: Scalars['String']['output'];
+  userName: Scalars['String']['output'];
+};
+
+export type CreateAnswerMutationVariables = Exact<{
   createAnswerInput: CreateAnswerInput;
 }>;
 
 
-export type CreatesManyAnswerMutation = { __typename?: 'Mutation', createsManyAnswer: { __typename?: 'Answer', Assessment?: string | null } };
+export type CreateAnswerMutation = { __typename?: 'Mutation', createAnswer?: { __typename?: 'Answer', assigAuditor?: string | null, auditorNote?: string | null, hashtags?: string | null, id: number, questionId: number, questionTitle: string, stateLabels?: string | null, userId: number, userAnswer: string, userEmail: string } | null };
 
-export type FindAllQueryVariables = Exact<{ [key: string]: never; }>;
+export type CreateAnswersMutationVariables = Exact<{
+  createManyAnswersInput: CreateManyAnswersInput;
+}>;
 
 
-export type FindAllQuery = { __typename?: 'Query', findAll: Array<{ __typename?: 'Answer', Assessment?: string | null, Campaign?: string | null, Item_ID?: string | null, Item_Title?: string | null, Item_Type?: string | null, Statement_Labels?: string | null, User_Email?: string | null, User_ID?: string | null, User_Input?: string | null, User_Labels?: string | null, User_Name?: string | null, Verification_Status?: string | null }> };
+export type CreateAnswersMutation = { __typename?: 'Mutation', createAnswers: Array<{ __typename?: 'Answer', assigAuditor?: string | null, auditorNote?: string | null, hashtags?: string | null, id: number, questionId: number, questionTitle: string, stateLabels?: string | null, userId: number, userAnswer: string, userEmail: string }> };
+
+export type CreateQuestionnaryMutationVariables = Exact<{
+  createQuestionnaryInput: CreateQuestionnaryInput;
+}>;
 
 
-export const CreatesManyAnswerDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"CreatesManyAnswer"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"createAnswerInput"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"CreateAnswerInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"createsManyAnswer"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"createAnswerInput"},"value":{"kind":"Variable","name":{"kind":"Name","value":"createAnswerInput"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Assessment"}}]}}]}}]} as unknown as DocumentNode<CreatesManyAnswerMutation, CreatesManyAnswerMutationVariables>;
-export const FindAllDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"FindAll"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"findAll"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Assessment"}},{"kind":"Field","name":{"kind":"Name","value":"Campaign"}},{"kind":"Field","name":{"kind":"Name","value":"Item_ID"}},{"kind":"Field","name":{"kind":"Name","value":"Item_Title"}},{"kind":"Field","name":{"kind":"Name","value":"Item_Type"}},{"kind":"Field","name":{"kind":"Name","value":"Statement_Labels"}},{"kind":"Field","name":{"kind":"Name","value":"User_Email"}},{"kind":"Field","name":{"kind":"Name","value":"User_ID"}},{"kind":"Field","name":{"kind":"Name","value":"User_Input"}},{"kind":"Field","name":{"kind":"Name","value":"User_Labels"}},{"kind":"Field","name":{"kind":"Name","value":"User_Name"}},{"kind":"Field","name":{"kind":"Name","value":"Verification_Status"}}]}}]}}]} as unknown as DocumentNode<FindAllQuery, FindAllQueryVariables>;
+export type CreateQuestionnaryMutation = { __typename?: 'Mutation', createQuestionnary: { __typename?: 'Questionnary', campaign: string, chartType: Chart, choices: Array<string>, questionId: number, sectionName: string, title: string } };
+
+export type CreateQuestionnariesMutationVariables = Exact<{
+  createManyQuestionnariesInput: CreateManyQuestionnariesInput;
+}>;
+
+
+export type CreateQuestionnariesMutation = { __typename?: 'Mutation', createQuestionnaries: Array<{ __typename?: 'Questionnary', campaign: string, chartType: Chart, choices: Array<string>, questionId: number, sectionName: string, title: string }> };
+
+export type CreateUserMutationVariables = Exact<{
+  createUserInput: CreateUserInput;
+}>;
+
+
+export type CreateUserMutation = { __typename?: 'Mutation', createUser: { __typename?: 'User', bimAcademicProgram?: string | null, country: string, userEmail: string, userId: number, userLabels: string, userName: string } };
+
+export type CreateUsersMutationVariables = Exact<{
+  createManyUsersInput: CreateManyUsersInput;
+}>;
+
+
+export type CreateUsersMutation = { __typename?: 'Mutation', createUsers: Array<{ __typename?: 'User', bimAcademicProgram?: string | null, country: string, userEmail: string, userId: number, userLabels: string, userName: string }> };
+
+export type FindAllAnswersQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FindAllAnswersQuery = { __typename?: 'Query', findAllAnswers: Array<{ __typename?: 'Answer', assigAuditor?: string | null, auditorNote?: string | null, hashtags?: string | null, id: number, questionId: number, questionTitle: string, stateLabels?: string | null, userId: number, userAnswer: string, userEmail: string }> };
+
+export type FindOneAnswerQueryVariables = Exact<{
+  id: Scalars['Int']['input'];
+}>;
+
+
+export type FindOneAnswerQuery = { __typename?: 'Query', findOneAnswer: { __typename?: 'Answer', assigAuditor?: string | null, auditorNote?: string | null, hashtags?: string | null, id: number, questionId: number, questionTitle: string, stateLabels?: string | null, userId: number, userAnswer: string, userEmail: string } };
+
+export type FindManyAnswersQueryVariables = Exact<{
+  ids: Array<Scalars['Int']['input']> | Scalars['Int']['input'];
+}>;
+
+
+export type FindManyAnswersQuery = { __typename?: 'Query', findManyAnswers: Array<{ __typename?: 'Answer', assigAuditor?: string | null, auditorNote?: string | null, hashtags?: string | null, id: number, questionId: number, questionTitle: string, stateLabels?: string | null, userId: number, userAnswer: string, userEmail: string }> };
+
+export type FindAllQuestionnariesQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FindAllQuestionnariesQuery = { __typename?: 'Query', findAllQuestionnaries: Array<{ __typename?: 'Questionnary', campaign: string, chartType: Chart, choices: Array<string>, questionId: number, sectionName: string, title: string }> };
+
+export type FindOneQuestionnaryQueryVariables = Exact<{
+  questionId: Scalars['Int']['input'];
+}>;
+
+
+export type FindOneQuestionnaryQuery = { __typename?: 'Query', findOneQuestionnary: { __typename?: 'Questionnary', campaign: string, chartType: Chart, choices: Array<string>, questionId: number, sectionName: string, title: string } };
+
+export type FindManyQuestionnariesQueryVariables = Exact<{
+  questionIds: Array<Scalars['Int']['input']> | Scalars['Int']['input'];
+}>;
+
+
+export type FindManyQuestionnariesQuery = { __typename?: 'Query', findManyQuestionnaries: Array<{ __typename?: 'Questionnary', campaign: string, chartType: Chart, choices: Array<string>, questionId: number, sectionName: string, title: string }> };
+
+export type FindAllUsersQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FindAllUsersQuery = { __typename?: 'Query', findAllUsers: Array<{ __typename?: 'User', bimAcademicProgram?: string | null, country: string, userEmail: string, userId: number, userLabels: string, userName: string }> };
+
+export type FindOneUserQueryVariables = Exact<{
+  userId: Scalars['Int']['input'];
+}>;
+
+
+export type FindOneUserQuery = { __typename?: 'Query', findOneUser: { __typename?: 'User', bimAcademicProgram?: string | null, country: string, userEmail: string, userId: number, userLabels: string, userName: string } };
+
+export type FindManyUsersQueryVariables = Exact<{
+  userIds: Array<Scalars['Int']['input']> | Scalars['Int']['input'];
+}>;
+
+
+export type FindManyUsersQuery = { __typename?: 'Query', findManyUsers: Array<{ __typename?: 'User', bimAcademicProgram?: string | null, country: string, userEmail: string, userId: number, userLabels: string, userName: string }> };
+
+
+export const CreateAnswerDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"CreateAnswer"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"createAnswerInput"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"CreateAnswerInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"createAnswer"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"createAnswerInput"},"value":{"kind":"Variable","name":{"kind":"Name","value":"createAnswerInput"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"assigAuditor"}},{"kind":"Field","name":{"kind":"Name","value":"auditorNote"}},{"kind":"Field","name":{"kind":"Name","value":"hashtags"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"questionId"}},{"kind":"Field","name":{"kind":"Name","value":"questionTitle"}},{"kind":"Field","name":{"kind":"Name","value":"stateLabels"}},{"kind":"Field","name":{"kind":"Name","value":"userId"}},{"kind":"Field","name":{"kind":"Name","value":"userAnswer"}},{"kind":"Field","name":{"kind":"Name","value":"userEmail"}}]}}]}}]} as unknown as DocumentNode<CreateAnswerMutation, CreateAnswerMutationVariables>;
+export const CreateAnswersDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"CreateAnswers"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"createManyAnswersInput"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"CreateManyAnswersInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"createAnswers"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"createManyAnswersInput"},"value":{"kind":"Variable","name":{"kind":"Name","value":"createManyAnswersInput"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"assigAuditor"}},{"kind":"Field","name":{"kind":"Name","value":"auditorNote"}},{"kind":"Field","name":{"kind":"Name","value":"hashtags"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"questionId"}},{"kind":"Field","name":{"kind":"Name","value":"questionTitle"}},{"kind":"Field","name":{"kind":"Name","value":"stateLabels"}},{"kind":"Field","name":{"kind":"Name","value":"userId"}},{"kind":"Field","name":{"kind":"Name","value":"userAnswer"}},{"kind":"Field","name":{"kind":"Name","value":"userEmail"}}]}}]}}]} as unknown as DocumentNode<CreateAnswersMutation, CreateAnswersMutationVariables>;
+export const CreateQuestionnaryDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"CreateQuestionnary"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"createQuestionnaryInput"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"CreateQuestionnaryInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"createQuestionnary"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"createQuestionnaryInput"},"value":{"kind":"Variable","name":{"kind":"Name","value":"createQuestionnaryInput"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"campaign"}},{"kind":"Field","name":{"kind":"Name","value":"chartType"}},{"kind":"Field","name":{"kind":"Name","value":"choices"}},{"kind":"Field","name":{"kind":"Name","value":"questionId"}},{"kind":"Field","name":{"kind":"Name","value":"sectionName"}},{"kind":"Field","name":{"kind":"Name","value":"title"}}]}}]}}]} as unknown as DocumentNode<CreateQuestionnaryMutation, CreateQuestionnaryMutationVariables>;
+export const CreateQuestionnariesDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"CreateQuestionnaries"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"createManyQuestionnariesInput"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"CreateManyQuestionnariesInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"createQuestionnaries"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"createManyQuestionnariesInput"},"value":{"kind":"Variable","name":{"kind":"Name","value":"createManyQuestionnariesInput"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"campaign"}},{"kind":"Field","name":{"kind":"Name","value":"chartType"}},{"kind":"Field","name":{"kind":"Name","value":"choices"}},{"kind":"Field","name":{"kind":"Name","value":"questionId"}},{"kind":"Field","name":{"kind":"Name","value":"sectionName"}},{"kind":"Field","name":{"kind":"Name","value":"title"}}]}}]}}]} as unknown as DocumentNode<CreateQuestionnariesMutation, CreateQuestionnariesMutationVariables>;
+export const CreateUserDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"CreateUser"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"createUserInput"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"CreateUserInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"createUser"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"createUserInput"},"value":{"kind":"Variable","name":{"kind":"Name","value":"createUserInput"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"bimAcademicProgram"}},{"kind":"Field","name":{"kind":"Name","value":"country"}},{"kind":"Field","name":{"kind":"Name","value":"userEmail"}},{"kind":"Field","name":{"kind":"Name","value":"userId"}},{"kind":"Field","name":{"kind":"Name","value":"userLabels"}},{"kind":"Field","name":{"kind":"Name","value":"userName"}}]}}]}}]} as unknown as DocumentNode<CreateUserMutation, CreateUserMutationVariables>;
+export const CreateUsersDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"CreateUsers"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"createManyUsersInput"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"CreateManyUsersInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"createUsers"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"createManyUsersInput"},"value":{"kind":"Variable","name":{"kind":"Name","value":"createManyUsersInput"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"bimAcademicProgram"}},{"kind":"Field","name":{"kind":"Name","value":"country"}},{"kind":"Field","name":{"kind":"Name","value":"userEmail"}},{"kind":"Field","name":{"kind":"Name","value":"userId"}},{"kind":"Field","name":{"kind":"Name","value":"userLabels"}},{"kind":"Field","name":{"kind":"Name","value":"userName"}}]}}]}}]} as unknown as DocumentNode<CreateUsersMutation, CreateUsersMutationVariables>;
+export const FindAllAnswersDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"FindAllAnswers"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"findAllAnswers"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"assigAuditor"}},{"kind":"Field","name":{"kind":"Name","value":"auditorNote"}},{"kind":"Field","name":{"kind":"Name","value":"hashtags"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"questionId"}},{"kind":"Field","name":{"kind":"Name","value":"questionTitle"}},{"kind":"Field","name":{"kind":"Name","value":"stateLabels"}},{"kind":"Field","name":{"kind":"Name","value":"userId"}},{"kind":"Field","name":{"kind":"Name","value":"userAnswer"}},{"kind":"Field","name":{"kind":"Name","value":"userEmail"}}]}}]}}]} as unknown as DocumentNode<FindAllAnswersQuery, FindAllAnswersQueryVariables>;
+export const FindOneAnswerDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"findOneAnswer"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"findOneAnswer"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"assigAuditor"}},{"kind":"Field","name":{"kind":"Name","value":"auditorNote"}},{"kind":"Field","name":{"kind":"Name","value":"hashtags"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"questionId"}},{"kind":"Field","name":{"kind":"Name","value":"questionTitle"}},{"kind":"Field","name":{"kind":"Name","value":"stateLabels"}},{"kind":"Field","name":{"kind":"Name","value":"userId"}},{"kind":"Field","name":{"kind":"Name","value":"userAnswer"}},{"kind":"Field","name":{"kind":"Name","value":"userEmail"}}]}}]}}]} as unknown as DocumentNode<FindOneAnswerQuery, FindOneAnswerQueryVariables>;
+export const FindManyAnswersDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"findManyAnswers"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"ids"}},"type":{"kind":"NonNullType","type":{"kind":"ListType","type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"findManyAnswers"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"ids"},"value":{"kind":"Variable","name":{"kind":"Name","value":"ids"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"assigAuditor"}},{"kind":"Field","name":{"kind":"Name","value":"auditorNote"}},{"kind":"Field","name":{"kind":"Name","value":"hashtags"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"questionId"}},{"kind":"Field","name":{"kind":"Name","value":"questionTitle"}},{"kind":"Field","name":{"kind":"Name","value":"stateLabels"}},{"kind":"Field","name":{"kind":"Name","value":"userId"}},{"kind":"Field","name":{"kind":"Name","value":"userAnswer"}},{"kind":"Field","name":{"kind":"Name","value":"userEmail"}}]}}]}}]} as unknown as DocumentNode<FindManyAnswersQuery, FindManyAnswersQueryVariables>;
+export const FindAllQuestionnariesDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"FindAllQuestionnaries"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"findAllQuestionnaries"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"campaign"}},{"kind":"Field","name":{"kind":"Name","value":"chartType"}},{"kind":"Field","name":{"kind":"Name","value":"choices"}},{"kind":"Field","name":{"kind":"Name","value":"questionId"}},{"kind":"Field","name":{"kind":"Name","value":"sectionName"}},{"kind":"Field","name":{"kind":"Name","value":"title"}}]}}]}}]} as unknown as DocumentNode<FindAllQuestionnariesQuery, FindAllQuestionnariesQueryVariables>;
+export const FindOneQuestionnaryDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"FindOneQuestionnary"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"questionId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"findOneQuestionnary"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"questionId"},"value":{"kind":"Variable","name":{"kind":"Name","value":"questionId"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"campaign"}},{"kind":"Field","name":{"kind":"Name","value":"chartType"}},{"kind":"Field","name":{"kind":"Name","value":"choices"}},{"kind":"Field","name":{"kind":"Name","value":"questionId"}},{"kind":"Field","name":{"kind":"Name","value":"sectionName"}},{"kind":"Field","name":{"kind":"Name","value":"title"}}]}}]}}]} as unknown as DocumentNode<FindOneQuestionnaryQuery, FindOneQuestionnaryQueryVariables>;
+export const FindManyQuestionnariesDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"FindManyQuestionnaries"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"questionIds"}},"type":{"kind":"NonNullType","type":{"kind":"ListType","type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"findManyQuestionnaries"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"questionIds"},"value":{"kind":"Variable","name":{"kind":"Name","value":"questionIds"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"campaign"}},{"kind":"Field","name":{"kind":"Name","value":"chartType"}},{"kind":"Field","name":{"kind":"Name","value":"choices"}},{"kind":"Field","name":{"kind":"Name","value":"questionId"}},{"kind":"Field","name":{"kind":"Name","value":"sectionName"}},{"kind":"Field","name":{"kind":"Name","value":"title"}}]}}]}}]} as unknown as DocumentNode<FindManyQuestionnariesQuery, FindManyQuestionnariesQueryVariables>;
+export const FindAllUsersDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"FindAllUsers"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"findAllUsers"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"bimAcademicProgram"}},{"kind":"Field","name":{"kind":"Name","value":"country"}},{"kind":"Field","name":{"kind":"Name","value":"userEmail"}},{"kind":"Field","name":{"kind":"Name","value":"userId"}},{"kind":"Field","name":{"kind":"Name","value":"userLabels"}},{"kind":"Field","name":{"kind":"Name","value":"userName"}}]}}]}}]} as unknown as DocumentNode<FindAllUsersQuery, FindAllUsersQueryVariables>;
+export const FindOneUserDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"FindOneUser"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"userId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"findOneUser"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"userId"},"value":{"kind":"Variable","name":{"kind":"Name","value":"userId"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"bimAcademicProgram"}},{"kind":"Field","name":{"kind":"Name","value":"country"}},{"kind":"Field","name":{"kind":"Name","value":"userEmail"}},{"kind":"Field","name":{"kind":"Name","value":"userId"}},{"kind":"Field","name":{"kind":"Name","value":"userLabels"}},{"kind":"Field","name":{"kind":"Name","value":"userName"}}]}}]}}]} as unknown as DocumentNode<FindOneUserQuery, FindOneUserQueryVariables>;
+export const FindManyUsersDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"FindManyUsers"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"userIds"}},"type":{"kind":"NonNullType","type":{"kind":"ListType","type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"findManyUsers"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"userIds"},"value":{"kind":"Variable","name":{"kind":"Name","value":"userIds"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"bimAcademicProgram"}},{"kind":"Field","name":{"kind":"Name","value":"country"}},{"kind":"Field","name":{"kind":"Name","value":"userEmail"}},{"kind":"Field","name":{"kind":"Name","value":"userId"}},{"kind":"Field","name":{"kind":"Name","value":"userLabels"}},{"kind":"Field","name":{"kind":"Name","value":"userName"}}]}}]}}]} as unknown as DocumentNode<FindManyUsersQuery, FindManyUsersQueryVariables>;

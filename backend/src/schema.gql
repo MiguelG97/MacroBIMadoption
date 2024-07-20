@@ -39,7 +39,7 @@ input CreateAnswerInput {
 }
 
 input CreateManyAnswersInput {
-  createAnswersInput: CreateAnswerInput!
+  createAnswersInput: [CreateAnswerInput!]!
 }
 
 input CreateManyQuestionnariesInput {
@@ -101,7 +101,7 @@ type Questionnary {
 
 type User {
   answers: [Answer!]!
-  bimAcademicProgram: String!
+  bimAcademicProgram: String
   country: String!
   userEmail: String!
   userId: Int!
