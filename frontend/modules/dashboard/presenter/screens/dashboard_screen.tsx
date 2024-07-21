@@ -3,7 +3,7 @@ import Left_drawer from "../components/left_drawer";
 import Bar_chart_bim from "../components/bar_chart";
 import Pie_chart_bim from "../components/pie_chart";
 
-import Higher_educ_tabView from "./tabViews/higher_education";
+import Higher_educ_tabView from "./tabViews/0_higher_education";
 import Academic_research_tabView from "./tabViews/academic_research";
 import { useAppSelector } from "@/core/shared/redux/store";
 import Bim_training_tabView from "./tabViews/bim_training_courses";

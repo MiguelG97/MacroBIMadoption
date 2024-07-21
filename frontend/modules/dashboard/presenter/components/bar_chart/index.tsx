@@ -4,10 +4,7 @@ import {
   ISectionItem,
   questionnaire,
 } from "@/core/shared/types/section_Questionnarie";
-import React, {
-  useEffect,
-  useState,
-} from "react";
+import React, { useEffect, useState } from "react";
 import {
   Bar,
   BarChart,
@@ -21,19 +18,17 @@ import {
   countAnswer,
   ProcessDataUtils,
 } from "../../../domain/process_data/process_data";
-import {
-  useAppDispatch,
-  useAppSelector,
-} from "@/core/shared/redux/store";
+import { useAppDispatch, useAppSelector } from "@/core/shared/redux/store";
+
+import Render_Tooltip from "./tooltip";
+import { CategoricalChartState } from "recharts/types/chart/types";
+import { setActiveTooltipAccValue } from "../../controllers/section_quest_slice";
 import {
   section1,
   section2,
   section5,
   section6,
-} from "@/core/shared/constants/questions";
-import Render_Tooltip from "./tooltip";
-import { CategoricalChartState } from "recharts/types/chart/types";
-import { setActiveTooltipAccValue } from "../../controllers/section_quest_slice";
+} from "@/core/shared/constants/old_questions";
 
 export default function Bar_chart_bim({
   sectionX,
@@ -46,18 +41,15 @@ export default function Bar_chart_bim({
   increaseHeight?: boolean;
   increaseTextHeight?: boolean;
 }) {
-  const { activeToolTipAccumValue } =
-    useAppSelector((state) => state.sectionQst);
+  const { activeToolTipAccumValue } = useAppSelector(
+    (state) => state.sectionQst
+  );
   const dispatch = useAppDispatch();
 
-  const { value } = useAppSelector(
-    (state) => state.questionnarieSlice
-  );
+  const { value } = useAppSelector((state) => state.questionnarieSlice);
   //states
-  const [questionnaire, setQuestionnarie] =
-    useState<questionnaire>();
-  const [accumValue, setAccumValue] =
-    useState<number>(0);
+  const [questionnaire, setQuestionnarie] = useState<questionnaire>();
+  const [accumValue, setAccumValue] = useState<number>(0);
 
   useEffect(() => {
     //bussiness logic
@@ -66,9 +58,7 @@ export default function Bar_chart_bim({
     if (!answerCounter) return; //in case it's null
     console.log(answerCounter);
     //5) store the accumulated data and question name in a hook state
-    let finalValues = Object.values(
-      answerCounter
-    ) as [
+    let finalValues = Object.values(answerCounter) as [
       {
         answerName: string;
         count: number;
@@ -79,32 +69,19 @@ export default function Bar_chart_bim({
     finalValues = finalValues.map((x) => {
       const listNone = [13, 14, 15]; //those only correspond for section1, no indication received yet for other sections!
       let indexNone = section1.findIndex(
-        (v) =>
-          v.question_id === sectionX.question_id
+        (v) => v.question_id === sectionX.question_id
       );
       indexNone =
         indexNone < 0
-          ? section2.findIndex(
-              (v) =>
-                v.question_id ===
-                sectionX.question_id
-            )
+          ? section2.findIndex((v) => v.question_id === sectionX.question_id)
           : indexNone;
       indexNone =
         indexNone < 0
-          ? section5.findIndex(
-              (v) =>
-                v.question_id ===
-                sectionX.question_id
-            )
+          ? section5.findIndex((v) => v.question_id === sectionX.question_id)
           : indexNone;
       indexNone =
         indexNone < 0
-          ? section6.findIndex(
-              (v) =>
-                v.question_id ===
-                sectionX.question_id
-            )
+          ? section6.findIndex((v) => v.question_id === sectionX.question_id)
           : indexNone;
 
       if (
@@ -124,20 +101,17 @@ export default function Bar_chart_bim({
     ];
 
     //reorder the data
-    finalValues = finalValues.sort(
-      (a, b) => b.count - a.count
-    );
+    finalValues = finalValues.sort((a, b) => b.count - a.count);
 
     //get accumulated value whole doing the following operation!
     let accum = 0;
-    let chartData: ChartDataItem[] =
-      finalValues.map((x) => {
-        accum += x.count;
-        return {
-          name: x.answerName,
-          value: x.count,
-        };
-      });
+    let chartData: ChartDataItem[] = finalValues.map((x) => {
+      accum += x.count;
+      return {
+        name: x.answerName,
+        value: x.count,
+      };
+    });
     //only pick the first 5 values!
     chartData = chartData.slice(0, 5);
     setQuestionnarie({
@@ -148,24 +122,17 @@ export default function Bar_chart_bim({
   }, [value]);
 
   //handlers
-  const onMouseMoveBarChart = (
-    e: CategoricalChartState
-  ) => {
+  const onMouseMoveBarChart = (e: CategoricalChartState) => {
     if (!e.activeLabel) return;
 
-    if (accumValue === activeToolTipAccumValue)
-      return;
+    if (accumValue === activeToolTipAccumValue) return;
 
-    dispatch(
-      setActiveTooltipAccValue(accumValue)
-    );
+    dispatch(setActiveTooltipAccValue(accumValue));
   };
   return (
     <div
       className={`bg-[#ffffff] w-full  h-min ${
-        fullWidth
-          ? "max-w-[1400px]"
-          : "max-w-[700px]"
+        fullWidth ? "max-w-[1400px]" : "max-w-[700px]"
       } 
   rounded-[20px] flex flex-col p-[24px] items-center
   shadow-[0_25px_50px_-12px_rgb(0,0,0,0.1)]`}
@@ -175,23 +142,16 @@ export default function Bar_chart_bim({
           <div className="min-w-[400px] max-w-[600px] text-center">
             <p
               className={`secondary_100 line-clamp-3 font-semibold
-      text-[15px] ${
-        increaseTextHeight && "px-4"
-      }`}
+      text-[15px] ${increaseTextHeight && "px-4"}`}
             >
               {questionnaire?.question}
             </p>
           </div>
           <div
             className={`flex flex-row justify-between items-center
-      w-full ${
-        increaseHeight ? "h-[270px]" : "h-[230px]"
-      }`}
+      w-full ${increaseHeight ? "h-[270px]" : "h-[230px]"}`}
           >
-            <ResponsiveContainer
-              width={"100%"}
-              height={"100%"}
-            >
+            <ResponsiveContainer width={"100%"} height={"100%"}>
               <BarChart
                 onMouseMove={onMouseMoveBarChart}
                 layout="vertical"
@@ -203,9 +163,7 @@ export default function Bar_chart_bim({
                   left: -80,
                 }}
               >
-                <Tooltip
-                  content={<Render_Tooltip />}
-                />
+                <Tooltip content={<Render_Tooltip />} />
                 <CartesianGrid
                   fill="#f7f9fb"
                   horizontal={false}

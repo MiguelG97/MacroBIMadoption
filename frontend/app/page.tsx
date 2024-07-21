@@ -241,6 +241,6 @@ export default function Home() {
     // };
     // sendDataToPostgresql(); //remove the square brackets!!
   }, []);
-  return <div>hey</div>;
-  // return <DashboardScreen />;
+  // return <div>hey</div>;
+  return <DashboardScreen />;
 }
