@@ -14,14 +14,14 @@ export class User {
   @Field()
   userName: string;
 
-  @Field()
-  userLabels: string;
+  @Field({ nullable: true })
+  userLabels?: string;
 
   @Field()
   country: string;
 
   @Field({ nullable: true })
-  bimAcademicProgram?: string;
+  academicProgram?: string;
 
   //relations
   @Field(() => [Answer])

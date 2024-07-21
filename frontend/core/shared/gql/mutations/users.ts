@@ -3,7 +3,7 @@ import { graphql } from "@/core/utils/generator";
 export const mCreateUser = graphql(`
   mutation CreateUser($createUserInput: CreateUserInput!) {
     createUser(createUserInput: $createUserInput) {
-      bimAcademicProgram
+      academicProgram
       country
       userEmail
       userId
@@ -13,7 +13,7 @@ export const mCreateUser = graphql(`
   }
 
   input CreateUserInput {
-    bimAcademicProgram: String
+    academicProgram: String
     country: String!
     userEmail: String!
     userId: Int!
@@ -25,7 +25,7 @@ export const mCreateUser = graphql(`
 export const mCreateUsers = graphql(`
   mutation CreateUsers($createManyUsersInput: CreateManyUsersInput!) {
     createUsers(createManyUsersInput: $createManyUsersInput) {
-      bimAcademicProgram
+      academicProgram
       country
       userEmail
       userId

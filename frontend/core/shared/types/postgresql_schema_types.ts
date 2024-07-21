@@ -1,8 +1,10 @@
+import { Chart } from "@/core/utils/generator/graphql";
+
 export interface IQuestionnary {
-  question_id: number;
+  questionId: number;
   title: string;
   choices: string[];
-  chartType?: "bar" | "pie" | "table";
+  chartType?: Chart;
   campaign: string; //Education Landscape | Organizational Adoption
   sectionName: string;
 }
@@ -27,5 +29,5 @@ export interface IUser {
   userName: string;
   userLabels: string;
   country: string;
-  bimAcademicProgram?: string;
+  academicProgram?: string;
 }

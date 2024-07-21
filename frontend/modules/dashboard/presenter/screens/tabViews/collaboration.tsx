@@ -1,8 +1,8 @@
 import React from "react";
 import Pie_chart_bim from "../../components/pie_chart";
-import { section6 } from "@/core/shared/constants/questions";
 import Bar_chart_bim from "../../components/bar_chart";
 import Table_survey from "../../components/table_survey";
+import { section6 } from "@/core/shared/constants/old_questions";
 
 export default function Collaboration_tabView() {
   return (
@@ -14,24 +14,14 @@ h-full gap-6 overflow-y-auto w-full"
         className="flex flex-row gap-6 w-full
 justify-evenly "
       >
-        <Pie_chart_bim
-          sectionX={section6[0]}
-          increaseHeight
-        />
-        <Bar_chart_bim
-          sectionX={section6[1]}
-          increaseHeight
-        />
+        <Pie_chart_bim sectionX={section6[0]} increaseHeight />
+        <Bar_chart_bim sectionX={section6[1]} increaseHeight />
       </div>
       <div
         className="flex flex-row gap-6 w-full
 justify-evenly "
       >
-        <Bar_chart_bim
-          sectionX={section6[2]}
-          fullWidth
-          increaseHeight
-        />
+        <Bar_chart_bim sectionX={section6[2]} fullWidth increaseHeight />
       </div>
       <div
         className="flex flex-row gap-6 w-full

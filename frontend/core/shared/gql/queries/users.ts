@@ -3,7 +3,7 @@ import { graphql } from "@/core/utils/generator";
 export const qFindAllUsers = graphql(`
   query FindAllUsers {
     findAllUsers {
-      bimAcademicProgram
+      academicProgram
       country
       userEmail
       userId
@@ -15,7 +15,7 @@ export const qFindAllUsers = graphql(`
 export const qFindOneUser = graphql(`
   query FindOneUser($userId: Int!) {
     findOneUser(userId: $userId) {
-      bimAcademicProgram
+      academicProgram
       country
       userEmail
       userId
@@ -27,7 +27,7 @@ export const qFindOneUser = graphql(`
 export const qFindManyUsers = graphql(`
   query FindManyUsers($userIds: [Int!]!) {
     findManyUsers(userIds: $userIds) {
-      bimAcademicProgram
+      academicProgram
       country
       userEmail
       userId

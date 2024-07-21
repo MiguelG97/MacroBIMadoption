@@ -1,25 +1,28 @@
 import { InputType, Field, Float } from '@nestjs/graphql';
-import { IsArray, IsEmail } from 'class-validator';
-import { IsBigInt } from 'src/core/utils/validators/isbigInt';
+import { IsArray, IsEmail, IsNumber, IsString } from 'class-validator';
 /**Validators are only applicable to DTOs!! */
 @InputType()
 export class CreateUserInput {
-  @IsBigInt()
+  @IsNumber()
   @Field(() => Float)
   userId: number;
 
+  @IsString()
   @Field()
   @IsEmail()
   userEmail: string;
+  @IsString()
   @Field()
   userName: string;
-  @Field()
-  userLabels: string;
+
+  @Field({ nullable: true })
+  userLabels?: string;
+  @IsString()
   @Field()
   country: string;
 
   @Field({ nullable: true })
-  bimAcademicProgram?: string;
+  academicProgram?: string;
 
   //relations?? I do not think we need to fill this field
 }

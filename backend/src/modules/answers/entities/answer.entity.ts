@@ -16,8 +16,8 @@ export class Answer {
   @Field() //type function is only required for ambiguity in numbers and to indicate array types
   questionTitle: string;
 
-  @Field() //type function is only required for ambiguity in numbers and to indicate array types
-  userAnswer: string;
+  @Field({ nullable: true }) //type function is only required for ambiguity in numbers and to indicate array types
+  userAnswer?: string;
 
   @Field() //type function is only required for ambiguity in numbers and to indicate array types
   userEmail: string;
@@ -33,6 +33,8 @@ export class Answer {
 
   @Field({ nullable: true })
   stateLabels?: string;
+  @Field({ nullable: true })
+  verifStatus?: string;
 
   //relations:
   @Field({ nullable: true })

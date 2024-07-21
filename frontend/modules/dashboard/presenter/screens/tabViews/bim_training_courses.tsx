@@ -1,8 +1,8 @@
-import { section5 } from "@/core/shared/constants/questions";
 import React from "react";
 import Pie_chart_bim from "../../components/pie_chart";
 import Bar_chart_bim from "../../components/bar_chart";
 import Table_survey from "../../components/table_survey";
+import { section5 } from "@/core/shared/constants/old_questions";
 
 export default function Bim_training_tabView() {
   return (
@@ -26,10 +26,7 @@ justify-evenly "
           increaseHeight
           increaseTextHeight
         />
-        <Pie_chart_bim
-          sectionX={section5[3]}
-          increaseHeight
-        />
+        <Pie_chart_bim sectionX={section5[3]} increaseHeight />
       </div>
       <div
         className="flex flex-row gap-6 w-full

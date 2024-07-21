@@ -1,7 +1,6 @@
 "use client";
 import { setData } from "@/core/shared/redux/slices/questionnarie_slice";
 import { useAppDispatch } from "@/core/shared/redux/store";
-import { IAnswer, IUser } from "@/core/shared/types/postgresql_schemas";
 import {
   IAnswerPostgres,
   IAnswerSchema,
@@ -40,6 +39,8 @@ import {
 } from "@/core/shared/gql/mutations/questionnaries";
 import { Chart } from "@/core/utils/generator/graphql";
 import { mCreateUser, mCreateUsers } from "@/core/shared/gql/mutations/users";
+import { questions_postgresql } from "@/core/shared/constants/questions";
+import { IAnswer, IUser } from "@/core/shared/types/postgresql_schema_types";
 //to disable prerendering and avoid hydratation mismatches (different content between the server and the client)
 const DashboardScreen = dynamic(
   () => import("@/modules/dashboard/presenter/screens/dashboard_screen"),
@@ -58,6 +59,14 @@ export default function Home() {
     },
   });
   const [mutationCreateUsers] = useMutation(mCreateUsers, {
+    onCompleted: (data) => {
+      console.log(data);
+    },
+    onError: (error) => {
+      console.log(error.message, error.graphQLErrors);
+    },
+  });
+  const [mutationCreateQuestionnaries] = useMutation(mCreateQuestionnaries, {
     onCompleted: (data) => {
       console.log(data);
     },
@@ -144,7 +153,7 @@ export default function Home() {
       if (!sheets) return;
       let jsonRows: IExcelRowJson[] = utils.sheet_to_json(sheets.Answers);
 
-      /**send data to answer table*/
+      /**1) read and paser answer data*/
       //a) reorder by item title for convenience
       jsonRows.sort((a, b) =>
         a["Item Title"] > b["Item Title"]
@@ -188,8 +197,12 @@ export default function Home() {
       answerJsonRows.forEach((x) => {
         const answer: IAnswer = {
           questionId: Number(x["Item ID"]),
-          questionTitle: x["Item Title"],
-          userAnswer: x["User Input"],
+          questionTitle: x["Item Title"]
+            .replaceAll("[[", "")
+            .replaceAll("]]", ""),
+          userAnswer: x["User Input"]
+            ?.replaceAll("[[", "")
+            .replaceAll("]]", ""),
           userEmail: x["User Email"],
           userId: Number(x["User ID"]),
           assigAuditor: x["Assigned Auditors"],
@@ -202,18 +215,8 @@ export default function Home() {
       });
 
       console.log(answerModels);
-      //d) send data to postgresql
-      try {
-        await mutationCreateAnswers({
-          variables: {
-            createManyAnswersInput: { createAnswersInput: answerModels },
-          },
-        });
-      } catch (error) {
-        console.log(error);
-      }
 
-      /**send data to user table*/
+      /**2) Read and parse user data*/
       //a) collect a sample row for each user
       const userIdsFilter: number[] = [];
       const userJsonRows: IExcelRowJson[] = jsonRows.filter((x) => {
@@ -235,24 +238,40 @@ export default function Home() {
           userName: x["User Name"],
           userLabels: x["User Labels"],
           country: "brazil", //set this manually??
-          bimAcademicProgram: "", //depending upon an answer
+          academicProgram: "", //depending upon an answer
         };
         userModels.push(user);
       });
       console.log(userModels);
 
-      //c) send data to postgresql
+      /**3) read questionary data */
+
+      /**4) send data to postgresql */
       try {
-        await mutationCreateUsers({
+        await mutationCreateQuestionnaries({
           variables: {
-            createManyUsersInput: { manyUsersInput: userModels },
+            createManyQuestionnariesInput: {
+              questionnariesInput: questions_postgresql,
+            },
           },
         });
+
+        // await mutationCreateUsers({
+        //   variables: {
+        //     createManyUsersInput: { manyUsersInput: userModels },
+        //   },
+        // });
+        //answers go at the end!
+        // await mutationCreateAnswers({
+        //   variables: {
+        //     createManyAnswersInput: { createAnswersInput: answerModels },
+        //   },
+        // });
       } catch (error) {
         console.log(error);
       }
     };
-    sendDataToPostgresql();
+    sendDataToPostgresql(); //remove the square brackets!!
   }, []);
   return <div>hey</div>;
   // return <DashboardScreen />;

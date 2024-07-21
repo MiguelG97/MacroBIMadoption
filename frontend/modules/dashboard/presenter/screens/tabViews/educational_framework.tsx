@@ -1,7 +1,7 @@
-import { section34 } from "@/core/shared/constants/questions";
 import Pie_chart_bim from "../../components/pie_chart";
 import Bar_chart_bim from "../../components/bar_chart";
 import Table_survey from "../../components/table_survey";
+import { section34 } from "@/core/shared/constants/old_questions";
 
 export default function Educ_framework_tabView() {
   return (
@@ -20,42 +20,26 @@ justify-evenly "
         className="flex flex-row gap-6 w-full
 justify-evenly "
       >
-        <Bar_chart_bim
-          sectionX={section34[2]}
-          fullWidth
-          increaseHeight
-        />
+        <Bar_chart_bim sectionX={section34[2]} fullWidth increaseHeight />
       </div>
       <div
         className="flex flex-row gap-6 w-full
 justify-evenly "
       >
-        <Table_survey
-          sectionX={section34[3]}
-          isTableAlone
-        />
+        <Table_survey sectionX={section34[3]} isTableAlone />
       </div>
       <div
         className="flex flex-row gap-6 w-full
 justify-evenly "
       >
-        <Pie_chart_bim
-          sectionX={section34[4]}
-          increaseHeight
-        />
-        <Bar_chart_bim
-          sectionX={section34[5]}
-          increaseHeight
-        />
+        <Pie_chart_bim sectionX={section34[4]} increaseHeight />
+        <Bar_chart_bim sectionX={section34[5]} increaseHeight />
       </div>{" "}
       <div
         className="flex flex-row gap-6 w-full
 justify-evenly "
       >
-        <Table_survey
-          sectionX={section34[6]}
-          isTableAlone
-        />
+        <Table_survey sectionX={section34[6]} isTableAlone />
       </div>
     </div>
   );
