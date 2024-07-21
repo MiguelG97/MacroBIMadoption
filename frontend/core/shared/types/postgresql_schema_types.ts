@@ -4,7 +4,7 @@ export interface IQuestionnary {
   questionId: number;
   title: string;
   choices: string[];
-  chartType?: Chart;
+  chartType: Chart;
   campaign: string; //Education Landscape | Organizational Adoption
   sectionName: string;
 }

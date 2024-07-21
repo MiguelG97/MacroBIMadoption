@@ -10,7 +10,7 @@ export class CreateAnswerInput {
   @IsString()
   @Field()
   questionTitle: string;
-  @IsString()
+  // @IsString()|do not put the decorator when it can be null|undefined
   @Field({ nullable: true })
   userAnswer?: string;
   @IsString()

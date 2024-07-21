@@ -11,12 +11,6 @@ import Collaboration_tabView from "./tabViews/collaboration";
 import Educ_framework_tabView from "./tabViews/educational_framework";
 
 export default function Dashboard_screen() {
-  //workaround for handling different client and server content
-  // const [isClient, setIsClient] = useState(false);
-  // useEffect(() => {
-  //   setIsClient(true);
-  // }, []);
-
   const { selectedSectionIndex } = useAppSelector(
     (select) => select.sectionQst
   );
