@@ -1,4 +1,4 @@
-import { ObjectType, Field, Int } from '@nestjs/graphql';
+import { ObjectType, Field, Int, Float } from '@nestjs/graphql';
 import { Questionnary } from 'src/modules/questionnaries/entities/questionnary.entity';
 import { User } from 'src/modules/users/entities/user.entity';
 
@@ -37,11 +37,11 @@ export class Answer {
   //relations:
   @Field({ nullable: true })
   questionnary?: Questionnary;
-  @Field(() => Int)
+  @Field(() => Float)
   questionId: number;
 
   @Field({ nullable: true })
   user?: User;
-  @Field(() => Int)
+  @Field(() => Float)
   userId: number;
 }

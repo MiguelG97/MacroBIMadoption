@@ -1,4 +1,4 @@
-import { InputType, Field, Int } from '@nestjs/graphql';
+import { InputType, Field, Int, Float } from '@nestjs/graphql';
 
 @InputType()
 export class CreateAnswerInput {
@@ -22,9 +22,9 @@ export class CreateAnswerInput {
   stateLabels?: string;
 
   //relations
-  @Field(() => Int)
+  @Field(() => Float)
   questionId: number;
-  @Field(() => Int)
+  @Field(() => Float)
   userId: number;
 }
 

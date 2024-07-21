@@ -1,9 +1,9 @@
-import { InputType, Int, Field } from '@nestjs/graphql';
+import { InputType, Field, Float } from '@nestjs/graphql';
 import { Chart } from '@prisma/client';
 
 @InputType()
 export class CreateQuestionnaryInput {
-  @Field(() => Int)
+  @Field(() => Float)
   questionId: number;
 
   @Field()

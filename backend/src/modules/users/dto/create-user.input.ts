@@ -1,10 +1,11 @@
-import { InputType, Int, Field } from '@nestjs/graphql';
-import { IsArray, IsEmail, IsNumber } from 'class-validator';
+import { InputType, Field, Float } from '@nestjs/graphql';
+import { IsArray, IsEmail } from 'class-validator';
+import { IsBigInt } from 'src/core/utils/validators/isbigInt';
 /**Validators are only applicable to DTOs!! */
 @InputType()
 export class CreateUserInput {
-  @IsNumber()
-  @Field(() => Int)
+  @IsBigInt()
+  @Field(() => Float)
   userId: number;
 
   @Field()

@@ -1,9 +1,9 @@
-import { ObjectType, Field, Int } from '@nestjs/graphql';
+import { ObjectType, Field, Float } from '@nestjs/graphql';
 import { Answer } from 'src/modules/answers/entities/answer.entity';
 
 @ObjectType()
 export class User {
-  @Field(() => Int)
+  @Field(() => Float)
   userId: number;
 
   //add validation pipeline here!! it's only applicable for the DTOs!!

@@ -1,4 +1,4 @@
-export interface IPostQuestionnary {
+export interface IQuestionnary {
   question_id: number;
   title: string;
   choices: string[];
@@ -7,7 +7,7 @@ export interface IPostQuestionnary {
   sectionName: string;
 }
 
-export interface IPostAnswer {
+export interface IAnswer {
   questionId: number; //turn it into number from the IExcelRowJson Item ID field
   questionTitle: string; //foreign key for IPostQuestionnarie
   userAnswer: string;
@@ -21,7 +21,7 @@ export interface IPostAnswer {
   //   country: string;//query it from user table
 }
 
-export interface IPostUser {
+export interface IUser {
   userId: number; //turn User ID into a number
   userEmail: string;
   userName: string;

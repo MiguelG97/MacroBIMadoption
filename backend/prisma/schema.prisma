@@ -28,7 +28,7 @@ datasource db {
 
 //C) Data model:
 model Questionnaries{
-  questionId Int @unique
+  questionId Float @unique
   title String
   choices String[]
   chartType Chart @default(undefined)
@@ -59,17 +59,17 @@ model Answers {
 
   //relations (to another model) by using the @relation attribute:
   questionnary Questionnaries @relation(fields: [questionId],references: [questionId])
-  questionId    Int //foreign key in database
+  questionId    Float //foreign key in database
 
   user Users @relation(fields: [userId],references: [userId])
-  userId        Int
+  userId        Float
 
   //unique blocks | multi-field unique (column does not appear in table, but you can use this field even to query an item, cool!)
   @@unique(fields: [questionId,userId],name: "questionId_userId")//this combination has to be unique, we can use name to later query from prismaClient where:{...}
 }
 
 model Users {
-  userId             Int     @unique
+  userId             Float     @unique //since those are big integers, use float to not be limited in size!
   userEmail          String
   userName           String
   userLabels         String

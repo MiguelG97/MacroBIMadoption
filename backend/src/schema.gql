@@ -7,14 +7,14 @@ type Answer {
   auditorNote: String
   hashtags: String
   id: Int!
-  questionId: Int!
+  questionId: Float!
   questionTitle: String!
   questionnary: Questionnary
   stateLabels: String
   user: User
   userAnswer: String!
   userEmail: String!
-  userId: Int!
+  userId: Float!
 }
 
 """Type of chart to use in the dashboard"""
@@ -30,12 +30,12 @@ input CreateAnswerInput {
   auditorNote: String
   hashtags: String
   id: Int
-  questionId: Int!
+  questionId: Float!
   questionTitle: String!
   stateLabels: String
   userAnswer: String!
   userEmail: String!
-  userId: Int!
+  userId: Float!
 }
 
 input CreateManyAnswersInput {
@@ -54,7 +54,7 @@ input CreateQuestionnaryInput {
   campaign: String
   chartType: Chart!
   choices: [String!]!
-  questionId: Int!
+  questionId: Float!
   sectionName: String
   title: String!
 }
@@ -63,7 +63,7 @@ input CreateUserInput {
   bimAcademicProgram: String
   country: String!
   userEmail: String!
-  userId: Int!
+  userId: Float!
   userLabels: String!
   userName: String!
 }
@@ -94,7 +94,7 @@ type Questionnary {
   campaign: String!
   chartType: Chart!
   choices: [String!]!
-  questionId: Int!
+  questionId: Float!
   sectionName: String!
   title: String!
 }
@@ -104,7 +104,7 @@ type User {
   bimAcademicProgram: String
   country: String!
   userEmail: String!
-  userId: Int!
+  userId: Float!
   userLabels: String!
   userName: String!
 }

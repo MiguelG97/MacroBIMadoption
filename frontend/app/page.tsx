@@ -1,7 +1,7 @@
 "use client";
 import { setData } from "@/core/shared/redux/slices/questionnarie_slice";
 import { useAppDispatch } from "@/core/shared/redux/store";
-import { IPostAnswer, IPostUser } from "@/core/shared/types/postgresql_schemas";
+import { IAnswer, IUser } from "@/core/shared/types/postgresql_schemas";
 import {
   IAnswerPostgres,
   IAnswerSchema,
@@ -49,7 +49,15 @@ export default function Home() {
   const dispatch = useAppDispatch();
 
   /**Grahpql queries */
-  const [mutateFunction, { loading, error, data }] = useMutation(mCreateUsers, {
+  const [mutationCreateAnswers] = useMutation(mCreateAnswers, {
+    onCompleted: (data) => {
+      console.log(data);
+    },
+    onError: (error) => {
+      console.log(error.message, error.graphQLErrors);
+    },
+  });
+  const [mutationCreateUsers] = useMutation(mCreateUsers, {
     onCompleted: (data) => {
       console.log(data);
     },
@@ -130,7 +138,7 @@ export default function Home() {
     };
     // excel();
 
-    const postgresqlDB = async () => {
+    const sendDataToPostgresql = async () => {
       const workbook = await excelUtils.readExcel();
       const sheets = workbook?.Sheets;
       if (!sheets) return;
@@ -167,7 +175,7 @@ export default function Home() {
 
         answerRowsGroup.forEach((x) => {
           const userId = Number(x["User ID"]);
-          //compute non-repeated values
+          //compute non-repeated values!
           if (!userIdsFilter.includes(userId)) {
             userIdsFilter.push(userId);
             answerJsonRows.push(x);
@@ -175,10 +183,10 @@ export default function Home() {
         });
       });
 
-      //b) create instances of answer models
-      const answerModels: IPostAnswer[] = [];
+      //c) create instances of answer models
+      const answerModels: IAnswer[] = [];
       answerJsonRows.forEach((x) => {
-        const answer: IPostAnswer = {
+        const answer: IAnswer = {
           questionId: Number(x["Item ID"]),
           questionTitle: x["Item Title"],
           userAnswer: x["User Input"],
@@ -192,7 +200,18 @@ export default function Home() {
         };
         answerModels.push(answer);
       });
+
       console.log(answerModels);
+      //d) send data to postgresql
+      try {
+        await mutationCreateAnswers({
+          variables: {
+            createManyAnswersInput: { createAnswersInput: answerModels },
+          },
+        });
+      } catch (error) {
+        console.log(error);
+      }
 
       /**send data to user table*/
       //a) collect a sample row for each user
@@ -208,39 +227,32 @@ export default function Home() {
         }
       });
       //b) create instance of users and group them up in a list
-      const userModels: IPostUser[] = [];
+      const userModels: IUser[] = [];
       userJsonRows.forEach((x) => {
-        const user: IPostUser = {
+        const user: IUser = {
           userId: Number(x["User ID"]),
           userEmail: x["User Email"],
           userName: x["User Name"],
           userLabels: x["User Labels"],
-          country: "brazil",
+          country: "brazil", //set this manually??
           bimAcademicProgram: "", //depending upon an answer
         };
         userModels.push(user);
       });
       console.log(userModels);
+
+      //c) send data to postgresql
+      try {
+        await mutationCreateUsers({
+          variables: {
+            createManyUsersInput: { manyUsersInput: userModels },
+          },
+        });
+      } catch (error) {
+        console.log(error);
+      }
     };
-
-    //Read data from postgresql
-    postgresqlDB();
-
-    mutateFunction({
-      variables: {
-        createManyUsersInput: {
-          manyUsersInput: [
-            {
-              userName: "miguelasd",
-              userLabels: "as",
-              userId: 1234332424,
-              userEmail: "someoneelse@live.com",
-              country: "peru",
-            },
-          ],
-        },
-      },
-    });
+    sendDataToPostgresql();
   }, []);
   return <div>hey</div>;
   // return <DashboardScreen />;
