@@ -1,5 +1,4 @@
 "use client";
-import { setData } from "@/core/shared/redux/slices/questionnarie_slice";
 import { useAppDispatch } from "@/core/shared/redux/store";
 import {
   IAnswerPostgres,
@@ -41,7 +40,7 @@ import { questions_postgresql } from "@/core/shared/constants/questions";
 import { IAnswer, IUser } from "@/core/shared/types/postgresql_schema_types";
 import {
   setAnswers,
-  setQuestionnaries,
+  setQuestionnaires,
   setUsers,
 } from "@/core/shared/redux/slices/db_slice";
 
@@ -97,7 +96,7 @@ export default function Home() {
   useQuery(qFindAllQuestionnaries, {
     onCompleted: (data) => {
       console.log(data);
-      dispatch(setQuestionnaries(data.findAllQuestionnaries));
+      dispatch(setQuestionnaires(data.findAllQuestionnaries));
     },
   });
   useQuery(qFindAllUsers, {

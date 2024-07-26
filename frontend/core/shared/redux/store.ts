@@ -1,12 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { useDispatch, useSelector } from "react-redux";
-import { questionnarieSlice } from "./slices/questionnarie_slice";
+import { questionnaireSlice } from "./slices/delete_questionnarie_slice";
 import { sectionQstSlice } from "@/modules/dashboard/presenter/controllers/section_quest_slice";
 import { dbSlice } from "./slices/db_slice";
 
 export const store = configureStore({
   reducer: {
-    questionnarieSlice: questionnarieSlice.reducer,
+    questionnaireSlice: questionnaireSlice.reducer,
     sectionQst: sectionQstSlice.reducer,
     dbSlice: dbSlice.reducer,
   },

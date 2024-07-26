@@ -10,111 +10,93 @@ import {
   Tooltip,
 } from "recharts";
 import Render_legend_content from "./legend_content";
-import { ProcessDataUtils } from "@/modules/dashboard/domain/process_data/process_data";
-import {
-  ChartDataItem,
-  ISectionItem,
-  questionnaire,
-} from "@/core/shared/types/section_Questionnarie";
+
 import Render_Tooltip from "./tooltip";
 import { CategoricalChartState } from "recharts/types/chart/types";
 import { useAppDispatch, useAppSelector } from "@/core/shared/redux/store";
 import { setActiveTooltipAccValue } from "../../controllers/section_quest_slice";
-import { IQuestionnary } from "@/core/shared/types/postgresql_schema_types";
+import { IQuestionnaire } from "@/core/shared/types/postgresql_schema_types";
+import { ProcessDataModel } from "@/modules/dashboard/domain/process_data/process_data_model";
+import { ChartDataItem } from "@/core/shared/types/chart_types";
 
 export default function Pie_chart_bim({
-  questionnary,
-  isLoading = true,
-  sectionX,
+  questionnaire,
   increaseHeight = false,
   increaseTextHeight = false,
 }: {
-  questionnary?: IQuestionnary;
-  isLoading?: boolean;
-  sectionX: ISectionItem;
+  questionnaire: IQuestionnaire;
   increaseHeight?: boolean;
   increaseTextHeight?: boolean;
 }) {
-  /**OLD CODE */
+  /**Redux toolkit */
+  const dispatch = useAppDispatch();
   const { activeToolTipAccumValue } = useAppSelector(
     (state) => state.sectionQst
   );
-  const { value } = useAppSelector((state) => state.questionnarieSlice);
+  const { answers } = useAppSelector((state) => state.dbSlice);
+  /**States */
+  const [chartData, setChartData] = useState<ChartDataItem[]>([]);
 
-  const dispatch = useAppDispatch();
-  //states
-  const [questionnaire, setQuestionnarie] = useState<questionnaire>();
-
-  const [accumValue, setAccumValue] = useState<number>(0);
-
+  /**Use effects */
+  //get the answers that are linked to this questionnaire
   useEffect(() => {
-    //bussiness logic
-    const answerCounter = ProcessDataUtils.processData(sectionX);
+    if (answers.length === 0) return;
 
-    if (!answerCounter) return; //in case it's null
+    //filter the answers
+    const filteredAnswers = answers.filter(
+      (x) => x.questionId === questionnaire.questionId
+    );
 
-    //5) store the accumulated data and question name in a hook state
-    let finalValues = Object.values(answerCounter) as [
+    const choicesCounted = ProcessDataModel._shared.countChoices({
+      answers: filteredAnswers,
+      questionnaire,
+    });
+
+    //format the choices counted to conform to the chart data structure
+    let choicesCountedValues = Object.values(choicesCounted) as [
       {
-        answerName: string;
-        count: number;
-      }
-    ];
-
-    //delete unwanted characters
-    finalValues = finalValues.map((x) => {
-      x.answerName = x.answerName.replaceAll("[", "");
-      x.answerName = x.answerName.replaceAll("]", "");
-      return x;
-    }) as [
-      {
-        answerName: string;
+        choice: string;
         count: number;
       }
     ];
 
     //reorder the data
-    finalValues = finalValues.sort((a, b) => b.count - a.count);
+    choicesCountedValues = choicesCountedValues.sort(
+      (a, b) => b.count - a.count
+    );
 
-    //get accumulated value whole doing the following operation!
-    let accum = 0;
-    const chartData: ChartDataItem[] = finalValues.map((x) => {
-      accum += x.count;
+    //change data format
+    const chartData: ChartDataItem[] = choicesCountedValues.map((x) => {
       return {
-        name: x.answerName,
+        name: x.choice,
         value: x.count,
       };
     });
-    setQuestionnarie({
-      question: sectionX.default,
-      chartData,
-    });
-    setAccumValue(accum);
-  }, [value]);
+    setChartData(chartData);
+  }, [answers]);
 
-  //handlers
+  /**Handlers */
   const onMouseMovePieChart = (e: CategoricalChartState) => {
     if (!e.activeLabel) return;
 
-    if (accumValue === activeToolTipAccumValue) return;
+    if (chartData.length === activeToolTipAccumValue) return;
 
-    dispatch(setActiveTooltipAccValue(accumValue));
+    dispatch(setActiveTooltipAccValue(chartData.length));
   };
-  /**NEW CODE */
   return (
     <div
       className="bg-[#ffffff] rounded-2xl flex flex-col
        p-[24px] items-center w-full h-min
        shadow-[0_25px_50px_-22px_rgb(0,0,0,0.1)] max-w-[700px]"
     >
-      {!isLoading && (
+      {chartData.length > 0 && (
         <>
           <div className="text-center min-w-[400px] max-w-[600px]">
             <p
               className={`secondary_100 line-clamp-3 font-semibold
       text-[15px] ${increaseTextHeight && "px-3"}`}
             >
-              {questionnaire?.question}
+              {questionnaire.title}
             </p>
           </div>
 
@@ -127,7 +109,7 @@ export default function Pie_chart_bim({
             <ResponsiveContainer>
               <PieChart onMouseMove={onMouseMovePieChart}>
                 <Pie
-                  data={questionnaire?.chartData}
+                  data={chartData}
                   paddingAngle={5}
                   label
                   nameKey={"name"}
@@ -135,7 +117,7 @@ export default function Pie_chart_bim({
                   innerRadius={60}
                   outerRadius={80}
                 >
-                  {questionnaire?.chartData.map((x, index) => {
+                  {chartData.map((x, index) => {
                     let color = "";
                     if (x.name === "Yes") {
                       color = "#f37f72";
@@ -169,7 +151,7 @@ export default function Pie_chart_bim({
       )}
 
       {/* skeleton */}
-      {isLoading && (
+      {chartData.length === 0 && (
         <div
           className="h-[280px] animate-pulse flex flex-col
     gap-2"

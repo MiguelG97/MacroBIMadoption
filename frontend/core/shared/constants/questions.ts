@@ -1,8 +1,9 @@
 import { Chart } from "@/core/utils/generator/graphql";
 import { Campaign, SectionName } from "../enums/questionnary_enum";
-import { IQuestionnary } from "../types/postgresql_schema_types";
+import { IQuestionnaire } from "../types/postgresql_schema_types";
 
-export const questions_postgresql: IQuestionnary[] = [
+/**For further questionnaires this should be parse automatically! */
+export const questions_postgresql: IQuestionnaire[] = [
   /**section 1 */
   {
     title:

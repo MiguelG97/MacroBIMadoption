@@ -1,6 +1,6 @@
 import { Chart } from "@/core/utils/generator/graphql";
 
-export interface IQuestionnary {
+export interface IQuestionnaire {
   questionId: number;
   title: string;
   choices: string[];
@@ -12,7 +12,7 @@ export interface IQuestionnary {
 export interface IAnswer {
   questionId: number; //turn it into number from the IExcelRowJson Item ID field
   questionTitle: string; //foreign key for IPostQuestionnarie
-  userAnswer: string;
+  userAnswer?: string;
   userEmail: string;
   userId: number;
   assigAuditor?: string;

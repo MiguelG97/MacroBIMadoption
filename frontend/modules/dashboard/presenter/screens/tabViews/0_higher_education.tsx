@@ -4,17 +4,23 @@ import Pie_chart_bim from "../../components/pie_chart";
 import { section1 } from "@/core/shared/constants/old_questions";
 import { useAppSelector } from "@/core/shared/redux/store";
 import { SectionName } from "@/core/shared/enums/questionnary_enum";
-import { IQuestionnary } from "@/core/shared/types/postgresql_schema_types";
+import { IQuestionnaire } from "@/core/shared/types/postgresql_schema_types";
 
 export default function Higher_educ_tabView() {
-  const { questionnaries } = useAppSelector((state) => state.dbSlice);
-  const [filteredQst, setFilteredQst] = useState<IQuestionnary[]>([]);
+  /**Redux toolkit */
+  const { questionnaires } = useAppSelector((state) => state.dbSlice);
+  /**States */
+  const [questionnariesHigherEduc, setQstHigherEduc] = useState<
+    IQuestionnaire[]
+  >([]);
+  /**Effects */
+  //get all the questionnaires and render 1 chart per each questionnaire that belongs to this section
   useEffect(() => {
-    const filteredQuestionnaries = questionnaries.filter(
+    const filteredQuestionnaires = questionnaires.filter(
       (x) => x.sectionName === SectionName.Higher_edu_programmes
     );
-    setFilteredQst(filteredQuestionnaries);
-  }, [questionnaries]);
+    setQstHigherEduc(filteredQuestionnaires);
+  }, [questionnaires]);
   return (
     <div
       className="flex flex-col p-6 
@@ -24,23 +30,19 @@ h-full gap-6 overflow-y-auto w-full"
         className="flex flex-row gap-6 w-full
    justify-evenly "
       >
-        <Pie_chart_bim
-          questionnary={filteredQst[0]}
-          isLoading={filteredQst.length > 0 ? false : true}
-          sectionX={section1[0]}
-        />
-        <Pie_chart_bim
-          questionnary={filteredQst[2]}
-          isLoading={filteredQst.length > 0 ? false : true}
-          sectionX={section1[2]}
-        />
+        <Pie_chart_bim questionnaire={questionnariesHigherEduc[0]} />
+        <Pie_chart_bim questionnaire={questionnariesHigherEduc[2]} />
       </div>
       <div
         className="flex flex-row gap-6 w-full
    justify-evenly"
       >
-        <Pie_chart_bim sectionX={section1[3]} />
-        <Pie_chart_bim sectionX={section1[4]} increaseTextHeight />
+        {/* 3 and 4, make sure are the same questions! */}
+        <Pie_chart_bim questionnaire={questionnariesHigherEduc[3]} />
+        <Pie_chart_bim
+          questionnaire={questionnariesHigherEduc[4]}
+          increaseTextHeight
+        />
       </div>
 
       <div

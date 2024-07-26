@@ -12,21 +12,17 @@ const initialState: questionnaireState = {
   value: [],
 };
 
-export const questionnarieSlice = createSlice({
-  name: "questionnarieSlice",
+export const questionnaireSlice = createSlice({
+  name: "questionnaireSlice",
   // `createSlice` will infer the state type from the `initialState` argument
   initialState,
   reducers: {
-    setData: (
-      state,
-      action: PayloadAction<any[]>
-    ) => {
+    setData: (state, action: PayloadAction<any[]>) => {
       state.value = action.payload;
     },
   },
 });
 
-export const { setData } =
-  questionnarieSlice.actions;
+export const { setData } = questionnaireSlice.actions;
 
-export default questionnarieSlice.reducer;
+export default questionnaireSlice.reducer;

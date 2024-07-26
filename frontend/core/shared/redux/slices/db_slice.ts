@@ -1,13 +1,13 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import {
   IAnswer,
-  IQuestionnary,
+  IQuestionnaire,
   IUser,
 } from "../../types/postgresql_schema_types";
 
 interface dbState {
   answers: IAnswer[];
-  questionnaries: IQuestionnary[];
+  questionnaires: IQuestionnaire[];
   users: IUser[];
 }
 
@@ -15,7 +15,7 @@ interface dbState {
 const initialState: dbState = {
   answers: [],
   users: [],
-  questionnaries: [],
+  questionnaires: [],
 };
 
 export const dbSlice = createSlice({
@@ -25,8 +25,8 @@ export const dbSlice = createSlice({
     setAnswers: (state, action: PayloadAction<any[]>) => {
       state.answers = action.payload;
     },
-    setQuestionnaries: (state, action: PayloadAction<any[]>) => {
-      state.questionnaries = action.payload;
+    setQuestionnaires: (state, action: PayloadAction<any[]>) => {
+      state.questionnaires = action.payload;
     },
     setUsers: (state, action: PayloadAction<any[]>) => {
       state.users = action.payload;
@@ -34,6 +34,6 @@ export const dbSlice = createSlice({
   },
 });
 
-export const { setAnswers, setQuestionnaries, setUsers } = dbSlice.actions;
+export const { setAnswers, setQuestionnaires, setUsers } = dbSlice.actions;
 
 export default dbSlice.reducer;
