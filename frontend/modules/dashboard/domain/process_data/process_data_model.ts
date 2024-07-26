@@ -16,6 +16,12 @@ export class ProcessDataModel {
     return ProcessDataModel._singleton;
   }
 
+  /**
+   *
+   * @param unfoldOtherChoices
+   * useful for tables
+   * @returns
+   */
   public countChoices({
     answers,
     questionnaire,

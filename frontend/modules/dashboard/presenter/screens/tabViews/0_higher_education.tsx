@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Bar_chart_bim from "../../components/bar_chart";
 import Pie_chart_bim from "../../components/pie_chart";
-import { section1 } from "@/core/shared/constants/old_questions";
 import { useAppSelector } from "@/core/shared/redux/store";
 import { SectionName } from "@/core/shared/enums/questionnary_enum";
 import { IQuestionnaire } from "@/core/shared/types/postgresql_schema_types";
+import Table_survey from "../../components/table_survey";
 
 export default function Higher_educ_tabView() {
   /**Redux toolkit */
@@ -49,43 +49,59 @@ h-full gap-6 overflow-y-auto w-full"
         className="flex flex-row gap-6 w-full
    justify-evenly"
       >
-        <Bar_chart_bim sectionX={section1[1]} />
-        <Bar_chart_bim sectionX={section1[5]} />
+        <Bar_chart_bim questionnaire={questionnariesHigherEduc[1]} />
+        <Bar_chart_bim questionnaire={questionnariesHigherEduc[5]} />
       </div>
       <div
         className="flex flex-row gap-6 w-full
    justify-evenly"
       >
-        <Bar_chart_bim sectionX={section1[6]} increaseTextHeight />
-        <Bar_chart_bim sectionX={section1[7]} />
+        <Bar_chart_bim
+          questionnaire={questionnariesHigherEduc[6]}
+          increaseTextHeight
+        />
+        <Bar_chart_bim questionnaire={questionnariesHigherEduc[7]} />
       </div>
       <div
         className="flex flex-row gap-6 w-full
    justify-evenly"
       >
-        <Bar_chart_bim sectionX={section1[8]} />
-        <Bar_chart_bim sectionX={section1[9]} />
+        <Bar_chart_bim questionnaire={questionnariesHigherEduc[8]} />
+        <Bar_chart_bim questionnaire={questionnariesHigherEduc[9]} />
       </div>
       <div
         className="flex flex-row gap-6
    w-full justify-evenly"
       >
-        <Bar_chart_bim sectionX={section1[10]} />
-        <Bar_chart_bim sectionX={section1[11]} />
+        <Bar_chart_bim questionnaire={questionnariesHigherEduc[10]} />
+        <Bar_chart_bim questionnaire={questionnariesHigherEduc[11]} />
       </div>
       <div
         className="flex flex-row gap-6 w-full
    justify-evenly"
       >
-        <Bar_chart_bim sectionX={section1[12]} />
-        <Bar_chart_bim sectionX={section1[13]} />
+        <Bar_chart_bim questionnaire={questionnariesHigherEduc[12]} />
+        <Bar_chart_bim questionnaire={questionnariesHigherEduc[13]} />
       </div>
       <div
         className="flex flex-row gap-6 w-full
    justify-evenly"
       >
-        <Bar_chart_bim sectionX={section1[14]} />
-        <Bar_chart_bim sectionX={section1[15]} />
+        <Bar_chart_bim questionnaire={questionnariesHigherEduc[14]} />
+        <Bar_chart_bim questionnaire={questionnariesHigherEduc[15]} />
+      </div>
+      <div
+        className="flex flex-row gap-6 w-full
+justify-evenly "
+      >
+        <Pie_chart_bim questionnaire={questionnariesHigherEduc[16]} />
+        <Bar_chart_bim questionnaire={questionnariesHigherEduc[17]} />
+      </div>
+      <div
+        className="flex flex-row gap-6 w-full
+justify-evenly "
+      >
+        <Table_survey questionnaire={questionnariesHigherEduc[18]} />
       </div>
     </div>
   );

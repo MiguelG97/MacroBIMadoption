@@ -9,57 +9,60 @@ import {
 import { useAppDispatch, useAppSelector } from "@/core/shared/redux/store";
 
 import React, { useEffect, useState } from "react";
+import { IQuestionnaire } from "@/core/shared/types/postgresql_schema_types";
+import { ChartDataItem } from "@/core/shared/types/chart_types";
+import { ProcessDataModel } from "@/modules/dashboard/domain/process_data/process_data_model";
 
 export default function Table_survey({
-  sectionX,
+  questionnaire,
   isTableAlone = true,
 }: {
-  sectionX: any;
+  questionnaire: IQuestionnaire;
   isTableAlone?: boolean;
 }) {
-  const dispatch = useAppDispatch();
+  const { answers } = useAppSelector((state) => state.dbSlice);
 
-  const { value } = useAppSelector((state) => state.questionnaireSlice);
-  //states
-  const [questionnaire, setQuestionnarie] = useState<questionnaire>();
-
+  /**States */
+  const [tableData, setTableData] = useState<ChartDataItem[]>([]);
+  /**Effects */
   useEffect(() => {
-    //bussiness logic
-    const answerCounter: countAnswer | null = ProcessDataModel.oldprocessData(
-      sectionX,
-      true
+    if (answers.length === 0 || !questionnaire) return;
+    //filter the answers
+    const filteredAnswers = answers.filter(
+      (x) => x.questionId === questionnaire.questionId
     );
-    if (!answerCounter) return; //in case it's null
-    console.log(answerCounter);
 
-    //5) store the accumulated data and question name in a hook state
-    let finalValues = Object.values(answerCounter) as [
+    //bussiness logic
+    const choicesCounted = ProcessDataModel._shared.countChoices({
+      answers: filteredAnswers,
+      questionnaire,
+      unfoldOtherChoices: true,
+    });
+
+    //format the choices counted to conform to the chart data structure
+    let choicesCountedValues = Object.values(choicesCounted) as [
       {
-        answerName: string;
+        choice: string;
         count: number;
       }
     ];
 
     //reorder the data
-    finalValues = finalValues.sort((a, b) => b.count - a.count);
+    choicesCountedValues = choicesCountedValues.sort(
+      (a, b) => b.count - a.count
+    );
 
-    //Transform the data
-    let chartData: ChartDataItem[] = finalValues.map((x, index) => {
+    //change data format
+    const tableData: ChartDataItem[] = choicesCountedValues.map((x, id) => {
       return {
-        name: x.answerName,
+        name: x.choice,
         value: x.count,
-        id: index,
+        id,
       };
     });
-    setQuestionnarie({
-      question: sectionX.default,
-      chartData,
-    });
-  }, [value]);
 
-  useEffect(() => {
-    console.log(questionnaire?.chartData);
-  }, [questionnaire]);
+    setTableData(tableData);
+  }, [answers]);
 
   const columns: GridColDef[] = [
     {
@@ -110,14 +113,14 @@ export default function Table_survey({
     isTableAlone ? "max-w-[1400px]" : "max-w-[700px]"
   } `}
     >
-      {questionnaire && questionnaire.chartData.length > 0 && (
+      {tableData.length > 0 && (
         <>
           <div className="min-w-[400px] max-w-[600px] text-center">
             <p
               className="secondary_100 line-clamp-3 font-semibold
       text-[15px]"
             >
-              {questionnaire?.question}
+              {questionnaire.title}
             </p>
           </div>
 
@@ -127,7 +130,7 @@ export default function Table_survey({
           >
             <DataGrid
               sx={{ border: "0px solid black" }}
-              rows={questionnaire?.chartData.map((x, index) => {
+              rows={tableData.map((x, index) => {
                 x.id = index;
                 return x;
               })}
@@ -143,7 +146,7 @@ export default function Table_survey({
         </>
       )}
 
-      {questionnaire && questionnaire.chartData.length === 0 && (
+      {tableData.length === 0 && (
         <>
           <div
             className="h-[350px] animate-pulse flex flex-col

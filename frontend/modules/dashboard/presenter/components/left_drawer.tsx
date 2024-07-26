@@ -1,7 +1,4 @@
-import {
-  useAppDispatch,
-  useAppSelector,
-} from "@/core/shared/redux/store";
+import { useAppDispatch, useAppSelector } from "@/core/shared/redux/store";
 import {
   IconAffiliate,
   IconBook,
@@ -9,10 +6,7 @@ import {
   IconSchool,
   IconSearch,
 } from "@tabler/icons-react";
-import {
-  DM_Sans,
-  Poppins,
-} from "next/font/google";
+import { DM_Sans, Poppins } from "next/font/google";
 import { useState } from "react";
 import {
   setSelectedSectIndex,
@@ -41,23 +35,7 @@ export default function Left_drawer() {
       name: "Higher education programmes",
       icon: (
         <IconSchool
-          color={`${
-            selectedSectionIndex === 0
-              ? "#4318FF"
-              : "#A3AED0"
-          } `}
-        />
-      ),
-    },
-    {
-      name: "Academic research",
-      icon: (
-        <IconSearch
-          color={`${
-            selectedSectionIndex === 1
-              ? "#4318FF"
-              : "#A3AED0"
-          } `}
+          color={`${selectedSectionIndex === 0 ? "#4318FF" : "#A3AED0"} `}
         />
       ),
     },
@@ -65,11 +43,7 @@ export default function Left_drawer() {
       name: "Short BIM training courses",
       icon: (
         <IconBook
-          color={`${
-            selectedSectionIndex === 2
-              ? "#4318FF"
-              : "#A3AED0"
-          } `}
+          color={`${selectedSectionIndex === 1 ? "#4318FF" : "#A3AED0"} `}
         />
       ),
     },
@@ -77,11 +51,7 @@ export default function Left_drawer() {
       name: "Market-scale educational framework",
       icon: (
         <IconBuildingStore
-          color={`${
-            selectedSectionIndex === 3
-              ? "#4318FF"
-              : "#A3AED0"
-          } `}
+          color={`${selectedSectionIndex === 2 ? "#4318FF" : "#A3AED0"} `}
         />
       ),
     },
@@ -89,21 +59,14 @@ export default function Left_drawer() {
       name: "Collaboration between academia, government and industry",
       icon: (
         <IconAffiliate
-          color={`${
-            selectedSectionIndex === 4
-              ? "#4318FF"
-              : "#A3AED0"
-          } `}
+          color={`${selectedSectionIndex === 3 ? "#4318FF" : "#A3AED0"} `}
         />
       ),
     },
   ];
 
   //handlers
-  const onSectionClick = (
-    index: number,
-    sectionName: string
-  ) => {
+  const onSectionClick = (index: number, sectionName: string) => {
     dispatch(setSelectedSectIndex(index));
     dispatch(setSelectedSection(sectionName));
   };
@@ -141,9 +104,7 @@ pl-10 pr-8 py-14 flex flex-col gap-8 text-[#2B3674]`}
                 ? "border-r-[4px] border-r-[#4318FF] bg-[#f4f4f4]"
                 : ""
             }`}
-            onClick={() =>
-              onSectionClick(index, x.name)
-            }
+            onClick={() => onSectionClick(index, x.name)}
           >
             <div>{x.icon}</div>
             <p

@@ -1,9 +1,6 @@
 "use client";
 import { useAppDispatch } from "@/core/shared/redux/store";
-import {
-  IAnswerPostgres,
-  IAnswerSchema,
-} from "@/core/shared/types/section_Questionnarie";
+
 import { IExcelRowJson } from "@/core/utils/excel/excel_types";
 import { excelUtils } from "@/core/utils/excel/excel_util_model";
 import {

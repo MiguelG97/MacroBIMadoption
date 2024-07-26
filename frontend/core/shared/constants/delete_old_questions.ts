@@ -1,8 +1,6 @@
 //we need of answers section to filter from defined answers and other comments
 
-import { ISectionItem } from "../types/section_Questionnarie";
-
-export const section1: ISectionItem[] = [
+export const section1: any = [
   //0
   {
     question_id: 1662403538119,
@@ -217,7 +215,7 @@ export const section1: ISectionItem[] = [
   },
 ];
 
-export const section2: ISectionItem[] = [
+export const section2: any[] = [
   {
     question_id: 1662416269541,
     es: "¿El programa identificado en el apartado anterior genera investigación relacionada con BIM?",
@@ -249,7 +247,7 @@ export const section2: ISectionItem[] = [
   },
 ];
 
-export const section34: ISectionItem[] = [
+export const section34: any[] = [
   {
     question_id: 1662406986498,
     default:
@@ -322,7 +320,7 @@ export const section34: ISectionItem[] = [
   },
 ];
 
-export const section5: ISectionItem[] = [
+export const section5: any[] = [
   {
     question_id: 1662406986478,
     es: "¿Existen cursos breves de Formación BIM (por ejemplo, cursos de desarrollo profesional continuo) en su región?",
@@ -375,7 +373,7 @@ export const section5: ISectionItem[] = [
   },
 ];
 
-export const section6: ISectionItem[] = [
+export const section6: any[] = [
   {
     question_id: 1696216528318,
     es: "¿Existe alguna colaboración formal entre la academia, el gobierno y/o la industria con el fin de mejorar la Competencia BIM?",

@@ -40,7 +40,7 @@ export default function Pie_chart_bim({
   /**Use effects */
   //get the answers that are linked to this questionnaire
   useEffect(() => {
-    if (answers.length === 0) return;
+    if (answers.length === 0 || !questionnaire) return;
 
     //filter the answers
     const filteredAnswers = answers.filter(
