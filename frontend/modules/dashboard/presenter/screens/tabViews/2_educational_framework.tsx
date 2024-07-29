@@ -16,6 +16,8 @@ export default function Educ_framework_tabView() {
   /**Effects */
   //get all the questionnaires and render 1 chart per each questionnaire that belongs to this section
   useEffect(() => {
+    if (questionnaires.length === 0) return;
+
     const filteredQuestionnaires = questionnaires.filter(
       (x) => x.sectionName === SectionName.Educational_framework
     );

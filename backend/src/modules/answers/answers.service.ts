@@ -24,7 +24,7 @@ export class AnswersService {
   }
   async createMany(createManyAnswersInput: CreateManyAnswersInput) {
     try {
-      const newAnswers = this.prismaClient.answers.createManyAndReturn({
+      const newAnswers = this.prismaClient.answers.createMany({
         data: createManyAnswersInput.createAnswersInput,
       });
       return newAnswers;

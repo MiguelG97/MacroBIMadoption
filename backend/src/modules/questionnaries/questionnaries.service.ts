@@ -25,10 +25,11 @@ export class QuestionnariesService {
     createManyQuestionnariesInput: CreateManyQuestionnariesInput,
   ) {
     try {
-      const newQuestionnary =
-        await this.prismaClient.questionnaries.createManyAndReturn({
+      const newQuestionnary = await this.prismaClient.questionnaries.createMany(
+        {
           data: createManyQuestionnariesInput.questionnariesInput,
-        });
+        },
+      );
       return newQuestionnary;
     } catch (error) {
       console.log(error);

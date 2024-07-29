@@ -73,7 +73,7 @@ export default function Pie_chart_bim({
       };
     });
     setChartData(chartData);
-  }, [answers]);
+  }, [answers, questionnaire]); //weird shit, it's not enough passing answers, since the first and answer render, the questionnaire is not ready yet!
 
   /**Handlers */
   const onMouseMovePieChart = (e: CategoricalChartState) => {

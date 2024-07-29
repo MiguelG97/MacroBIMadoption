@@ -22,7 +22,7 @@ export class UsersService {
   async createMany(createManyUsersInput: CreateManyUsersInput) {
     try {
       //use the createManyAndReturn since graphql demands for returning sth always!
-      const newUsers = await this.prismaClient.users.createManyAndReturn({
+      const newUsers = await this.prismaClient.users.createMany({
         data: createManyUsersInput.manyUsersInput,
       });
       return newUsers;

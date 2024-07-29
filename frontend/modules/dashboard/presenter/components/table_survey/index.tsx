@@ -62,7 +62,7 @@ export default function Table_survey({
     });
 
     setTableData(tableData);
-  }, [answers]);
+  }, [answers, questionnaire]);
 
   const columns: GridColDef[] = [
     {

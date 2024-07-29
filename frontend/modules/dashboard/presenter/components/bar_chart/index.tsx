@@ -111,7 +111,7 @@ export default function Bar_chart_bim({
     //only pick the first 5 values!
     chartData = chartData.slice(0, 5);
     setChartData(chartData);
-  }, [answers]);
+  }, [answers, questionnaire]);
   /**handlers*/
   const onMouseMoveBarChart = (e: CategoricalChartState) => {
     if (!e.activeLabel) return;

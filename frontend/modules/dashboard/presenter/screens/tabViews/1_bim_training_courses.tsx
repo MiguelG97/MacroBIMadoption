@@ -16,11 +16,14 @@ export default function Bim_training_tabView() {
   /**Effects */
   //get all the questionnaires and render 1 chart per each questionnaire that belongs to this section
   useEffect(() => {
+    if (questionnaires.length === 0) return;
+
     const filteredQuestionnaires = questionnaires.filter(
       (x) => x.sectionName === SectionName.Training_courses
     );
     setQstTrainingCourses(filteredQuestionnaires);
   }, [questionnaires]);
+
   return (
     <div
       className="flex flex-col p-6 
