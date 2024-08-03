@@ -99,7 +99,7 @@ export default function Bar_chart_bim({
         <>
           <div className="min-w-[400px] max-w-[600px] text-center">
             <p
-              className={`secondary_100 line-clamp-3 font-semibold
+              className={`text-black line-clamp-3 font-semibold
       text-[15px] ${increaseTextHeight && "px-4"}`}
             >
               {questionnaire.title}

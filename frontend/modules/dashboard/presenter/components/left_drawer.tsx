@@ -72,7 +72,7 @@ export default function Left_drawer() {
   };
   return (
     <div
-      className={`w-[290px] min-w-[290px]  
+      className={`w-[290px] min-w-[290px]  bg-white
 pl-10 pr-8 py-14 flex flex-col gap-8 text-[#2B3674]`}
     >
       {/* 1) title */}
@@ -89,7 +89,6 @@ pl-10 pr-8 py-14 flex flex-col gap-8 text-[#2B3674]`}
       <div className="h-1 border-t-[1px] ml-[-40px] mr-[-32px]"></div>
 
       {/* 3) sections */}
-      {/* <p className="primary_100">Sections</p> */}
       <div
         className={`flex flex-col gap-3 ${dmSans.className} 
         mr-[-32px]`}
@@ -101,7 +100,7 @@ pl-10 pr-8 py-14 flex flex-col gap-8 text-[#2B3674]`}
             rounded-l-xl duration-500 cursor-pointer 
             ${
               selectedSectionIndex === index
-                ? "border-r-[4px] border-r-[#4318FF] bg-[#f4f4f4]"
+                ? "border-r-[4px] border-r-mpurple bg-bgneutral-100"
                 : ""
             }`}
             onClick={() => onSectionClick(index, x.name)}

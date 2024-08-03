@@ -95,7 +95,7 @@ export default function Pie_chart_bim({
         <>
           <div className="text-center min-w-[400px] max-w-[600px]">
             <p
-              className={`secondary_100 line-clamp-3 font-semibold
+              className={`text-black line-clamp-3 font-semibold
       text-[15px] ${increaseTextHeight && "px-3"}`}
             >
               {questionnaire.title}
