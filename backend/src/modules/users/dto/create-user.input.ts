@@ -21,8 +21,8 @@ export class CreateUserInput {
   @Field()
   country: string;
 
-  @Field({ nullable: true })
-  academicProgram?: string;
+  @Field(() => [String], { nullable: true })
+  academicProgram?: string[];
 
   //relations?? I do not think we need to fill this field
 }

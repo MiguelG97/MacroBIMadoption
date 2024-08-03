@@ -20,8 +20,8 @@ export class User {
   @Field()
   country: string;
 
-  @Field({ nullable: true })
-  academicProgram?: string;
+  @Field(() => [String], { nullable: true })
+  academicProgram?: string[];
 
   //relations
   @Field(() => [Answer])
