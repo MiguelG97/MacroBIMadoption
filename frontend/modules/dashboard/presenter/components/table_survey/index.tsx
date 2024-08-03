@@ -117,7 +117,7 @@ export default function Table_survey({
         <>
           <div className="min-w-[400px] max-w-[600px] text-center">
             <p
-              className="text-black line-clamp-3 font-semibold
+              className="text-txcolor-100 line-clamp-3 font-semibold
       text-[15px]"
             >
               {questionnaire.title}

@@ -32,7 +32,7 @@ export default function Left_drawer() {
   //constants
   const sections = [
     {
-      name: "Higher education programmes",
+      name: "Higher Education Programmes",
       icon: (
         <IconSchool
           color={`${selectedSectionIndex === 0 ? "#4318FF" : "#A3AED0"} `}
@@ -40,7 +40,7 @@ export default function Left_drawer() {
       ),
     },
     {
-      name: "Short BIM training courses",
+      name: "Short BIM Training Courses",
       icon: (
         <IconBook
           color={`${selectedSectionIndex === 1 ? "#4318FF" : "#A3AED0"} `}
@@ -48,7 +48,7 @@ export default function Left_drawer() {
       ),
     },
     {
-      name: "Market-scale educational framework",
+      name: "Market-Scale Educational Framework",
       icon: (
         <IconBuildingStore
           color={`${selectedSectionIndex === 2 ? "#4318FF" : "#A3AED0"} `}
@@ -56,7 +56,7 @@ export default function Left_drawer() {
       ),
     },
     {
-      name: "Collaboration between academia, government and industry",
+      name: "Collaboration between Academia, Government and Industry",
       icon: (
         <IconAffiliate
           color={`${selectedSectionIndex === 3 ? "#4318FF" : "#A3AED0"} `}
