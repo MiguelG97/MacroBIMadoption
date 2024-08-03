@@ -5,7 +5,7 @@ export default function Search_filter() {
   return (
     <div
       className="flex bg-white rounded-[30px] px-4   mr-[10px]
-    h-[42px] items-center gap-4"
+    h-[44px] items-center gap-4"
     >
       <div
         className="bg-bgneutral-200 rounded-[50px] px-4 py-[6px] ml-[-4px]
