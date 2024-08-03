@@ -25,7 +25,7 @@ export default function Higher_educ_tabView() {
   }, [questionnaires]);
   return (
     <div
-      className="flex flex-col p-6 
+      className="flex flex-col px-6 pb-6 pt-2 
 h-full gap-6 overflow-y-auto w-full"
     >
       <div
