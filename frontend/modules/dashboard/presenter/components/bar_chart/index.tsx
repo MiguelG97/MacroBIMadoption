@@ -60,41 +60,6 @@ export default function Bar_chart_bim({
       }
     ];
 
-    //switch Others by None
-    //   finalValues = finalValues.map((x) => {
-    //     const listNone = [13, 14, 15]; //those only correspond for section1, no indication received yet for other sections!
-    //     let indexNone = section1.findIndex(
-    //       (v) => v.question_id === sectionX.question_id
-    //     );
-    //     indexNone =
-    //       indexNone < 0
-    //         ? section2.findIndex((v) => v.question_id === sectionX.question_id)
-    //         : indexNone;
-    //     indexNone =
-    //       indexNone < 0
-    //         ? section5.findIndex((v) => v.question_id === sectionX.question_id)
-    //         : indexNone;
-    //     indexNone =
-    //       indexNone < 0
-    //         ? section6.findIndex((v) => v.question_id === sectionX.question_id)
-    //         : indexNone;
-
-    //     if (
-    //       indexNone > 0 &&
-    //       listNone.includes(indexNone) &&
-    //       x.answerName.toLowerCase() === "others"
-    //     ) {
-    //       x.answerName = "None";
-    //     }
-
-    //     return x;
-    //   }) as [
-    //     {
-    //       answerName: string;
-    //       count: number;
-    //     }
-    //   ];
-
     //reorder the data
     choicesCountedValues = choicesCountedValues.sort(
       (a, b) => b.count - a.count
@@ -116,9 +81,11 @@ export default function Bar_chart_bim({
   const onMouseMoveBarChart = (e: CategoricalChartState) => {
     if (!e.activeLabel) return;
 
-    if (chartData.length === activeToolTipAccumValue) return;
+    let accValue = 0;
+    chartData.forEach((x) => (accValue += x.value));
+    if (accValue === activeToolTipAccumValue) return; //it's still the same pie chart
 
-    dispatch(setActiveTooltipAccValue(chartData.length));
+    dispatch(setActiveTooltipAccValue(accValue));
   };
   return (
     <div

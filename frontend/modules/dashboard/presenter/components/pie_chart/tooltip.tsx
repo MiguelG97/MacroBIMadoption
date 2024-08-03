@@ -2,13 +2,11 @@ import { useAppSelector } from "@/core/shared/redux/store";
 import { Props } from "recharts/types/component/DefaultTooltipContent";
 
 export default function Render_Tooltip(
-  props: Props<
-    number | string | Array<number | string>,
-    number | string
-  >
+  props: Props<number | string | Array<number | string>, number | string>
 ) {
-  const { activeToolTipAccumValue } =
-    useAppSelector((state) => state.sectionQst);
+  const { activeToolTipAccumValue } = useAppSelector(
+    (state) => state.sectionQst
+  );
 
   if (
     !props.payload ||
@@ -17,7 +15,6 @@ export default function Render_Tooltip(
   )
     return null;
   const { payload } = props;
-  console.log(payload);
   //there is no access to the total accumulated number!
   return (
     <div

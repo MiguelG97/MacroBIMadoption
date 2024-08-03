@@ -77,11 +77,13 @@ export default function Pie_chart_bim({
 
   /**Handlers */
   const onMouseMovePieChart = (e: CategoricalChartState) => {
-    if (!e.activeLabel) return;
+    if (!e.activeLabel) return; //only when hovered on a pie chart section
 
-    if (chartData.length === activeToolTipAccumValue) return;
+    let accValue = 0;
+    chartData.forEach((x) => (accValue += x.value));
+    if (accValue === activeToolTipAccumValue) return; //it's still the same pie chart
 
-    dispatch(setActiveTooltipAccValue(chartData.length));
+    dispatch(setActiveTooltipAccValue(accValue));
   };
   return (
     <div

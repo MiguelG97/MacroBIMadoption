@@ -45,7 +45,7 @@ export class ProcessDataModel {
 
     //2) count all the answers
     for (const answer of answers) {
-      //2.1) Filtering blank spaces
+      //2.1) FILTERING BLANK SPACES!! [SKIP]
       const userInput: string | undefined = answer.userAnswer;
       if (!userInput || userInput === "") continue;
 
@@ -81,9 +81,12 @@ export class ProcessDataModel {
     //3) add the other choices to the choiceCounter
     //3.1) if its count is greater than 0 & it's not required to be unfolded
     if (otherChoices.length > 0 && !unfoldOtherChoices) {
+      //questionIds that require Others to be named as None, how about Simulating and Quantifying??
+      const qNoneIds: number[] = [1665080678817, 1665080678815, 1665080678819];
+
       //assuming the others is always at the end of the list
       choiceCounter[Object.keys(choiceCounter).length] = {
-        choice: "Others",
+        choice: qNoneIds.includes(questionnaire.questionId) ? "None" : "Others",
         count: otherChoices.length,
       };
     }
