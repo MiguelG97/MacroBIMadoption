@@ -62,7 +62,7 @@ input CreateQuestionnaryInput {
 }
 
 input CreateUserInput {
-  academicProgram: [String!]!
+  academicProgramme: [String!]
   country: String!
   userEmail: String!
   userId: Float!
@@ -103,7 +103,7 @@ type Questionnary {
 }
 
 input UpdateUserInput {
-  academicProgram: [String!]
+  academicProgramme: [String!]
   country: String
   userEmail: String
   userId: Int!
@@ -112,7 +112,7 @@ input UpdateUserInput {
 }
 
 type User {
-  academicProgram: [String!]
+  academicProgramme: [String!]
   answers: [Answer!]!
   country: String!
   userEmail: String!
