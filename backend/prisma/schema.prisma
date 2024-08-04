@@ -76,7 +76,7 @@ model Users {
   userName        String
   userLabels      String?
   country         String
-  academicProgram String[] //it returns null sometimes, make it @default("")??
+  academicProgram String? //it returns null sometimes, make it @default("")??
 
   //relations (to another model):
   answers Answers[]
