@@ -22,7 +22,7 @@ generator client {
 datasource db {
   provider  = "postgresql"
   // url      = env("POSTGRES_LOCAL_URL")
-  
+
   url       = env("POSTGRES_PRISMA_URL")
   directUrl = env("POSTGRES_URL_NON_POOLING") //this has higher priority than url!! watch out!
 }
@@ -77,7 +77,7 @@ model Users {
   userName        String
   userLabels      String?
   country         String
-  academicProgram String[] //it returns null sometimes, make it @default("")??
+  academicProgramme String[] //it returns null sometimes, make it @default("")??
 
   //relations (to another model):
   answers Answers[]
