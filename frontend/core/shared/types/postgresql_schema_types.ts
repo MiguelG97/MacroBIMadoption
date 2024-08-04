@@ -29,5 +29,5 @@ export interface IUser {
   userName: string;
   userLabels: string;
   country: string;
-  academicProgram?: string;
+  academicProgram?: string[];
 }

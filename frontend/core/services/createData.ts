@@ -94,7 +94,7 @@ export class CreateData {
         userName: x["User Name"],
         userLabels: x["User Labels"],
         country: "brazil", //set this manually??
-        academicProgram: [], //depending upon an answer
+        // academicProgram: [], //depending upon an answer
       };
       userModels.push(user);
     });

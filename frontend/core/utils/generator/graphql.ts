@@ -77,7 +77,7 @@ export type CreateQuestionnaryInput = {
 };
 
 export type CreateUserInput = {
-  academicProgram?: InputMaybe<Scalars['String']['input']>;
+  academicProgram?: InputMaybe<Array<Scalars['String']['input']>>;
   country: Scalars['String']['input'];
   userEmail: Scalars['String']['input'];
   userId: Scalars['Float']['input'];
@@ -93,6 +93,7 @@ export type Mutation = {
   createQuestionnary: Questionnary;
   createUser: User;
   createUsers: Array<User>;
+  updateUser: User;
 };
 
 
@@ -123,6 +124,11 @@ export type MutationCreateUserArgs = {
 
 export type MutationCreateUsersArgs = {
   createManyUsersInput: CreateManyUsersInput;
+};
+
+
+export type MutationUpdateUserArgs = {
+  updateUserInput: UpdateUserInput;
 };
 
 export type Query = {
@@ -179,9 +185,18 @@ export type Questionnary = {
   title: Scalars['String']['output'];
 };
 
+export type UpdateUserInput = {
+  academicProgram?: InputMaybe<Array<Scalars['String']['input']>>;
+  country?: InputMaybe<Scalars['String']['input']>;
+  userEmail?: InputMaybe<Scalars['String']['input']>;
+  userId: Scalars['Int']['input'];
+  userLabels?: InputMaybe<Scalars['String']['input']>;
+  userName?: InputMaybe<Scalars['String']['input']>;
+};
+
 export type User = {
   __typename?: 'User';
-  academicProgram?: Maybe<Scalars['String']['output']>;
+  academicProgram?: Maybe<Array<Scalars['String']['output']>>;
   answers: Array<Answer>;
   country: Scalars['String']['output'];
   userEmail: Scalars['String']['output'];
@@ -223,14 +238,14 @@ export type CreateUserMutationVariables = Exact<{
 }>;
 
 
-export type CreateUserMutation = { __typename?: 'Mutation', createUser: { __typename?: 'User', academicProgram?: string | null, country: string, userEmail: string, userId: number, userLabels?: string | null, userName: string } };
+export type CreateUserMutation = { __typename?: 'Mutation', createUser: { __typename?: 'User', academicProgram?: Array<string> | null, country: string, userEmail: string, userId: number, userLabels?: string | null, userName: string } };
 
 export type CreateUsersMutationVariables = Exact<{
   createManyUsersInput: CreateManyUsersInput;
 }>;
 
 
-export type CreateUsersMutation = { __typename?: 'Mutation', createUsers: Array<{ __typename?: 'User', academicProgram?: string | null, country: string, userEmail: string, userId: number, userLabels?: string | null, userName: string }> };
+export type CreateUsersMutation = { __typename?: 'Mutation', createUsers: Array<{ __typename?: 'User', academicProgram?: Array<string> | null, country: string, userEmail: string, userId: number, userLabels?: string | null, userName: string }> };
 
 export type FindAllAnswersQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -273,21 +288,21 @@ export type FindManyQuestionnariesQuery = { __typename?: 'Query', findManyQuesti
 export type FindAllUsersQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type FindAllUsersQuery = { __typename?: 'Query', findAllUsers: Array<{ __typename?: 'User', academicProgram?: string | null, country: string, userEmail: string, userId: number, userLabels?: string | null, userName: string }> };
+export type FindAllUsersQuery = { __typename?: 'Query', findAllUsers: Array<{ __typename?: 'User', academicProgram?: Array<string> | null, country: string, userEmail: string, userId: number, userLabels?: string | null, userName: string }> };
 
 export type FindOneUserQueryVariables = Exact<{
   userId: Scalars['Int']['input'];
 }>;
 
 
-export type FindOneUserQuery = { __typename?: 'Query', findOneUser: { __typename?: 'User', academicProgram?: string | null, country: string, userEmail: string, userId: number, userLabels?: string | null, userName: string } };
+export type FindOneUserQuery = { __typename?: 'Query', findOneUser: { __typename?: 'User', academicProgram?: Array<string> | null, country: string, userEmail: string, userId: number, userLabels?: string | null, userName: string } };
 
 export type FindManyUsersQueryVariables = Exact<{
   userIds: Array<Scalars['Int']['input']> | Scalars['Int']['input'];
 }>;
 
 
-export type FindManyUsersQuery = { __typename?: 'Query', findManyUsers: Array<{ __typename?: 'User', academicProgram?: string | null, country: string, userEmail: string, userId: number, userLabels?: string | null, userName: string }> };
+export type FindManyUsersQuery = { __typename?: 'Query', findManyUsers: Array<{ __typename?: 'User', academicProgram?: Array<string> | null, country: string, userEmail: string, userId: number, userLabels?: string | null, userName: string }> };
 
 
 export const CreateAnswerDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"CreateAnswer"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"createAnswerInput"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"CreateAnswerInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"createAnswer"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"createAnswerInput"},"value":{"kind":"Variable","name":{"kind":"Name","value":"createAnswerInput"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"assigAuditor"}},{"kind":"Field","name":{"kind":"Name","value":"auditorNote"}},{"kind":"Field","name":{"kind":"Name","value":"hashtags"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"questionId"}},{"kind":"Field","name":{"kind":"Name","value":"questionTitle"}},{"kind":"Field","name":{"kind":"Name","value":"stateLabels"}},{"kind":"Field","name":{"kind":"Name","value":"userId"}},{"kind":"Field","name":{"kind":"Name","value":"userAnswer"}},{"kind":"Field","name":{"kind":"Name","value":"userEmail"}}]}}]}}]} as unknown as DocumentNode<CreateAnswerMutation, CreateAnswerMutationVariables>;
