@@ -21,6 +21,7 @@ export class CreateUserInput {
   @Field()
   country: string;
 
+  @IsArray()
   @Field(() => [String], { nullable: true })
   academicProgram?: string[];
 
