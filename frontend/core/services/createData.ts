@@ -9,10 +9,12 @@ export class CreateData {
     mutationCreateQuestionnaries,
     mutationCreateUsers,
     mutationCreateAnswer,
+    mutationCreateAnswers,
   }: {
     mutationCreateQuestionnaries: any;
     mutationCreateUsers: any;
     mutationCreateAnswer: any;
+    mutationCreateAnswers: any;
   }) {
     const workbook = await excelUtils.readExcel();
     const sheets = workbook?.Sheets;
@@ -121,20 +123,28 @@ export class CreateData {
         //those not appear in excel questionnary sheet either
         1697541525184,
       ];
+      //do not use this individual mutation since takes a lot, only use it for debuging errors
+      const filteredAnswerModels: IAnswer[] = [];
       for (let i = 0; i < answerModels.length; i++) {
         if (qIdsToIgnore.includes(answerModels[i].questionId)) continue;
-        await mutationCreateAnswer({
-          variables: {
-            createAnswerInput: answerModels[i],
-          },
-          onError: (error: any) => {
-            failedAnswersIndexes.push({
-              index: i,
-              error: error.graphQLErrors,
-            });
-          },
-        });
+        filteredAnswerModels.push(answerModels[i]);
+        // await mutationCreateAnswer({
+        //   variables: {
+        //     createAnswerInput: answerModels[i],
+        //   },
+        //   onError: (error: any) => {
+        //     failedAnswersIndexes.push({
+        //       index: i,
+        //       error: error.graphQLErrors,
+        //     });
+        //   },
+        // });
       }
+      await mutationCreateAnswers({
+        variables: {
+          createManyAnswersInput: { createAnswersInput: filteredAnswerModels },
+        },
+      });
       console.log(failedAnswersIndexes);
     } catch {}
   }

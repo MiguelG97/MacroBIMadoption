@@ -7,6 +7,8 @@
   "license": "UNLICENSED",
   "scripts": {
     "generate": "npx prisma generate",
+    "prisma:down": "npx prisma migrate diff --from-schema-datamodel prisma/schema.prisma --to-schema-datasource prisma/schema.prisma --script > down.sql",
+    "prisma:up": "prisma migrate dev --name default",
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",

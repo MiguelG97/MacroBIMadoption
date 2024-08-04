@@ -52,38 +52,38 @@ export default function Home() {
   const dispatch = useAppDispatch();
 
   /**Grahpql Mutations */
-  // const [mutationCreateAnswers] = useMutation(mCreateAnswers, {
-  //   onCompleted: (data) => {
-  //     console.log(data);
-  //   },
-  //   onError: (error) => {
-  //     console.log(error.message, error.graphQLErrors);
-  //   },
-  // });
-  // const [mutationCreateUsers] = useMutation(mCreateUsers, {
-  //   onCompleted: (data) => {
-  //     console.log(data);
-  //   },
-  //   onError: (error) => {
-  //     console.log(error.message, error.graphQLErrors);
-  //   },
-  // });
-  // const [mutationCreateQuestionnaries] = useMutation(mCreateQuestionnaries, {
-  //   onCompleted: (data) => {
-  //     console.log(data);
-  //   },
-  //   onError: (error) => {
-  //     console.log(error.message, error.graphQLErrors);
-  //   },
-  // });
-  // const [mutationCreateAnswer] = useMutation(mCreateAnswer, {
-  //   onCompleted: (data) => {
-  //     console.log(data);
-  //   },
-  //   onError: (error) => {
-  //     console.log(error.message, error.graphQLErrors);
-  //   },
-  // });
+  const [mutationCreateAnswers] = useMutation(mCreateAnswers, {
+    onCompleted: (data) => {
+      console.log(data);
+    },
+    onError: (error) => {
+      console.log(error.message, error.graphQLErrors);
+    },
+  });
+  const [mutationCreateUsers] = useMutation(mCreateUsers, {
+    onCompleted: (data) => {
+      console.log(data);
+    },
+    onError: (error) => {
+      console.log(error.message, error.graphQLErrors);
+    },
+  });
+  const [mutationCreateQuestionnaries] = useMutation(mCreateQuestionnaries, {
+    onCompleted: (data) => {
+      console.log(data);
+    },
+    onError: (error) => {
+      console.log(error.message, error.graphQLErrors);
+    },
+  });
+  const [mutationCreateAnswer] = useMutation(mCreateAnswer, {
+    onCompleted: (data) => {
+      console.log(data);
+    },
+    onError: (error) => {
+      console.log(error.message, error.graphQLErrors);
+    },
+  });
 
   /**Grahpql Queries */
   useQuery(qFindAllAnswers, {
@@ -108,10 +108,13 @@ export default function Home() {
   /**Pre process data to send it to postgresql db */
   useEffect(() => {
     //Send data from excel to postgresql
-    // CreateData.sendExcelDataToPostgresql({mutationCreateAnswer,mutationCreateQuestionnaries,mutationCreateUsers})
-
+    // CreateData.sendExcelDataToPostgresql({
+    //   mutationCreateAnswer,
+    //   mutationCreateQuestionnaries,
+    //   mutationCreateUsers,mutationCreateAnswers
+    // });
     //update academic programme data
-    UpdateData.updateAcademicProgramme();
+    // UpdateData.updateAcademicProgramme();
   }, []);
   // return <div>hey</div>;
   return <DashboardScreen />;
