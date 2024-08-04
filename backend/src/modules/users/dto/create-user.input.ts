@@ -22,9 +22,9 @@ export class CreateUserInput {
   country: string;
 
   @IsArray()
-  @Field()
-  // @Field(() => [String])
-  academicProgram?: string;
+  // @Field()
+  @Field(() => [String], { nullable: true })
+  academicProgram?: string[];
 
   //relations?? I do not think we need to fill this field
 }
