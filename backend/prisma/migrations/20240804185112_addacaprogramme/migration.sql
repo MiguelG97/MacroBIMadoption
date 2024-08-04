@@ -6,4 +6,4 @@
 */
 -- AlterTable
 ALTER TABLE "Users" DROP COLUMN "bimAcademicProgram",
-ADD COLUMN     "academicProgram" TEXT;
+ADD COLUMN     "academicProgram" TEXT[];

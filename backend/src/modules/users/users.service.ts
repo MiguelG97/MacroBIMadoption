@@ -24,14 +24,7 @@ export class UsersService {
     try {
       //use the createManyAndReturn since graphql demands for returning sth always!
       const newUsers = await this.prismaClient.users.createManyAndReturn({
-        data: createManyUsersInput.manyUsersInput.map((x) => ({
-          country: x.country,
-          userEmail: x.userEmail,
-          userId: x.userId,
-          userName: x.userName,
-          academicProgram: x.academicProgram,
-          userLabels: x.userLabels,
-        })),
+        data: createManyUsersInput.manyUsersInput,
       });
 
       return newUsers;
