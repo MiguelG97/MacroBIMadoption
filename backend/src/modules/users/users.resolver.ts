@@ -31,7 +31,8 @@ export class UsersResolver {
   async createUsers(
     @Args('createManyUsersInput') createManyUsersInput: CreateManyUsersInput,
   ) {
-    return await this.usersService.createMany(createManyUsersInput);
+    const result = await this.usersService.createMany(createManyUsersInput);
+    return result;
   }
 
   @Query(() => [User], { name: 'findAllUsers' })
