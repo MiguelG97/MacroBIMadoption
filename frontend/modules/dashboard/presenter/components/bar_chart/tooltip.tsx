@@ -25,10 +25,13 @@ export default function Render_Tooltip(
     >
       <p className="text-[1.4rem]">{payload[0].payload.name}</p>
 
-      <p className="text-[1.4rem]">{`${(
-        ((payload[0].value as number) * 100) /
-        activeToolTipAccumValue
-      ).toFixed(1)}%`}</p>
+      <div className="text-[1.4rem] flex gap-2">
+        <p className="text-[1.4rem]">{`${(
+          ((payload[0].value as number) * 100) /
+          activeToolTipAccumValue
+        ).toFixed(1)}%`}</p>
+        <p>{`(${payload[0].value})`}</p>
+      </div>
     </div>
   );
 }
