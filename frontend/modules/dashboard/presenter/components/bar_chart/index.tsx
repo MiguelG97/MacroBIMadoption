@@ -137,8 +137,16 @@ export default function Bar_chart_bim({
                   domain={[
                     0,
                     (dataMax: number) => {
-                      const rest = dataMax % 5;
-                      return dataMax + 5 - rest;
+                      if (dataMax > 8) {
+                        let originalTick = dataMax / 4;
+                        const rest = originalTick % 5;
+                        if (rest > 0) {
+                          originalTick += 5 - rest;
+                        }
+                        return originalTick * 4;
+                      } else {
+                        return 8;
+                      }
                     },
                   ]}
                   axisLine={false}
@@ -146,6 +154,10 @@ export default function Bar_chart_bim({
                   type="number"
                   dataKey={"value"}
                   fontSize={"1.6rem"}
+                  tickCount={5}
+                  minTickGap={5}
+                  // ticks={[0, 5, 10, 15, 20]}
+                  // interval={"preserveStartEnd"}
                 />
                 <YAxis
                   width={fullWidth ? 520 : 360}
