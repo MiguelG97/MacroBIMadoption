@@ -74,14 +74,14 @@ export default function Table_survey({
         return (
           <div
             className="text-[#A3AED0]  font-medium
-          tracking-[2px]"
+          tracking-[2px] text-[1.4rem]"
           >
             ITEM
           </div>
         );
       },
       renderCell: (params: GridRenderCellParams) => {
-        return <p className="opacity-60">{params.value + 1}</p>;
+        return <p className="opacity-60 text-[1.4rem]">{params.value + 1}</p>;
       },
     },
     {
@@ -93,14 +93,14 @@ export default function Table_survey({
         return (
           <div
             className="text-[#A3AED0]  font-medium
-          tracking-[2px]"
+          tracking-[2px] text-[1.4rem]"
           >
             REPOSITORY
           </div>
         );
       },
       renderCell: (params: GridRenderCellParams) => {
-        return <p className="">{params.value}</p>;
+        return <p className="text-[1.4rem]">{params.value}</p>;
       },
     },
   ];
@@ -115,7 +115,10 @@ export default function Table_survey({
     >
       {tableData.length > 0 && (
         <>
-          <div className="min-w-[400px] max-w-[600px] text-center">
+          <div
+            className="min-w-[400px] max-w-[600px] text-center
+          h-[3.45rem]"
+          >
             <p
               className="text-txcolor-100 line-clamp-3 font-semibold
       text-[15px]"

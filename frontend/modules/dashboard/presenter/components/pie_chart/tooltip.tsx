@@ -18,13 +18,13 @@ export default function Render_Tooltip(
   //there is no access to the total accumulated number!
   return (
     <div
-      className="w-min h-min flex bg-[#f4f7fe] p-4
-      rounded-xl backdrop-blur-2xl bg-opacity-10 gap-4
+      className="w-min h-min flex bg-[#f4f7fe] p-[1.6rem]
+      rounded-[1.2rem] backdrop-blur-2xl bg-opacity-10 gap-[1.6rem]
       items-center"
     >
-      <p className="">{payload[0].name}</p>
+      <p className="text-[1.4rem]">{payload[0].name}</p>
 
-      <p>{`${(
+      <p className="text-[1.4rem]">{`${(
         ((payload[0].value as number) * 100) /
         activeToolTipAccumValue
       ).toFixed(1)}%`}</p>

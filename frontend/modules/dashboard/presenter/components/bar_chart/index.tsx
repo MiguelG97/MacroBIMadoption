@@ -97,7 +97,10 @@ export default function Bar_chart_bim({
     >
       {chartData.length > 0 && (
         <>
-          <div className="min-w-[400px] max-w-[600px] text-center">
+          <div
+            className="min-w-[400px] max-w-[600px] text-center
+          h-[3.45rem]"
+          >
             <p
               className={`text-txcolor-100 line-clamp-3 font-semibold
       text-[15px] ${increaseTextHeight && "px-4"}`}
@@ -140,6 +143,7 @@ export default function Bar_chart_bim({
                   tickLine={false}
                   type="number"
                   dataKey={"value"}
+                  fontSize={"1.6rem"}
                 />
                 <YAxis
                   width={fullWidth ? 520 : 360}

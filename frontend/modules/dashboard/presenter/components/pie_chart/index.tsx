@@ -95,7 +95,7 @@ export default function Pie_chart_bim({
         <>
           <div
             className="text-center min-w-[400px] max-w-[600px]
-          h-[34.5px]"
+          h-[3.45rem]"
           >
             <p
               className={`text-txcolor-100 line-clamp-3 font-semibold
@@ -114,6 +114,7 @@ export default function Pie_chart_bim({
             <ResponsiveContainer>
               <PieChart onMouseMove={onMouseMovePieChart}>
                 <Pie
+                  fontSize={"1.6rem"}
                   data={chartData}
                   paddingAngle={5}
                   label
