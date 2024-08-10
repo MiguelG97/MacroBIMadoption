@@ -22,11 +22,11 @@ import { ChartDataItem } from "@/core/shared/types/chart_types";
 export default function Pie_chart_bim({
   questionnaire,
   increaseHeight = false,
-  increaseTextHeight = false,
+  isThreeLinesHeadline = false,
 }: {
   questionnaire: IQuestionnaire;
   increaseHeight?: boolean;
-  increaseTextHeight?: boolean;
+  isThreeLinesHeadline?: boolean;
 }) {
   /**Redux toolkit */
   const dispatch = useAppDispatch();
@@ -87,19 +87,21 @@ export default function Pie_chart_bim({
   };
   return (
     <div
-      className="bg-[#ffffff] rounded-2xl flex flex-col
-       pt-6 px-6 pb-2 items-center w-full h-min
+      className="bg-[#ffffff] rounded-[1.6rem] flex flex-col
+       pt-[2.4rem] px-[2.4rem] pb-[0.8rem] items-center w-full h-min
        shadow-[0_25px_50px_-22px_rgb(0,0,0,0.1)] max-w-[700px]"
     >
       {chartData.length > 0 && (
         <>
           <div
-            className="text-center min-w-[400px] max-w-[600px]
-          h-[3.45rem]"
+            className={`text-center min-w-[400px] max-w-[600px]
+          ${
+            isThreeLinesHeadline ? "min-h-[5.174rem]" : "min-h-[3.45rem]"
+          }  flex items-center`}
           >
             <p
               className={`text-txcolor-100 line-clamp-3 font-semibold
-      text-[15px] ${increaseTextHeight && "px-3"}`}
+      text-[15px] `}
             >
               {questionnaire.title}
             </p>

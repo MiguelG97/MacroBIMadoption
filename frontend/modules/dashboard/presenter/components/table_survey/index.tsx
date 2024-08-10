@@ -107,7 +107,7 @@ export default function Table_survey({
 
   return (
     <div
-      className={`bg-[#ffffff] rounded-2xl flex flex-col
+      className={`bg-[#ffffff] rounded-[1.6rem] flex flex-col
   p-[24px] items-center w-full h-min
   shadow-[0_25px_50px_-22px_rgb(0,0,0,0.1)] ${
     isTableAlone ? "max-w-[1400px]" : "max-w-[700px]"

@@ -41,10 +41,7 @@ h-full gap-[2.4rem] overflow-y-auto w-full"
       >
         {/* 3 and 4, make sure are the same questions! */}
         <Pie_chart_bim questionnaire={questionnariesHigherEduc[3]} />
-        <Pie_chart_bim
-          questionnaire={questionnariesHigherEduc[4]}
-          increaseTextHeight
-        />
+        <Pie_chart_bim questionnaire={questionnariesHigherEduc[4]} />
       </div>
 
       <div
@@ -58,10 +55,7 @@ h-full gap-[2.4rem] overflow-y-auto w-full"
         className="flex flex-row gap-[2.4rem] w-full
    justify-evenly"
       >
-        <Bar_chart_bim
-          questionnaire={questionnariesHigherEduc[6]}
-          increaseTextHeight
-        />
+        <Bar_chart_bim questionnaire={questionnariesHigherEduc[6]} />
         <Bar_chart_bim questionnaire={questionnariesHigherEduc[7]} />
       </div>
       <div

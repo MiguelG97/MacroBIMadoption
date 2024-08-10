@@ -32,7 +32,10 @@ export default function Educ_framework_tabView() {
         className="flex flex-row gap-[2.4rem] w-full
 justify-evenly "
       >
-        <Pie_chart_bim questionnaire={questionnariesEducFramework[0]} />
+        <Pie_chart_bim
+          questionnaire={questionnariesEducFramework[0]}
+          isThreeLinesHeadline
+        />
         <Bar_chart_bim questionnaire={questionnariesEducFramework[1]} />
       </div>
       <div
@@ -61,12 +64,13 @@ justify-evenly "
         <Pie_chart_bim
           questionnaire={questionnariesEducFramework[4]}
           increaseHeight
+          isThreeLinesHeadline
         />
         <Bar_chart_bim
           questionnaire={questionnariesEducFramework[5]}
           increaseHeight
         />
-      </div>{" "}
+      </div>
       <div
         className="flex flex-row gap-[2.4rem] w-full
 justify-evenly "

@@ -43,7 +43,6 @@ justify-evenly "
         <Bar_chart_bim
           questionnaire={questionnariesTrainingCourses[2]}
           increaseHeight
-          increaseTextHeight
         />
         <Pie_chart_bim
           questionnaire={questionnariesTrainingCourses[3]}
