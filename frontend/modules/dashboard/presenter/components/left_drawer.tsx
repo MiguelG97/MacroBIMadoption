@@ -72,13 +72,13 @@ export default function Left_drawer() {
   };
   return (
     <div
-      className={`w-[290px] min-w-[290px]  bg-white
-pl-10 pr-8 py-14 flex flex-col gap-8 text-[#2B3674]`}
+      className={`w-[29rem] min-w-[29rem]  bg-white
+pl-16 pr-[3.2rem] py-[5.6rem] flex flex-col gap-[3.2rem] text-[#2B3674]`}
     >
       {/* 1) title */}
       <div className="w-full flex flex-row  text-center">
         <p
-          className={`${poppings.className} uppercase text-[26px]
+          className={`${poppings.className} uppercase text-[2.6rem]
         leading-[100%] tracking-normal `}
         >
           Macro BIM Adoption
@@ -86,21 +86,21 @@ pl-10 pr-8 py-14 flex flex-col gap-8 text-[#2B3674]`}
       </div>
 
       {/* 2) separator */}
-      <div className="h-1 border-t-[1px] ml-[-40px] mr-[-32px]"></div>
+      <div className="h-1 border-t-[1px] ml-[-4rem] mr-[-3.2rem]"></div>
 
       {/* 3) sections */}
       <div
         className={`flex flex-col gap-3 ${dmSans.className} 
-        mr-[-32px]`}
+        mr-[-3.2rem]`}
       >
         {sections.map((x, index) => (
           <div
             key={`sec-${index}`}
-            className={`flex flex-row gap-2 items-start py-3 pl-2
-            rounded-l-xl duration-500 cursor-pointer 
+            className={`flex flex-row gap-[0.8rem] items-start py-[1.2rem] pl-[0.8rem]
+            rounded-l-[1.2rem] duration-500 cursor-pointer 
             ${
               selectedSectionIndex === index
-                ? "border-r-[4px] border-r-mpurple bg-bgneutral-100"
+                ? "border-r-[0.4rem] border-r-mpurple bg-bgneutral-100"
                 : ""
             }`}
             onClick={() => onSectionClick(index, x.name)}
@@ -112,7 +112,7 @@ pl-10 pr-8 py-14 flex flex-col gap-8 text-[#2B3674]`}
                   ? "text-[#2B3674] font-bold"
                   : "text-[#A3AED0]"
               }  
-              line-clamp-2 text-[16px]`}
+              line-clamp-2 text-[1.6rem]`}
             >
               {x.name}
             </p>

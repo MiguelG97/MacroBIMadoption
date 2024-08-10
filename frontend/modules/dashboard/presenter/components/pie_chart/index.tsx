@@ -88,12 +88,15 @@ export default function Pie_chart_bim({
   return (
     <div
       className="bg-[#ffffff] rounded-2xl flex flex-col
-       p-[24px] items-center w-full h-min
+       pt-6 px-6 pb-2 items-center w-full h-min
        shadow-[0_25px_50px_-22px_rgb(0,0,0,0.1)] max-w-[700px]"
     >
       {chartData.length > 0 && (
         <>
-          <div className="text-center min-w-[400px] max-w-[600px]">
+          <div
+            className="text-center min-w-[400px] max-w-[600px]
+          h-[34.5px]"
+          >
             <p
               className={`text-txcolor-100 line-clamp-3 font-semibold
       text-[15px] ${increaseTextHeight && "px-3"}`}

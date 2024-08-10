@@ -24,12 +24,12 @@ export default function Search_filter() {
   };
   return (
     <div
-      className="flex bg-white rounded-[30px] px-4   mr-[10px]
-    h-[44px] items-center gap-4"
+      className="flex bg-white rounded-[30px] px-[1.6rem]   mr-[1rem]
+    h-[4.4rem] items-center gap-[1.6rem]"
     >
       <div
-        className="bg-bgneutral-200 rounded-[50px] px-4 py-[6px] ml-[-4px]
-      flex items-center gap-2 w-[200px]"
+        className="bg-bgneutral-200 rounded-[5rem] px-[1.6rem] py-[0.6rem] ml-[-0.4rem]
+      flex items-center gap-[0.8rem] w-[20rem]"
       >
         <IconSearch size={16} className="text-txcolor-200" />
         <p className="text-txcolor-300 font-extralight">Search...</p>
@@ -65,8 +65,8 @@ export default function Search_filter() {
         anchorEl={anchorFilter}
       >
         <div
-          className="rounded-lg w-[224px] h-[300px] bg-white
-        p-4 flex flex-col gap-3"
+          className="rounded-[0.8rem] w-[22.4rem] h-[30rem] bg-white
+        p-[1.6rem] flex flex-col gap-[1.2rem]"
         >
           <p
             className="text-[12px] text-txcolor-300 tracking-widest
@@ -74,7 +74,7 @@ export default function Search_filter() {
           >
             FILTER BY:
           </p>
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-[0.8rem]">
             <div className="flex justify-between">
               <p className="text-[14px] font-bold">Academic Program</p>
               <div className="cursor-pointer">

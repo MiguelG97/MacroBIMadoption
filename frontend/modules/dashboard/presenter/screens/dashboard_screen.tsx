@@ -26,7 +26,7 @@ export default function Dashboard_screen() {
       <Left_drawer />
       <div
         className="flex flex-col justify-start items-center
-       bg-bgneutral-200 w-full min-w-[1000px]"
+       bg-bgneutral-200 w-full min-w-[100rem]"
       >
         <Header />
 

@@ -111,10 +111,11 @@ export default function Home() {
     // CreateData.sendExcelDataToPostgresql({
     //   mutationCreateAnswer,
     //   mutationCreateQuestionnaries,
-    //   mutationCreateUsers,mutationCreateAnswers
+    //   mutationCreateUsers,
+    //   mutationCreateAnswers,
     // });
     //update academic programme data
-    // UpdateData.updateAcademicProgramme();
+    UpdateData.updateAcademicProgramme();
   }, []);
   // return <div>hey</div>;
   return <DashboardScreen />;

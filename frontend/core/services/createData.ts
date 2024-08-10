@@ -74,7 +74,8 @@ export class CreateData {
       };
       answerModels.push(answer);
     });
-    console.log(answerModels);
+    console.log("total answers:", answerModels);
+
     /**2) Read and parse user data*/
     //a) collect a sample row for each user
     const userIdsFilter: number[] = [];
@@ -96,14 +97,15 @@ export class CreateData {
         userName: x["User Name"],
         userLabels: x["User Labels"],
         country: "brazil", //set this manually??
-        // academicProgram: [], //depending upon an answer
+        // academicProgramme: [], //depending upon an answer
       };
       userModels.push(user);
     });
-    console.log(userModels);
+    console.log("total users: ", userModels);
     /**3) read questionary data */
     /**4) send data to postgresql */
     try {
+      console.log("total questionnaires", questions_postgresql);
       await mutationCreateQuestionnaries({
         variables: {
           createManyQuestionnariesInput: {
@@ -140,6 +142,7 @@ export class CreateData {
         //   },
         // });
       }
+      console.log("filteredAnswers", filteredAnswerModels);
       await mutationCreateAnswers({
         variables: {
           createManyAnswersInput: { createAnswersInput: filteredAnswerModels },

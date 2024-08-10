@@ -25,18 +25,18 @@ export default function Higher_educ_tabView() {
   }, [questionnaires]);
   return (
     <div
-      className="flex flex-col px-6 pb-6 pt-2 
-h-full gap-6 overflow-y-auto w-full"
+      className="flex flex-col px-[2.4rem] pb-[2.4rem] pt-[2.4rem] 
+h-full gap-[2.4rem] overflow-y-auto w-full"
     >
       <div
-        className="flex flex-row gap-6 w-full
+        className="flex flex-row gap-[2.4rem] w-full
    justify-evenly "
       >
         <Pie_chart_bim questionnaire={questionnariesHigherEduc[0]} />
         <Pie_chart_bim questionnaire={questionnariesHigherEduc[2]} />
       </div>
       <div
-        className="flex flex-row gap-6 w-full
+        className="flex flex-row gap-[2.4rem] w-full
    justify-evenly"
       >
         {/* 3 and 4, make sure are the same questions! */}
@@ -48,14 +48,14 @@ h-full gap-6 overflow-y-auto w-full"
       </div>
 
       <div
-        className="flex flex-row gap-6 w-full
+        className="flex flex-row gap-[2.4rem] w-full
    justify-evenly"
       >
         <Bar_chart_bim questionnaire={questionnariesHigherEduc[1]} />
         <Bar_chart_bim questionnaire={questionnariesHigherEduc[5]} />
       </div>
       <div
-        className="flex flex-row gap-6 w-full
+        className="flex flex-row gap-[2.4rem] w-full
    justify-evenly"
       >
         <Bar_chart_bim
@@ -65,42 +65,42 @@ h-full gap-6 overflow-y-auto w-full"
         <Bar_chart_bim questionnaire={questionnariesHigherEduc[7]} />
       </div>
       <div
-        className="flex flex-row gap-6 w-full
+        className="flex flex-row gap-[2.4rem] w-full
    justify-evenly"
       >
         <Bar_chart_bim questionnaire={questionnariesHigherEduc[8]} />
         <Bar_chart_bim questionnaire={questionnariesHigherEduc[9]} />
       </div>
       <div
-        className="flex flex-row gap-6
+        className="flex flex-row gap-[2.4rem]
    w-full justify-evenly"
       >
         <Bar_chart_bim questionnaire={questionnariesHigherEduc[10]} />
         <Bar_chart_bim questionnaire={questionnariesHigherEduc[11]} />
       </div>
       <div
-        className="flex flex-row gap-6 w-full
+        className="flex flex-row gap-[2.4rem] w-full
    justify-evenly"
       >
         <Bar_chart_bim questionnaire={questionnariesHigherEduc[12]} />
         <Bar_chart_bim questionnaire={questionnariesHigherEduc[13]} />
       </div>
       <div
-        className="flex flex-row gap-6 w-full
+        className="flex flex-row gap-[2.4rem] w-full
    justify-evenly"
       >
         <Bar_chart_bim questionnaire={questionnariesHigherEduc[14]} />
         <Bar_chart_bim questionnaire={questionnariesHigherEduc[15]} />
       </div>
       <div
-        className="flex flex-row gap-6 w-full
+        className="flex flex-row gap-[2.4rem] w-full
 justify-evenly "
       >
         <Pie_chart_bim questionnaire={questionnariesHigherEduc[16]} />
         <Bar_chart_bim questionnaire={questionnariesHigherEduc[17]} />
       </div>
       <div
-        className="flex flex-row gap-6 w-full
+        className="flex flex-row gap-[2.4rem] w-full
 justify-evenly "
       >
         <Table_survey questionnaire={questionnariesHigherEduc[18]} />

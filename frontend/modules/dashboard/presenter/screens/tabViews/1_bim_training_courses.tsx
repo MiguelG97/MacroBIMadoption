@@ -26,18 +26,18 @@ export default function Bim_training_tabView() {
 
   return (
     <div
-      className="flex flex-col px-6 pb-6 pt-2 
-h-full gap-6 overflow-y-auto w-full"
+      className="flex flex-col px-[2.4rem] pb-[2.4rem] pt-[0.8rem] 
+h-full gap-[2.4rem] overflow-y-auto w-full"
     >
       <div
-        className="flex flex-row gap-6 w-full
+        className="flex flex-row gap-[2.4rem] w-full
 justify-evenly "
       >
         <Pie_chart_bim questionnaire={questionnariesTrainingCourses[0]} />
         <Bar_chart_bim questionnaire={questionnariesTrainingCourses[1]} />
       </div>
       <div
-        className="flex flex-row gap-6 w-full
+        className="flex flex-row gap-[2.4rem] w-full
 justify-evenly "
       >
         <Bar_chart_bim
@@ -51,7 +51,7 @@ justify-evenly "
         />
       </div>
       <div
-        className="flex flex-row gap-6 w-full
+        className="flex flex-row gap-[2.4rem] w-full
 justify-evenly "
       >
         <Table_survey questionnaire={questionnariesTrainingCourses[4]} />
