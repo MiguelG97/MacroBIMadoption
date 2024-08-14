@@ -38,3 +38,28 @@ export const mCreateUsers = graphql(`
     manyUsersInput: [CreateUserInput!]!
   }
 `);
+
+export const mUpdateUsers = graphql(`
+  mutation UpdateManyUsers($updateManyUserInput: UpdateManyUserInput!) {
+    updateManyUsers(updateManyUserInput: $updateManyUserInput) {
+      academicProgramme
+      country
+      userEmail
+      userId
+      userLabels
+      userName
+    }
+  }
+
+  input UpdateManyUserInput {
+    userInputs: [UpdateUserInput!]!
+  }
+  input UpdateUserInput {
+    academicProgramme: [String!]
+    country: String
+    userEmail: String
+    userId: Float!
+    userLabels: String
+    userName: String
+  }
+`);

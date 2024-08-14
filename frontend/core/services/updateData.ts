@@ -3,7 +3,11 @@ import { IExcelRowJson } from "../utils/excel/excel_types";
 import { excelUtils } from "../utils/excel/excel_util_model";
 
 export class UpdateData {
-  public static async updateAcademicProgramme() {
+  public static async updateAcademicProgramme({
+    mutationUpdateUsers,
+  }: {
+    mutationUpdateUsers: any;
+  }) {
     const workbook = await excelUtils.readExcel();
     const sheets = workbook?.Sheets;
     if (!sheets) return;
@@ -13,7 +17,8 @@ export class UpdateData {
     jsonRows = jsonRows.filter((x) => Number(x["Item ID"]) === 1662403538116);
 
     //ii) get user ids and link them with their user input data
-    const userUpdateData: { userId: number; userInput: string[] }[] = [];
+    const userUpdateData: { userId: number; academicProgramme: string[] }[] =
+      [];
 
     jsonRows.map((x) => {
       if (!x["User Input"]) return;
@@ -24,17 +29,22 @@ export class UpdateData {
           (b) => b.userId === Number(x["User ID"])
         );
         const userData = userUpdateData[index];
-        userData.userInput = x["User Input"].split(" | ");
+        userData.academicProgramme = x["User Input"].split(" | ");
         userUpdateData[index] = userData;
       }
       //if not, just push it to the list
       else {
         userUpdateData.push({
           userId: Number(x["User ID"]),
-          userInput: x["User Input"].split(" | "),
+          academicProgramme: x["User Input"].split(" | "),
         });
       }
     });
-    console.log(userUpdateData);
+
+    await mutationUpdateUsers({
+      variables: {
+        updateManyUserInput: { userInputs: userUpdateData },
+      },
+    });
   }
 }

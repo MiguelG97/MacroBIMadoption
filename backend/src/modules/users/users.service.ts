@@ -2,7 +2,8 @@ import { Injectable } from '@nestjs/common';
 import { CreateManyUsersInput, CreateUserInput } from './dto/create-user.input';
 // import { UpdateUserInput } from './dto/update-user.input';
 import { PrismaClientService } from 'src/core/utils/prisma/prisma_client.service';
-import { UpdateUserInput } from './dto/update-user.input';
+import { UpdateManyUserInput, UpdateUserInput } from './dto/update-user.input';
+import { Users } from '@prisma/client';
 
 @Injectable()
 export class UsersService {
@@ -23,7 +24,7 @@ export class UsersService {
   async createMany(createManyUsersInput: CreateManyUsersInput) {
     try {
       //use the createManyAndReturn since graphql demands for returning sth always!
-      const newUsers = await this.prismaClient.users.createManyAndReturn({
+      const newUsers = await this.prismaClient.users.createMany({
         data: createManyUsersInput.manyUsersInput,
       });
 
@@ -61,8 +62,29 @@ export class UsersService {
     return usersFound;
   }
 
-  async update(updateUserInput: UpdateUserInput) {
-    return `This action updates a #${updateUserInput.userId} user`;
+  async update(updateUserInput: UpdateUserInput): Promise<Users> {
+    const dataToUpdate = {};
+    const filteredFields = Object.keys(updateUserInput).filter(
+      (x) => updateUserInput[x] !== undefined && x !== 'userId',
+    );
+    filteredFields.forEach((x) => (dataToUpdate[x] = updateUserInput[x]));
+
+    const result = await this.prismaClient.users.update({
+      where: {
+        userId: updateUserInput.userId,
+      },
+      data: dataToUpdate,
+    });
+    return result;
+  }
+  async updateMany(updateManyUserInput: UpdateManyUserInput): Promise<Users[]> {
+    const results: Users[] = [];
+    for (const updateUserInput of updateManyUserInput.userInputs) {
+      const result = await this.update(updateUserInput);
+      results.push(result);
+    }
+
+    return results;
   }
 
   remove(id: number) {

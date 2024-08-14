@@ -133,7 +133,6 @@ export default function Bar_chart_bim({
                   stroke="#ebedef"
                 />
                 <XAxis
-                  // domain={[0, "dataMax"]}
                   domain={[
                     0,
                     (dataMax: number) => {

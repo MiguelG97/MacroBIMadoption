@@ -77,6 +77,7 @@ type Mutation {
   createQuestionnary(createQuestionnaryInput: CreateQuestionnaryInput!): Questionnary!
   createUser(createUserInput: CreateUserInput!): User!
   createUsers(createManyUsersInput: CreateManyUsersInput!): [User!]!
+  updateManyUsers(updateManyUserInput: UpdateManyUserInput!): [User!]!
   updateUser(updateUserInput: UpdateUserInput!): User!
 }
 
@@ -102,11 +103,15 @@ type Questionnary {
   title: String!
 }
 
+input UpdateManyUserInput {
+  userInputs: [UpdateUserInput!]!
+}
+
 input UpdateUserInput {
   academicProgramme: [String!]
   country: String
   userEmail: String
-  userId: Int!
+  userId: Float!
   userLabels: String
   userName: String
 }

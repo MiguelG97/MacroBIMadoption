@@ -32,7 +32,11 @@ import {
   mCreateQuestionnary,
 } from "@/core/shared/gql/mutations/questionnaries";
 import { Chart } from "@/core/utils/generator/graphql";
-import { mCreateUser, mCreateUsers } from "@/core/shared/gql/mutations/users";
+import {
+  mCreateUser,
+  mCreateUsers,
+  mUpdateUsers,
+} from "@/core/shared/gql/mutations/users";
 import { questions_postgresql } from "@/core/shared/constants/questions";
 import { IAnswer, IUser } from "@/core/shared/types/postgresql_schema_types";
 import {
@@ -84,6 +88,14 @@ export default function Home() {
       console.log(error.message, error.graphQLErrors);
     },
   });
+  const [mutationUpdateUsers] = useMutation(mUpdateUsers, {
+    onCompleted: (data) => {
+      console.log(data);
+    },
+    onError: (error) => {
+      console.log(error.message, error.graphQLErrors);
+    },
+  });
 
   /**Grahpql Queries */
   useQuery(qFindAllAnswers, {
@@ -115,7 +127,7 @@ export default function Home() {
     //   mutationCreateAnswers,
     // });
     //update academic programme data
-    UpdateData.updateAcademicProgramme();
+    // UpdateData.updateAcademicProgramme({ mutationUpdateUsers });
   }, []);
   // return <div>hey</div>;
   return <DashboardScreen />;

@@ -2,7 +2,7 @@ import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
 import { UsersService } from './users.service';
 import { User } from './entities/user.entity';
 import { CreateManyUsersInput, CreateUserInput } from './dto/create-user.input';
-import { UpdateUserInput } from './dto/update-user.input';
+import { UpdateManyUserInput, UpdateUserInput } from './dto/update-user.input';
 // import { UpdateUserInput } from './dto/update-user.input';
 
 /**Step2) Resolvers:
@@ -52,6 +52,13 @@ export class UsersResolver {
   @Mutation(() => User)
   async updateUser(@Args('updateUserInput') updateUserInput: UpdateUserInput) {
     return await this.usersService.update(updateUserInput);
+  }
+
+  @Mutation(() => [User])
+  async updateManyUsers(
+    @Args('updateManyUserInput') updateManyUserInput: UpdateManyUserInput,
+  ) {
+    return await this.usersService.updateMany(updateManyUserInput);
   }
 
   // @Mutation(() => User)
