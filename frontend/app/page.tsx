@@ -127,7 +127,7 @@ export default function Home() {
     //   mutationCreateAnswers,
     // });
     //update academic programme data
-    // UpdateData.updateAcademicProgramme({ mutationUpdateUsers });
+    // UpdateData.updateAcademicProgramme({ mutationUpdateUsers });//
   }, []);
   // return <div>hey</div>;
   return <DashboardScreen />;
