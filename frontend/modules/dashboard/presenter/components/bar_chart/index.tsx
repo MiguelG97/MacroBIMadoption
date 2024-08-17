@@ -39,6 +39,7 @@ export default function Bar_chart_bim({
   /**States */
   const { colors: themeColor } = themeTailwind.theme;
   const [chartData, setChartData] = useState<ChartDataItem[]>([]);
+  const [isEllipsisMode, setEllipsisMode] = useState(false);
   /**Effects */
   useEffect(() => {
     if (answers.length === 0 || !questionnaire) return;
@@ -67,8 +68,21 @@ export default function Bar_chart_bim({
 
     //change data format
     let chartData: ChartDataItem[] = choicesCountedValues.map((x) => {
+      const words = x.choice.split(" ");
+      if (!isEllipsisMode && words.length > 3 + 3 * Number(fullWidth))
+        setEllipsisMode(true);
+
+      //make sure those 3 or 6 words [or even 2 words] do not overflow!
+      let abbreviation = `${words
+        .slice(0, Math.min(3 + 4 * Number(fullWidth), words.length))
+        .join(" ")}...`;
+      if (abbreviation.length >= 34 * (1 + Number(fullWidth)))
+        abbreviation = `${words
+          .slice(0, 2 + Number(fullWidth) * 3)
+          .join(" ")}...`;
       return {
         name: x.choice,
+        abbreviation,
         value: x.count,
       };
     });
@@ -114,7 +128,11 @@ export default function Bar_chart_bim({
             className={`flex flex-row justify-between items-center
       w-full ${increaseHeight ? "h-[27rem]" : "h-[23rem]"}`}
           >
-            <ResponsiveContainer width={"100%"} height={"100%"}>
+            <ResponsiveContainer
+              //the size of chart is already specified here
+              width={"100%"}
+              height={"100%"}
+            >
               <BarChart
                 onMouseMove={onMouseMoveBarChart}
                 layout="vertical"
@@ -123,7 +141,6 @@ export default function Bar_chart_bim({
                   top: 20,
                   right: 10,
                   bottom: 0,
-                  left: -80,
                 }}
               >
                 <Tooltip content={<Render_Tooltip />} />
@@ -155,19 +172,19 @@ export default function Bar_chart_bim({
                   fontSize={"1.6rem"}
                   tickCount={5}
                   minTickGap={5}
+
                   // ticks={[0, 5, 10, 15, 20]}
-                  // interval={"preserveStartEnd"}
                 />
                 <YAxis
-                  width={fullWidth ? 520 : 360}
+                  width={fullWidth ? 470 : 230} //...
                   tick={{
                     fontSize: 14,
                     height: 40,
-                    width: fullWidth ? 380 : 280,
+                    width: fullWidth ? 400 : 550, //extended to fit everything in 1 line!
                   }}
                   axisLine={false}
                   tickLine={false}
-                  dataKey="name"
+                  dataKey={isEllipsisMode ? "abbreviation" : "name"}
                   type="category"
                 />
                 <Bar
@@ -175,6 +192,7 @@ export default function Bar_chart_bim({
                   radius={[0, 6, 6, 0]}
                   dataKey="value"
                   fill={themeColor.primary[100]}
+                  // barSize={24}
                 />
               </BarChart>
             </ResponsiveContainer>
