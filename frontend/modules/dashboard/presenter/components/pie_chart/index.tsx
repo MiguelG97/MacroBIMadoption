@@ -1,5 +1,3 @@
-import { COLORS } from "@/core/shared/theme/theme";
-
 import { useEffect, useState } from "react";
 import {
   Cell,
@@ -18,6 +16,7 @@ import { setActiveTooltipAccValue } from "../../controllers/section_quest_slice"
 import { IQuestionnaire } from "@/core/shared/types/postgresql_schema_types";
 import { ProcessDataModel } from "@/modules/dashboard/domain/process_data/process_data_model";
 import { ChartDataItem } from "@/core/shared/types/chart_types";
+import { themeTailwind } from "@/core/shared/theme/tailwindTheme";
 
 export default function Pie_chart_bim({
   questionnaire,
@@ -35,6 +34,7 @@ export default function Pie_chart_bim({
   );
   const { answers } = useAppSelector((state) => state.dbSlice);
   /**States */
+  const { colors: themeColor } = themeTailwind.theme;
   const [chartData, setChartData] = useState<ChartDataItem[]>([]);
 
   /**Use effects */
@@ -127,14 +127,12 @@ export default function Pie_chart_bim({
                 >
                   {chartData.map((x, index) => {
                     let color = "";
-                    if (x.name === "Yes") {
-                      color = "#f37f72";
-                    } else if (x.name === "No") {
-                      color = "#444444";
-                    } else if (x.name === "Not sure") {
-                      color = "#87a8c3";
-                    } else {
-                      color = COLORS[index];
+                    if (x.name === "Yes" || index === 0) {
+                      color = themeColor.primary[100];
+                    } else if (x.name === "No" || index === 1) {
+                      color = themeColor.secondary[100];
+                    } else if (x.name === "Not sure" || index === 2) {
+                      color = themeColor.tertiary[100];
                     }
                     return (
                       <Cell

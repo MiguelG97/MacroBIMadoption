@@ -1,6 +1,5 @@
-import type { Config } from "tailwindcss";
-
-const config: Config = {
+/** @type {import('tailwindcss').Config} */
+const config = {
   content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./modules/**/*.{js,ts,jsx,tsx,mdx}",
@@ -9,10 +8,10 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        primary: "#f37f72",
-        secondary: "#444444",
-        third: "#87a8c3",
-        mpurple: "#4318FF",
+        primary: { 100: "#f37f72" },
+        secondary: { 100: "#444444" },
+        tertiary: { 100: "#87a8c3" },
+        quaternary: { 100: "#4318FF" },
         bgneutral: {
           100: "#f4f4f4",
           200: "#f4f7fe",
@@ -32,4 +31,5 @@ const config: Config = {
   },
   plugins: [],
 };
+
 export default config;

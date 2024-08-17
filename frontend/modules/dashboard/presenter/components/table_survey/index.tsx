@@ -5,6 +5,7 @@ import {
   GridRenderCellParams,
   GridRowsProp,
 } from "@mui/x-data-grid";
+import type {} from "@mui/x-data-grid/themeAugmentation";
 
 import { useAppDispatch, useAppSelector } from "@/core/shared/redux/store";
 
@@ -12,6 +13,8 @@ import React, { useEffect, useState } from "react";
 import { IQuestionnaire } from "@/core/shared/types/postgresql_schema_types";
 import { ChartDataItem } from "@/core/shared/types/chart_types";
 import { ProcessDataModel } from "@/modules/dashboard/domain/process_data/process_data_model";
+import { createTheme } from "@mui/material";
+import { ThemeProvider } from "@emotion/react";
 
 export default function Table_survey({
   questionnaire,
@@ -105,69 +108,85 @@ export default function Table_survey({
     },
   ];
 
+  /**MuiTheme */
+  const theme = createTheme({
+    components: {
+      MuiDataGrid: {
+        styleOverrides: {
+          cell: {
+            ":focus": {
+              outline: "none",
+            },
+          },
+        },
+      },
+    },
+  });
   return (
-    <div
-      className={`bg-[#ffffff] rounded-[1.6rem] flex flex-col
+    <ThemeProvider theme={theme}>
+      <div
+        className={`bg-[#ffffff] rounded-[1.6rem] flex flex-col
   p-[24px] items-center w-full h-min
   shadow-[0_25px_50px_-22px_rgb(0,0,0,0.1)] ${
     isTableAlone ? "max-w-[143rem]" : "max-w-[70rem]"
   } `}
-    >
-      {tableData.length > 0 && (
-        <>
-          <div
-            className="min-w-[400px] max-w-[600px] text-center
+      >
+        {tableData.length > 0 && (
+          <>
+            <div
+              className="min-w-[400px] max-w-[600px] text-center
           h-[3.45rem]"
-          >
-            <p
-              className="text-txcolor-100 line-clamp-3 font-semibold
+            >
+              <p
+                className="text-txcolor-100 line-clamp-3 font-semibold
       text-[15px]"
-            >
-              {questionnaire.title}
-            </p>
-          </div>
-
-          <div
-            className={`flex flex-row justify-between items-center
-              ${isTableAlone ? "h-[300px]" : "h-[230px]"}  w-full pt-1`}
-          >
-            <DataGrid
-              sx={{ border: "0px solid black" }}
-              rows={tableData.map((x, index) => {
-                x.id = index;
-                return x;
-              })}
-              columns={columns}
-              hideFooter
-              rowSelection={false}
-              disableColumnResize
-              disableColumnMenu
-              disableColumnSorting
-              showColumnVerticalBorder={true}
-            />
-          </div>
-        </>
-      )}
-
-      {tableData.length === 0 && (
-        <>
-          <div
-            className="h-[350px] animate-pulse flex flex-col
-  gap-2 w-full"
-          >
-            <div
-              className="min-w-[860px] w-full  bg-slate-200 h-8 
-        mt-6"
-            />
-            <div
-              className="flex flex-row gap-6 items-center justify-center
-        h-full "
-            >
-              <div className="h-[270px] w-full bg-slate-200" />
+              >
+                {questionnaire.title}
+              </p>
             </div>
-          </div>
-        </>
-      )}
-    </div>
+
+            <div
+              className={`flex flex-row justify-between items-center
+              ${isTableAlone ? "h-[300px]" : "h-[230px]"}  w-full pt-1`}
+            >
+              <DataGrid
+                sx={{ border: "0px solid black" }}
+                rows={tableData.map((x, index) => {
+                  x.id = index;
+                  return x;
+                })}
+                columns={columns}
+                hideFooter
+                rowSelection={true}
+                disableColumnResize
+                disableColumnMenu
+                disableColumnSorting
+                showColumnVerticalBorder={true}
+              />
+            </div>
+          </>
+        )}
+
+        {tableData.length === 0 && (
+          <>
+            <div
+              className="h-[350px] animate-pulse flex flex-col
+  gap-2 w-full"
+            >
+              <div
+                className="min-w-[860px] w-full  bg-slate-200 h-8 
+        mt-6"
+              />
+              <div
+                className="flex flex-row gap-6 items-center justify-center
+        h-full "
+              >
+                <div className="h-[270px] w-full bg-slate-200" />
+              </div>
+            </div>
+          </>
+        )}
+      </div>
+    </ThemeProvider>
   );
 }

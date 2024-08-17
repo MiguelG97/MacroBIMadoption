@@ -1,5 +1,3 @@
-import { COLORS } from "@/core/shared/theme/theme";
-
 import React, { useEffect, useState } from "react";
 import {
   Bar,
@@ -19,6 +17,7 @@ import { setActiveTooltipAccValue } from "../../controllers/section_quest_slice"
 
 import { IQuestionnaire } from "@/core/shared/types/postgresql_schema_types";
 import { ChartDataItem } from "@/core/shared/types/chart_types";
+import { themeTailwind } from "@/core/shared/theme/tailwindTheme";
 
 export default function Bar_chart_bim({
   questionnaire,
@@ -38,6 +37,7 @@ export default function Bar_chart_bim({
   );
   const { answers } = useAppSelector((state) => state.dbSlice);
   /**States */
+  const { colors: themeColor } = themeTailwind.theme;
   const [chartData, setChartData] = useState<ChartDataItem[]>([]);
   /**Effects */
   useEffect(() => {
@@ -174,7 +174,7 @@ export default function Bar_chart_bim({
                   // background={{ fill: "#eee" }}
                   radius={[0, 6, 6, 0]}
                   dataKey="value"
-                  fill={COLORS[0]}
+                  fill={themeColor.primary[100]}
                 />
               </BarChart>
             </ResponsiveContainer>

@@ -100,7 +100,7 @@ pl-16 pr-[3.2rem] py-[5.6rem] flex flex-col gap-[3.2rem] text-[#2B3674]`}
             rounded-l-[1.2rem] duration-500 cursor-pointer 
             ${
               selectedSectionIndex === index
-                ? "border-r-[0.4rem] border-r-mpurple bg-bgneutral-100"
+                ? "border-r-[0.4rem] border-r-quaternary-100 bg-bgneutral-100"
                 : ""
             }`}
             onClick={() => onSectionClick(index, x.name)}
