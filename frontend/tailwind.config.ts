@@ -16,10 +16,12 @@ const config = {
           100: "#f4f4f4",
           200: "#f4f7fe",
         },
+        disabled: { 100: "rgba(0,0,0,0.26)" },
         txcolor: {
           100: "black",
           200: "#2B3674",
-          300: "#A3AED0",
+          300: "#707EAE",
+          400: "#A3AED0",
         },
       },
       backgroundImage: {

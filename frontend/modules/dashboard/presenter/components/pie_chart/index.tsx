@@ -127,13 +127,24 @@ export default function Pie_chart_bim({
                 >
                   {chartData.map((x, index) => {
                     let color = "";
-                    if (x.name === "Yes" || index === 0) {
-                      color = themeColor.primary[100];
-                    } else if (x.name === "No" || index === 1) {
-                      color = themeColor.secondary[100];
-                    } else if (x.name === "Not sure" || index === 2) {
-                      color = themeColor.tertiary[100];
+                    if (["Yes", "No", "Not sure"].includes(x.name)) {
+                      if (x.name === "Yes") {
+                        color = themeColor.primary[100];
+                      } else if (x.name === "No") {
+                        color = themeColor.secondary[100];
+                      } else if (x.name === "Not sure") {
+                        color = themeColor.tertiary[100];
+                      }
+                    } else {
+                      if (index === 0) {
+                        color = themeColor.primary[100];
+                      } else if (index === 1) {
+                        color = themeColor.secondary[100];
+                      } else if (index === 2) {
+                        color = themeColor.tertiary[100];
+                      }
                     }
+
                     return (
                       <Cell
                         stroke="0"

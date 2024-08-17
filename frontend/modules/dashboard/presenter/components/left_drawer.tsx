@@ -73,7 +73,7 @@ export default function Left_drawer() {
   return (
     <div
       className={`w-[29rem] min-w-[29rem]  bg-white
-pl-16 pr-[3.2rem] py-[5.6rem] flex flex-col gap-[3.2rem] text-[#2B3674]`}
+pl-16 pr-[3.2rem] py-[5.6rem] flex flex-col gap-[3.2rem] text-txcolor-200`}
     >
       {/* 1) title */}
       <div className="w-full flex flex-row  text-center">
@@ -109,8 +109,8 @@ pl-16 pr-[3.2rem] py-[5.6rem] flex flex-col gap-[3.2rem] text-[#2B3674]`}
             <p
               className={`${
                 selectedSectionIndex === index
-                  ? "text-[#2B3674] font-bold"
-                  : "text-[#A3AED0]"
+                  ? "text-txcolor-200 font-bold"
+                  : "text-txcolor-400"
               }  
               line-clamp-2 text-[1.6rem]`}
             >

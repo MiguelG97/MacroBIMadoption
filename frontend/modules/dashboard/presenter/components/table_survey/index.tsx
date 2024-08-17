@@ -3,11 +3,10 @@ import {
   GridColDef,
   GridColumnHeaderParams,
   GridRenderCellParams,
-  GridRowsProp,
 } from "@mui/x-data-grid";
 import type {} from "@mui/x-data-grid/themeAugmentation";
 
-import { useAppDispatch, useAppSelector } from "@/core/shared/redux/store";
+import { useAppSelector } from "@/core/shared/redux/store";
 
 import React, { useEffect, useState } from "react";
 import { IQuestionnaire } from "@/core/shared/types/postgresql_schema_types";
@@ -15,6 +14,7 @@ import { ChartDataItem } from "@/core/shared/types/chart_types";
 import { ProcessDataModel } from "@/modules/dashboard/domain/process_data/process_data_model";
 import { createTheme } from "@mui/material";
 import { ThemeProvider } from "@emotion/react";
+import { themeTailwind } from "@/core/shared/theme/tailwindTheme";
 
 export default function Table_survey({
   questionnaire,
@@ -26,6 +26,7 @@ export default function Table_survey({
   const { answers } = useAppSelector((state) => state.dbSlice);
 
   /**States */
+  const { colors: themeColor } = themeTailwind.theme;
   const [tableData, setTableData] = useState<ChartDataItem[]>([]);
   /**Effects */
   useEffect(() => {
@@ -118,6 +119,36 @@ export default function Table_survey({
               outline: "none",
             },
           },
+          columnHeader: {
+            ":focus": {
+              outline: "none",
+            },
+          },
+          cellCheckbox: {
+            ":focus-within": {
+              outline: "none",
+            },
+          },
+        },
+      },
+      MuiCheckbox: {
+        styleOverrides: {
+          root: {
+            "&.Mui-disabled": {
+              "[data-testid='CheckBoxOutlineBlankIcon']": {
+                color: themeColor.disabled[100],
+              },
+              "[data-testid='IndeterminateCheckBoxIcon']": {
+                color: themeColor.disabled[100],
+              },
+            },
+            "[data-testid='CheckBoxOutlineBlankIcon']": {
+              color: "rgba(0,0,0,0.6)",
+            },
+            "[data-testid='CheckBoxIcon']": {
+              color: themeColor.quaternary[100],
+            },
+          },
         },
       },
     },
@@ -150,6 +181,8 @@ export default function Table_survey({
               ${isTableAlone ? "h-[300px]" : "h-[230px]"}  w-full pt-1`}
             >
               <DataGrid
+                checkboxSelection
+                disableMultipleRowSelection
                 sx={{ border: "0px solid black" }}
                 rows={tableData.map((x, index) => {
                   x.id = index;
