@@ -3,6 +3,8 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import ReduxContext from "@/core/shared/redux/context";
 import ApolloContext from "@/core/shared/apollo/context";
+import Left_drawer from "@/modules/dashboard/presenter/components/left_drawer";
+import Header from "@/modules/dashboard/presenter/components/header";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,7 +22,20 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <ApolloContext>
-          <ReduxContext>{children}</ReduxContext>
+          <ReduxContext>
+            <div className="flex flex-row h-screen ">
+              {/* how to make it collabsible */}
+              <Left_drawer />
+              <div
+                className="flex flex-col justify-start items-center
+       bg-bgneutral-200 w-full min-w-[100rem]"
+              >
+                <Header />
+
+                {children}
+              </div>
+            </div>
+          </ReduxContext>
         </ApolloContext>
       </body>
     </html>

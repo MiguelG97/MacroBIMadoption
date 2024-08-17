@@ -1,3 +1,4 @@
+"use client";
 import { useAppDispatch, useAppSelector } from "@/core/shared/redux/store";
 import {
   IconAffiliate,

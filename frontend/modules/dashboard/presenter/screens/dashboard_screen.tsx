@@ -1,13 +1,8 @@
-import Left_drawer from "../components/left_drawer";
-import Bar_chart_bim from "../components/bar_chart";
-import Pie_chart_bim from "../components/pie_chart";
-
 import Higher_educ_tabView from "./tabViews/0_higher_education";
 import { useAppSelector } from "@/core/shared/redux/store";
 import Bim_training_tabView from "./tabViews/1_bim_training_courses";
 import Collaboration_tabView from "./tabViews/3_collaboration";
 import Educ_framework_tabView from "./tabViews/2_educational_framework";
-import Header from "../components/header";
 
 export default function Dashboard_screen() {
   const { selectedSectionIndex } = useAppSelector(
@@ -20,19 +15,5 @@ export default function Dashboard_screen() {
     <Educ_framework_tabView key={2} />,
     <Collaboration_tabView key={3} />,
   ];
-  return (
-    <div className="flex flex-row h-screen ">
-      {/* how to make it collabsible */}
-      <Left_drawer />
-      <div
-        className="flex flex-col justify-start items-center
-       bg-bgneutral-200 w-full min-w-[100rem]"
-      >
-        <Header />
-
-        {/* canvas */}
-        {screens[selectedSectionIndex]}
-      </div>
-    </div>
-  );
+  return screens[selectedSectionIndex];
 }

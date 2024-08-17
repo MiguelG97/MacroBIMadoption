@@ -1,3 +1,4 @@
+"use client";
 import { useAppSelector } from "@/core/shared/redux/store";
 import { DM_Sans } from "next/font/google";
 import Search_filter from "./search_filter";

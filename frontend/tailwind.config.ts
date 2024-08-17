@@ -16,7 +16,7 @@ const config = {
           100: "#f4f4f4",
           200: "#f4f7fe",
         },
-        disabled: { 100: "rgba(0,0,0,0.26)" },
+        disabled: { 100: "#b5b7bc" }, //rgba(0,0,0,0.26)
         txcolor: {
           100: "black",
           200: "#2B3674",
