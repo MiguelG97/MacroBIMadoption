@@ -30,20 +30,22 @@ h-full gap-[2.4rem] overflow-y-auto w-full"
     >
       <div
         className="flex flex-row gap-[2.4rem] w-full
-justify-evenly "
+justify-center "
       >
         <Pie_chart_bim
           questionnaire={questionnariesCollaboration[0]}
           increaseHeight
+          isThreeLinesHeadline
         />
         <Bar_chart_bim
           questionnaire={questionnariesCollaboration[1]}
           increaseHeight
+          isThreeLinesHeadline
         />
       </div>
       <div
         className="flex flex-row gap-[2.4rem] w-full
-justify-evenly "
+justify-center "
       >
         <Bar_chart_bim
           questionnaire={questionnariesCollaboration[2]}
@@ -53,7 +55,7 @@ justify-evenly "
       </div>
       <div
         className="flex flex-row gap-[2.4rem] w-full
-        justify-evenly "
+        justify-center "
       >
         <Table_survey questionnaire={questionnariesCollaboration[3]} />
       </div>

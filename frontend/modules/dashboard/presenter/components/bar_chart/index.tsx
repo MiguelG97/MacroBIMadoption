@@ -90,7 +90,7 @@ export default function Bar_chart_bim({
   return (
     <div
       className={`bg-[#ffffff] w-full  h-min ${
-        fullWidth ? "max-w-[1400px]" : "max-w-[700px]"
+        fullWidth ? "max-w-[143rem]" : "max-w-[70rem]"
       }
   rounded-[1.6rem] flex flex-col pt-[2.4rem] px-[2.4rem] pb-[0.8rem] items-center
   shadow-[0_25px_50px_-12px_rgb(0,0,0,0.1)]`}
@@ -98,7 +98,7 @@ export default function Bar_chart_bim({
       {chartData.length > 0 && (
         <>
           <div
-            className={`text-center min-w-[400px] max-w-[600px]
+            className={`text-center min-w-[40rem] max-w-[60rem]
               ${
                 isThreeLinesHeadline ? "min-h-[5.174rem]" : "min-h-[3.45rem]"
               }  flex items-center`}
@@ -112,7 +112,7 @@ export default function Bar_chart_bim({
           </div>
           <div
             className={`flex flex-row justify-between items-center
-      w-full ${increaseHeight ? "h-[270px]" : "h-[230px]"}`}
+      w-full ${increaseHeight ? "h-[27rem]" : "h-[23rem]"}`}
           >
             <ResponsiveContainer width={"100%"} height={"100%"}>
               <BarChart

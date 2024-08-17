@@ -31,14 +31,20 @@ h-full gap-[2.4rem] overflow-y-auto w-full"
     >
       <div
         className="flex flex-row gap-[2.4rem] w-full
-justify-evenly "
+justify-center "
       >
-        <Pie_chart_bim questionnaire={questionnariesTrainingCourses[0]} />
-        <Bar_chart_bim questionnaire={questionnariesTrainingCourses[1]} />
+        <Pie_chart_bim
+          questionnaire={questionnariesTrainingCourses[0]}
+          isThreeLinesHeadline
+        />
+        <Bar_chart_bim
+          questionnaire={questionnariesTrainingCourses[1]}
+          isThreeLinesHeadline
+        />
       </div>
       <div
         className="flex flex-row gap-[2.4rem] w-full
-justify-evenly "
+justify-center "
       >
         <Bar_chart_bim
           questionnaire={questionnariesTrainingCourses[2]}
@@ -51,7 +57,7 @@ justify-evenly "
       </div>
       <div
         className="flex flex-row gap-[2.4rem] w-full
-justify-evenly "
+justify-center "
       >
         <Table_survey questionnaire={questionnariesTrainingCourses[4]} />
       </div>

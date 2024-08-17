@@ -30,14 +30,14 @@ h-full gap-[2.4rem] overflow-y-auto w-full"
     >
       <div
         className="flex flex-row gap-[2.4rem] w-full
-   justify-evenly "
+   justify-center"
       >
         <Pie_chart_bim questionnaire={questionnariesHigherEduc[0]} />
         <Pie_chart_bim questionnaire={questionnariesHigherEduc[2]} />
       </div>
       <div
         className="flex flex-row gap-[2.4rem] w-full
-   justify-evenly"
+   justify-center"
       >
         {/* 3 and 4, make sure are the same questions! */}
         <Pie_chart_bim questionnaire={questionnariesHigherEduc[3]} />
@@ -46,56 +46,56 @@ h-full gap-[2.4rem] overflow-y-auto w-full"
 
       <div
         className="flex flex-row gap-[2.4rem] w-full
-   justify-evenly"
+   justify-center"
       >
         <Bar_chart_bim questionnaire={questionnariesHigherEduc[1]} />
         <Bar_chart_bim questionnaire={questionnariesHigherEduc[5]} />
       </div>
       <div
         className="flex flex-row gap-[2.4rem] w-full
-   justify-evenly"
+   justify-center"
       >
         <Bar_chart_bim questionnaire={questionnariesHigherEduc[6]} />
         <Bar_chart_bim questionnaire={questionnariesHigherEduc[7]} />
       </div>
       <div
         className="flex flex-row gap-[2.4rem] w-full
-   justify-evenly"
+   justify-center"
       >
         <Bar_chart_bim questionnaire={questionnariesHigherEduc[8]} />
         <Bar_chart_bim questionnaire={questionnariesHigherEduc[9]} />
       </div>
       <div
         className="flex flex-row gap-[2.4rem]
-   w-full justify-evenly"
+   w-full justify-center"
       >
         <Bar_chart_bim questionnaire={questionnariesHigherEduc[10]} />
         <Bar_chart_bim questionnaire={questionnariesHigherEduc[11]} />
       </div>
       <div
         className="flex flex-row gap-[2.4rem] w-full
-   justify-evenly"
+   justify-center"
       >
         <Bar_chart_bim questionnaire={questionnariesHigherEduc[12]} />
         <Bar_chart_bim questionnaire={questionnariesHigherEduc[13]} />
       </div>
       <div
         className="flex flex-row gap-[2.4rem] w-full
-   justify-evenly"
+   justify-center"
       >
         <Bar_chart_bim questionnaire={questionnariesHigherEduc[14]} />
         <Bar_chart_bim questionnaire={questionnariesHigherEduc[15]} />
       </div>
       <div
         className="flex flex-row gap-[2.4rem] w-full
-justify-evenly "
+justify-center "
       >
         <Pie_chart_bim questionnaire={questionnariesHigherEduc[16]} />
         <Bar_chart_bim questionnaire={questionnariesHigherEduc[17]} />
       </div>
       <div
         className="flex flex-row gap-[2.4rem] w-full
-justify-evenly "
+justify-center "
       >
         <Table_survey questionnaire={questionnariesHigherEduc[18]} />
       </div>
