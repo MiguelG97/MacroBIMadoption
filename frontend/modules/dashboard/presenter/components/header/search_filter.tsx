@@ -6,6 +6,7 @@ import { useState } from "react";
 import { IoIosArrowDown } from "react-icons/io";
 import { useDispatch } from "react-redux";
 import { setAcademicProgrammeFilter } from "../../controllers/filter_slice";
+import { AcademicProgType } from "@/core/shared/enums/filter_enum";
 
 export default function Search_filter() {
   /**Redux toolkit */
@@ -20,7 +21,7 @@ export default function Search_filter() {
     setFilterOpen(true);
   };
   const onChangeAcaProgFilter = (e: SelectChangeEvent) => {
-    dispatch(setAcademicProgrammeFilter(e.target.value as any));
+    dispatch(setAcademicProgrammeFilter(e.target.value as AcademicProgType));
   };
   return (
     <div

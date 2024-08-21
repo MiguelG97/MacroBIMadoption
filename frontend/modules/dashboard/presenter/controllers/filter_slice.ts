@@ -1,14 +1,15 @@
+import { AcademicProgType } from "@/core/shared/enums/filter_enum";
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
 // Define a type for the slice state
 interface filterState {
-  academicProgFilter: "All Levels" | "Undergraduate" | "Postgraduate";
+  academicProgFilter: AcademicProgType;
 }
 
 // Define the initial state using that type
 const initialState: filterState = {
-  academicProgFilter: "All Levels",
+  academicProgFilter: AcademicProgType["All Levels"],
 };
 
 export const filterSlice = createSlice({
@@ -18,7 +19,7 @@ export const filterSlice = createSlice({
   reducers: {
     setAcademicProgrammeFilter: (
       state,
-      action: PayloadAction<"All Levels" | "Undergraduate" | "Postgraduate">
+      action: PayloadAction<AcademicProgType>
     ) => {
       state.academicProgFilter = action.payload;
     },

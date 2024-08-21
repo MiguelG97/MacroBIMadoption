@@ -11,10 +11,11 @@ import { useAppSelector } from "@/core/shared/redux/store";
 import React, { useEffect, useState } from "react";
 import { IQuestionnaire } from "@/core/shared/types/postgresql_schema_types";
 import { ChartDataItem } from "@/core/shared/types/chart_types";
-import { ProcessDataModel } from "@/modules/dashboard/domain/process_data/process_data_model";
+import { ProcessDataModel } from "@/modules/dashboard/domain/process_data_app/process_data_model";
 import { createTheme } from "@mui/material";
 import { ThemeProvider } from "@emotion/react";
 import { themeTailwind } from "@/core/shared/theme/tailwindTheme";
+import { FilterApp } from "@/modules/dashboard/domain/filter_app/filterApp";
 
 export default function Table_survey({
   questionnaire,
@@ -23,7 +24,8 @@ export default function Table_survey({
   questionnaire: IQuestionnaire;
   isTableAlone?: boolean;
 }) {
-  const { answers } = useAppSelector((state) => state.dbSlice);
+  const { answers, users } = useAppSelector((state) => state.dbSlice);
+  const { academicProgFilter } = useAppSelector((state) => state.filterSlice);
 
   /**States */
   const { colors: themeColor } = themeTailwind.theme;
@@ -31,10 +33,16 @@ export default function Table_survey({
   /**Effects */
   useEffect(() => {
     if (answers.length === 0 || !questionnaire) return;
-    //filter the answers
-    const filteredAnswers = answers.filter(
-      (x) => x.questionId === questionnaire.questionId
-    );
+    // //filter the answers
+    // const filteredAnswers = answers.filter(
+    //   (x) => x.questionId === questionnaire.questionId
+    // );
+    const filteredAnswers = FilterApp.filterAnswers({
+      answers,
+      users,
+      questionnaire,
+      academicProgFilter,
+    });
 
     //bussiness logic
     const choicesCounted = ProcessDataModel._shared.countChoices({
@@ -66,7 +74,7 @@ export default function Table_survey({
     });
 
     setTableData(tableData);
-  }, [answers, questionnaire]);
+  }, [answers, questionnaire, academicProgFilter]);
 
   const columns: GridColDef[] = [
     {

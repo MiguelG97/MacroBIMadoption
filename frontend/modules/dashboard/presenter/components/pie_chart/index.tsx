@@ -14,9 +14,11 @@ import { CategoricalChartState } from "recharts/types/chart/types";
 import { useAppDispatch, useAppSelector } from "@/core/shared/redux/store";
 import { setActiveTooltipAccValue } from "../../controllers/section_quest_slice";
 import { IQuestionnaire } from "@/core/shared/types/postgresql_schema_types";
-import { ProcessDataModel } from "@/modules/dashboard/domain/process_data/process_data_model";
+import { ProcessDataModel } from "@/modules/dashboard/domain/process_data_app/process_data_model";
 import { ChartDataItem } from "@/core/shared/types/chart_types";
 import { themeTailwind } from "@/core/shared/theme/tailwindTheme";
+import { AcademicProgType } from "@/core/shared/enums/filter_enum";
+import { FilterApp } from "@/modules/dashboard/domain/filter_app/filterApp";
 
 export default function Pie_chart_bim({
   questionnaire,
@@ -32,7 +34,9 @@ export default function Pie_chart_bim({
   const { activeToolTipAccumValue } = useAppSelector(
     (state) => state.sectionQst
   );
-  const { answers } = useAppSelector((state) => state.dbSlice);
+  const { answers, users } = useAppSelector((state) => state.dbSlice);
+  const { academicProgFilter } = useAppSelector((state) => state.filterSlice);
+
   /**States */
   const { colors: themeColor } = themeTailwind.theme;
   const [chartData, setChartData] = useState<ChartDataItem[]>([]);
@@ -42,10 +46,12 @@ export default function Pie_chart_bim({
   useEffect(() => {
     if (answers.length === 0 || !questionnaire) return;
 
-    //filter the answers
-    const filteredAnswers = answers.filter(
-      (x) => x.questionId === questionnaire.questionId
-    );
+    const filteredAnswers = FilterApp.filterAnswers({
+      answers,
+      users,
+      questionnaire,
+      academicProgFilter,
+    });
 
     const choicesCounted = ProcessDataModel._shared.countChoices({
       answers: filteredAnswers,
@@ -73,7 +79,7 @@ export default function Pie_chart_bim({
       };
     });
     setChartData(chartData);
-  }, [answers, questionnaire]); //weird shit, it's not enough passing answers, since the first and answer render, the questionnaire is not ready yet!
+  }, [answers, questionnaire, academicProgFilter]); //weird shit, it's not enough passing answers, since the first and answer render, the questionnaire is not ready yet!
 
   /**Handlers */
   const onMouseMovePieChart = (e: CategoricalChartState) => {

@@ -8,7 +8,7 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-import { ProcessDataModel } from "../../../domain/process_data/process_data_model";
+import { ProcessDataModel } from "../../../domain/process_data_app/process_data_model";
 import { useAppDispatch, useAppSelector } from "@/core/shared/redux/store";
 
 import Render_Tooltip from "./tooltip";
@@ -18,6 +18,7 @@ import { setActiveTooltipAccValue } from "../../controllers/section_quest_slice"
 import { IQuestionnaire } from "@/core/shared/types/postgresql_schema_types";
 import { ChartDataItem } from "@/core/shared/types/chart_types";
 import { themeTailwind } from "@/core/shared/theme/tailwindTheme";
+import { FilterApp } from "@/modules/dashboard/domain/filter_app/filterApp";
 
 export default function Bar_chart_bim({
   questionnaire,
@@ -35,7 +36,9 @@ export default function Bar_chart_bim({
   const { activeToolTipAccumValue } = useAppSelector(
     (state) => state.sectionQst
   );
-  const { answers } = useAppSelector((state) => state.dbSlice);
+  const { answers, users } = useAppSelector((state) => state.dbSlice);
+  const { academicProgFilter } = useAppSelector((state) => state.filterSlice);
+
   /**States */
   const { colors: themeColor } = themeTailwind.theme;
   const [chartData, setChartData] = useState<ChartDataItem[]>([]);
@@ -43,10 +46,13 @@ export default function Bar_chart_bim({
   /**Effects */
   useEffect(() => {
     if (answers.length === 0 || !questionnaire) return;
-    //filter the answers
-    const filteredAnswers = answers.filter(
-      (x) => x.questionId === questionnaire.questionId
-    );
+
+    const filteredAnswers = FilterApp.filterAnswers({
+      answers,
+      users,
+      questionnaire,
+      academicProgFilter,
+    });
 
     const choicesCounted = ProcessDataModel._shared.countChoices({
       answers: filteredAnswers,
@@ -90,7 +96,8 @@ export default function Bar_chart_bim({
     //only pick the first 5 values!
     chartData = chartData.slice(0, 5);
     setChartData(chartData);
-  }, [answers, questionnaire]);
+  }, [answers, questionnaire, academicProgFilter]);
+
   /**handlers*/
   const onMouseMoveBarChart = (e: CategoricalChartState) => {
     if (!e.activeLabel) return;

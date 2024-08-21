@@ -8,7 +8,6 @@ import {
   IconSearch,
 } from "@tabler/icons-react";
 import { DM_Sans, Poppins } from "next/font/google";
-import { useState } from "react";
 import {
   setSelectedSectIndex,
   setSelectedSection,

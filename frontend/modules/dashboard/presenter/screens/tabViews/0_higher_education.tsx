@@ -9,10 +9,12 @@ import Table_survey from "../../components/table_survey";
 export default function Higher_educ_tabView() {
   /**Redux toolkit */
   const { questionnaires } = useAppSelector((state) => state.dbSlice);
+
   /**States */
   const [questionnariesHigherEduc, setQstHigherEduc] = useState<
     IQuestionnaire[]
   >([]);
+
   /**Effects */
   //get all the questionnaires and render 1 chart per each questionnaire that belongs to this section
   useEffect(() => {
