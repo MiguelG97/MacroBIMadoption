@@ -10,17 +10,24 @@ export class CreateData {
     mutationCreateUsers,
     mutationCreateAnswer,
     mutationCreateAnswers,
+    excelPath,
+    country,
   }: {
     mutationCreateQuestionnaries: any;
     mutationCreateUsers: any;
     mutationCreateAnswer: any;
     mutationCreateAnswers: any;
+    excelPath: string;
+    country: string;
   }) {
-    const workbook = await excelUtils.readExcel();
+    const workbook = await excelUtils.readExcel({
+      path: excelPath,
+    });
     const sheets = workbook?.Sheets;
     if (!sheets) return;
     let jsonRows: IExcelRowJson[] = utils.sheet_to_json(sheets.Answers);
-    /**1) read and paser answer data*/
+
+    /**1) read and parse answer data*/
     //a) reorder by item title for convenience
     jsonRows.sort((a, b) =>
       a["Item Title"] > b["Item Title"]
@@ -96,16 +103,19 @@ export class CreateData {
         userEmail: x["User Email"],
         userName: x["User Name"],
         userLabels: x["User Labels"],
-        country: "brazil", //set this manually??
+        country: country, //"brazil","peru"
         // academicProgramme: [], //depending upon an answer
       };
       userModels.push(user);
     });
     console.log("total users: ", userModels);
-    /**3) read questionary data */
+
+    /**3) read questionary data [imported manually]*/
+    console.log("total questionnaires", questions_postgresql);
+
     /**4) send data to postgresql */
     try {
-      console.log("total questionnaires", questions_postgresql);
+      //4.1)send questionnaires
       await mutationCreateQuestionnaries({
         variables: {
           createManyQuestionnariesInput: {
@@ -113,23 +123,28 @@ export class CreateData {
           },
         },
       });
+      //4.2)send users
       await mutationCreateUsers({
         variables: {
           createManyUsersInput: { manyUsersInput: userModels },
         },
       });
-      // answers go at the end!
+
+      //4.3)send answers
       const failedAnswersIndexes: { index: number; error: any }[] = [];
       const qIdsToIgnore = [
+        //those questionnaires are not supposed to be displayed in the dashboard
         1696139171941, 1696139477406, 1696139949919, 1696140883180,
         //those not appear in excel questionnary sheet either
         1697541525184,
       ];
-      //do not use this individual mutation since takes a lot, only use it for debuging errors
+
       const filteredAnswerModels: IAnswer[] = [];
       for (let i = 0; i < answerModels.length; i++) {
         if (qIdsToIgnore.includes(answerModels[i].questionId)) continue;
         filteredAnswerModels.push(answerModels[i]);
+
+        //do not use this individual mutation since takes a lot, only use it for debuging errors
         // await mutationCreateAnswer({
         //   variables: {
         //     createAnswerInput: answerModels[i],
@@ -142,13 +157,13 @@ export class CreateData {
         //   },
         // });
       }
+      // console.log(failedAnswersIndexes);
       console.log("filteredAnswers", filteredAnswerModels);
       await mutationCreateAnswers({
         variables: {
           createManyAnswersInput: { createAnswersInput: filteredAnswerModels },
         },
       });
-      console.log(failedAnswersIndexes);
     } catch {}
   }
 }

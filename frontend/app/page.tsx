@@ -120,15 +120,19 @@ export default function Home() {
   /**Pre process data to send it to postgresql db */
   useEffect(() => {
     //Send data from excel to postgresql
-    // CreateData.sendExcelDataToPostgresql({
-    //   mutationCreateAnswer,
-    //   mutationCreateQuestionnaries,
-    //   mutationCreateUsers,
-    //   mutationCreateAnswers,
-    // });
+    CreateData.sendExcelDataToPostgresql({
+      mutationCreateAnswer,
+      mutationCreateQuestionnaries,
+      mutationCreateUsers,
+      mutationCreateAnswers,
+      excelPath:
+        "/assets/files/education/XLSX Report - BIMei Macro Adoption Study 202408142228 PER-EDU.xlsx",
+      country: "peru",
+    });
     //update academic programme data
     // UpdateData.updateAcademicProgramme({ mutationUpdateUsers });//
   }, []);
+
   // return <div>hey</div>;
   return <DashboardScreen />;
 }

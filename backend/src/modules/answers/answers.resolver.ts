@@ -23,7 +23,7 @@ export class AnswersResolver {
     @Args('createManyAnswersInput', { type: () => CreateManyAnswersInput })
     createManyAnswersInput: CreateManyAnswersInput,
   ) {
-    const res = await this.answersService.createMany(createManyAnswersInput);
+    const res = await this.answersService.createMany(createManyAnswersInput); //it's returning only count!!
     return res;
   }
 

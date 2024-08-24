@@ -5,10 +5,12 @@ import { excelUtils } from "../utils/excel/excel_util_model";
 export class UpdateData {
   public static async updateAcademicProgramme({
     mutationUpdateUsers,
+    excelPath,
   }: {
     mutationUpdateUsers: any;
+    excelPath: string;
   }) {
-    const workbook = await excelUtils.readExcel();
+    const workbook = await excelUtils.readExcel({ path: excelPath });
     const sheets = workbook?.Sheets;
     if (!sheets) return;
     let jsonRows: IExcelRowJson[] = utils.sheet_to_json(sheets.Answers);
