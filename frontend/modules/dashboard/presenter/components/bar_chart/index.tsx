@@ -37,7 +37,7 @@ export default function Bar_chart_bim({
     (state) => state.sectionQst
   );
   const { answers, users } = useAppSelector((state) => state.dbSlice);
-  const { academicProgFilter } = useAppSelector((state) => state.filterSlice);
+  const { countryFilter } = useAppSelector((state) => state.filterSlice);
 
   /**States */
   const { colors: themeColor } = themeTailwind.theme;
@@ -51,7 +51,7 @@ export default function Bar_chart_bim({
       answers,
       users,
       questionnaire,
-      academicProgFilter,
+      countryFilter,
     });
 
     const choicesCounted = ProcessDataModel._shared.countChoices({
@@ -96,7 +96,7 @@ export default function Bar_chart_bim({
     //only pick the first 5 values!
     chartData = chartData.slice(0, 5);
     setChartData(chartData);
-  }, [answers, questionnaire, academicProgFilter]);
+  }, [answers, questionnaire, countryFilter]);
 
   /**handlers*/
   const onMouseMoveBarChart = (e: CategoricalChartState) => {

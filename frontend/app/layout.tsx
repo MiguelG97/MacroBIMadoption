@@ -3,8 +3,8 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import ReduxContext from "@/core/shared/redux/context";
 import ApolloContext from "@/core/shared/apollo/context";
-import Left_drawer from "@/modules/dashboard/presenter/components/left_drawer";
-import Header from "@/modules/dashboard/presenter/components/header";
+import Left_drawer from "@/core/shared/components/layout/left_drawer";
+import Header from "@/core/shared/components/layout/header";
 
 const inter = Inter({ subsets: ["latin"] });
 

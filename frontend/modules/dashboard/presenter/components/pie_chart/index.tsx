@@ -35,7 +35,7 @@ export default function Pie_chart_bim({
     (state) => state.sectionQst
   );
   const { answers, users } = useAppSelector((state) => state.dbSlice);
-  const { academicProgFilter } = useAppSelector((state) => state.filterSlice);
+  const { countryFilter } = useAppSelector((state) => state.filterSlice);
 
   /**States */
   const { colors: themeColor } = themeTailwind.theme;
@@ -50,7 +50,7 @@ export default function Pie_chart_bim({
       answers,
       users,
       questionnaire,
-      academicProgFilter,
+      countryFilter,
     });
 
     const choicesCounted = ProcessDataModel._shared.countChoices({
@@ -79,7 +79,7 @@ export default function Pie_chart_bim({
       };
     });
     setChartData(chartData);
-  }, [answers, questionnaire, academicProgFilter]); //weird shit, it's not enough passing answers, since the first and answer render, the questionnaire is not ready yet!
+  }, [answers, questionnaire, countryFilter]); //weird shit, it's not enough passing answers, since the first and answer render, the questionnaire is not ready yet!
 
   /**Handlers */
   const onMouseMovePieChart = (e: CategoricalChartState) => {

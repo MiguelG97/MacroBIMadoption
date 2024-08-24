@@ -3,3 +3,9 @@ export enum AcademicProgType {
   "Undergraduate" = "Undergraduate",
   "Postgraduate" = "Postgraduate",
 }
+
+export enum CountriesEnum {
+  "All" = "all",
+  "Peru" = "peru",
+  "Brazil" = "brazil",
+}

@@ -2,7 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import { useDispatch, useSelector } from "react-redux";
 import { sectionQstSlice } from "@/modules/dashboard/presenter/controllers/section_quest_slice";
 import { dbSlice } from "./slices/db_slice";
-import { filterSlice } from "@/modules/dashboard/presenter/controllers/filter_slice";
+import { filterSlice } from "@/core/shared/redux/slices/filter_slice";
 
 export const store = configureStore({
   reducer: {

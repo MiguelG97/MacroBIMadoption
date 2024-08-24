@@ -25,7 +25,7 @@ export default function Table_survey({
   isTableAlone?: boolean;
 }) {
   const { answers, users } = useAppSelector((state) => state.dbSlice);
-  const { academicProgFilter } = useAppSelector((state) => state.filterSlice);
+  const { countryFilter } = useAppSelector((state) => state.filterSlice);
 
   /**States */
   const { colors: themeColor } = themeTailwind.theme;
@@ -41,7 +41,7 @@ export default function Table_survey({
       answers,
       users,
       questionnaire,
-      academicProgFilter,
+      countryFilter,
     });
 
     //bussiness logic
@@ -74,7 +74,7 @@ export default function Table_survey({
     });
 
     setTableData(tableData);
-  }, [answers, questionnaire, academicProgFilter]);
+  }, [answers, questionnaire, countryFilter]);
 
   const columns: GridColDef[] = [
     {

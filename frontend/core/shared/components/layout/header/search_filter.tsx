@@ -5,12 +5,12 @@ import { IconFilterFilled, IconSearch } from "@tabler/icons-react";
 import { useState } from "react";
 import { IoIosArrowDown } from "react-icons/io";
 import { useDispatch } from "react-redux";
-import { setAcademicProgrammeFilter } from "../../controllers/filter_slice";
-import { AcademicProgType } from "@/core/shared/enums/filter_enum";
+import { CountriesEnum } from "@/core/shared/enums/filter_enum";
+import { setCountryFilter } from "@/core/shared/redux/slices/filter_slice";
 
 export default function Search_filter() {
   /**Redux toolkit */
-  const { academicProgFilter } = useAppSelector((x) => x.filterSlice);
+  const { countryFilter } = useAppSelector((x) => x.filterSlice);
   const dispatch = useDispatch();
   /**States */
   const [anchorFilter, setAnchorFilter] = useState<Element | null>(null);
@@ -20,8 +20,8 @@ export default function Search_filter() {
     setAnchorFilter(e.currentTarget);
     setFilterOpen(true);
   };
-  const onChangeAcaProgFilter = (e: SelectChangeEvent) => {
-    dispatch(setAcademicProgrammeFilter(e.target.value as AcademicProgType));
+  const onChangeCountryFilter = (e: SelectChangeEvent) => {
+    dispatch(setCountryFilter(e.target.value as CountriesEnum));
   };
   return (
     <div
@@ -77,19 +77,20 @@ export default function Search_filter() {
           </p>
           <div className="flex flex-col gap-[0.8rem]">
             <div className="flex justify-between">
-              <p className="text-[14px] font-bold">Academic Program</p>
+              <p className="text-[14px] font-bold">Country</p>
               <div className="cursor-pointer">
                 <IoIosArrowDown color="black" />
               </div>
             </div>
             <MSelector
-              defaultValue={academicProgFilter}
-              menuItems={[
-                { text: "All Levels", value: "All Levels" },
-                { text: "Undergraduate Level", value: "Undergraduate" },
-                { text: "Postgraduate Level", value: "Postgraduate" },
-              ]}
-              onChangeCallback={onChangeAcaProgFilter}
+              defaultValue={countryFilter}
+              menuItems={Object.keys(CountriesEnum).map(
+                (x: string, i: number) => ({
+                  text: x,
+                  value: Object.values(CountriesEnum)[i],
+                })
+              )}
+              onChangeCallback={onChangeCountryFilter}
             />
           </div>
         </div>

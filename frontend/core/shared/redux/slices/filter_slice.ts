@@ -1,15 +1,20 @@
-import { AcademicProgType } from "@/core/shared/enums/filter_enum";
+import {
+  AcademicProgType,
+  CountriesEnum,
+} from "@/core/shared/enums/filter_enum";
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
 // Define a type for the slice state
 interface filterState {
   academicProgFilter: AcademicProgType;
+  countryFilter: CountriesEnum;
 }
 
 // Define the initial state using that type
 const initialState: filterState = {
   academicProgFilter: AcademicProgType["All Levels"],
+  countryFilter: CountriesEnum.All,
 };
 
 export const filterSlice = createSlice({
@@ -23,9 +28,13 @@ export const filterSlice = createSlice({
     ) => {
       state.academicProgFilter = action.payload;
     },
+    setCountryFilter: (state, action: PayloadAction<CountriesEnum>) => {
+      state.countryFilter = action.payload;
+    },
   },
 });
 
-export const { setAcademicProgrammeFilter } = filterSlice.actions;
+export const { setAcademicProgrammeFilter, setCountryFilter } =
+  filterSlice.actions;
 
 export default filterSlice.reducer;

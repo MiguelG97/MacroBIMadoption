@@ -11,7 +11,7 @@ import { DM_Sans, Poppins } from "next/font/google";
 import {
   setSelectedSectIndex,
   setSelectedSection,
-} from "../controllers/section_quest_slice";
+} from "../../../../modules/dashboard/presenter/controllers/section_quest_slice";
 
 const poppings = Poppins({
   weight: "700",

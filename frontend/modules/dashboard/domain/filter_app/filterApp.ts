@@ -1,4 +1,7 @@
-import { AcademicProgType } from "@/core/shared/enums/filter_enum";
+import {
+  AcademicProgType,
+  CountriesEnum,
+} from "@/core/shared/enums/filter_enum";
 import {
   IAnswer,
   IQuestionnaire,
@@ -10,46 +13,47 @@ export class FilterApp {
     answers,
     questionnaire,
     users,
-    academicProgFilter,
+    countryFilter,
   }: {
     answers: IAnswer[];
     questionnaire: IQuestionnaire;
     users: IUser[];
-    academicProgFilter: AcademicProgType;
+    countryFilter: CountriesEnum;
   }) {
     return answers.filter((x) => {
-      if (academicProgFilter === AcademicProgType["All Levels"]) {
+      if (countryFilter === CountriesEnum.All) {
         return x.questionId === questionnaire.questionId;
       }
-      //by academic programme
+      //a). by country
       else {
         const userFound = users.find((u) => u.userId === x.userId);
-        if (
-          userFound &&
-          userFound.academicProgramme !== null &&
-          userFound.academicProgramme
-        ) {
-          if (academicProgFilter === AcademicProgType.Undergraduate) {
-            return (
-              x.questionId === questionnaire.questionId &&
-              userFound.academicProgramme.every(
-                (e) => !e.includes(AcademicProgType.Postgraduate)
-              ) &&
-              userFound.academicProgramme.some((s) =>
-                s.includes(academicProgFilter)
-              )
-            );
-          } else if (academicProgFilter === AcademicProgType.Postgraduate) {
-            return (
-              x.questionId === questionnaire.questionId &&
-              userFound.academicProgramme.every(
-                (e) => !e.includes(AcademicProgType.Undergraduate)
-              ) &&
-              userFound.academicProgramme.some((s) =>
-                s.includes(academicProgFilter)
-              )
-            );
-          }
+        if (userFound && userFound.country !== null && userFound.country) {
+          return (
+            x.questionId === questionnaire.questionId &&
+            userFound.country === countryFilter
+          );
+
+          // if (countryFilter === CountriesEnum.Undergraduate) {
+          //   return (
+          //     x.questionId === questionnaire.questionId &&
+          //     userFound.academicProgramme.every(
+          //       (e) => !e.includes(AcademicProgType.Postgraduate)
+          //     ) &&
+          //     userFound.academicProgramme.some((s) =>
+          //       s.includes(countryFilter)
+          //     )
+          //   );
+          // } else if (countryFilter === AcademicProgType.Postgraduate) {
+          //   return (
+          //     x.questionId === questionnaire.questionId &&
+          //     userFound.academicProgramme.every(
+          //       (e) => !e.includes(AcademicProgType.Undergraduate)
+          //     ) &&
+          //     userFound.academicProgramme.some((s) =>
+          //       s.includes(countryFilter)
+          //     )
+          //   );
+          // }
         }
         return false;
       }
