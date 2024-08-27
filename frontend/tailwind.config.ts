@@ -3,6 +3,7 @@ const config = {
   content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./modules/**/*.{js,ts,jsx,tsx,mdx}",
+    "./core/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
