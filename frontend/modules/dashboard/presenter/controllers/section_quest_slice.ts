@@ -11,7 +11,7 @@ interface sectionQstState {
 // Define the initial state using that type
 const initialState: sectionQstState = {
   selectedSectionName: "Educational Units",
-  selectedSectionIndex: 0,
+  selectedSectionIndex: 1,
   activeToolTipAccumValue: 0,
 };
 
@@ -20,24 +20,14 @@ export const sectionQstSlice = createSlice({
   // `createSlice` will infer the state type from the `initialState` argument
   initialState,
   reducers: {
-    setSelectedSection: (
-      state,
-      action: PayloadAction<string>
-    ) => {
+    setSelectedSection: (state, action: PayloadAction<string>) => {
       state.selectedSectionName = action.payload;
     },
-    setSelectedSectIndex: (
-      state,
-      action: PayloadAction<number>
-    ) => {
+    setSelectedSectIndex: (state, action: PayloadAction<number>) => {
       state.selectedSectionIndex = action.payload;
     },
-    setActiveTooltipAccValue: (
-      state,
-      action: PayloadAction<number>
-    ) => {
-      state.activeToolTipAccumValue =
-        action.payload;
+    setActiveTooltipAccValue: (state, action: PayloadAction<number>) => {
+      state.activeToolTipAccumValue = action.payload;
     },
   },
 });

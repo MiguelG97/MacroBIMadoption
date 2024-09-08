@@ -10,10 +10,10 @@ export default function Dashboard_screen() {
   );
 
   const screens = [
-    <Higher_educ_tabView key={0} />,
-    <Bim_training_tabView key={1} />,
-    <Educ_framework_tabView key={2} />,
-    <Collaboration_tabView key={3} />,
+    <Higher_educ_tabView key={1} />,
+    <Bim_training_tabView key={2} />,
+    <Educ_framework_tabView key={3} />,
+    <Collaboration_tabView key={4} />,
   ];
-  return screens[selectedSectionIndex];
+  return screens[selectedSectionIndex - 1];
 }
