@@ -1,3 +1,4 @@
+//protocol <> campaign
 export interface IProtocolSection {
   id: number;
   name: string;

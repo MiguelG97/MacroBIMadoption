@@ -2,20 +2,18 @@ import { utils } from "xlsx";
 import { IExcelRowJson } from "../utils/excel/excel_types";
 import { excelUtils } from "../utils/excel/excel_util_model";
 import { IAnswer, IUser } from "../shared/types/postgresql_schema_types";
-import { questions_postgresql } from "../shared/constants/questions";
+import { education_questionnaires } from "../shared/constants/questionnaires";
 
 export class CreateData {
   public static async sendExcelDataToPostgresql({
     mutationCreateQuestionnaries,
     mutationCreateUsers,
-    mutationCreateAnswer,
     mutationCreateAnswers,
     excelPath,
     country,
   }: {
     mutationCreateQuestionnaries: any;
     mutationCreateUsers: any;
-    mutationCreateAnswer: any;
     mutationCreateAnswers: any;
     excelPath: string;
     country: string;
@@ -111,7 +109,7 @@ export class CreateData {
     console.log("total users: ", userModels);
 
     /**3) read questionary data [imported manually]*/
-    console.log("total questionnaires", questions_postgresql);
+    // console.log("total questionnaires", education_questionnaires);
 
     /**4) send data to postgresql */
     try {
@@ -119,7 +117,7 @@ export class CreateData {
       await mutationCreateQuestionnaries({
         variables: {
           createManyQuestionnariesInput: {
-            questionnariesInput: questions_postgresql,
+            questionnariesInput: education_questionnaires,
           },
         },
       });

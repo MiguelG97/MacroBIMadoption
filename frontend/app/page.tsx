@@ -1,7 +1,5 @@
 "use client";
 import { useAppDispatch } from "@/core/shared/redux/store";
-
-import { IExcelRowJson } from "@/core/utils/excel/excel_types";
 import { excelUtils } from "@/core/utils/excel/excel_util_model";
 import {
   qFindAllAnswers,
@@ -37,7 +35,6 @@ import {
   mCreateUsers,
   mUpdateUsers,
 } from "@/core/shared/gql/mutations/users";
-import { questions_postgresql } from "@/core/shared/constants/questions";
 import { IAnswer, IUser } from "@/core/shared/types/postgresql_schema_types";
 import {
   setAnswers,
@@ -121,7 +118,6 @@ export default function Home() {
   useEffect(() => {
     //Send data from excel to postgresql
     // CreateData.sendExcelDataToPostgresql({
-    //   mutationCreateAnswer,
     //   mutationCreateQuestionnaries,
     //   mutationCreateUsers,
     //   mutationCreateAnswers,
