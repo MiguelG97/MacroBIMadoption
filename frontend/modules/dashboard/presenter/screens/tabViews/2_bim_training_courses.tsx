@@ -4,7 +4,7 @@ import Bar_chart_bim from "../../components/bar_chart";
 import Table_survey from "../../components/table_survey";
 import { useAppSelector } from "@/core/shared/redux/store";
 import { IQuestionnaire } from "@/core/shared/types/postgresql_schema_types";
-import { EduSectionName } from "@/core/shared/enums/questionnary_enum";
+import { EduSectionName } from "@/core/shared/enums/campaign_sections_enum";
 
 export default function Bim_training_tabView() {
   /**Redux toolkit */

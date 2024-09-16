@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Bar_chart_bim from "../../components/bar_chart";
 import Pie_chart_bim from "../../components/pie_chart";
 import { useAppSelector } from "@/core/shared/redux/store";
-import { EduSectionName } from "@/core/shared/enums/questionnary_enum";
+import { EduSectionName } from "@/core/shared/enums/campaign_sections_enum";
 import { IQuestionnaire } from "@/core/shared/types/postgresql_schema_types";
 import Table_survey from "../../components/table_survey";
 
@@ -21,10 +21,11 @@ export default function Higher_educ_tabView() {
     if (questionnaires.length === 0) return;
 
     const filteredQuestionnaires = questionnaires.filter(
-      (x) => x.sectionName === EduSectionName.Higher_edu_programmes
+      (qst) => qst.sectionName === EduSectionName.Higher_edu_programmes
     );
     setQstHigherEduc(filteredQuestionnaires);
   }, [questionnaires]);
+
   return (
     <div
       className="flex flex-col px-[2.4rem] pb-[2.4rem] pt-[2.4rem] 

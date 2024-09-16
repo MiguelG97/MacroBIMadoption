@@ -5,7 +5,7 @@ import { IconFilterFilled, IconSearch } from "@tabler/icons-react";
 import { useState } from "react";
 import { IoIosArrowDown } from "react-icons/io";
 import { useDispatch } from "react-redux";
-import { CountriesEnum } from "@/core/shared/enums/filter_enum";
+import { CountriesEnum } from "@/core/shared/enums/filters_enum";
 import { setCountryFilter } from "@/core/shared/redux/slices/filter_slice";
 
 export default function Search_filter() {

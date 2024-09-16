@@ -3,7 +3,7 @@ import {
   Campaign,
   EduSectionName,
   OrgSectionName,
-} from "../enums/questionnary_enum";
+} from "../enums/campaign_sections_enum";
 import { IQuestionnaire } from "../types/postgresql_schema_types";
 
 /**For further questionnaires this should be parse automatically! */

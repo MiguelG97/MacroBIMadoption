@@ -17,10 +17,10 @@ export const eduLandSections: IProtocolSection[] = [
   {
     id: 1,
     name: "Higher Education Programmes",
-    icon: (selectedSectionIndex: number) => (
+    icon: (activeSectionIndex: number) => (
       <IconSchool
         color={`${
-          selectedSectionIndex === 1
+          activeSectionIndex === 1
             ? colors.quaternary[100]
             : colors.txcolor[400]
         } `}
@@ -30,10 +30,10 @@ export const eduLandSections: IProtocolSection[] = [
   {
     id: 2,
     name: "Short BIM Training Courses",
-    icon: (selectedSectionIndex: number) => (
+    icon: (activeSectionIndex: number) => (
       <IconBook
         color={`${
-          selectedSectionIndex === 2
+          activeSectionIndex === 2
             ? colors.quaternary[100]
             : colors.txcolor[400]
         } `}
@@ -43,10 +43,10 @@ export const eduLandSections: IProtocolSection[] = [
   {
     id: 3,
     name: "Market-Scale Educational Framework",
-    icon: (selectedSectionIndex: number) => (
+    icon: (activeSectionIndex: number) => (
       <IconBuildingStore
         color={`${
-          selectedSectionIndex === 3
+          activeSectionIndex === 3
             ? colors.quaternary[100]
             : colors.txcolor[400]
         } `}
@@ -56,10 +56,10 @@ export const eduLandSections: IProtocolSection[] = [
   {
     id: 4,
     name: "Collaboration between Academia, Government and Industry",
-    icon: (selectedSectionIndex: number) => (
+    icon: (activeSectionIndex: number) => (
       <IconAffiliate
         color={`${
-          selectedSectionIndex === 4
+          activeSectionIndex === 4
             ? colors.quaternary[100]
             : colors.txcolor[400]
         } `}
@@ -72,10 +72,10 @@ export const orgAdoSections: IProtocolSection[] = [
   {
     id: 5,
     name: "Organisational Information",
-    icon: (selectedSectionIndex: number) => (
+    icon: (activeSectionIndex: number) => (
       <IconFileInvoice
         color={`${
-          selectedSectionIndex === 5
+          activeSectionIndex === 5
             ? colors.quaternary[100]
             : colors.txcolor[400]
         } `}
@@ -85,10 +85,10 @@ export const orgAdoSections: IProtocolSection[] = [
   {
     id: 6,
     name: "Adoption",
-    icon: (selectedSectionIndex: number) => (
+    icon: (activeSectionIndex: number) => (
       <IconStretching2
         color={`${
-          selectedSectionIndex === 6
+          activeSectionIndex === 6
             ? colors.quaternary[100]
             : colors.txcolor[400]
         } `}
@@ -98,10 +98,10 @@ export const orgAdoSections: IProtocolSection[] = [
   {
     id: 7,
     name: "Non-adopters",
-    icon: (selectedSectionIndex: number) => (
+    icon: (activeSectionIndex: number) => (
       <IconDeviceTabletOff
         color={`${
-          selectedSectionIndex === 7
+          activeSectionIndex === 7
             ? colors.quaternary[100]
             : colors.txcolor[400]
         } `}
@@ -111,10 +111,10 @@ export const orgAdoSections: IProtocolSection[] = [
   {
     id: 8,
     name: "Targeted deliverables",
-    icon: (selectedSectionIndex: number) => (
+    icon: (activeSectionIndex: number) => (
       <IconTargetArrow
         color={`${
-          selectedSectionIndex === 8
+          activeSectionIndex === 8
             ? colors.quaternary[100]
             : colors.txcolor[400]
         } `}
@@ -124,10 +124,10 @@ export const orgAdoSections: IProtocolSection[] = [
   {
     id: 9,
     name: "Interoperability",
-    icon: (selectedSectionIndex: number) => (
+    icon: (activeSectionIndex: number) => (
       <IconShare
         color={`${
-          selectedSectionIndex === 9
+          activeSectionIndex === 9
             ? colors.quaternary[100]
             : colors.txcolor[400]
         } `}

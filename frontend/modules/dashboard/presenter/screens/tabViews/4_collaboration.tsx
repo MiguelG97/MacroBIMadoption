@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Pie_chart_bim from "../../components/pie_chart";
 import Bar_chart_bim from "../../components/bar_chart";
 import Table_survey from "../../components/table_survey";
-import { EduSectionName } from "@/core/shared/enums/questionnary_enum";
+import { EduSectionName } from "@/core/shared/enums/campaign_sections_enum";
 import { useAppSelector } from "@/core/shared/redux/store";
 import { IQuestionnaire } from "@/core/shared/types/postgresql_schema_types";
 

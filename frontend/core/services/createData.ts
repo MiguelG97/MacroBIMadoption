@@ -2,7 +2,7 @@ import { utils } from "xlsx";
 import { IExcelRowJson } from "../utils/excel/excel_types";
 import { excelUtils } from "../utils/excel/excel_util_model";
 import { IAnswer, IUser } from "../shared/types/postgresql_schema_types";
-import { education_questionnaires } from "../shared/constants/questionnaires";
+import { education_questionnaires } from "../shared/constants/questions";
 
 export class CreateData {
   public static async sendExcelDataToPostgresql({

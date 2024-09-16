@@ -5,7 +5,7 @@ export default function Render_Tooltip(
   props: Props<number | string | Array<number | string>, number | string>
 ) {
   const { activeToolTipAccumValue } = useAppSelector(
-    (state) => state.sectionQst
+    (state) => state.campaignSecSlice
   );
 
   if (

@@ -2,7 +2,7 @@
 export interface IProtocolSection {
   id: number;
   name: string;
-  icon: (selectedSectionIndex: number) => JSX.Element;
+  icon: (activeSectionIndex: number) => JSX.Element;
 }
 export interface IProtocol {
   id: string;

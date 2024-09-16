@@ -1,7 +1,7 @@
 import {
   AcademicProgType,
   CountriesEnum,
-} from "@/core/shared/enums/filter_enum";
+} from "@/core/shared/enums/filters_enum";
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
