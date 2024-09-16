@@ -589,11 +589,467 @@ export const organization_questionnaires: IQuestionnaire[] = [
 
   /**Adoption */
   {
-    title: "What is the geographical coverage of your organisation?",
-    questionId: 1662925111508,
-    choices: ["Local", "Regional", "National", "International"],
-    sectionName: OrgSectionName.Org_information,
+    title: "Has your organisation adopted BIM?",
+    questionId: 1662925111509,
+    choices: ["Yes (partial or complete adoption)", "No", "Not sure"],
+    sectionName: OrgSectionName.Adoption,
     campaign: Campaign.Org_Adoption,
     chartType: Chart.Pie, //it seems that a table is more convenient since they can type everything here!
+  },
+  {
+    title: "How many years has your organisation been adopting BIM?",
+    questionId: 1662925111513,
+    choices: [
+      "Less than one year",
+      "One year",
+      "Two years",
+      "Three to five years",
+      "Five to ten years",
+      "10+ years",
+    ],
+    sectionName: OrgSectionName.Adoption,
+    campaign: Campaign.Org_Adoption,
+    chartType: Chart.Pie, //it seems that a table is more convenient since they can type everything here!
+  },
+  {
+    title:
+      "What of these external factors that motivated the adoption of BIM in your organization?",
+    questionId: 1662925111514,
+    choices: [
+      "There are business gains (productivity, profitability) from adopting BIM in the market",
+      "Our competitors are using BIM tools and workflows",
+      "It has become the norm in the profession",
+      "There is a Government Mandate",
+      "There are Government Incentives",
+      "There is a Client/procurer requirement",
+    ],
+    sectionName: OrgSectionName.Adoption,
+    campaign: Campaign.Org_Adoption,
+    chartType: Chart.Bar, //it seems that a table is more convenient since they can type everything here!
+  },
+  {
+    title:
+      "Please identify how the organisation initiated its BIM Adoption process",
+    questionId: 1662925111515,
+    choices: [
+      "Engaged an external consultant",
+      "Employed an expert",
+      "Trained existing employees ",
+      "Relied on available materials",
+    ],
+    sectionName: OrgSectionName.Adoption,
+    campaign: Campaign.Org_Adoption,
+    chartType: Chart.Bar, //it seems that a table is more convenient since they can type everything here!
+  },
+  {
+    title:
+      "Does the organisation currently rely on external consultants to produce BIM-related deliverables?",
+    questionId: 1662925111516,
+    choices: ["Yes", "No", "Not sure"],
+    sectionName: OrgSectionName.Adoption,
+    campaign: Campaign.Org_Adoption,
+    chartType: Chart.Pie, //it seems that a table is more convenient since they can type everything here!
+  },
+  {
+    title: "Identify the services provided by external consultants",
+    questionId: 1662925111517,
+    choices: [
+      "Assist in General Modelling",
+      "Generate Object Libraries",
+      "Conduct Clash detection",
+      "Cost Planning",
+      "Deliver Construction Detailing",
+    ],
+    sectionName: OrgSectionName.Adoption,
+    campaign: Campaign.Org_Adoption,
+    chartType: Chart.Bar, //it seems that a table is more convenient since they can type everything here!
+  },
+  {
+    title: "What type of BIM Training content does your organisation need?",
+    questionId: 1662925111518,
+    choices: [
+      "General BIM-related concepts (ex: terminology, value and impact, interoperability, etc.)",
+      "How to use BIM software tools on projects (ex: using model authoring tools to design)",
+      "How to conduct BIM processes on projects (ex: clash detection analysis)",
+      "How to apply national/ international information management standards on projects (EIR, CDE, etc.)",
+      "How to implement BIM in organisation/projects",
+    ],
+    sectionName: OrgSectionName.Adoption,
+    campaign: Campaign.Org_Adoption,
+    chartType: Chart.Bar, //it seems that a table is more convenient since they can type everything here!
+  },
+  {
+    title:
+      "Are there BIM Training courses available in the market that meet the organisation requirements?",
+    questionId: 1662925111519,
+    choices: ["Yes", "No", "Not Sure"],
+    sectionName: OrgSectionName.Adoption,
+    campaign: Campaign.Org_Adoption,
+    chartType: Chart.Pie, //it seems that a table is more convenient since they can type everything here!
+  },
+  {
+    title:
+      "Please provide more information about the alignment of available BIM Training courses in the market and the organisation requirements:",
+    questionId: 1662925111520,
+    choices: [],
+    sectionName: OrgSectionName.Adoption,
+    campaign: Campaign.Org_Adoption,
+    chartType: Chart.Table, //it seems that a table is more convenient since they can type everything here!
+  },
+  {
+    title:
+      "Are you able to recruit the trained personnel needed to work on your organisations's BIM projects?",
+    questionId: 1662925111521,
+    choices: ["Yes", "No", "Not Sure"],
+    sectionName: OrgSectionName.Adoption,
+    campaign: Campaign.Org_Adoption,
+    chartType: Chart.Pie, //it seems that a table is more convenient since they can type everything here!
+  },
+  {
+    title:
+      "Please provide more information about the availability of trained personnel in your region to work on your organisation's BIM projects:",
+    questionId: 1662925111522,
+    choices: [],
+    sectionName: OrgSectionName.Adoption,
+    campaign: Campaign.Org_Adoption,
+    chartType: Chart.Table, //it seems that a table is more convenient since they can type everything here!
+  },
+  {
+    title:
+      "What is the influence of competitors on your organisation's decision to adopt BIM?",
+    questionId: 1662925111523,
+    choices: [], //ratings (20%, 80%, ...wtf)
+    sectionName: OrgSectionName.Adoption,
+    campaign: Campaign.Org_Adoption,
+    chartType: Chart.Pie, //it seems that a table is more convenient since they can type everything here!
+  },
+  {
+    title:
+      "What is the influence of the government mandate on your organisation's decision to adopt BIM?",
+    questionId: 1663671228314,
+    choices: [], //ratings (20%, 80%, ...wtf)
+    sectionName: OrgSectionName.Adoption,
+    campaign: Campaign.Org_Adoption,
+    chartType: Chart.Pie, //it seems that a table is more convenient since they can type everything here!
+  },
+  {
+    title:
+      "What is the influence of BIM, as the accepted approach in the profession, on your organisation's decision to adopt BIM?",
+    questionId: 1663671228315,
+    choices: [], //ratings (20%, 80%, ...wtf)
+    sectionName: OrgSectionName.Adoption,
+    campaign: Campaign.Org_Adoption,
+    chartType: Chart.Pie, //it seems that a table is more convenient since they can type everything here!
+  },
+  {
+    title:
+      "What is the influence of clients/procurers on your organisation's decision to adopt BIM?",
+    questionId: 1663671040629,
+    choices: [], //ratings (20%, 80%, ...wtf)
+    sectionName: OrgSectionName.Adoption,
+    campaign: Campaign.Org_Adoption,
+    chartType: Chart.Pie, //it seems that a table is more convenient since they can type everything here!
+  },
+  /** Non-adopter*/
+  {
+    title: "Why has your organisation not adopted BIM?",
+    questionId: 1662925111510,
+    choices: [
+      "The benefits are not clear",
+      "The technology is not affordable",
+      "There is no mandate by the government",
+      "There are no client demands",
+      "There is not enough BIM compentent professionals in the market",
+      "It is not compatible with our current processes",
+    ],
+    sectionName: OrgSectionName.Non_adopters,
+    campaign: Campaign.Org_Adoption,
+    chartType: Chart.Bar, //it seems that a table is more convenient since they can type everything here!
+  },
+  {
+    title: "Is your organisation planning to adopt?",
+    questionId: 1662925111511,
+    choices: ["Yes", "No", "Not sure"],
+    sectionName: OrgSectionName.Non_adopters,
+    campaign: Campaign.Org_Adoption,
+    chartType: Chart.Pie, //it seems that a table is more convenient since they can type everything here!
+  },
+  {
+    title: "What actions is the organisation taking to adopt BIM?",
+    questionId: 1662925111512,
+    choices: [
+      "Preparing the technology infrastructure",
+      "Trialing software solutions",
+      "Consulting with our supply chain",
+      "Training Staff",
+      "Developing a strategy/business case",
+      "Hiring/consulting an implementation specialist",
+      "Reviewing guides/standards",
+    ],
+    sectionName: OrgSectionName.Non_adopters,
+    campaign: Campaign.Org_Adoption,
+    chartType: Chart.Bar, //it seems that a table is more convenient since they can type everything here!
+  },
+  /**Target Deliverables */
+  {
+    title:
+      "Does your organisation use BIM models for Capturing and Representing?",
+    questionId: 1662925111524,
+    choices: ["Yes", "No", "Not sure"],
+    sectionName: OrgSectionName.Target_deliv,
+    campaign: Campaign.Org_Adoption,
+    chartType: Chart.Pie, //it seems that a table is more convenient since they can type everything here!
+  },
+  {
+    title:
+      "Identify the Model Uses that the organisation has adopted for Capturing and Representing",
+    questionId: 1662925111525,
+    choices: [
+      "2D Documentation",
+      "3D Detailing",
+      "As-constructed Representation",
+      "Generative Design",
+      "Laser Scanning",
+      "Photogrammetry",
+      "Record Keeping",
+      "Surveying",
+      "Visual Communication",
+    ],
+    sectionName: OrgSectionName.Target_deliv,
+    campaign: Campaign.Org_Adoption,
+    chartType: Chart.Bar, //it seems that a table is more convenient since they can type everything here!
+  },
+  {
+    title: "Does your organisation use BIM models for Planning and Designing?",
+    questionId: 1662925111526,
+    choices: ["Yes", "No", "Not sure"],
+    sectionName: OrgSectionName.Target_deliv,
+    campaign: Campaign.Org_Adoption,
+    chartType: Chart.Bar, //it seems that a table is more convenient since they can type everything here!
+  },
+  {
+    title:
+      "Identify the Model Uses that the organisation has adopted for Planning and Designing",
+    questionId: 1662925111527,
+    choices: [
+      "Conceptualization",
+      "Construction Planning",
+      "Demolition Planning",
+      "Design Authoring",
+      "Disaster Planning",
+      "Lean Process Analysis",
+      "Lift Planning",
+      "Operations Planning",
+      "Selection and Specification",
+      "Space Programming",
+      "Urban Planning",
+      "Value Analysis",
+    ],
+    sectionName: OrgSectionName.Target_deliv,
+    campaign: Campaign.Org_Adoption,
+    chartType: Chart.Bar, //it seems that a table is more convenient since they can type everything here!
+  },
+  {
+    title:
+      "Does your organisation use BIM models for  Simulating and Quantifying?",
+    questionId: 1662925111528,
+    choices: ["Yes", "No", "Not sure"],
+    sectionName: OrgSectionName.Target_deliv,
+    campaign: Campaign.Org_Adoption,
+    chartType: Chart.Pie, //it seems that a table is more convenient since they can type everything here!
+  },
+  {
+    title:
+      "Identify the Model Uses that the organisation has adopted for Simulating and Quantifying",
+    questionId: 1662925111529,
+    choices: [
+      "Clash Detection (and avoidance)",
+      "Code Checking & Validation",
+      "Constructability Analysis",
+      "Construction Operation Analysis",
+      "Cost Estimation",
+      "Egress and Ingress",
+      "Energy Utilisation",
+      "Finite Element Analysis",
+      "Fire and Smoke Simulation",
+      "Lighting Analysis",
+      "Quantity Take-off",
+      "Reflectivity Analysis",
+      "Risk and Hazard Assessment",
+      "Safety Analysis",
+      "Security Analysis",
+      "Site Analysis",
+      "Solar Analysis",
+      "Spatial Analysis",
+      "Structural Analysis",
+      "Sustainability Analysis",
+      "Thermal Analysis",
+      "Virtual Reality Simulation",
+      "Life Cycle Assessment1",
+      "Wind Studies",
+    ],
+    sectionName: OrgSectionName.Target_deliv,
+    campaign: Campaign.Org_Adoption,
+    chartType: Chart.Bar, //it seems that a table is more convenient since they can type everything here!
+  },
+  {
+    title:
+      "Does your organisation use BIM models for Constructing and Fabricating?",
+    questionId: 1662925111530,
+    choices: ["Yes", "No", "Not sure"],
+    sectionName: OrgSectionName.Target_deliv,
+    campaign: Campaign.Org_Adoption,
+    chartType: Chart.Pie, //it seems that a table is more convenient since they can type everything here!
+  },
+  {
+    title:
+      "Identify the Model Uses that the organisation has adopted for Constructing and Fabricating",
+    questionId: 1662925111531,
+    choices: [
+      "3D Printing",
+      "Architectural Modules Prefabrication",
+      "Casework Prefabrication",
+      "Concrete Precasting",
+      "Construction Logistics",
+      "Construction Waste Management",
+      "Mechanical Assemblies Prefabrication",
+      "Sheet Metal Forming",
+      "Site Set-outs",
+    ],
+    sectionName: OrgSectionName.Target_deliv,
+    campaign: Campaign.Org_Adoption,
+    chartType: Chart.Bar, //it seems that a table is more convenient since they can type everything here!
+  },
+  {
+    title:
+      "Does your organisation use BIM models for Operating and Maintaining?",
+    questionId: 1662925111532,
+    choices: ["Yes", "No", "Not sure"],
+    sectionName: OrgSectionName.Target_deliv,
+    campaign: Campaign.Org_Adoption,
+    chartType: Chart.Pie, //it seems that a table is more convenient since they can type everything here!
+  },
+  {
+    title:
+      "Identify the Model Uses that the organisation has adopted for Operating and Maintaining",
+    questionId: 1662925111533,
+    choices: [
+      "Asset Maintenance",
+      "Asset Procurement",
+      "Asset Tracking",
+      "Building Inspection",
+      "Handover and Commissioning",
+      "Relocation Management",
+      "Space Management",
+    ],
+    sectionName: OrgSectionName.Target_deliv,
+    campaign: Campaign.Org_Adoption,
+    chartType: Chart.Bar, //it seems that a table is more convenient since they can type everything here!
+  },
+  {
+    title:
+      "Does your organisation use BIM models for Monitoring and Controlling?",
+    questionId: 1662925111534,
+    choices: ["Yes", "No", "Not sure"],
+    sectionName: OrgSectionName.Target_deliv,
+    campaign: Campaign.Org_Adoption,
+    chartType: Chart.Pie, //it seems that a table is more convenient since they can type everything here!
+  },
+  {
+    title:
+      "Identify the Model Uses that the organisation has adopted for Monitoring and Controlling",
+    questionId: 1662925111535,
+    choices: [
+      "Building Automation",
+      "Field BIM",
+      "Performance Monitoring",
+      "Real-time Utilization",
+      "Structural Health Monitoring",
+    ],
+    sectionName: OrgSectionName.Target_deliv,
+    campaign: Campaign.Org_Adoption,
+    chartType: Chart.Bar, //it seems that a table is more convenient since they can type everything here!
+  },
+  {
+    title:
+      "Does your organisation use BIM models for linking Linking and Extending with other systems?",
+    questionId: 16629251115836,
+    choices: ["Yes", "No", "Not sure"],
+    sectionName: OrgSectionName.Target_deliv,
+    campaign: Campaign.Org_Adoption,
+    chartType: Chart.Pie, //it seems that a table is more convenient since they can type everything here!
+  },
+  {
+    title:
+      "Identify the Model Uses that the organisation has adopted for Linking and Extending",
+    questionId: 1662925111537,
+    choices: [
+      "BIM/Spec Linking",
+      "BIM/ERP Linking",
+      "BIM/FM Integration",
+      "BIM/GIS Overlapping",
+      "BIM/IOT Interfacing",
+      "BIM/PLM Overlapping",
+      "BIM/Web-services Extension",
+    ],
+    sectionName: OrgSectionName.Target_deliv,
+    campaign: Campaign.Org_Adoption,
+    chartType: Chart.Bar, //it seems that a table is more convenient since they can type everything here!
+  },
+  /**Interoperability */ {
+    title:
+      "Does your organisation have the capability to generate high-quality IFC Industry Foundation Classes model files from proprietary BIM Software Tools",
+    questionId: 1662925111538,
+    choices: ["Yes", "No", "Not sure"],
+    sectionName: OrgSectionName.Interop,
+    campaign: Campaign.Org_Adoption,
+    chartType: Chart.Pie, //it seems that a table is more convenient since they can type everything here!
+  },
+  {
+    title:
+      "Has your organisation participated in projects where IFC (Industry Foundation Classes) was the preferred format of final submission?",
+    questionId: 1662925111539,
+    choices: ["Yes", "No", "Not sure"],
+    sectionName: OrgSectionName.Interop,
+    campaign: Campaign.Org_Adoption,
+    chartType: Chart.Pie, //it seems that a table is more convenient since they can type everything here!
+  },
+  {
+    title:
+      "How many projects has your organisation participated in where IFC Industry Foundation Classes was the preferred format of final submission?",
+    questionId: 1662925111540,
+    choices: [
+      "One project",
+      "A few projects (2-4 projects)",
+      "Many projects (5 or more projects)",
+    ],
+    sectionName: OrgSectionName.Interop,
+    campaign: Campaign.Org_Adoption,
+    chartType: Chart.Pie, //it seems that a table is more convenient since they can type everything here!
+  },
+  {
+    title:
+      "Has your organisation aligned its Information Management processes with applicable International Standards (e.g. ISO 19650)?",
+    questionId: 1662925111541,
+    choices: ["Yes", "No", "Not sure"],
+    sectionName: OrgSectionName.Interop,
+    campaign: Campaign.Org_Adoption,
+    chartType: Chart.Pie, //it seems that a table is more convenient since they can type everything here!
+  },
+  {
+    title:
+      "What Information Management processes did your organisation align with applicable International Standards (e.g ISO 19650)?",
+    questionId: 1662925111542,
+    choices: [
+      "Naming conventions of deliverables",
+      "Information Requirements (OIR, AIR, EIR)",
+      "Responsibility Matrices",
+      "BIM Execution Plans (BEP)",
+      "Common Data Environments (CDE)",
+      "Other", //??
+    ],
+    sectionName: OrgSectionName.Interop,
+    campaign: Campaign.Org_Adoption,
+    chartType: Chart.Bar, //it seems that a table is more convenient since they can type everything here!
   },
 ];
