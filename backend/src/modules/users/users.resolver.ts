@@ -16,6 +16,19 @@ import { UpdateManyUserInput, UpdateUserInput } from './dto/update-user.input';
 export class UsersResolver {
   constructor(private readonly usersService: UsersService) {}
 
+  @Query(() => User, { name: 'findOneUser' })
+  async findOne(@Args('userId', { type: () => Int }) userId: number) {
+    return await this.usersService.findOne(userId);
+  }
+  @Query(() => [User], { name: 'findAllUsers' })
+  async findAll() {
+    return await this.usersService.findAll();
+  }
+  @Query(() => [User], { name: 'findManyUsers' })
+  async findMany(@Args('userIds', { type: () => [Int] }) userIds: number[]) {
+    return await this.usersService.findMany(userIds);
+  }
+
   //All graphql operation does is ask for specific fields on objects. It is compound by:
   //a) Operation type[query, mutation,subs...]: to indicate if it's a read or write operation.
   @Mutation(() => User) //Type function works as same as in the graphql schema objectType field!
@@ -33,20 +46,6 @@ export class UsersResolver {
   ) {
     const result = await this.usersService.createMany(createManyUsersInput);
     return result;
-  }
-
-  @Query(() => [User], { name: 'findAllUsers' })
-  async findAll() {
-    return await this.usersService.findAll();
-  }
-
-  @Query(() => User, { name: 'findOneUser' })
-  async findOne(@Args('userId', { type: () => Int }) userId: number) {
-    return await this.usersService.findOne(userId);
-  }
-  @Query(() => [User], { name: 'findManyUsers' })
-  async findMany(@Args('userIds', { type: () => [Int] }) userIds: number[]) {
-    return await this.usersService.findMany(userIds);
   }
 
   @Mutation(() => User)

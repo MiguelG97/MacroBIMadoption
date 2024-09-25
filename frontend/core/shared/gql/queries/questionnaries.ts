@@ -2,7 +2,7 @@ import { graphql } from "@/core/utils/generator";
 
 export const qFindAllQuestionnaries = graphql(`
   query FindAllQuestionnaries {
-    findAllQuestionnaries {
+    findAllQuestionnaires {
       campaign
       chartType
       choices
@@ -14,7 +14,7 @@ export const qFindAllQuestionnaries = graphql(`
 `);
 export const qFindOneQuestionnary = graphql(`
   query FindOneQuestionnary($questionId: Int!) {
-    findOneQuestionnary(questionId: $questionId) {
+    findOneQuestionnaire(questionId: $questionId) {
       campaign
       chartType
       choices
@@ -27,7 +27,7 @@ export const qFindOneQuestionnary = graphql(`
 
 export const qFindManyQuestionnaries = graphql(`
   query FindManyQuestionnaries($questionIds: [Int!]!) {
-    findManyQuestionnaries(questionIds: $questionIds) {
+    findManyQuestionnaires(questionIds: $questionIds) {
       campaign
       chartType
       choices

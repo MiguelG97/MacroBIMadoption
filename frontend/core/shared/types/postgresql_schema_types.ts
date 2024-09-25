@@ -5,7 +5,7 @@ export interface IQuestionnaire {
   title: string;
   choices: string[];
   chartType: Chart;
-  campaign: string; //Education Landscape | Organizational Adoption
+  campaign: string; //Education Landscape | Organisational Adoption
   sectionName: string;
 }
 

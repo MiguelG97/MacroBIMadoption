@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import {
   CreateAnswerInput,
   CreateManyAnswersInput,
@@ -18,19 +18,17 @@ export class AnswersService {
       });
       return newAnswer;
     } catch (error) {
-      console.log(error);
-      throw Error(error);
+      throw new InternalServerErrorException(error);
     }
   }
   async createMany(createManyAnswersInput: CreateManyAnswersInput) {
     try {
-      const newAnswers = this.prismaClient.answers.createMany({
+      const newAnswers = await this.prismaClient.answers.createManyAndReturn({
         data: createManyAnswersInput.createAnswersInput,
       });
       return newAnswers;
     } catch (error) {
-      console.log(error);
-      throw Error(error);
+      throw new InternalServerErrorException(error);
     }
   }
 

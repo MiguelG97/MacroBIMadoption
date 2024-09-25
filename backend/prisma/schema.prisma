@@ -21,14 +21,14 @@ generator client {
 //B) defines connection to the db
 datasource db {
   provider  = "postgresql"
-  // url      = env("POSTGRES_LOCAL_URL")
+  url      = env("POSTGRES_LOCAL_URL")
 
-  url       = env("POSTGRES_PRISMA_URL")
-  directUrl = env("POSTGRES_URL_NON_POOLING") //this has higher priority than url!! watch out!
+  // url       = env("POSTGRES_PRISMA_URL")
+  // directUrl = env("POSTGRES_URL_NON_POOLING") //this has higher priority than url!! watch out!
 }
 
 //C) Data model:
-model Questionnaries {
+model Questionnaires {
   questionId  Float    @unique
   title       String
   choices     String[]
@@ -61,7 +61,7 @@ model Answers {
   verifStatus  String?
 
   //relations (to another model) by using the @relation attribute:
-  questionnary Questionnaries @relation(fields: [questionId], references: [questionId])
+  questionnaire Questionnaires @relation(fields: [questionId], references: [questionId])
   questionId   Float //foreign key in database
 
   user   Users @relation(fields: [userId], references: [userId])

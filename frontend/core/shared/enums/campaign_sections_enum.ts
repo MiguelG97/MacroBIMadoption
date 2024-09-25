@@ -1,6 +1,6 @@
 export enum Campaign {
   Education_Landscape = "Education Landscape",
-  Org_Adoption = "Organizational Adoption",
+  Org_Adoption = "Organisational Adoption",
 }
 export enum EduSectionName {
   Higher_edu_programmes = "Higher education programmes",

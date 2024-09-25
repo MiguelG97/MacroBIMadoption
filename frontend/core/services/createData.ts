@@ -1,8 +1,11 @@
 import { utils } from "xlsx";
 import { IExcelRowJson } from "../utils/excel/excel_types";
 import { excelUtils } from "../utils/excel/excel_util_model";
-import { IAnswer, IUser } from "../shared/types/postgresql_schema_types";
-import { education_questionnaires } from "../shared/constants/questions";
+import {
+  IAnswer,
+  IQuestionnaire,
+  IUser,
+} from "../shared/types/postgresql_schema_types";
 
 export class CreateData {
   public static async sendExcelDataToPostgresql({
@@ -11,12 +14,14 @@ export class CreateData {
     mutationCreateAnswers,
     excelPath,
     country,
+    questionnaires,
   }: {
     mutationCreateQuestionnaries: any;
     mutationCreateUsers: any;
     mutationCreateAnswers: any;
     excelPath: string;
-    country: string;
+    country: "peru" | "brazil";
+    questionnaires: IQuestionnaire[];
   }) {
     const workbook = await excelUtils.readExcel({
       path: excelPath,
@@ -79,7 +84,6 @@ export class CreateData {
       };
       answerModels.push(answer);
     });
-    console.log("total answers:", answerModels);
 
     /**2) Read and parse user data*/
     //a) collect a sample row for each user
@@ -101,28 +105,26 @@ export class CreateData {
         userEmail: x["User Email"],
         userName: x["User Name"],
         userLabels: x["User Labels"],
-        country: country, //"brazil","peru"
+        country: country,
         // academicProgramme: [], //depending upon an answer
       };
       userModels.push(user);
     });
-    console.log("total users: ", userModels);
 
     /**3) read questionary data [imported manually]*/
-    // console.log("total questionnaires", education_questionnaires);
 
     /**4) send data to postgresql */
     try {
       //4.1)send questionnaires
-      await mutationCreateQuestionnaries({
-        variables: {
-          createManyQuestionnariesInput: {
-            questionnariesInput: education_questionnaires,
-          },
-        },
-      });
+      // const res1 = await mutationCreateQuestionnaries({
+      //   variables: {
+      //     createManyQuestionnairesInput: {
+      //       questionnairesInput: questionnaires,
+      //     },
+      //   },
+      // });
       //4.2)send users
-      await mutationCreateUsers({
+      const res2 = await mutationCreateUsers({
         variables: {
           createManyUsersInput: { manyUsersInput: userModels },
         },
@@ -155,13 +157,14 @@ export class CreateData {
         //   },
         // });
       }
-      // console.log(failedAnswersIndexes);
-      console.log("filteredAnswers", filteredAnswerModels);
-      await mutationCreateAnswers({
+
+      const res3 = await mutationCreateAnswers({
         variables: {
           createManyAnswersInput: { createAnswersInput: filteredAnswerModels },
         },
       });
-    } catch {}
+    } catch (error) {
+      throw error;
+    }
   }
 }

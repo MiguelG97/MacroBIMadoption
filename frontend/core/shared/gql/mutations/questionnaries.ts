@@ -2,9 +2,9 @@ import { graphql } from "@/core/utils/generator";
 
 export const mCreateQuestionnary = graphql(`
   mutation CreateQuestionnary(
-    $createQuestionnaryInput: CreateQuestionnaryInput!
+    $createQuestionnaireInput: CreateQuestionnaireInput!
   ) {
-    createQuestionnary(createQuestionnaryInput: $createQuestionnaryInput) {
+    createQuestionnaire(createQuestionnaireInput: $createQuestionnaireInput) {
       campaign
       chartType
       choices
@@ -14,7 +14,7 @@ export const mCreateQuestionnary = graphql(`
     }
   }
 
-  input CreateQuestionnaryInput {
+  input CreateQuestionnaireInput {
     campaign: String
     chartType: Chart!
     choices: [String!]!
@@ -26,10 +26,10 @@ export const mCreateQuestionnary = graphql(`
 
 export const mCreateQuestionnaries = graphql(`
   mutation CreateQuestionnaries(
-    $createManyQuestionnariesInput: CreateManyQuestionnariesInput!
+    $createManyQuestionnairesInput: CreateManyQuestionnairesInput!
   ) {
-    createQuestionnaries(
-      createManyQuestionnariesInput: $createManyQuestionnariesInput
+    createQuestionnaires(
+      createManyQuestionnairesInput: $createManyQuestionnairesInput
     ) {
       campaign
       chartType
@@ -40,7 +40,7 @@ export const mCreateQuestionnaries = graphql(`
     }
   }
 
-  input CreateManyQuestionnariesInput {
-    questionnariesInput: [CreateQuestionnaryInput!]!
+  input CreateManyQuestionnairesInput {
+    questionnairesInput: [CreateQuestionnaireInput!]!
   }
 `);

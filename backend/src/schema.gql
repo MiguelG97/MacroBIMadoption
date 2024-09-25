@@ -9,7 +9,7 @@ type Answer {
   id: Int!
   questionId: Float!
   questionTitle: String!
-  questionnary: Questionnary
+  questionnaire: Questionnaire
   stateLabels: String
   user: User
   userAnswer: String
@@ -44,15 +44,15 @@ input CreateManyAnswersInput {
   createAnswersInput: [CreateAnswerInput!]!
 }
 
-input CreateManyQuestionnariesInput {
-  questionnariesInput: [CreateQuestionnaryInput!]!
+input CreateManyQuestionnairesInput {
+  questionnairesInput: [CreateQuestionnaireInput!]!
 }
 
 input CreateManyUsersInput {
   manyUsersInput: [CreateUserInput!]!
 }
 
-input CreateQuestionnaryInput {
+input CreateQuestionnaireInput {
   campaign: String
   chartType: Chart!
   choices: [String!]!
@@ -73,8 +73,8 @@ input CreateUserInput {
 type Mutation {
   createAnswer(createAnswerInput: CreateAnswerInput!): Answer
   createAnswers(createManyAnswersInput: CreateManyAnswersInput!): [Answer!]!
-  createQuestionnaries(createManyQuestionnariesInput: CreateManyQuestionnariesInput!): [Questionnary!]!
-  createQuestionnary(createQuestionnaryInput: CreateQuestionnaryInput!): Questionnary!
+  createQuestionnaire(createQuestionnaireInput: CreateQuestionnaireInput!): Questionnaire!
+  createQuestionnaires(createManyQuestionnairesInput: CreateManyQuestionnairesInput!): [Questionnaire!]!
   createUser(createUserInput: CreateUserInput!): User!
   createUsers(createManyUsersInput: CreateManyUsersInput!): [User!]!
   updateManyUsers(updateManyUserInput: UpdateManyUserInput!): [User!]!
@@ -83,17 +83,17 @@ type Mutation {
 
 type Query {
   findAllAnswers: [Answer!]!
-  findAllQuestionnaries: [Questionnary!]!
+  findAllQuestionnaires: [Questionnaire!]!
   findAllUsers: [User!]!
   findManyAnswers(ids: [Int!]!): [Answer!]!
-  findManyQuestionnaries(questionIds: [Int!]!): [Questionnary!]!
+  findManyQuestionnaires(questionIds: [Int!]!): [Questionnaire!]!
   findManyUsers(userIds: [Int!]!): [User!]!
   findOneAnswer(id: Int!): Answer!
-  findOneQuestionnary(questionId: Int!): Questionnary!
+  findOneQuestionnaire(questionId: Int!): Questionnaire!
   findOneUser(userId: Int!): User!
 }
 
-type Questionnary {
+type Questionnaire {
   answers: [Answer!]!
   campaign: String!
   chartType: Chart!
