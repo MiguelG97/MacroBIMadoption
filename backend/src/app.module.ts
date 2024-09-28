@@ -6,7 +6,7 @@ import { AnswersModule } from './modules/answers/answers.module';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { join } from 'path';
-import { QuestionnariesModule } from './modules/questionnaries/questionnaries.module';
+import { QuestionnairesModule } from './modules/questionnaires/questionnaires.module';
 import { UsersModule } from './modules/users/users.module';
 
 @Module({
@@ -27,7 +27,7 @@ import { UsersModule } from './modules/users/users.module';
       //End of Step0) inject dependencies on the async config! (read env., etc.)
       inject: [ConfigService],
     }),
-    QuestionnariesModule,
+    QuestionnairesModule,
     UsersModule,
   ],
   controllers: [AppController],

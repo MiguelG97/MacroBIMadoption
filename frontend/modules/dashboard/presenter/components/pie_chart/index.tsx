@@ -12,12 +12,12 @@ import Render_legend_content from "./legend_content";
 import Render_Tooltip from "./tooltip";
 import { CategoricalChartState } from "recharts/types/chart/types";
 import { useAppDispatch, useAppSelector } from "@/core/shared/redux/store";
-import { setActiveTooltipAccValue } from "../../controllers/section_quest_slice";
+import { setActiveTooltipAccValue } from "../../controllers/campaign_section_slice";
 import { IQuestionnaire } from "@/core/shared/types/postgresql_schema_types";
 import { ProcessDataModel } from "@/modules/dashboard/domain/process_data_app/process_data_model";
 import { ChartDataItem } from "@/core/shared/types/chart_types";
 import { themeTailwind } from "@/core/shared/theme/tailwindTheme";
-import { AcademicProgType } from "@/core/shared/enums/filter_enum";
+import { AcademicProgType } from "@/core/shared/enums/filters_enum";
 import { FilterApp } from "@/modules/dashboard/domain/filter_app/filterApp";
 
 export default function Pie_chart_bim({
@@ -32,7 +32,7 @@ export default function Pie_chart_bim({
   /**Redux toolkit */
   const dispatch = useAppDispatch();
   const { activeToolTipAccumValue } = useAppSelector(
-    (state) => state.sectionQst
+    (state) => state.campaignSecSlice
   );
   const { answers, users } = useAppSelector((state) => state.dbSlice);
   const { countryFilter } = useAppSelector((state) => state.filterSlice);

@@ -15,7 +15,7 @@ registerEnumType(Chart, {
 });
 
 @ObjectType()
-export class Questionnary {
+export class Questionnaire {
   @Field(() => Float)
   questionId: number;
 

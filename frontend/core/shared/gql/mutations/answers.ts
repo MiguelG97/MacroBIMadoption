@@ -46,19 +46,6 @@ export const mCreateAnswers = graphql(`
     }
   }
 
-  #   input CreateAnswerInput {
-  #     assigAuditor: String
-  #     auditorNote: String
-  #     hashtags: String
-  #     id: Int
-  #     questionId: Int!
-  #     questionTitle: String!
-  #     stateLabels: String
-  #     userAnswer: String!
-  #     userEmail: String!
-  #     userId: Int!
-  #   }
-
   input CreateManyAnswersInput {
     createAnswersInput: [CreateAnswerInput!]!
   }

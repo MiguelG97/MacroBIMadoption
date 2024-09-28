@@ -2,7 +2,7 @@ import { DM_Sans, Poppins } from "next/font/google";
 
 import TreeView from "./tree_view";
 import { IProtocol } from "../../types/protocol_types";
-import { eduLandSections } from "../../constants/protocol_sections";
+import { eduLandSections } from "../../constants/section_tabs";
 
 const poppings = Poppins({
   weight: "700",

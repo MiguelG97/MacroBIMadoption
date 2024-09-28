@@ -1,5 +1,5 @@
 import { ObjectType, Field, Int, Float } from '@nestjs/graphql';
-import { Questionnary } from 'src/modules/questionnaries/entities/questionnary.entity';
+import { Questionnaire } from 'src/modules/questionnaires/entities/questionnaire.entity';
 import { User } from 'src/modules/users/entities/user.entity';
 
 /**Step1) Define Graph schema:
@@ -38,7 +38,7 @@ export class Answer {
 
   //relations:
   @Field({ nullable: true })
-  questionnary?: Questionnary;
+  questionnaire?: Questionnaire;
   @Field(() => Float)
   questionId: number;
 

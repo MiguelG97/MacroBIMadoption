@@ -13,7 +13,7 @@ import { useAppDispatch, useAppSelector } from "@/core/shared/redux/store";
 
 import Render_Tooltip from "./tooltip";
 import { CategoricalChartState } from "recharts/types/chart/types";
-import { setActiveTooltipAccValue } from "../../controllers/section_quest_slice";
+import { setActiveTooltipAccValue } from "../../controllers/campaign_section_slice";
 
 import { IQuestionnaire } from "@/core/shared/types/postgresql_schema_types";
 import { ChartDataItem } from "@/core/shared/types/chart_types";
@@ -34,7 +34,7 @@ export default function Bar_chart_bim({
   /**Redux toolkit */
   const dispatch = useAppDispatch();
   const { activeToolTipAccumValue } = useAppSelector(
-    (state) => state.sectionQst
+    (state) => state.campaignSecSlice
   );
   const { answers, users } = useAppSelector((state) => state.dbSlice);
   const { countryFilter } = useAppSelector((state) => state.filterSlice);

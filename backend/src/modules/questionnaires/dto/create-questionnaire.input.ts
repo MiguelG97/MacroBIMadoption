@@ -3,7 +3,7 @@ import { Chart } from '@prisma/client';
 import { IsArray, IsNumber, IsString } from 'class-validator';
 
 @InputType()
-export class CreateQuestionnaryInput {
+export class CreateQuestionnaireInput {
   @IsNumber()
   @Field(() => Float)
   questionId: number;
@@ -28,7 +28,7 @@ export class CreateQuestionnaryInput {
 }
 
 @InputType()
-export class CreateManyQuestionnariesInput {
-  @Field(() => [CreateQuestionnaryInput])
-  questionnariesInput: CreateQuestionnaryInput[];
+export class CreateManyQuestionnairesInput {
+  @Field(() => [CreateQuestionnaireInput])
+  questionnairesInput: CreateQuestionnaireInput[];
 }

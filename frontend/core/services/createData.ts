@@ -1,24 +1,29 @@
 import { utils } from "xlsx";
 import { IExcelRowJson } from "../utils/excel/excel_types";
 import { excelUtils } from "../utils/excel/excel_util_model";
-import { IAnswer, IUser } from "../shared/types/postgresql_schema_types";
-import { questions_postgresql } from "../shared/constants/questions";
+import {
+  IAnswer,
+  IQuestionnaire,
+  IUser,
+} from "../shared/types/postgresql_schema_types";
 
 export class CreateData {
   public static async sendExcelDataToPostgresql({
     mutationCreateQuestionnaries,
     mutationCreateUsers,
-    mutationCreateAnswer,
     mutationCreateAnswers,
+    mutationCreateAnswer,
     excelPath,
     country,
+    questionnaires,
   }: {
     mutationCreateQuestionnaries: any;
     mutationCreateUsers: any;
-    mutationCreateAnswer: any;
     mutationCreateAnswers: any;
+    mutationCreateAnswer: any;
     excelPath: string;
-    country: string;
+    country: "peru" | "brazil";
+    questionnaires: IQuestionnaire[];
   }) {
     const workbook = await excelUtils.readExcel({
       path: excelPath,
@@ -81,7 +86,6 @@ export class CreateData {
       };
       answerModels.push(answer);
     });
-    console.log("total answers:", answerModels);
 
     /**2) Read and parse user data*/
     //a) collect a sample row for each user
@@ -103,28 +107,26 @@ export class CreateData {
         userEmail: x["User Email"],
         userName: x["User Name"],
         userLabels: x["User Labels"],
-        country: country, //"brazil","peru"
+        country: country,
         // academicProgramme: [], //depending upon an answer
       };
       userModels.push(user);
     });
-    console.log("total users: ", userModels);
 
     /**3) read questionary data [imported manually]*/
-    console.log("total questionnaires", questions_postgresql);
 
     /**4) send data to postgresql */
     try {
       //4.1)send questionnaires
-      await mutationCreateQuestionnaries({
-        variables: {
-          createManyQuestionnariesInput: {
-            questionnariesInput: questions_postgresql,
-          },
-        },
-      });
+      // const res1 = await mutationCreateQuestionnaries({
+      //   variables: {
+      //     createManyQuestionnairesInput: {
+      //       questionnairesInput: questionnaires,
+      //     },
+      //   },
+      // });
       //4.2)send users
-      await mutationCreateUsers({
+      const res2 = await mutationCreateUsers({
         variables: {
           createManyUsersInput: { manyUsersInput: userModels },
         },
@@ -136,7 +138,7 @@ export class CreateData {
         //those questionnaires are not supposed to be displayed in the dashboard
         1696139171941, 1696139477406, 1696139949919, 1696140883180,
         //those not appear in excel questionnary sheet either
-        1697541525184,
+        1697541525184, 1662925111505, 1686658373293,
       ];
 
       const filteredAnswerModels: IAnswer[] = [];
@@ -145,25 +147,32 @@ export class CreateData {
         filteredAnswerModels.push(answerModels[i]);
 
         //do not use this individual mutation since takes a lot, only use it for debuging errors
+
         // await mutationCreateAnswer({
         //   variables: {
         //     createAnswerInput: answerModels[i],
         //   },
         //   onError: (error: any) => {
-        //     failedAnswersIndexes.push({
-        //       index: i,
-        //       error: error.graphQLErrors,
-        //     });
+        //     if (
+        //       !error.message.includes("Unique constraint failed on the fields")
+        //     ) {
+        //       failedAnswersIndexes.push({
+        //         index: i,
+        //         error: error.graphQLErrors,
+        //       });
+        //     }
         //   },
         // });
       }
       // console.log(failedAnswersIndexes);
-      console.log("filteredAnswers", filteredAnswerModels);
-      await mutationCreateAnswers({
+
+      const res3 = await mutationCreateAnswers({
         variables: {
           createManyAnswersInput: { createAnswersInput: filteredAnswerModels },
         },
       });
-    } catch {}
+    } catch (error) {
+      throw error;
+    }
   }
 }

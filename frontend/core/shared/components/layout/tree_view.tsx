@@ -6,14 +6,9 @@ import { IoIosArrowDown } from "react-icons/io";
 import { useAppDispatch, useAppSelector } from "../../redux/store";
 import { themeTailwind } from "../../theme/tailwindTheme";
 import { IProtocolSection } from "../../types/protocol_types";
-import {
-  setSelectedSectIndex,
-  setSelectedSection,
-} from "@/modules/dashboard/presenter/controllers/section_quest_slice";
-import {
-  eduLandSections,
-  orgAdoSections,
-} from "../../constants/protocol_sections";
+import { setActiveCampaignSection } from "@/modules/dashboard/presenter/controllers/campaign_section_slice";
+import { eduLandSections, orgAdoSections } from "../../constants/section_tabs";
+import { Campaign } from "../../enums/campaign_sections_enum";
 ///In another ticket, take care of making this iterative and scalable!
 
 export default function TreeView() {
@@ -30,8 +25,8 @@ export default function TreeView() {
   /**Redux */
   const dispatch = useAppDispatch();
 
-  const { selectedSectionIndex } = useAppSelector(
-    (select) => select.sectionQst
+  const { activeSectionIndex } = useAppSelector(
+    (select) => select.campaignSecSlice
   );
   const { colors } = themeTailwind.theme;
 
@@ -47,9 +42,18 @@ export default function TreeView() {
   //     );
 
   /**Handlers */
-  const onSectionClick = (index: number, sectionName: string) => {
-    dispatch(setSelectedSectIndex(index));
-    dispatch(setSelectedSection(sectionName));
+  const onSectionClick = (
+    index: number,
+    sectionName: string,
+    campaignName: Campaign
+  ) => {
+    dispatch(
+      setActiveCampaignSection({
+        activeCampaign: campaignName,
+        activeSectionName: sectionName,
+        activeSectionIndex: index,
+      })
+    );
   };
   const onClickExpandEducation = () => {
     setExpanded({ org: false, educ: !isExpanded.educ });
@@ -91,16 +95,22 @@ export default function TreeView() {
               className={`flex flex-row gap-[0.8rem] items-start py-[1rem] pl-[0.8rem]
             transition-[background] duration-300 cursor-pointer  
             ${
-              selectedSectionIndex === section.id
+              activeSectionIndex === section.id
                 ? "" //"border-r-[0.4rem] border-r-quaternary-100 "
                 : "" //"hover:border-r-[0.4rem] hover:border-r-bgneutral-200"
             } `}
-              onClick={() => onSectionClick(section.id, section.name)}
+              onClick={() =>
+                onSectionClick(
+                  section.id,
+                  section.name,
+                  Campaign.Education_Landscape
+                )
+              }
             >
-              <div>{section.icon(selectedSectionIndex)}</div>
+              <div>{section.icon(activeSectionIndex)}</div>
               <p
                 className={`${
-                  selectedSectionIndex === section.id
+                  activeSectionIndex === section.id
                     ? "text-txcolor-200 font-bold"
                     : "text-txcolor-400"
                 }  
@@ -143,16 +153,18 @@ export default function TreeView() {
               className={`flex flex-row gap-[0.8rem] items-start py-[1rem] pl-[0.8rem]
             transition-[background] duration-300 cursor-pointer 
             ${
-              selectedSectionIndex === section.id
+              activeSectionIndex === section.id
                 ? "" //border-r-[0.4rem] border-r-quaternary-100
                 : "" //"hover:border-r-[0.4rem] hover:border-r-bgneutral-200"
             }`}
-              onClick={() => onSectionClick(section.id, section.name)}
+              onClick={() =>
+                onSectionClick(section.id, section.name, Campaign.Org_Adoption)
+              }
             >
-              <div>{section.icon(selectedSectionIndex)}</div>
+              <div>{section.icon(activeSectionIndex)}</div>
               <p
                 className={`${
-                  selectedSectionIndex === section.id
+                  activeSectionIndex === section.id
                     ? "text-txcolor-200 font-bold"
                     : "text-txcolor-400"
                 }  
@@ -201,7 +213,7 @@ export default function TreeView() {
                 className={`flex flex-row gap-[0.8rem] items-start py-[1rem] pl-[0.8rem]
             transition-[background] duration-300 cursor-pointer  
             ${
-              selectedSectionIndex === section.id
+              activeSectionIndex === section.id
                 ? "" //"border-r-[0.4rem] border-r-quaternary-100 "
                 : "" //"hover:border-r-[0.4rem] hover:border-r-bgneutral-200"
             } `}
@@ -209,10 +221,10 @@ export default function TreeView() {
                   protocol.onClickSection(section.id, section.name)
                 }
               >
-                <div>{section.icon(selectedSectionIndex)}</div>
+                <div>{section.icon(activeSectionIndex)}</div>
                 <p
                   className={`${
-                    selectedSectionIndex === section.id
+                    activeSectionIndex === section.id
                       ? "text-txcolor-200 font-bold"
                       : "text-txcolor-400"
                   }  

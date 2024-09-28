@@ -1,18 +1,14 @@
 "use client";
 import { useAppDispatch } from "@/core/shared/redux/store";
-
-import { IExcelRowJson } from "@/core/utils/excel/excel_types";
-import { excelUtils } from "@/core/utils/excel/excel_util_model";
 import {
   qFindAllAnswers,
   qFindManyAnswers,
   qFindOneAnswer,
 } from "@/core/shared/gql/queries/answers";
 
-import { ApolloProvider, gql, useMutation, useQuery } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import dynamic from "next/dynamic";
-import { useEffect, useMemo } from "react";
-import { utils } from "xlsx";
+import { useEffect } from "react";
 import {
   qFindAllQuestionnaries,
   qFindManyQuestionnaries,
@@ -31,14 +27,11 @@ import {
   mCreateQuestionnaries,
   mCreateQuestionnary,
 } from "@/core/shared/gql/mutations/questionnaries";
-import { Chart } from "@/core/utils/generator/graphql";
 import {
   mCreateUser,
   mCreateUsers,
   mUpdateUsers,
 } from "@/core/shared/gql/mutations/users";
-import { questions_postgresql } from "@/core/shared/constants/questions";
-import { IAnswer, IUser } from "@/core/shared/types/postgresql_schema_types";
 import {
   setAnswers,
   setQuestionnaires,
@@ -46,6 +39,10 @@ import {
 } from "@/core/shared/redux/slices/db_slice";
 import { CreateData } from "@/core/services/createData";
 import { UpdateData } from "@/core/services/updateData";
+import {
+  education_questionnaires,
+  organization_questionnaires,
+} from "@/core/shared/constants/questions";
 
 //to disable prerendering and avoid hydratation mismatches (different content between the server and the client)
 const DashboardScreen = dynamic(
@@ -56,63 +53,26 @@ export default function Home() {
   const dispatch = useAppDispatch();
 
   /**Grahpql Mutations */
-  const [mutationCreateAnswers] = useMutation(mCreateAnswers, {
-    onCompleted: (data) => {
-      console.log(data);
-    },
-    onError: (error) => {
-      console.log(error.message, error.graphQLErrors);
-    },
-  });
-  const [mutationCreateUsers] = useMutation(mCreateUsers, {
-    onCompleted: (data) => {
-      console.log(data);
-    },
-    onError: (error) => {
-      console.log(error.message, error.graphQLErrors);
-    },
-  });
-  const [mutationCreateQuestionnaries] = useMutation(mCreateQuestionnaries, {
-    onCompleted: (data) => {
-      console.log(data);
-    },
-    onError: (error) => {
-      console.log(error.message, error.graphQLErrors);
-    },
-  });
-  const [mutationCreateAnswer] = useMutation(mCreateAnswer, {
-    onCompleted: (data) => {
-      console.log(data);
-    },
-    onError: (error) => {
-      console.log(error.message, error.graphQLErrors);
-    },
-  });
-  const [mutationUpdateUsers] = useMutation(mUpdateUsers, {
-    onCompleted: (data) => {
-      console.log(data);
-    },
-    onError: (error) => {
-      console.log(error.message, error.graphQLErrors);
-    },
-  });
+  const [mutationCreateAnswers] = useMutation(mCreateAnswers);
+  const [mutationCreateUsers] = useMutation(mCreateUsers);
+  const [mutationCreateQuestionnaries] = useMutation(mCreateQuestionnaries);
+  const [mutationCreateAnswer] = useMutation(mCreateAnswer);
+  const [mutationUpdateUsers] = useMutation(mUpdateUsers);
+  const [mutationCreateQuestionnaire] = useMutation(mCreateQuestionnary);
 
   /**Grahpql Queries */
   useQuery(qFindAllAnswers, {
     onCompleted: (data) => {
-      console.log(data);
       dispatch(setAnswers(data.findAllAnswers));
     },
   });
   useQuery(qFindAllQuestionnaries, {
     onCompleted: (data) => {
-      console.log(data);
-      dispatch(setQuestionnaires(data.findAllQuestionnaries));
+      dispatch(setQuestionnaires(data.findAllQuestionnaires));
     },
   });
   useQuery(qFindAllUsers, {
     onCompleted: (data) => {
-      console.log(data);
       dispatch(setUsers(data.findAllUsers));
     },
   });
@@ -121,13 +81,13 @@ export default function Home() {
   useEffect(() => {
     //Send data from excel to postgresql
     // CreateData.sendExcelDataToPostgresql({
-    //   mutationCreateAnswer,
     //   mutationCreateQuestionnaries,
     //   mutationCreateUsers,
     //   mutationCreateAnswers,
-    //   excelPath:
-    //     "/assets/files/education/XLSX Report - BIMei Macro Adoption Study 202408142228 PER-EDU.xlsx",
-    //   country: "peru",
+    //   mutationCreateAnswer,
+    //   excelPath: "/assets/files/education/BRA-EDU.xlsx",
+    //   country: "brazil",
+    //   questionnaires: education_questionnaires,
     // });
     //update academic programme data
     // UpdateData.updateAcademicProgramme({ mutationUpdateUsers });//
