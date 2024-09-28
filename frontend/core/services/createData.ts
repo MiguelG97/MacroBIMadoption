@@ -12,6 +12,7 @@ export class CreateData {
     mutationCreateQuestionnaries,
     mutationCreateUsers,
     mutationCreateAnswers,
+    mutationCreateAnswer,
     excelPath,
     country,
     questionnaires,
@@ -19,6 +20,7 @@ export class CreateData {
     mutationCreateQuestionnaries: any;
     mutationCreateUsers: any;
     mutationCreateAnswers: any;
+    mutationCreateAnswer: any;
     excelPath: string;
     country: "peru" | "brazil";
     questionnaires: IQuestionnaire[];
@@ -136,7 +138,7 @@ export class CreateData {
         //those questionnaires are not supposed to be displayed in the dashboard
         1696139171941, 1696139477406, 1696139949919, 1696140883180,
         //those not appear in excel questionnary sheet either
-        1697541525184,
+        1697541525184, 1662925111505, 1686658373293,
       ];
 
       const filteredAnswerModels: IAnswer[] = [];
@@ -145,18 +147,24 @@ export class CreateData {
         filteredAnswerModels.push(answerModels[i]);
 
         //do not use this individual mutation since takes a lot, only use it for debuging errors
+
         // await mutationCreateAnswer({
         //   variables: {
         //     createAnswerInput: answerModels[i],
         //   },
         //   onError: (error: any) => {
-        //     failedAnswersIndexes.push({
-        //       index: i,
-        //       error: error.graphQLErrors,
-        //     });
+        //     if (
+        //       !error.message.includes("Unique constraint failed on the fields")
+        //     ) {
+        //       failedAnswersIndexes.push({
+        //         index: i,
+        //         error: error.graphQLErrors,
+        //       });
+        //     }
         //   },
         // });
       }
+      // console.log(failedAnswersIndexes);
 
       const res3 = await mutationCreateAnswers({
         variables: {

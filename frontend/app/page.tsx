@@ -39,7 +39,10 @@ import {
 } from "@/core/shared/redux/slices/db_slice";
 import { CreateData } from "@/core/services/createData";
 import { UpdateData } from "@/core/services/updateData";
-import { education_questionnaires } from "@/core/shared/constants/questions";
+import {
+  education_questionnaires,
+  organization_questionnaires,
+} from "@/core/shared/constants/questions";
 
 //to disable prerendering and avoid hydratation mismatches (different content between the server and the client)
 const DashboardScreen = dynamic(
@@ -77,14 +80,15 @@ export default function Home() {
   /**Pre process data to send it to postgresql db */
   useEffect(() => {
     //Send data from excel to postgresql
-    CreateData.sendExcelDataToPostgresql({
-      mutationCreateQuestionnaries,
-      mutationCreateUsers,
-      mutationCreateAnswers,
-      excelPath: "/assets/files/education/BRA-EDU.xlsx",
-      country: "peru",
-      questionnaires: education_questionnaires,
-    });
+    // CreateData.sendExcelDataToPostgresql({
+    //   mutationCreateQuestionnaries,
+    //   mutationCreateUsers,
+    //   mutationCreateAnswers,
+    //   mutationCreateAnswer,
+    //   excelPath: "/assets/files/education/BRA-EDU.xlsx",
+    //   country: "brazil",
+    //   questionnaires: education_questionnaires,
+    // });
     //update academic programme data
     // UpdateData.updateAcademicProgramme({ mutationUpdateUsers });//
   }, []);

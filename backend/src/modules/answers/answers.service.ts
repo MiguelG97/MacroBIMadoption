@@ -11,9 +11,10 @@ export class AnswersService {
    * since it already has the create,createMany, ... commands
    */
   constructor(private prismaClient: PrismaClientService) {}
+
   async create(createAnswerInput: CreateAnswerInput) {
     try {
-      const newAnswer = this.prismaClient.answers.create({
+      const newAnswer = await this.prismaClient.answers.create({
         data: createAnswerInput,
       });
       return newAnswer;

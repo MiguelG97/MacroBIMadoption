@@ -25,10 +25,18 @@ export default function OrgInformation_tabView() {
         <Bar_chart_bim questionnaire={questionnairesOrgInfo[0]} />
         <Pie_chart_bim questionnaire={questionnairesOrgInfo[1]} />
       </div>
-      {/* <div className="flex flex-row gap-[2.4rem] w-full justify-center">
-        <Bar_chart_bim questionnaire={questionnairesOrgInfo[0]} />
-        <Pie_chart_bim questionnaire={questionnairesOrgInfo[1]} />
-      </div> */}
+      <div className="flex flex-row gap-[2.4rem] w-full justify-center">
+        <Bar_chart_bim questionnaire={questionnairesOrgInfo[2]} />
+        <Bar_chart_bim questionnaire={questionnairesOrgInfo[3]} />
+      </div>
+      <div className="flex flex-row gap-[2.4rem] w-full justify-center">
+        <Pie_chart_bim questionnaire={questionnairesOrgInfo[4]} />
+        <Bar_chart_bim questionnaire={questionnairesOrgInfo[5]} />
+      </div>
+      <div className="flex flex-row gap-[2.4rem] w-full justify-center">
+        <Pie_chart_bim questionnaire={questionnairesOrgInfo[6]} />
+        <Pie_chart_bim questionnaire={questionnairesOrgInfo[7]} />
+      </div>
     </div>
   );
 }
