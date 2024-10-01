@@ -11,7 +11,7 @@
     "prisma:generate": "npx prisma generate",
     "prisma:down": "npx prisma migrate diff --from-schema-datamodel prisma/schema.prisma --to-schema-datasource prisma/schema.prisma --script > down.sql",
     "prisma:up": "prisma migrate dev --name default",
-    "build": "nest build",
+    "build": "npx prisma generate && nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
     "start:dev": "nest start --watch -- --max-http-header-size=8000000",
