@@ -10,7 +10,7 @@ import { useAppSelector } from "@/core/shared/redux/store";
 
 import React, { useEffect, useState } from "react";
 import { IQuestionnaire } from "@/core/shared/types/postgresql_schema_types";
-import { ChartDataItem } from "@/core/shared/types/chart_types";
+import { IChartDataItem } from "@/core/shared/types/chart_types";
 import { ProcessDataModel } from "@/modules/dashboard/domain/process_data_app/process_data_model";
 import { createTheme } from "@mui/material";
 import { ThemeProvider } from "@emotion/react";
@@ -29,7 +29,7 @@ export default function Table_survey({
 
   /**States */
   const { colors: themeColor } = themeTailwind.theme;
-  const [tableData, setTableData] = useState<ChartDataItem[]>([]);
+  const [tableData, setTableData] = useState<IChartDataItem[]>([]);
   /**Effects */
   useEffect(() => {
     if (answers.length === 0 || !questionnaire) return;
@@ -65,7 +65,7 @@ export default function Table_survey({
     );
 
     //change data format
-    const tableData: ChartDataItem[] = choicesCountedValues.map((x, id) => {
+    const tableData: IChartDataItem[] = choicesCountedValues.map((x, id) => {
       return {
         name: x.choice,
         value: x.count,
@@ -154,7 +154,7 @@ export default function Table_survey({
               color: "rgba(0,0,0,0.6)",
             },
             "[data-testid='CheckBoxIcon']": {
-              color: themeColor.quaternary[100],
+              color: themeColor.tertiary[100],
             },
           },
         },

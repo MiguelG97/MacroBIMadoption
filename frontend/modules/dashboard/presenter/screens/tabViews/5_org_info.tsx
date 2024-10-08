@@ -4,6 +4,7 @@ import { IQuestionnaire } from "@/core/shared/types/postgresql_schema_types";
 import React, { useMemo } from "react";
 import Bar_chart_bim from "../../components/bar_chart";
 import Pie_chart_bim from "../../components/pie_chart";
+import { ArrangePattern } from "@/core/shared/types/chart_types";
 
 export default function OrgInformation_tabView() {
   /**Redux toolkit */
@@ -23,10 +24,13 @@ export default function OrgInformation_tabView() {
     >
       <div className="flex flex-row gap-[2.4rem] w-full justify-center">
         <Bar_chart_bim questionnaire={questionnairesOrgInfo[0]} />
-        <Pie_chart_bim questionnaire={questionnairesOrgInfo[1]} />
+        <Pie_chart_bim
+          questionnaire={questionnairesOrgInfo[1]}
+          arrangePattern={ArrangePattern.byAnswerChoices}
+        />
       </div>
       <div className="flex flex-row gap-[2.4rem] w-full justify-center">
-        <Bar_chart_bim questionnaire={questionnairesOrgInfo[2]} />
+        <Bar_chart_bim questionnaire={questionnairesOrgInfo[7]} />
         <Bar_chart_bim questionnaire={questionnairesOrgInfo[3]} />
       </div>
       <div className="flex flex-row gap-[2.4rem] w-full justify-center">
@@ -35,7 +39,7 @@ export default function OrgInformation_tabView() {
       </div>
       <div className="flex flex-row gap-[2.4rem] w-full justify-center">
         <Pie_chart_bim questionnaire={questionnairesOrgInfo[6]} />
-        <Pie_chart_bim questionnaire={questionnairesOrgInfo[7]} />
+        <Pie_chart_bim questionnaire={questionnairesOrgInfo[2]} />
       </div>
     </div>
   );

@@ -20,9 +20,7 @@ export const eduLandSections: IProtocolSection[] = [
     icon: (activeSectionIndex: number) => (
       <IconSchool
         color={`${
-          activeSectionIndex === 1
-            ? colors.quaternary[100]
-            : colors.txcolor[400]
+          activeSectionIndex === 1 ? colors.tertiary[100] : colors.txcolor[400]
         } `}
       />
     ),
@@ -33,9 +31,7 @@ export const eduLandSections: IProtocolSection[] = [
     icon: (activeSectionIndex: number) => (
       <IconBook
         color={`${
-          activeSectionIndex === 2
-            ? colors.quaternary[100]
-            : colors.txcolor[400]
+          activeSectionIndex === 2 ? colors.tertiary[100] : colors.txcolor[400]
         } `}
       />
     ),
@@ -46,9 +42,7 @@ export const eduLandSections: IProtocolSection[] = [
     icon: (activeSectionIndex: number) => (
       <IconBuildingStore
         color={`${
-          activeSectionIndex === 3
-            ? colors.quaternary[100]
-            : colors.txcolor[400]
+          activeSectionIndex === 3 ? colors.tertiary[100] : colors.txcolor[400]
         } `}
       />
     ),
@@ -59,9 +53,7 @@ export const eduLandSections: IProtocolSection[] = [
     icon: (activeSectionIndex: number) => (
       <IconAffiliate
         color={`${
-          activeSectionIndex === 4
-            ? colors.quaternary[100]
-            : colors.txcolor[400]
+          activeSectionIndex === 4 ? colors.tertiary[100] : colors.txcolor[400]
         } `}
       />
     ),
@@ -75,9 +67,7 @@ export const orgAdoSections: IProtocolSection[] = [
     icon: (activeSectionIndex: number) => (
       <IconFileInvoice
         color={`${
-          activeSectionIndex === 5
-            ? colors.quaternary[100]
-            : colors.txcolor[400]
+          activeSectionIndex === 5 ? colors.tertiary[100] : colors.txcolor[400]
         } `}
       />
     ),
@@ -88,9 +78,7 @@ export const orgAdoSections: IProtocolSection[] = [
     icon: (activeSectionIndex: number) => (
       <IconStretching2
         color={`${
-          activeSectionIndex === 6
-            ? colors.quaternary[100]
-            : colors.txcolor[400]
+          activeSectionIndex === 6 ? colors.tertiary[100] : colors.txcolor[400]
         } `}
       />
     ),
@@ -101,9 +89,7 @@ export const orgAdoSections: IProtocolSection[] = [
     icon: (activeSectionIndex: number) => (
       <IconDeviceTabletOff
         color={`${
-          activeSectionIndex === 7
-            ? colors.quaternary[100]
-            : colors.txcolor[400]
+          activeSectionIndex === 7 ? colors.tertiary[100] : colors.txcolor[400]
         } `}
       />
     ),
@@ -114,9 +100,7 @@ export const orgAdoSections: IProtocolSection[] = [
     icon: (activeSectionIndex: number) => (
       <IconTargetArrow
         color={`${
-          activeSectionIndex === 8
-            ? colors.quaternary[100]
-            : colors.txcolor[400]
+          activeSectionIndex === 8 ? colors.tertiary[100] : colors.txcolor[400]
         } `}
       />
     ),
@@ -127,9 +111,7 @@ export const orgAdoSections: IProtocolSection[] = [
     icon: (activeSectionIndex: number) => (
       <IconShare
         color={`${
-          activeSectionIndex === 9
-            ? colors.quaternary[100]
-            : colors.txcolor[400]
+          activeSectionIndex === 9 ? colors.tertiary[100] : colors.txcolor[400]
         } `}
       />
     ),
