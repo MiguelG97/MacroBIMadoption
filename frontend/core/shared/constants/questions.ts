@@ -521,7 +521,7 @@ export const organization_questionnaires: IQuestionnaire[] = [
   {
     title: "Is your organisation involved in building projects?",
     questionId: 1662925111501,
-    choices: ["Yes", "10-50", "No", "Not sure"],
+    choices: ["Yes", "No", "Not sure"],
     sectionName: OrgSectionName.Org_information,
     campaign: Campaign.Org_Adoption,
     chartType: Chart.Pie, //this information is not being used so far!!
