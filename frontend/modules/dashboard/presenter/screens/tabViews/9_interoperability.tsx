@@ -3,6 +3,8 @@ import { useAppSelector } from "@/core/shared/redux/store";
 import { IQuestionnaire } from "@/core/shared/types/postgresql_schema_types";
 import React, { useMemo } from "react";
 import Pie_chart_bim from "../../components/pie_chart";
+import { ArrangePattern } from "@/core/shared/types/chart_types";
+import Bar_chart_bim from "../../components/bar_chart";
 
 export default function Interop_tabView() {
   /**Redux toolkit */
@@ -24,8 +26,18 @@ export default function Interop_tabView() {
         <Pie_chart_bim questionnaire={questionnairesInterop[1]} />
       </div>
       <div className="flex flex-row gap-[2.4rem] w-full justify-center">
-        <Pie_chart_bim questionnaire={questionnairesInterop[2]} />
+        <Pie_chart_bim
+          questionnaire={questionnairesInterop[2]}
+          arrangePattern={ArrangePattern.byAnswerChoices}
+        />
         <Pie_chart_bim questionnaire={questionnairesInterop[3]} />
+      </div>
+      <div className="flex flex-row gap-[2.4rem] w-full justify-center">
+        <Bar_chart_bim
+          questionnaire={questionnairesInterop[4]}
+          fullWidth
+          increaseHeight
+        />
       </div>
     </div>
   );

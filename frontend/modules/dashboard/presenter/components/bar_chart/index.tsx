@@ -16,7 +16,7 @@ import { CategoricalChartState } from "recharts/types/chart/types";
 import { setActiveTooltipAccValue } from "../../controllers/campaign_section_slice";
 
 import { IQuestionnaire } from "@/core/shared/types/postgresql_schema_types";
-import { ChartDataItem } from "@/core/shared/types/chart_types";
+import { IChartDataItem } from "@/core/shared/types/chart_types";
 import { themeTailwind } from "@/core/shared/theme/tailwindTheme";
 import { FilterApp } from "@/modules/dashboard/domain/filter_app/filterApp";
 
@@ -41,7 +41,7 @@ export default function Bar_chart_bim({
 
   /**States */
   const { colors: themeColor } = themeTailwind.theme;
-  const [chartData, setChartData] = useState<ChartDataItem[]>([]);
+  const [chartData, setChartData] = useState<IChartDataItem[]>([]);
   const [isEllipsisMode, setEllipsisMode] = useState(false);
   /**Effects */
   useEffect(() => {
@@ -73,7 +73,7 @@ export default function Bar_chart_bim({
     );
 
     //change data format
-    let chartData: ChartDataItem[] = choicesCountedValues.map((x) => {
+    let chartData: IChartDataItem[] = choicesCountedValues.map((x) => {
       const words = x.choice.split(" ");
       if (!isEllipsisMode && words.length > 3 + 3 * Number(fullWidth))
         setEllipsisMode(true);

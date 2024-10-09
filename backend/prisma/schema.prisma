@@ -24,7 +24,7 @@ datasource db {
   // url      = env("POSTGRES_LOCAL_URL")
 
   url       = env("POSTGRES_PRISMA_URL")
-  directUrl = env("POSTGRES_URL_NON_POOLING") //this has higher priority than url!! watch out!
+  // directUrl = env("POSTGRES_URL_NON_POOLING") //this has higher priority than url!! watch out!
 }
 
 //C) Data model:

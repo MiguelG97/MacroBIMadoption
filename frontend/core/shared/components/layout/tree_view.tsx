@@ -69,7 +69,7 @@ export default function TreeView() {
           className={`flex w-full items-center justify-between
           cursor-pointer pr-6 pl-8 py-2 ${
             isExpanded.educ
-              ? "border-l-[0.4rem] border-l-quaternary-100 bg-bgneutral-200"
+              ? "border-l-[0.4rem] border-l-tertiary-100 bg-bgneutral-200"
               : ""
           }`}
         >
@@ -96,7 +96,7 @@ export default function TreeView() {
             transition-[background] duration-300 cursor-pointer  
             ${
               activeSectionIndex === section.id
-                ? "" //"border-r-[0.4rem] border-r-quaternary-100 "
+                ? "" //"border-r-[0.4rem] border-r-tertiary-100 "
                 : "" //"hover:border-r-[0.4rem] hover:border-r-bgneutral-200"
             } `}
               onClick={() =>
@@ -128,7 +128,7 @@ export default function TreeView() {
           className={`flex w-full items-center justify-between
           cursor-pointer pr-6 pl-8 py-2 ${
             isExpanded.org
-              ? "border-l-[0.4rem] border-l-quaternary-100 bg-bgneutral-200"
+              ? "border-l-[0.4rem] border-l-tertiary-100 bg-bgneutral-200"
               : ""
           }`}
         >
@@ -136,7 +136,7 @@ export default function TreeView() {
             className="text-[1.6rem] text-txcolor-200 font-bold
             tracking-[0.2rem]"
           >
-            ORGANIZATIONAL ADOPTION
+            ORGANISATIONAL ADOPTION
           </p>
           <div className="w-[2rem]">
             <IoIosArrowDown
@@ -154,7 +154,7 @@ export default function TreeView() {
             transition-[background] duration-300 cursor-pointer 
             ${
               activeSectionIndex === section.id
-                ? "" //border-r-[0.4rem] border-r-quaternary-100
+                ? "" //border-r-[0.4rem] border-r-tertiary-100
                 : "" //"hover:border-r-[0.4rem] hover:border-r-bgneutral-200"
             }`}
               onClick={() =>
@@ -183,7 +183,7 @@ export default function TreeView() {
             className={`flex w-full items-center justify-between
           cursor-pointer pr-6 pl-8 py-2 ${
             isExpanded.educ
-              ? "border-l-[0.4rem] border-l-quaternary-100 bg-bgneutral-200"
+              ? "border-l-[0.4rem] border-l-tertiary-100 bg-bgneutral-200"
               : ""
           }`}
           >
@@ -214,7 +214,7 @@ export default function TreeView() {
             transition-[background] duration-300 cursor-pointer  
             ${
               activeSectionIndex === section.id
-                ? "" //"border-r-[0.4rem] border-r-quaternary-100 "
+                ? "" //"border-r-[0.4rem] border-r-tertiary-100 "
                 : "" //"hover:border-r-[0.4rem] hover:border-r-bgneutral-200"
             } `}
                 onClick={() =>

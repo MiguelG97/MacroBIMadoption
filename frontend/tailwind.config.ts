@@ -11,8 +11,8 @@ const config = {
       colors: {
         primary: { 100: "#f37f72" },
         secondary: { 100: "#444444" },
-        tertiary: { 100: "#87a8c3" },
-        quaternary: { 100: "#4318FF" },
+        tertiary: { 100: "#4318FF" },
+        quaternary: { 100: "#337ea9", 200: "#87a8c3", 300: "#bdbebc" },
         bgneutral: {
           100: "#f4f4f4",
           200: "#f4f7fe",

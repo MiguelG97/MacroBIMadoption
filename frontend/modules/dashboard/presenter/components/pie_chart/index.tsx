@@ -15,19 +15,23 @@ import { useAppDispatch, useAppSelector } from "@/core/shared/redux/store";
 import { setActiveTooltipAccValue } from "../../controllers/campaign_section_slice";
 import { IQuestionnaire } from "@/core/shared/types/postgresql_schema_types";
 import { ProcessDataModel } from "@/modules/dashboard/domain/process_data_app/process_data_model";
-import { ChartDataItem } from "@/core/shared/types/chart_types";
+import {
+  ArrangePattern,
+  IChartDataItem,
+} from "@/core/shared/types/chart_types";
 import { themeTailwind } from "@/core/shared/theme/tailwindTheme";
-import { AcademicProgType } from "@/core/shared/enums/filters_enum";
 import { FilterApp } from "@/modules/dashboard/domain/filter_app/filterApp";
 
 export default function Pie_chart_bim({
   questionnaire,
   increaseHeight = false,
   isThreeLinesHeadline = false,
+  arrangePattern = ArrangePattern.descending,
 }: {
   questionnaire: IQuestionnaire;
   increaseHeight?: boolean;
   isThreeLinesHeadline?: boolean;
+  arrangePattern?: ArrangePattern;
 }) {
   /**Redux toolkit */
   const dispatch = useAppDispatch();
@@ -39,7 +43,7 @@ export default function Pie_chart_bim({
 
   /**States */
   const { colors: themeColor } = themeTailwind.theme;
-  const [chartData, setChartData] = useState<ChartDataItem[]>([]);
+  const [chartData, setChartData] = useState<IChartDataItem[]>([]);
 
   /**Use effects */
   //get the answers that are linked to this questionnaire
@@ -66,13 +70,21 @@ export default function Pie_chart_bim({
       }
     ];
 
-    //reorder the data
-    choicesCountedValues = choicesCountedValues.sort(
-      (a, b) => b.count - a.count
-    );
+    //reorder the data in descendent way or display data following qst choice order
+    switch (arrangePattern) {
+      case ArrangePattern.descending:
+        choicesCountedValues = choicesCountedValues.sort(
+          (a, b) => b.count - a.count
+        );
+        break;
+      case ArrangePattern.byAnswerChoices:
+        break;
+      default:
+        break;
+    }
 
     //change data format
-    const chartData: ChartDataItem[] = choicesCountedValues.map((x) => {
+    const chartData: IChartDataItem[] = choicesCountedValues.map((x) => {
       return {
         name: x.choice,
         value: x.count,
@@ -139,16 +151,24 @@ export default function Pie_chart_bim({
                       } else if (x.name === "No") {
                         color = themeColor.secondary[100];
                       } else if (x.name === "Not sure") {
-                        color = themeColor.tertiary[100];
+                        color = themeColor.quaternary[200];
                       }
+                    } else if (chartData.length <= 3) {
+                      const colors = [
+                        themeColor.primary[100],
+                        themeColor.secondary[100],
+                        themeColor.quaternary[200],
+                      ];
+                      color = colors[index];
                     } else {
-                      if (index === 0) {
-                        color = themeColor.primary[100];
-                      } else if (index === 1) {
-                        color = themeColor.secondary[100];
-                      } else if (index === 2) {
-                        color = themeColor.tertiary[100];
-                      }
+                      const colors = [
+                        themeColor.primary[100],
+                        themeColor.secondary[100],
+                        themeColor.quaternary[100],
+                        themeColor.quaternary[200],
+                        themeColor.quaternary[300],
+                      ];
+                      color = colors[index];
                     }
 
                     return (
