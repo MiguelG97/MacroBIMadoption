@@ -14,6 +14,7 @@ export default function OrgInformation_tabView() {
     const filteredQuestionnaires = questionnaires.filter(
       (qst) => qst.sectionName === OrgSectionName.Org_information
     );
+
     return filteredQuestionnaires;
   }, [questionnaires]);
 
@@ -23,23 +24,23 @@ export default function OrgInformation_tabView() {
                   h-full gap-[2.4rem] overflow-y-auto w-full"
     >
       <div className="flex flex-row gap-[2.4rem] w-full justify-center">
-        <Bar_chart_bim questionnaire={questionnairesOrgInfo[0]} />
+        <Bar_chart_bim questionnaire={questionnairesOrgInfo[2]} />
         <Pie_chart_bim
-          questionnaire={questionnairesOrgInfo[1]}
+          questionnaire={questionnairesOrgInfo[3]}
           arrangePattern={ArrangePattern.byAnswerChoices}
         />
       </div>
       <div className="flex flex-row gap-[2.4rem] w-full justify-center">
-        <Bar_chart_bim questionnaire={questionnairesOrgInfo[7]} />
-        <Bar_chart_bim questionnaire={questionnairesOrgInfo[3]} />
-      </div>
-      <div className="flex flex-row gap-[2.4rem] w-full justify-center">
-        <Pie_chart_bim questionnaire={questionnairesOrgInfo[4]} />
+        <Bar_chart_bim questionnaire={questionnairesOrgInfo[4]} />
         <Bar_chart_bim questionnaire={questionnairesOrgInfo[5]} />
       </div>
       <div className="flex flex-row gap-[2.4rem] w-full justify-center">
         <Pie_chart_bim questionnaire={questionnairesOrgInfo[6]} />
-        <Pie_chart_bim questionnaire={questionnairesOrgInfo[2]} />
+        <Bar_chart_bim questionnaire={questionnairesOrgInfo[0]} />
+      </div>
+      <div className="flex flex-row gap-[2.4rem] w-full justify-center">
+        <Pie_chart_bim questionnaire={questionnairesOrgInfo[1]} />
+        <Pie_chart_bim questionnaire={questionnairesOrgInfo[7]} />
       </div>
     </div>
   );

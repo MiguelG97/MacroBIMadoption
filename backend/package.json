@@ -6,6 +6,7 @@
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
+    "prisma:deploy": "npx prisma migrate deploy",
     "prisma:reset": "npx prisma migrate reset",
     "prisma:run": "npx prisma migrate dev",
     "prisma:generate": "npx prisma generate",

@@ -118,13 +118,13 @@ export class CreateData {
     /**4) send data to postgresql */
     try {
       //4.1)send questionnaires
-      // const res1 = await mutationCreateQuestionnaries({
-      //   variables: {
-      //     createManyQuestionnairesInput: {
-      //       questionnairesInput: questionnaires,
-      //     },
-      //   },
-      // });
+      const res1 = await mutationCreateQuestionnaries({
+        variables: {
+          createManyQuestionnairesInput: {
+            questionnairesInput: questionnaires,
+          },
+        },
+      });
       //4.2)send users
       const res2 = await mutationCreateUsers({
         variables: {

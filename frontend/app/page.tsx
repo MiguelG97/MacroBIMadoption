@@ -85,9 +85,9 @@ export default function Home() {
     //   mutationCreateUsers,
     //   mutationCreateAnswers,
     //   mutationCreateAnswer,
-    //   excelPath: "/assets/files/education/BRA-EDU.xlsx",
-    //   country: "brazil",
-    //   questionnaires: education_questionnaires,
+    //   excelPath: "/assets/files/organization/PER-ORG.xlsx",
+    //   country: "peru",
+    //   questionnaires: organization_questionnaires,
     // });
     //update academic programme data
     // UpdateData.updateAcademicProgramme({ mutationUpdateUsers });//
