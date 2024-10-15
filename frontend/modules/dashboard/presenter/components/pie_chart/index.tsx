@@ -44,7 +44,7 @@ export default function Pie_chart_bim({
   /**States */
   const { colors: themeColor } = themeTailwind.theme;
   const [chartData, setChartData] = useState<IChartDataItem[]>([]);
-
+  const [totalNetAnswers, setTotalNetAnswers] = useState(0);
   /**Use effects */
   //get the answers that are linked to this questionnaire
   useEffect(() => {
@@ -91,17 +91,19 @@ export default function Pie_chart_bim({
       };
     });
     setChartData(chartData);
+
+    const totalNetAnswers = filteredAnswers.filter(
+      (a) => a.userAnswer && a.userAnswer !== ""
+    ).length;
+    setTotalNetAnswers(totalNetAnswers); //do not considering the accumulation due to the multipleChoice!
   }, [answers, questionnaire, countryFilter]); //weird shit, it's not enough passing answers, since the first and answer render, the questionnaire is not ready yet!
 
   /**Handlers */
   const onMouseMovePieChart = (e: CategoricalChartState) => {
     if (!e.activeLabel) return; //only when hovered on a pie chart section
+    if (totalNetAnswers === activeToolTipAccumValue) return; //it's still the same pie chart
 
-    let accValue = 0;
-    chartData.forEach((x) => (accValue += x.value));
-    if (accValue === activeToolTipAccumValue) return; //it's still the same pie chart
-
-    dispatch(setActiveTooltipAccValue(accValue));
+    dispatch(setActiveTooltipAccValue(totalNetAnswers));
   };
   return (
     <div

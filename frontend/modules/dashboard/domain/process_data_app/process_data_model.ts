@@ -72,8 +72,8 @@ export class ProcessDataModel {
         if (choiceFound) {
           choiceFound!.count += 1; //since we have gotten a reference, by updating this value, choiceCounter Objects gets updated
         } else {
-          //userInput is a other choice
-          if (!otherChoices.includes(userInput)) otherChoices.push(userInput);
+          //userInput is an other choice
+          otherChoices.push(userInput);
         }
       }
     }
@@ -92,21 +92,23 @@ export class ProcessDataModel {
     }
     //3.2) unfolding otheranswers
     else if (otherChoices.length > 0 && unfoldOtherChoices) {
-      for (let index = 0; index < otherChoices.length; index++) {
-        const otherChoice = otherChoices[index];
+      const uniqueOtherChoices = [...new Set(otherChoices)];
+
+      for (let index = 0; index < uniqueOtherChoices.length; index++) {
+        const uniqueOtherChoice = uniqueOtherChoices[index];
         const choiceCounterValues: {
           choice: string;
           count: number;
         }[] = Object.values(choiceCounter);
 
-        const otherChoiceExist_Index = choiceCounterValues.findIndex(
-          (a) => a.choice === otherChoice
+        const uniqueOtherChoice_Index = choiceCounterValues.findIndex(
+          (a) => a.choice === uniqueOtherChoice
         );
-        if (otherChoiceExist_Index > 0) {
-          choiceCounter[otherChoiceExist_Index].count += 1;
+        if (uniqueOtherChoice_Index > 0) {
+          choiceCounter[uniqueOtherChoice_Index].count += 1;
         } else {
           choiceCounter[Object.keys(choiceCounter).length] = {
-            choice: otherChoice,
+            choice: uniqueOtherChoice,
             count: 1,
           };
         }
