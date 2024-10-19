@@ -745,7 +745,7 @@ export const organization_questionnaires: IQuestionnaire[] = [
     title:
       "What is the influence of clients/procurers on your organisation's decision to adopt BIM?",
     questionId: 1663671040629,
-    choices: [], //ratings (20%, 80%, ...wtf)
+    choices: ["Low", "Medium-low", "Medium", "Medium-high", "High"], //ratings (20%, 80%, ...wtf)
     sectionName: OrgSectionName.Adoption,
     campaign: Campaign.Org_Adoption,
     chartType: Chart.Pie, //it seems that a table is more convenient since they can type everything here!

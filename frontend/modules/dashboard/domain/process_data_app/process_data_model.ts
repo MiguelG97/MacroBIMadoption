@@ -96,22 +96,14 @@ export class ProcessDataModel {
 
       for (let index = 0; index < uniqueOtherChoices.length; index++) {
         const uniqueOtherChoice = uniqueOtherChoices[index];
-        const choiceCounterValues: {
-          choice: string;
-          count: number;
-        }[] = Object.values(choiceCounter);
 
-        const uniqueOtherChoice_Index = choiceCounterValues.findIndex(
-          (a) => a.choice === uniqueOtherChoice
-        );
-        if (uniqueOtherChoice_Index > 0) {
-          choiceCounter[uniqueOtherChoice_Index].count += 1;
-        } else {
-          choiceCounter[Object.keys(choiceCounter).length] = {
-            choice: uniqueOtherChoice,
-            count: 1,
-          };
-        }
+        const count = otherChoices.filter(
+          (o) => o === uniqueOtherChoice
+        ).length;
+        choiceCounter[Object.keys(choiceCounter).length] = {
+          choice: uniqueOtherChoice,
+          count,
+        };
       }
     }
 
