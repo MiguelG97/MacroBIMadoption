@@ -21,17 +21,20 @@ import {
 } from "@/core/shared/types/chart_types";
 import { themeTailwind } from "@/core/shared/theme/tailwindTheme";
 import { FilterApp } from "@/modules/dashboard/domain/filter_app/filterApp";
+import { percentageToRating } from "@/core/shared/constants/answers";
 
 export default function Pie_chart_bim({
   questionnaire,
   increaseHeight = false,
   isThreeLinesHeadline = false,
   arrangePattern = ArrangePattern.descending,
+  transformPercentageToRating = false,
 }: {
   questionnaire: IQuestionnaire;
   increaseHeight?: boolean;
   isThreeLinesHeadline?: boolean;
   arrangePattern?: ArrangePattern;
+  transformPercentageToRating?: boolean;
 }) {
   /**Redux toolkit */
   const dispatch = useAppDispatch();
@@ -50,12 +53,20 @@ export default function Pie_chart_bim({
   useEffect(() => {
     if (answers.length === 0 || !questionnaire) return;
 
-    const filteredAnswers = FilterApp.filterAnswers({
+    let filteredAnswers = FilterApp.filterAnswers({
       answers,
       users,
       questionnaire,
       countryFilter,
     });
+    if (transformPercentageToRating) {
+      filteredAnswers = filteredAnswers.map((f) => ({
+        ...f,
+        userAnswer: f.userAnswer
+          ? percentageToRating[f.userAnswer]
+          : f.userAnswer,
+      }));
+    }
 
     const choicesCounted = ProcessDataModel._shared.countChoices({
       answers: filteredAnswers,
