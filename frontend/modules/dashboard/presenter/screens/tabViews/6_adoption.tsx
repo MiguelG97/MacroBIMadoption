@@ -5,6 +5,7 @@ import React, { useMemo } from "react";
 import Pie_chart_bim from "../../components/pie_chart";
 import Bar_chart_bim from "../../components/bar_chart";
 import Table_survey from "../../components/table_survey";
+import { ArrangePattern } from "@/core/shared/types/chart_types";
 
 export default function Adoption_tabView() {
   /**Redux toolkit */
@@ -43,14 +44,30 @@ export default function Adoption_tabView() {
       </div>
       <div className="flex flex-row gap-[2.4rem] w-full justify-center">
         <Table_survey questionnaire={questionnairesAdoption[10]} />
-        <Pie_chart_bim questionnaire={questionnairesAdoption[11]} />
+        <Pie_chart_bim
+          questionnaire={questionnairesAdoption[11]}
+          transformPercentageToRating
+          arrangePattern={ArrangePattern.byAnswerChoices}
+        />
       </div>
       <div className="flex flex-row gap-[2.4rem] w-full justify-center">
-        <Pie_chart_bim questionnaire={questionnairesAdoption[12]} />
-        <Pie_chart_bim questionnaire={questionnairesAdoption[13]} />
+        <Pie_chart_bim
+          questionnaire={questionnairesAdoption[12]}
+          transformPercentageToRating
+          arrangePattern={ArrangePattern.byAnswerChoices}
+        />
+        <Pie_chart_bim
+          questionnaire={questionnairesAdoption[13]}
+          transformPercentageToRating
+          arrangePattern={ArrangePattern.byAnswerChoices}
+        />
       </div>
       <div className="flex flex-row gap-[2.4rem] w-full justify-center">
-        <Pie_chart_bim questionnaire={questionnairesAdoption[14]} />
+        <Pie_chart_bim
+          questionnaire={questionnairesAdoption[14]}
+          transformPercentageToRating
+          arrangePattern={ArrangePattern.byAnswerChoices}
+        />
       </div>
     </div>
   );
