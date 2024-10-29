@@ -40,29 +40,32 @@ export default function Adoption_tabView() {
       </div>
       <div className="flex flex-row gap-[2.4rem] w-full justify-center">
         <Table_survey questionnaire={questionnairesAdoption[8]} />
-        <Pie_chart_bim questionnaire={questionnairesAdoption[9]} />
+        <Pie_chart_bim
+          questionnaire={questionnairesAdoption[9]}
+          increaseHeight
+        />
       </div>
       <div className="flex flex-row gap-[2.4rem] w-full justify-center">
         <Table_survey questionnaire={questionnairesAdoption[10]} />
+      </div>
+      <div className="flex flex-row gap-[2.4rem] w-full justify-center">
         <Pie_chart_bim
           questionnaire={questionnairesAdoption[11]}
           transformPercentageToRating
           arrangePattern={ArrangePattern.byAnswerChoices}
         />
-      </div>
-      <div className="flex flex-row gap-[2.4rem] w-full justify-center">
         <Pie_chart_bim
           questionnaire={questionnairesAdoption[12]}
           transformPercentageToRating
           arrangePattern={ArrangePattern.byAnswerChoices}
         />
+      </div>
+      <div className="flex flex-row gap-[2.4rem] w-full justify-center">
         <Pie_chart_bim
           questionnaire={questionnairesAdoption[13]}
           transformPercentageToRating
           arrangePattern={ArrangePattern.byAnswerChoices}
         />
-      </div>
-      <div className="flex flex-row gap-[2.4rem] w-full justify-center">
         <Pie_chart_bim
           questionnaire={questionnairesAdoption[14]}
           transformPercentageToRating
