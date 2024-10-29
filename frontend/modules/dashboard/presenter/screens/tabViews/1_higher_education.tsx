@@ -42,7 +42,6 @@ h-full gap-[2.4rem] overflow-y-auto w-full"
         className="flex flex-row gap-[2.4rem] w-full
    justify-center"
       >
-        {/* 3 and 4, make sure are the same questions! */}
         <Pie_chart_bim questionnaire={questionnariesHigherEduc[3]} />
         <Pie_chart_bim questionnaire={questionnariesHigherEduc[4]} />
       </div>

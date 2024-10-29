@@ -56,6 +56,7 @@ export class ProcessDataModel {
       } else {
         userInputs.push(userInput);
       }
+      userInputs = userInputs.map((i) => i.trim());
 
       //2.3)Count the inputs
       const choiceCounterValues = Object.values(choiceCounter) as [
@@ -66,8 +67,9 @@ export class ProcessDataModel {
       ];
 
       for (const userInput of userInputs) {
+        //it had to be exactly the same answer, otherwise if an answers is contained in a choice, it will be counted in the wrong group
         let choiceFound = choiceCounterValues.find(
-          (x) => userInput.includes(x.choice) || x.choice.includes(userInput)
+          (x) => userInput === x.choice
         );
         if (choiceFound) {
           choiceFound!.count += 1; //since we have gotten a reference, by updating this value, choiceCounter Objects gets updated
