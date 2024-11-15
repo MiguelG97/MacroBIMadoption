@@ -25,11 +25,13 @@ export default function Bar_chart_bim({
   fullWidth = false,
   increaseHeight = false,
   isThreeLinesHeadline = false,
+  totalAnswers,
 }: {
   questionnaire: IQuestionnaire;
   fullWidth?: boolean;
   increaseHeight?: boolean;
   isThreeLinesHeadline?: boolean;
+  totalAnswers?: number;
 }) {
   /**Redux toolkit */
   const dispatch = useAppDispatch();
@@ -99,10 +101,10 @@ export default function Bar_chart_bim({
     chartData = chartData.slice(0, 5);
 
     setChartData(chartData);
-
-    const totalNetAnswers = filteredAnswers.filter(
-      (a) => a.userAnswer && a.userAnswer !== ""
-    ).length;
+    //for total answers, we are not considering blank inputs
+    const totalNetAnswers =
+      totalAnswers ??
+      filteredAnswers.filter((a) => a.userAnswer && a.userAnswer !== "").length;
     setTotalNetAnswers(totalNetAnswers); //do not considering the accumulation due to the multipleChoice!
   }, [answers, questionnaire, countryFilter]);
 

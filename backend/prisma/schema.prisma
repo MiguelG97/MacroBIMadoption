@@ -18,7 +18,7 @@ generator client {
   provider = "prisma-client-js"
 }
 
-//B) defines connection to the db
+//B) defines connection to the db: [run npx prisma generate when changing url!]
 datasource db {
   provider  = "postgresql"
   // url      = env("POSTGRES_LOCAL_URL")
