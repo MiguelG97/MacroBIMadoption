@@ -6,6 +6,7 @@ import {
   IQuestionnaire,
   IUser,
 } from "../shared/types/postgresql_schema_types";
+import { ApolloError } from "@apollo/client";
 
 export class CreateData {
   public static async sendExcelDataToPostgresql({
@@ -16,14 +17,16 @@ export class CreateData {
     excelPath,
     country,
     questionnaires,
+    campaignAlreadyExist,
   }: {
     mutationCreateQuestionnaries: any;
     mutationCreateUsers: any;
     mutationCreateAnswers: any;
     mutationCreateAnswer: any;
     excelPath: string;
-    country: "peru" | "brazil";
+    country: "peru" | "brazil" | "tunisia";
     questionnaires: IQuestionnaire[];
+    campaignAlreadyExist: boolean;
   }) {
     const workbook = await excelUtils.readExcel({
       path: excelPath,
@@ -117,14 +120,17 @@ export class CreateData {
 
     /**4) send data to postgresql */
     try {
-      //4.1)send questionnaires
-      const res1 = await mutationCreateQuestionnaries({
-        variables: {
-          createManyQuestionnairesInput: {
-            questionnairesInput: questionnaires,
+      //4.1)send questionnaires:
+      if (!campaignAlreadyExist) {
+        const res1 = await mutationCreateQuestionnaries({
+          variables: {
+            createManyQuestionnairesInput: {
+              questionnairesInput: questionnaires,
+            },
           },
-        },
-      });
+        });
+      }
+
       //4.2)send users
       const res2 = await mutationCreateUsers({
         variables: {
@@ -164,7 +170,7 @@ export class CreateData {
         //   },
         // });
       }
-      // console.log(failedAnswersIndexes);
+      console.log(filteredAnswerModels);
 
       const res3 = await mutationCreateAnswers({
         variables: {

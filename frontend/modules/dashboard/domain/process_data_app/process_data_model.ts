@@ -32,16 +32,13 @@ export class ProcessDataModel {
     unfoldOtherChoices?: boolean;
   }) {
     //1) set choice name and 0 as initial counter for each choice
-    const choiceCounter: IChoiceCounter = {};
+    let choiceCounter: IChoiceCounter = {};
     const otherChoices: string[] = [];
 
-    for (const index in questionnaire.choices) {
-      const choice = questionnaire.choices[index];
-      choiceCounter[index] = {
-        choice,
-        count: 0,
-      };
-    }
+    choiceCounter = questionnaire.choices.reduce((prev, curr, index) => {
+      prev[index] = { choice: curr, count: 0 };
+      return prev;
+    }, choiceCounter);
 
     //2) count all the answers
     for (const answer of answers) {
@@ -67,9 +64,10 @@ export class ProcessDataModel {
       ];
 
       for (const userInput of userInputs) {
-        //it had to be exactly the same answer, otherwise if an answers is contained in a choice, it will be counted in the wrong group
+        //it had to be exactly the same answer, [at least use lower case match, we have issues in some questionnaire choices section, some letters should've been in upper case]
+        // otherwise if an answers is contained in a choice, it will be counted in the wrong group
         let choiceFound = choiceCounterValues.find(
-          (x) => userInput === x.choice
+          (x) => userInput.toLowerCase() === x.choice.toLowerCase()
         );
         if (choiceFound) {
           choiceFound!.count += 1; //since we have gotten a reference, by updating this value, choiceCounter Objects gets updated

@@ -9,6 +9,11 @@ import {
 } from "@/core/shared/types/postgresql_schema_types";
 
 export class FilterApp {
+  /**
+   * Filtering answers by country and questionnaire
+   * @param param0
+   * @returns
+   */
   public static filterAnswers({
     answers,
     questionnaire,
@@ -24,7 +29,7 @@ export class FilterApp {
       if (countryFilter === CountriesEnum.All) {
         return x.questionId === questionnaire.questionId;
       }
-      //a). by country
+      //a). by country & by questionnaire
       else {
         const userFound = users.find((u) => u.userId === x.userId);
         if (userFound && userFound.country !== null && userFound.country) {
