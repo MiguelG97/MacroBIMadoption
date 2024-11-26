@@ -21,13 +21,8 @@ export default function Left_drawer() {
       {/* 1) title */}
       <div
         className="w-[60%] flex flex-row  text-center pl-16 relative
-      h-[12rem] bg-red-400 mx-auto"
+      h-[12rem] mx-auto"
       >
-        {/* <Image
-          src={"/assets/images/macrobimadoption.jpg"}
-          alt="macrobimadoption"
-          fill
-        /> */}
         <Image
           src={"/assets/images/macro-adoption-logo.png"}
           alt="macrobimadoption"
