@@ -1,8 +1,7 @@
 import { DM_Sans, Poppins } from "next/font/google";
 
 import TreeView from "./tree_view";
-import { IProtocol } from "../../types/protocol_types";
-import { eduLandSections } from "../../constants/section_tabs";
+import Image from "next/image";
 
 const poppings = Poppins({
   weight: "700",
@@ -16,26 +15,33 @@ const dmSans = DM_Sans({
 export default function Left_drawer() {
   return (
     <div
-      className={`w-[29rem] h-full bg-white  pr-[3.2rem] 
-        pt-[5.6rem] flex flex-col gap-[3.2rem] text-txcolor-200`}
+      className={`min-w-[24.5rem] w-[24.5rem] h-full bg-white  
+        pt-[2.6rem] flex flex-col gap-[1.2rem] text-txcolor-200`}
     >
       {/* 1) title */}
-      <div className="w-full flex flex-row  text-center pl-16">
-        <p
-          className={`${poppings.className} uppercase text-[2.6rem]
-        leading-[100%] tracking-normal `}
-        >
-          Macro BIM Adoption
-        </p>
+      <div
+        className="w-[60%] flex flex-row  text-center pl-16 relative
+      h-[12rem] bg-red-400 mx-auto"
+      >
+        {/* <Image
+          src={"/assets/images/macrobimadoption.jpg"}
+          alt="macrobimadoption"
+          fill
+        /> */}
+        <Image
+          src={"/assets/images/macro-adoption-logo.png"}
+          alt="macrobimadoption"
+          fill
+        />
       </div>
 
       {/* 2) separator */}
-      <div className="h-1 border-t-[1px]  mr-[-3.2rem]"></div>
+      <div className="h-1 border-t-[1px] mt-2"></div>
 
       {/* 3) Sections */}
       <div
         className={`flex flex-col gap-3 ${dmSans.className} 
-        mr-[-3.2rem] h-full overflow-y-auto`}
+         grow overflow-y-auto mt-6`}
       >
         <TreeView />
       </div>
