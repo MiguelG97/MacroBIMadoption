@@ -1,7 +1,7 @@
 # https://github.com/vercel/next.js/blob/canary/examples/with-docker/Dockerfile
 
 ARG NODE_VERSION=20.10.0
-FROM node:${NODE_VERSION}-alpine as base
+FROM node:${NODE_VERSION}-alpine AS base
 
 # Install dependencies only when needed
 FROM base AS deps
@@ -17,6 +17,8 @@ WORKDIR /usr/src/app
 
 COPY --from=deps /usr/src/app/node_modules ./node_modules
 COPY . .
+ARG NEXT_PUBLIC_GRAPHQL_SERVER
+ENV NEXT_PUBLIC_GRAPHQL_SERVER=${NEXT_PUBLIC_GRAPHQL_SERVER}
 RUN npm run build
 
 
@@ -40,10 +42,10 @@ COPY --from=builder --chown=nextjs:nodejs /usr/src/app/.next/static ./.next/stat
 
 USER nextjs
 
-ENV HOSTNAME="0.0.0.0"
-EXPOSE 3000
-ENV PORT=3000
-CMD node server.js
+# ENV HOSTNAME="0.0.0.0"
+EXPOSE 8080
+ENV PORT=8080
+CMD ["node", "server.js"]
 
 
 
