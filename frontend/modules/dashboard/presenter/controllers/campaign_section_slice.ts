@@ -1,11 +1,15 @@
-import { Campaign } from "@/core/shared/enums/campaign_sections_enum";
+import {
+  Campaign,
+  EduSectionName,
+  OrgSectionName,
+} from "@/core/shared/enums/campaign_sections_enum";
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
 // Define a type for the slice state
 interface campaignSecState {
   activeCampaign: Campaign;
-  activeSectionName: string;
+  activeSectionName: EduSectionName | OrgSectionName;
   activeSectionIndex: number;
   activeToolTipAccumValue: number;
 }
@@ -13,7 +17,7 @@ interface campaignSecState {
 // Define the initial state using that type
 const initialState: campaignSecState = {
   activeCampaign: Campaign.Education_Landscape,
-  activeSectionName: "Educational Units",
+  activeSectionName: EduSectionName.Higher_edu_programmes,
   activeSectionIndex: 1,
   activeToolTipAccumValue: 0,
 };
@@ -27,7 +31,7 @@ export const campaignSecSlice = createSlice({
       state,
       action: PayloadAction<{
         activeCampaign: Campaign;
-        activeSectionName: string;
+        activeSectionName: EduSectionName | OrgSectionName;
         activeSectionIndex: number;
       }>
     ) => {

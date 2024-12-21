@@ -8,7 +8,11 @@ import { themeTailwind } from "../../theme/tailwindTheme";
 import { IProtocolSection } from "../../types/protocol_types";
 import { setActiveCampaignSection } from "@/modules/dashboard/presenter/controllers/campaign_section_slice";
 import { eduLandSections, orgAdoSections } from "../../constants/section_tabs";
-import { Campaign } from "../../enums/campaign_sections_enum";
+import {
+  Campaign,
+  EduSectionName,
+  OrgSectionName,
+} from "../../enums/campaign_sections_enum";
 ///In another ticket, take care of making this iterative and scalable!
 
 export default function TreeView() {
@@ -44,7 +48,7 @@ export default function TreeView() {
   /**Handlers */
   const onSectionClick = (
     index: number,
-    sectionName: string,
+    sectionName: EduSectionName | OrgSectionName,
     campaignName: Campaign
   ) => {
     dispatch(

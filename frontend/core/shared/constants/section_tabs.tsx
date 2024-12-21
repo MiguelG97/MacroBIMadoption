@@ -11,12 +11,16 @@ import {
 } from "@tabler/icons-react";
 import { themeTailwind } from "../theme/tailwindTheme";
 import { IProtocolSection } from "../types/protocol_types";
+import {
+  EduSectionName,
+  OrgSectionName,
+} from "../enums/campaign_sections_enum";
 const { colors } = themeTailwind.theme;
 
 export const eduLandSections: IProtocolSection[] = [
   {
     id: 1,
-    name: "Higher Education Programmes",
+    name: EduSectionName.Higher_edu_programmes,
     icon: (activeSectionIndex: number) => (
       <IconSchool
         color={`${
@@ -27,7 +31,7 @@ export const eduLandSections: IProtocolSection[] = [
   },
   {
     id: 2,
-    name: "Short BIM Training Courses",
+    name: EduSectionName.Training_courses,
     icon: (activeSectionIndex: number) => (
       <IconBook
         color={`${
@@ -38,7 +42,7 @@ export const eduLandSections: IProtocolSection[] = [
   },
   {
     id: 3,
-    name: "Market-Scale Educational Framework",
+    name: EduSectionName.Educational_framework,
     icon: (activeSectionIndex: number) => (
       <IconBuildingStore
         color={`${
@@ -49,7 +53,7 @@ export const eduLandSections: IProtocolSection[] = [
   },
   {
     id: 4,
-    name: "Collaboration between Academia, Government and Industry",
+    name: EduSectionName.Collaboration,
     icon: (activeSectionIndex: number) => (
       <IconAffiliate
         color={`${
@@ -63,7 +67,7 @@ export const eduLandSections: IProtocolSection[] = [
 export const orgAdoSections: IProtocolSection[] = [
   {
     id: 5,
-    name: "Organisational Information",
+    name: OrgSectionName.Org_information,
     icon: (activeSectionIndex: number) => (
       <IconFileInvoice
         color={`${
@@ -74,7 +78,7 @@ export const orgAdoSections: IProtocolSection[] = [
   },
   {
     id: 6,
-    name: "Adoption",
+    name: OrgSectionName.Adoption,
     icon: (activeSectionIndex: number) => (
       <IconStretching2
         color={`${
@@ -85,7 +89,7 @@ export const orgAdoSections: IProtocolSection[] = [
   },
   {
     id: 7,
-    name: "Non-adopters",
+    name: OrgSectionName.Non_adopters,
     icon: (activeSectionIndex: number) => (
       <IconDeviceTabletOff
         color={`${
@@ -96,7 +100,7 @@ export const orgAdoSections: IProtocolSection[] = [
   },
   {
     id: 8,
-    name: "Targeted deliverables",
+    name: OrgSectionName.Target_deliv,
     icon: (activeSectionIndex: number) => (
       <IconTargetArrow
         color={`${
@@ -107,7 +111,7 @@ export const orgAdoSections: IProtocolSection[] = [
   },
   {
     id: 9,
-    name: "Interoperability",
+    name: OrgSectionName.Interop,
     icon: (activeSectionIndex: number) => (
       <IconShare
         color={`${
