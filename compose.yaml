@@ -1,9 +1,6 @@
 services:
   frontend:
-    build:
-      context: ./frontend
-      args:
-        - NEXT_PUBLIC_GRAPHQL_SERVER=http://localhost:3000/
+    image: miguelg97/macrobimadoption:frontend-latest
     # env_file:
     #   - ./frontend/.env
     environment:
@@ -12,28 +9,29 @@ services:
     ports:
       - 8080:8080
     networks:
-      - private
+      - public
     depends_on:
       - backend
   backend:
-    build:
-      context: ./backend
+    image: miguelg97/macrobimadoption:backend-latest
     environment:
       NODE_ENV: production
       POSTGRES_PRISMA_URL: "postgres://postgres:egsvOdre2TxcSuxIHxPU@macrobimrdbfreetier.cdm0mqi800ge.us-east-1.rds.amazonaws.com:5432/awsrdb"
     ports:
       - 3000:3000
     networks:
-      - private
+      - public
   nginx:
-    build:
-      context: ./proxy
+    image: miguelg97/macrobimadoption:nginx-latest
     ports:
-      - 8081:80
+      - 80:80
+      # - 443:443
     networks:
-      - private
+      - public
     depends_on:
       - frontend
       - backend
+    # volumes:
+    #   - /etc/letsencrypt:/etc/letsencrypt:ro # Mount SSL certificates as read-only
 networks:
-  private:
+  public:
