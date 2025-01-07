@@ -10,6 +10,8 @@ FROM deps AS builder
 WORKDIR /usr/src/app
 COPY --from=deps /usr/src/app/node_modules ./node_modules
 COPY . .
+ARG POSTGRES_PRISMA_URL
+ENV POSTGRES_PRISMA_URL=${POSTGRES_PRISMA_URL}
 RUN npx prisma generate
 RUN npm run build
 

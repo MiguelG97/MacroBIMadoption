@@ -21,7 +21,7 @@ jobs:
           REPO=${{secrets.DOCKER_USERNAME}}/macrobimadoption
           TAG=latest
           docker build --no-cache -t $REPO:frontend-$TAG --build-arg NEXT_PUBLIC_GRAPHQL_SERVER=${{secrets.NEXT_PUBLIC_GRAPHQL_SERVER}} ./frontend
-          docker build --no-cache -t $REPO:backend-$TAG ./backend
+          docker build --no-cache -t $REPO:backend-$TAG --build-arg POSTGRES_PRISMA_URL=${{secrets.POSTGRES_PRISMA_URL}} ./backend
           docker build --no-cache -t $REPO:nginx-$TAG ./proxy
 
           docker push $REPO:frontend-$TAG
