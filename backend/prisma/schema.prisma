@@ -21,8 +21,7 @@ generator client {
 //B) defines connection to the db: [run npx prisma generate when changing url!]
 datasource db {
   provider  = "postgresql"
-  url       = env("POSTGRES_PRISMA_URL")
-  // directUrl = env("POSTGRES_URL_NON_POOLING") //this has higher priority than url!! watch out!
+  url       = env("POSTGRES_PRISMA_URL")  
 }
 
 //C) Data model:
