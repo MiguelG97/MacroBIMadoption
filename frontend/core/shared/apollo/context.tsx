@@ -1,12 +1,8 @@
 "use client";
-import {
-  ApolloClient,
-  ApolloProvider,
-  InMemoryCache,
-} from "@apollo/client";
+import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
 
 const client = new ApolloClient({
-  uri: `${process.env.NEXT_PUBLIC_GRAPHQL_SERVER}graphql`,
+  uri: `${process.env.NEXT_PUBLIC_API_SERVER}/graphql`,
   cache: new InMemoryCache(),
 });
 
@@ -17,9 +13,5 @@ export default function ApolloContext({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return (
-    <ApolloProvider client={client}>
-      {children}
-    </ApolloProvider>
-  );
+  return <ApolloProvider client={client}>{children}</ApolloProvider>;
 }
