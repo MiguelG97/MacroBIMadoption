@@ -11,4 +11,4 @@
 - Assist policymakers and educators in evaluating, developing or improving their BIM adoption strategies and educational frameworks
 
 Project website: [macroadoption.com](https://macroadoption.com/) </br>
-Online Dashboard: [macro-bim-adoption.vercel.app](https://macro-bim-adoption.vercel.app/)
+Online Dashboard: [dashboard.macroadoption.com](https://dashboard.macroadoption.com/)
