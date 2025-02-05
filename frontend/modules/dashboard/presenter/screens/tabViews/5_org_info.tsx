@@ -5,6 +5,7 @@ import React, { useMemo } from "react";
 import Bar_chart_bim from "../../components/bar_chart";
 import Pie_chart_bim from "../../components/pie_chart";
 import { ArrangePattern } from "@/core/shared/types/chart_types";
+import Image from "next/image";
 
 export default function OrgInformation_tabView() {
   /**Redux toolkit */
@@ -40,6 +41,14 @@ export default function OrgInformation_tabView() {
       </div>
       <div className="flex flex-row gap-[2.4rem] w-full justify-center">
         <Pie_chart_bim questionnaire={questionnairesOrgInfo[6]} />
+      </div>
+      <div className="flex w-full justify-center">
+        <Image
+          src={"/assets/images/macrobim_footer.png"}
+          alt="macroadoption footer"
+          width={"280"}
+          height={"50"}
+        />
       </div>
     </div>
   );

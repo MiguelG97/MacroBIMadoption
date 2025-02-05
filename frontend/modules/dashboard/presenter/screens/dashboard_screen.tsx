@@ -9,6 +9,7 @@ import NonAdopters_tabView from "./tabViews/7_non_adopters";
 import TargetDeliv_tabView from "./tabViews/8_tar_deliverables";
 import { useMemo } from "react";
 import Interop_tabView from "./tabViews/9_interoperability";
+import Image from "next/image";
 
 export default function Dashboard_screen() {
   const { activeSectionIndex } = useAppSelector(
@@ -28,5 +29,5 @@ export default function Dashboard_screen() {
     ],
     []
   );
-  return screens[activeSectionIndex - 1];
+  return <>{screens[activeSectionIndex - 1]}</>;
 }

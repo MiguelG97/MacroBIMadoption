@@ -6,6 +6,7 @@ import Pie_chart_bim from "../../components/pie_chart";
 import Bar_chart_bim from "../../components/bar_chart";
 import Table_survey from "../../components/table_survey";
 import { ArrangePattern } from "@/core/shared/types/chart_types";
+import Image from "next/image";
 
 export default function Adoption_tabView() {
   /**Redux toolkit */
@@ -70,6 +71,14 @@ export default function Adoption_tabView() {
           questionnaire={questionnairesAdoption[14]}
           transformPercentageToRating
           arrangePattern={ArrangePattern.byAnswerChoices}
+        />
+      </div>
+      <div className="flex w-full justify-center">
+        <Image
+          src={"/assets/images/macrobim_footer.png"}
+          alt="macroadoption footer"
+          width={"280"}
+          height={"50"}
         />
       </div>
     </div>

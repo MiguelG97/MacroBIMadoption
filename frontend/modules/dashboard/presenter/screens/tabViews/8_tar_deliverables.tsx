@@ -5,6 +5,7 @@ import { useAppSelector } from "@/core/shared/redux/store";
 import { IQuestionnaire } from "@/core/shared/types/postgresql_schema_types";
 import { OrgSectionName } from "@/core/shared/enums/campaign_sections_enum";
 import { FilterApp } from "@/modules/dashboard/domain/filter_app/filterApp";
+import Image from "next/image";
 
 export default function TargetDeliv_tabView() {
   /**Redux toolkit */
@@ -86,6 +87,14 @@ export default function TargetDeliv_tabView() {
         <Bar_chart_bim
           questionnaire={questionnairesTarDeliv[13]}
           totalAnswers={calcTotalAnswers(questionnairesTarDeliv[12])}
+        />
+      </div>
+      <div className="flex w-full justify-center">
+        <Image
+          src={"/assets/images/macrobim_footer.png"}
+          alt="macroadoption footer"
+          width={"280"}
+          height={"50"}
         />
       </div>
     </div>

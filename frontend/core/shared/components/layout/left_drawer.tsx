@@ -2,6 +2,7 @@ import { DM_Sans, Poppins } from "next/font/google";
 
 import TreeView from "./tree_view";
 import Image from "next/image";
+import Link from "next/link";
 
 const poppings = Poppins({
   weight: "700",
@@ -23,12 +24,14 @@ export default function Left_drawer() {
         className="w-full flex flex-row  text-center items-center
        justify-center h-[12rem] mx-auto relative"
       >
-        <Image
-          src={"/assets/images/macro-adoption-logo.png"}
-          alt="macrobimadoption"
-          width={120}
-          height={120}
-        />
+        <Link href={"https://macroadoption.com"} target="_blank">
+          <Image
+            src={"/assets/images/macro-adoption-logo.png"}
+            alt="macrobimadoption"
+            width={120}
+            height={120}
+          />
+        </Link>
       </div>
 
       {/* 2) separator */}

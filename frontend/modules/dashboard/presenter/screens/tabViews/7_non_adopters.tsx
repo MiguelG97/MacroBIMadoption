@@ -38,6 +38,14 @@ export default function NonAdopters_tabView() {
             className="rounded-[1.6rem]"
           />
         </div>
+        <div className="flex w-full justify-center">
+          <Image
+            src={"/assets/images/macrobim_footer.png"}
+            alt="macroadoption footer"
+            width={"280"}
+            height={"50"}
+          />
+        </div>
       </div>
     </div>
   );

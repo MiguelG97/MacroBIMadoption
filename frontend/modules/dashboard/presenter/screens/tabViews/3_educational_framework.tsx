@@ -5,6 +5,7 @@ import { useAppSelector } from "@/core/shared/redux/store";
 import { useEffect, useState } from "react";
 import { IQuestionnaire } from "@/core/shared/types/postgresql_schema_types";
 import { EduSectionName } from "@/core/shared/enums/campaign_sections_enum";
+import Image from "next/image";
 
 export default function Educ_framework_tabView() {
   /**Redux toolkit */
@@ -82,6 +83,14 @@ justify-center "
         <Table_survey
           questionnaire={questionnariesEducFramework[6]}
           isTableAlone
+        />
+      </div>
+      <div className="flex w-full justify-center">
+        <Image
+          src={"/assets/images/macrobim_footer.png"}
+          alt="macroadoption footer"
+          width={"280"}
+          height={"50"}
         />
       </div>
     </div>

@@ -5,6 +5,7 @@ import Table_survey from "../../components/table_survey";
 import { EduSectionName } from "@/core/shared/enums/campaign_sections_enum";
 import { useAppSelector } from "@/core/shared/redux/store";
 import { IQuestionnaire } from "@/core/shared/types/postgresql_schema_types";
+import Image from "next/image";
 
 export default function Collaboration_tabView() {
   /**Redux toolkit */
@@ -58,6 +59,14 @@ justify-center "
         justify-center "
       >
         <Table_survey questionnaire={questionnariesCollaboration[3]} />
+      </div>
+      <div className="flex w-full justify-center">
+        <Image
+          src={"/assets/images/macrobim_footer.png"}
+          alt="macroadoption footer"
+          width={"280"}
+          height={"50"}
+        />
       </div>
     </div>
   );

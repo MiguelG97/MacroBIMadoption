@@ -5,6 +5,7 @@ import Table_survey from "../../components/table_survey";
 import { useAppSelector } from "@/core/shared/redux/store";
 import { IQuestionnaire } from "@/core/shared/types/postgresql_schema_types";
 import { EduSectionName } from "@/core/shared/enums/campaign_sections_enum";
+import Image from "next/image";
 
 export default function Bim_training_tabView() {
   /**Redux toolkit */
@@ -60,6 +61,14 @@ justify-center "
 justify-center "
       >
         <Table_survey questionnaire={questionnariesTrainingCourses[4]} />
+      </div>
+      <div className="flex w-full justify-center">
+        <Image
+          src={"/assets/images/macrobim_footer.png"}
+          alt="macroadoption footer"
+          width={"280"}
+          height={"50"}
+        />
       </div>
     </div>
   );

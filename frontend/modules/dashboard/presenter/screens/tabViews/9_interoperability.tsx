@@ -5,6 +5,7 @@ import React, { useMemo } from "react";
 import Pie_chart_bim from "../../components/pie_chart";
 import { ArrangePattern } from "@/core/shared/types/chart_types";
 import Bar_chart_bim from "../../components/bar_chart";
+import Image from "next/image";
 
 export default function Interop_tabView() {
   /**Redux toolkit */
@@ -37,6 +38,14 @@ export default function Interop_tabView() {
           questionnaire={questionnairesInterop[4]}
           fullWidth
           increaseHeight
+        />
+      </div>
+      <div className="flex w-full justify-center">
+        <Image
+          src={"/assets/images/macrobim_footer.png"}
+          alt="macroadoption footer"
+          width={"280"}
+          height={"50"}
         />
       </div>
     </div>
