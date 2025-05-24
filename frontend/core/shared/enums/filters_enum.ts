@@ -9,4 +9,7 @@ export enum CountriesEnum {
   "Peru" = "peru",
   "Brazil" = "brazil",
   "Tunisia" = "tunisia",
+  "Mexico" = "mexico",
+  "Ecuador" = "ecuador",
+  "Colombia" = "colombia",
 }

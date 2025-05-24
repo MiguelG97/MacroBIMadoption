@@ -7,6 +7,15 @@ import {
   IUser,
 } from "../shared/types/postgresql_schema_types";
 import { ApolloError } from "@apollo/client";
+import { client } from "../shared/apollo/context";
+import {
+  FindAllAnswersQuery,
+  FindAllQuestionnariesQuery,
+  FindAllUsersQuery,
+} from "../utils/generator/graphql";
+import { qFindAllUsers } from "../shared/gql/queries/users";
+import { qFindAllAnswers } from "../shared/gql/queries/answers";
+import { qFindAllQuestionnaries } from "../shared/gql/queries/questionnaries";
 
 export class CreateData {
   public static async sendExcelDataToPostgresql({
@@ -24,7 +33,7 @@ export class CreateData {
     mutationCreateAnswers: any;
     mutationCreateAnswer: any;
     excelPath: string;
-    country: "peru" | "brazil" | "tunisia";
+    country: "peru" | "brazil" | "tunisia" | "mexico" | "ecuador" | "colombia";
     questionnaires: IQuestionnaire[];
     campaignAlreadyExist: boolean;
   }) {
@@ -132,14 +141,36 @@ export class CreateData {
       }
 
       //4.2)send users
+      //Fetch current users and filter users that do no exist yet
+      const currentUsers = await client.query<FindAllUsersQuery>({
+        query: qFindAllUsers,
+        fetchPolicy: "network-only",
+      });
+      const newUserModels = userModels.filter(
+        (u) =>
+          !currentUsers.data.findAllUsers
+            .map((uu) => uu.userId)
+            .includes(u.userId)
+      );
+
       const res2 = await mutationCreateUsers({
         variables: {
-          createManyUsersInput: { manyUsersInput: userModels },
+          createManyUsersInput: { manyUsersInput: newUserModels },
         },
       });
 
       //4.3)send answers
-      const failedAnswersIndexes: { index: number; error: any }[] = [];
+      //filter also for existing answers ids!
+      const currentAnswers = await client.query<FindAllAnswersQuery>({
+        query: qFindAllAnswers,
+        fetchPolicy: "network-only",
+      });
+      const currentQuestionnaries =
+        await client.query<FindAllQuestionnariesQuery>({
+          query: qFindAllQuestionnaries,
+          fetchPolicy: "network-only",
+        });
+
       const qIdsToIgnore = [
         //those questionnaires are not supposed to be displayed in the dashboard
         1696139171941, 1696139477406, 1696139949919, 1696140883180,
@@ -149,26 +180,23 @@ export class CreateData {
 
       const filteredAnswerModels: IAnswer[] = [];
       for (let i = 0; i < answerModels.length; i++) {
-        if (qIdsToIgnore.includes(answerModels[i].questionId)) continue;
+        if (
+          qIdsToIgnore.includes(answerModels[i].questionId) ||
+          !currentQuestionnaries.data.findAllQuestionnaires
+            .map((q) => q.questionId)
+            .includes(answerModels[i].questionId)
+        )
+          continue;
+        //check if all of that is equal userId + QuestionId
+        if (
+          currentAnswers.data.findAllAnswers.some(
+            (a) =>
+              a.questionId === answerModels[i].questionId &&
+              a.userId === answerModels[i].userId
+          )
+        )
+          continue;
         filteredAnswerModels.push(answerModels[i]);
-
-        //do not use this individual mutation since takes a lot, only use it for debuging errors
-
-        // await mutationCreateAnswer({
-        //   variables: {
-        //     createAnswerInput: answerModels[i],
-        //   },
-        //   onError: (error: any) => {
-        //     if (
-        //       !error.message.includes("Unique constraint failed on the fields")
-        //     ) {
-        //       failedAnswersIndexes.push({
-        //         index: i,
-        //         error: error.graphQLErrors,
-        //       });
-        //     }
-        //   },
-        // });
       }
       console.log(filteredAnswerModels);
 
@@ -177,6 +205,7 @@ export class CreateData {
           createManyAnswersInput: { createAnswersInput: filteredAnswerModels },
         },
       });
+      const successad = "good!";
     } catch (error) {
       throw error;
     }

@@ -85,9 +85,9 @@ export default function Home() {
     //   mutationCreateUsers,
     //   mutationCreateAnswers,
     //   mutationCreateAnswer,
-    //   excelPath: "/assets/files/education/TUN-EDU.xlsx",
-    //   country: "tunisia",
-    //   questionnaires: education_questionnaires,
+    //   excelPath: "/assets/files/organization/MEX-ORG.xlsx",
+    //   country: "mexico",
+    //   questionnaires: organization_questionnaires,
     //   campaignAlreadyExist: true,
     // });
     //update academic programme data
