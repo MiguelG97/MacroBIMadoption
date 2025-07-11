@@ -18,7 +18,7 @@ The project includes multiple microprojects and has the following main objective
 
 
 ## 🚀 Technology Stack
-
+<img src="https://skillicons.dev/icons?i=nextjs,nestjs,graphql,postgres,docker,githubactions,ts" alt="Tech stack icons" />
 Built with a robust and scalable tech stack:
 
 - **Frontend**: [Next.js](https://nextjs.org/) (React-based SSR/SPA framework)
