@@ -33,7 +33,14 @@ export class CreateData {
     mutationCreateAnswers: any;
     mutationCreateAnswer: any;
     excelPath: string;
-    country: "peru" | "brazil" | "tunisia" | "mexico" | "ecuador" | "colombia";
+    country:
+      | "peru"
+      | "brazil"
+      | "tunisia"
+      | "mexico"
+      | "ecuador"
+      | "colombia"
+      | "united kingdom";
     questionnaires: IQuestionnaire[];
     campaignAlreadyExist: boolean;
   }) {
@@ -180,6 +187,7 @@ export class CreateData {
 
       const filteredAnswerModels: IAnswer[] = [];
       for (let i = 0; i < answerModels.length; i++) {
+        //ignore answers that do not match to an existing or valid questionnaire Id
         if (
           qIdsToIgnore.includes(answerModels[i].questionId) ||
           !currentQuestionnaries.data.findAllQuestionnaires
@@ -187,7 +195,7 @@ export class CreateData {
             .includes(answerModels[i].questionId)
         )
           continue;
-        //check if all of that is equal userId + QuestionId
+        //check if an existing answer that belongs to an user has already being answered!
         if (
           currentAnswers.data.findAllAnswers.some(
             (a) =>
@@ -198,7 +206,6 @@ export class CreateData {
           continue;
         filteredAnswerModels.push(answerModels[i]);
       }
-      console.log(filteredAnswerModels);
 
       const res3 = await mutationCreateAnswers({
         variables: {

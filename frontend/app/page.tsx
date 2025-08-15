@@ -85,12 +85,12 @@ export default function Home() {
     //   mutationCreateUsers,
     //   mutationCreateAnswers,
     //   mutationCreateAnswer,
-    //   excelPath: "/assets/files/organization/MEX-ORG.xlsx",
-    //   country: "mexico",
+    //   excelPath: "/assets/files/education/UK-EDU.xlsx",
+    //   country: "united kingdom",
     //   questionnaires: organization_questionnaires,
     //   campaignAlreadyExist: true,
     // });
-    //update academic programme data
+    // update academic programme data
     // UpdateData.updateAcademicProgramme({ mutationUpdateUsers });//
   }, []);
 

@@ -12,4 +12,5 @@ export enum CountriesEnum {
   "Mexico" = "mexico",
   "Ecuador" = "ecuador",
   "Colombia" = "colombia",
+  "UK" = "united kingdom",
 }

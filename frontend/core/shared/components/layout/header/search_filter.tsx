@@ -84,12 +84,12 @@ export default function Search_filter() {
             </div>
             <MSelector
               defaultValue={countryFilter}
-              menuItems={Object.keys(CountriesEnum).map(
-                (x: string, i: number) => ({
+              menuItems={Object.keys(CountriesEnum)
+                .sort()
+                .map((x: string, i: number) => ({
                   text: x,
                   value: Object.values(CountriesEnum)[i],
-                })
-              )}
+                }))}
               onChangeCallback={onChangeCountryFilter}
             />
           </div>
