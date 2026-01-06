@@ -13,12 +13,27 @@ services:
     image: miguelg97/macrobimadoption:backend-latest
     environment:
       NODE_ENV: production
-    env_file:
-      - ./backend/.env
+      POSTGRES_PRISMA_URL: postgres://postgres:postgres@db:5432/macrobimadoptiondb?schema=public
     ports:
       - 3000:3000
     networks:
       - public
+      - private
+    depends_on:
+      - db
+  db:
+    image: postgres:15
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: macrobimadoptiondb
+    ports:
+      - 5432:5432
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    networks:
+      - private
   nginx:
     image: miguelg97/macrobimadoption:nginx-latest
     ports:
@@ -33,3 +48,6 @@ services:
       - /etc/letsencrypt:/etc/letsencrypt:ro # Mount SSL certificates as read-only
 networks:
   public:
+  private:
+volumes:
+  pg_data:
