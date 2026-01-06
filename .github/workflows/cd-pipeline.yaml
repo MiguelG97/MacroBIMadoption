@@ -21,7 +21,7 @@ jobs:
           REPO=${{secrets.DOCKER_USERNAME}}/macrobimadoption
           TAG=latest
           docker build --no-cache -t $REPO:frontend-$TAG --build-arg NEXT_PUBLIC_APP_DOMAIN=${{secrets.NEXT_PUBLIC_APP_DOMAIN}} ./frontend
-          docker build --no-cache -t $REPO:backend-$TAG --build-arg POSTGRES_PRISMA_URL=${{secrets.POSTGRES_PRISMA_URL}} ./backend
+          docker build --no-cache -t $REPO:backend-$TAG --build-arg POSTGRES_PRISMA_URL=postgres://postgres:postgres@db:5432/macrobimadoptiondb?schema=public ./backend
           docker build --no-cache -t $REPO:nginx-$TAG ./nginx
 
           docker push $REPO:frontend-$TAG
@@ -37,9 +37,6 @@ jobs:
         with:
           fetch-depth: 0
           ref: main
-      - name: Create .env file for runtime (deploy)
-        run: |
-          echo "POSTGRES_PRISMA_URL=${{secrets.POSTGRES_PRISMA_URL}}" > ./backend/.env
       - name: Stop existing containers and remove images
         run: docker-compose down --rmi all
       - name: Run container with Docker Compose

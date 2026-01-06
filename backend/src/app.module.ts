@@ -11,7 +11,10 @@ import { UsersModule } from './modules/users/users.module';
 
 @Module({
   imports: [
-    ConfigModule.forRoot({ isGlobal: true }),
+    ConfigModule.forRoot({
+      isGlobal: true,
+      envFilePath: ['.env.local', '.env'],
+    }),
     AnswersModule,
     //Step 0) Setting up apollo server!
     GraphQLModule.forRootAsync<ApolloDriverConfig>({

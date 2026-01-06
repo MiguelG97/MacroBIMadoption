@@ -4,10 +4,9 @@ import {
   HttpException,
   HttpStatus,
 } from '@nestjs/common';
-import { HttpArgumentsHost } from '@nestjs/common/interfaces';
 import { HttpAdapterHost } from '@nestjs/core';
-import { GqlArgumentsHost, GqlExceptionFilter } from '@nestjs/graphql';
-import { ApolloError } from 'apollo-server-express';
+import { GqlExceptionFilter } from '@nestjs/graphql';
+import { GraphQLError } from 'graphql';
 
 @Catch()
 export class AllGqlExceptionsFilter implements GqlExceptionFilter {
@@ -24,9 +23,18 @@ export class AllGqlExceptionsFilter implements GqlExceptionFilter {
         ? exception.getStatus()
         : HttpStatus.INTERNAL_SERVER_ERROR;
 
-    return new ApolloError(exception.message, httpStatus.toString(), {
+    const extensions = {
+      code: httpStatus.toString(),
       timestamp: new Date().toISOString(),
-      stack: exception.stack,
-    });
+      stack: exception instanceof Error ? exception.stack : undefined,
+    };
+
+    const message =
+      exception instanceof Error ? exception.message : 'Internal server error';
+    return new GraphQLError(message, { extensions });
+    // return new ApolloError(exception.message, httpStatus.toString(), {
+    //   timestamp: new Date().toISOString(),
+    //   stack: exception.stack,
+    // });
   }
 }
