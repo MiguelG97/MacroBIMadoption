@@ -17,6 +17,8 @@ RUN npm run build
 
 FROM base AS final
 WORKDIR /usr/src/app
+ARG POSTGRES_PRISMA_URL
+ENV POSTGRES_PRISMA_URL=${POSTGRES_PRISMA_URL}
 ENV NODE_ENV=production
 
 COPY --from=deps /usr/src/app/node_modules ./node_modules
