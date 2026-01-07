@@ -75,7 +75,7 @@ export class QuestionnairesService {
     return questionnairesFound;
   }
 
-  // remove(id: number) {
-  //   return `This action removes a #${id} questionnaire`;
-  // }
+  async deleteMany() {
+    return await this.prismaClient.questionnaires.deleteMany({});
+  }
 }
