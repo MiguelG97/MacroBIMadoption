@@ -29,6 +29,7 @@ USER node
 
 # Expose the port that the application listens on.
 EXPOSE 3000
-RUN npx prisma generate
+# Apply migrations in final stage
+RUN npx prisma migrate deploy
 # Run the application.
 CMD ["node", "dist/main"]
