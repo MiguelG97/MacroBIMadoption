@@ -84,4 +84,7 @@ export class UsersService {
   remove(id: number) {
     return `This action removes a #${id} user`;
   }
+  async deleteMany() {
+    return await this.prismaClient.users.deleteMany({});
+  }
 }

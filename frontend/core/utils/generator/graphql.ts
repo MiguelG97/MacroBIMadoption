@@ -87,6 +87,7 @@ export type CreateUserInput = {
 
 export type Mutation = {
   __typename?: 'Mutation';
+  clearAllData: Scalars['Boolean']['output'];
   createAnswer?: Maybe<Answer>;
   createAnswers: Array<Answer>;
   createQuestionnaire: Questionnaire;

@@ -6,9 +6,11 @@ import {
   IQuestionnaire,
   IUser,
 } from "../shared/types/postgresql_schema_types";
-import { ApolloError } from "@apollo/client";
 import { client } from "../shared/apollo/context";
 import {
+  CreateAnswersMutation,
+  CreateQuestionnariesMutation,
+  CreateUsersMutation,
   FindAllAnswersQuery,
   FindAllQuestionnariesQuery,
   FindAllUsersQuery,
@@ -16,36 +18,23 @@ import {
 import { qFindAllUsers } from "../shared/gql/queries/users";
 import { qFindAllAnswers } from "../shared/gql/queries/answers";
 import { qFindAllQuestionnaries } from "../shared/gql/queries/questionnaries";
+import { mCreateQuestionnaries } from "../shared/gql/mutations/questionnaries";
+import { CountriesEnum } from "../shared/enums/filters_enum";
+import { mCreateUsers } from "../shared/gql/mutations/users";
+import { mCreateAnswers } from "../shared/gql/mutations/answers";
 
 export class CreateData {
   public static async sendExcelDataToPostgresql({
-    mutationCreateQuestionnaries,
-    mutationCreateUsers,
-    mutationCreateAnswers,
-    mutationCreateAnswer,
-    excelPath,
+    file,
     country,
     questionnaires,
-    campaignAlreadyExist,
   }: {
-    mutationCreateQuestionnaries: any;
-    mutationCreateUsers: any;
-    mutationCreateAnswers: any;
-    mutationCreateAnswer: any;
-    excelPath: string;
-    country:
-      | "peru"
-      | "brazil"
-      | "tunisia"
-      | "mexico"
-      | "ecuador"
-      | "colombia"
-      | "united kingdom";
+    file: File;
+    country: CountriesEnum;
     questionnaires: IQuestionnaire[];
-    campaignAlreadyExist: boolean;
   }) {
     const workbook = await excelUtils.readExcel({
-      path: excelPath,
+      file,
     });
     const sheets = workbook?.Sheets;
     if (!sheets) return;
@@ -137,13 +126,30 @@ export class CreateData {
     /**4) send data to postgresql */
     try {
       //4.1)send questionnaires:
-      if (!campaignAlreadyExist) {
-        const res1 = await mutationCreateQuestionnaries({
-          variables: {
-            createManyQuestionnairesInput: {
-              questionnairesInput: questionnaires,
+      let currentQuestionnaries =
+        await client.query<FindAllQuestionnariesQuery>({
+          query: qFindAllQuestionnaries,
+          fetchPolicy: "network-only",
+        });
+      const missingQuestionnaires = questionnaires.filter(
+        (q) =>
+          !currentQuestionnaries.data.findAllQuestionnaires
+            .map((qq) => qq.questionId)
+            .includes(q.questionId)
+      );
+      if (missingQuestionnaires.length > 0) {
+        const questionnairesCreated =
+          await client.mutate<CreateQuestionnariesMutation>({
+            mutation: mCreateQuestionnaries,
+            variables: {
+              createManyQuestionnairesInput: {
+                questionnairesInput: missingQuestionnaires,
+              },
             },
-          },
+          });
+        currentQuestionnaries = await client.query<FindAllQuestionnariesQuery>({
+          query: qFindAllQuestionnaries,
+          fetchPolicy: "network-only",
         });
       }
 
@@ -159,12 +165,14 @@ export class CreateData {
             .map((uu) => uu.userId)
             .includes(u.userId)
       );
-
-      const res2 = await mutationCreateUsers({
-        variables: {
-          createManyUsersInput: { manyUsersInput: newUserModels },
-        },
-      });
+      if (newUserModels.length > 0) {
+        const usersCreated = await client.mutate<CreateUsersMutation>({
+          mutation: mCreateUsers,
+          variables: {
+            createManyUsersInput: { manyUsersInput: newUserModels },
+          },
+        });
+      }
 
       //4.3)send answers
       //filter also for existing answers ids!
@@ -172,11 +180,6 @@ export class CreateData {
         query: qFindAllAnswers,
         fetchPolicy: "network-only",
       });
-      const currentQuestionnaries =
-        await client.query<FindAllQuestionnariesQuery>({
-          query: qFindAllQuestionnaries,
-          fetchPolicy: "network-only",
-        });
 
       const qIdsToIgnore = [
         //those questionnaires are not supposed to be displayed in the dashboard
@@ -207,11 +210,15 @@ export class CreateData {
         filteredAnswerModels.push(answerModels[i]);
       }
 
-      const res3 = await mutationCreateAnswers({
+      const answersCreated = await client.mutate<CreateAnswersMutation>({
+        mutation: mCreateAnswers,
         variables: {
           createManyAnswersInput: { createAnswersInput: filteredAnswerModels },
         },
       });
+      alert(
+        `${answersCreated.data?.createAnswers.length} answers were included to the database`
+      );
       const successad = "good!";
     } catch (error) {
       throw error;

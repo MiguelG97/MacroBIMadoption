@@ -71,6 +71,7 @@ input CreateUserInput {
 }
 
 type Mutation {
+  clearAllData: Boolean!
   createAnswer(createAnswerInput: CreateAnswerInput!): Answer
   createAnswers(createManyAnswersInput: CreateManyAnswersInput!): [Answer!]!
   createQuestionnaire(createQuestionnaireInput: CreateQuestionnaireInput!): Questionnaire!

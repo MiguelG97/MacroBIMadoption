@@ -56,6 +56,10 @@ export class AnswersService {
     return answersFound;
   }
 
+  async deleteMany() {
+    return await this.prismaClient.answers.deleteMany({});
+  }
+
   // update(id: number, updateAnswerInput: UpdateAnswerInput) {
   //   return `This action updates a #${id} answer`;
   // }

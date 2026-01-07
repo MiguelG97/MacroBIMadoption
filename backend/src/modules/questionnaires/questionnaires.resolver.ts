@@ -41,9 +41,4 @@ export class QuestionnairesResolver {
   ) {
     return await this.questionnairesService.findMany(questionIds);
   }
-
-  // @Mutation(() => Questionnaire)
-  // removeQuestionnary(@Args('id', { type: () => Int }) id: number) {
-  //   return this.questionnairesService.remove(id);
-  // }
 }

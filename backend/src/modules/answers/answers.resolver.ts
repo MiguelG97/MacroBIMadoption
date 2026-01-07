@@ -42,16 +42,4 @@ export class AnswersResolver {
   async findMany(@Args('ids', { type: () => [Int] }) ids: number[]) {
     return await this.answersService.findMany(ids);
   }
-
-  // @Mutation(() => Answer)
-  // updateAnswer(
-  //   @Args('updateAnswerInput') updateAnswerInput: UpdateAnswerInput,
-  // ) {
-  //   return this.answersService.update(updateAnswerInput.id, updateAnswerInput);
-  // }
-
-  // @Mutation(() => Answer)
-  // removeAnswer(@Args('id', { type: () => Int }) id: number) {
-  //   return this.answersService.remove(id);
-  // }
 }
