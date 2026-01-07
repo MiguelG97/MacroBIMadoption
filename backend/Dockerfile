@@ -5,19 +5,17 @@ FROM base AS deps
 WORKDIR /usr/src/app
 COPY package.json package-lock.json ./
 RUN npm ci 
+COPY prisma ./prisma
+RUN npx prisma generate
 
 FROM deps AS builder
 WORKDIR /usr/src/app
 COPY --from=deps /usr/src/app/node_modules ./node_modules
 COPY . .
-ARG POSTGRES_PRISMA_URL
-ENV POSTGRES_PRISMA_URL=${POSTGRES_PRISMA_URL}
-RUN npx prisma generate
 RUN npm run build
 
 FROM base AS final
 WORKDIR /usr/src/app
-ARG POSTGRES_PRISMA_URL
 ENV POSTGRES_PRISMA_URL=${POSTGRES_PRISMA_URL}
 ENV NODE_ENV=production
 

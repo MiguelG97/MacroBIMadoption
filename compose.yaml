@@ -34,18 +34,18 @@ services:
       - pg_data:/var/lib/postgresql/data
     networks:
       - private
-  nginx:
-    image: miguelg97/macrobimadoption:nginx-latest
-    ports:
-      - 80:80
-      - 443:443
-    networks:
-      - public
-    depends_on:
-      - frontend
-      - backend
-    volumes:
-      - /etc/letsencrypt:/etc/letsencrypt:ro # Mount SSL certificates as read-only
+  # nginx:
+  #   image: miguelg97/macrobimadoption:nginx-latest
+  #   ports:
+  #     - 80:80
+  #     - 443:443
+  #   networks:
+  #     - public
+  #   depends_on:
+  #     - frontend
+  #     - backend
+  #   volumes:
+  #     - /etc/letsencrypt:/etc/letsencrypt:ro # Mount SSL certificates as read-only
 networks:
   public:
   private:
